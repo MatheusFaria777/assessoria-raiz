@@ -1,0 +1,24 @@
+# Google Ads Ratos — Cadastro de Contas
+# O Claude le este arquivo para resolver nomes de clientes para customer IDs.
+#
+# Formato:
+# clientes:
+#   - nome: "Nome do Cliente"
+#     customer_id: "1234567890"  # sem hifens
+#     notas: "Opcional — qualquer observacao"
+
+clientes:
+  - nome: "CA Rubinho Entulhos"
+    customer_id: "9487663864"
+
+  - nome: "Mediari"
+    customer_id: "7362276131"
+    notas: "Conta de Anuncios - Mediari Cobranças"
+
+  - nome: "CZ Contabilize"
+    customer_id: "3619941554"
+    notas: "Conta de Anuncios da CZ Contabilize"
+
+  - nome: "MJ Sondagens"
+    customer_id: "8375006405"
+    notas: "Conta de Anuncios da MJ Sondagens"

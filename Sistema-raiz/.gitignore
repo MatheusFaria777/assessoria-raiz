@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+*.egg-info/
+.pytest_cache/
+*credentials*.json
+sheets_credentials.json

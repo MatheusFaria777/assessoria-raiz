@@ -16,7 +16,7 @@ npx playwright install chromium
 ```
 **Como usar numa skill:**
 ```bash
-npx playwright screenshot --viewport-size=1080,1350 --full-page "file:///caminho/slide.html" "slide.png"
+npx playwright screenshot --viewport-size=1080,1350 --fu ll-page "file:///caminho/slide.html" "slide.png"
 ```
 **Tamanhos comuns:**
 - Instagram feed: 1080x1350
@@ -110,21 +110,47 @@ node --env-file=.env scripts/publish-postforme.js
 ### yt-dlp (CLI)
 **O que faz:** Baixa transcricoes/legendas de videos do YouTube e mais de 1000 sites (Instagram, TikTok, X, Vimeo, etc)
 **Precisa de conta:** Nao, roda local
+**Status:** ✅ Instalado (Windows, jun/2026)
 **Como instalar:**
 ```bash
+# macOS
 brew install yt-dlp
+# Windows
+winget install yt-dlp.yt-dlp
 ```
+**Como usar numa skill:**
+```bash
+yt-dlp --write-subs --skip-download -o "%(id)s.%(ext)s" "URL"
+# Para baixar audio pra transcrever com Whisper local:
+yt-dlp -x --audio-format mp3 -o "%(id)s.%(ext)s" "URL"
+```
+**Obs Instagram:** nao gera legendas automaticas. Baixar o audio com `-x --audio-format mp3` e transcrever com faster-whisper (instalado localmente).
 **Quando usar:** Skills que partem de um video pra criar conteudo (carrossel, newsletter, roteiro)
 
 ---
 
 ## Transcrever audio
 
+### faster-whisper (local, sem API)
+**O que faz:** Transcreve audio em texto rodando localmente, sem custo por uso. Versao otimizada do Whisper da OpenAI.
+**Precisa de conta:** Nao
+**Status:** ✅ Instalado (Windows, jun/2026)
+**Como instalar:** `pip install faster-whisper`
+**Como usar numa skill:**
+```python
+from faster_whisper import WhisperModel
+model = WhisperModel('small', device='cpu', compute_type='int8')
+segments, info = model.transcribe('audio.mp3', language='pt')
+for seg in segments: print(seg.text)
+```
+**Quando usar:** Transcrever arquivos de audio/video locais, especialmente reels do Instagram baixados via yt-dlp
+**Modelos disponiveis:** tiny (mais rapido), small (bom custo-beneficio), medium, large (mais preciso)
+
 ### OpenAI Whisper API
 **O que faz:** Transcreve audio em texto com alta qualidade, suporta varios idiomas
 **Precisa de conta:** Sim, OpenAI (pago, ~$0.006/min)
 **Configurar:** Salvar `OPENAI_API_KEY` no `.env`
-**Quando usar:** Transcrever audio de reuniao, podcast, audio de WhatsApp, qualquer arquivo de audio que nao seja video do YouTube
+**Quando usar:** Quando precisar de qualidade maxima e tiver API key. Para uso geral, preferir faster-whisper local (gratis)
 **Dica:** Tem versao open-source (whisper.cpp) pra rodar local sem custo, mais lenta
 
 ### AssemblyAI

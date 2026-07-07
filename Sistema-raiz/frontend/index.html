@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR" style="width:100%;height:100%;margin:0;padding:0;">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/raiz-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Raiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body style="width:100%;height:100%;margin:0;padding:0;">
+    <script>
+      window.__errors=[];
+      window.onerror=function(m,u,l,c,e){
+        var s='JS ERROR: '+m+'\nFile: '+u+'\nLine: '+l+'\n'+(e&&e.stack?e.stack:'');
+        window.__errors.push(s);
+        if(document.getElementById('root'))document.getElementById('root').innerHTML='<pre style="color:#f87171;font-family:monospace;font-size:11px;padding:20px;white-space:pre-wrap;background:#1d2b27;">'+s+'</pre>';
+      };
+      window.addEventListener('unhandledrejection',function(e){
+        var s='PROMISE ERROR: '+(e.reason?e.reason.message||String(e.reason):'unknown')+(e.reason&&e.reason.stack?'\n'+e.reason.stack:'');
+        window.__errors.push(s);
+        if(document.getElementById('root'))document.getElementById('root').innerHTML='<pre style="color:#f87171;font-family:monospace;font-size:11px;padding:20px;white-space:pre-wrap;background:#1d2b27;">'+s+'</pre>';
+      });
+    </script>
+    <div id="root" style="width:100%;height:100%;display:flex;"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

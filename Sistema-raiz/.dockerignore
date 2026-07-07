@@ -1,0 +1,14 @@
+frontend/node_modules
+frontend/dist
+backend/__pycache__
+backend/**/__pycache__
+backend/raiz.db
+backend/.env
+**/*.pyc
+.git
+*.png
+*.jpg
+iniciar.bat
+screenshot-*.png
+PLANO.md
+SESSAO_*.md

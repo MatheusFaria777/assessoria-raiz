@@ -1,0 +1,5945 @@
+1
+00:00:00,440 --> 00:00:03,070
+
+Hoje nós vamos analisar este artigo que
+
+2
+00:00:03,070 --> 00:00:03,080
+Hoje nós vamos analisar este artigo que
+ 
+
+3
+00:00:03,080 --> 00:00:04,630
+Hoje nós vamos analisar este artigo que
+tá em inglês aqui. Eu vou pedir pro meu
+
+4
+00:00:04,630 --> 00:00:04,640
+tá em inglês aqui. Eu vou pedir pro meu
+ 
+
+5
+00:00:04,640 --> 00:00:06,190
+tá em inglês aqui. Eu vou pedir pro meu
+Notion traduzir automaticamente para
+
+6
+00:00:06,190 --> 00:00:06,200
+Notion traduzir automaticamente para
+ 
+
+7
+00:00:06,200 --> 00:00:08,790
+Notion traduzir automaticamente para
+português para todos poderem acompanhar
+
+8
+00:00:08,790 --> 00:00:08,800
+português para todos poderem acompanhar
+ 
+
+9
+00:00:08,800 --> 00:00:12,030
+português para todos poderem acompanhar
+que diz o seguinte: "O YouTube domina a
+
+10
+00:00:12,030 --> 00:00:12,040
+que diz o seguinte: "O YouTube domina a
+ 
+
+11
+00:00:12,040 --> 00:00:14,629
+que diz o seguinte: "O YouTube domina a
+pesquisa de inteligência artificial com
+
+12
+00:00:14,629 --> 00:00:14,639
+pesquisa de inteligência artificial com
+ 
+
+13
+00:00:14,639 --> 00:00:17,750
+pesquisa de inteligência artificial com
+uma vantagem de 200 vezes em termos de
+
+14
+00:00:17,750 --> 00:00:17,760
+uma vantagem de 200 vezes em termos de
+ 
+
+15
+00:00:17,760 --> 00:00:19,310
+uma vantagem de 200 vezes em termos de
+citações."
+
+16
+00:00:19,310 --> 00:00:19,320
+citações."
+ 
+
+17
+00:00:19,320 --> 00:00:21,070
+citações."
+Então nós vamos olhar o que que ele tá
+
+18
+00:00:21,070 --> 00:00:21,080
+Então nós vamos olhar o que que ele tá
+ 
+
+19
+00:00:21,080 --> 00:00:23,950
+Então nós vamos olhar o que que ele tá
+trazendo de dados para que a partir
+
+20
+00:00:23,950 --> 00:00:23,960
+trazendo de dados para que a partir
+ 
+
+21
+00:00:23,960 --> 00:00:26,870
+trazendo de dados para que a partir
+disso eu te traga as minhas conclusões
+
+22
+00:00:26,870 --> 00:00:26,880
+disso eu te traga as minhas conclusões
+ 
+
+23
+00:00:26,880 --> 00:00:29,550
+disso eu te traga as minhas conclusões
+de como eu penso que você deve olhar
+
+24
+00:00:29,550 --> 00:00:29,560
+de como eu penso que você deve olhar
+ 
+
+25
+00:00:29,560 --> 00:00:31,470
+de como eu penso que você deve olhar
+paraa tua produção de conteúdo. Seja
+
+26
+00:00:31,470 --> 00:00:31,480
+paraa tua produção de conteúdo. Seja
+ 
+
+27
+00:00:31,480 --> 00:00:34,350
+paraa tua produção de conteúdo. Seja
+você um autônomo, uma pessoa que tá
+
+28
+00:00:34,350 --> 00:00:34,360
+você um autônomo, uma pessoa que tá
+ 
+
+29
+00:00:34,360 --> 00:00:36,350
+você um autônomo, uma pessoa que tá
+vivendo de conteúdo, um creator, um
+
+30
+00:00:36,350 --> 00:00:36,360
+vivendo de conteúdo, um creator, um
+ 
+
+31
+00:00:36,360 --> 00:00:38,229
+vivendo de conteúdo, um creator, um
+influencer, seja você o dono de uma
+
+32
+00:00:38,229 --> 00:00:38,239
+influencer, seja você o dono de uma
+ 
+
+33
+00:00:38,239 --> 00:00:40,510
+influencer, seja você o dono de uma
+empresa e quer que a tua marca cresça.
+
+34
+00:00:40,510 --> 00:00:40,520
+empresa e quer que a tua marca cresça.
+ 
+
+35
+00:00:40,520 --> 00:00:42,950
+empresa e quer que a tua marca cresça.
+Vamos, vamos ler e aí eu te falo o que
+
+36
+00:00:42,950 --> 00:00:42,960
+Vamos, vamos ler e aí eu te falo o que
+ 
+
+37
+00:00:42,960 --> 00:00:44,670
+Vamos, vamos ler e aí eu te falo o que
+eu penso.
+
+38
+00:00:44,670 --> 00:00:44,680
+eu penso.
+ 
+
+39
+00:00:44,680 --> 00:00:47,150
+eu penso.
+O YouTube é citado 200 vezes mais do que
+
+40
+00:00:47,150 --> 00:00:47,160
+O YouTube é citado 200 vezes mais do que
+ 
+
+41
+00:00:47,160 --> 00:00:49,110
+O YouTube é citado 200 vezes mais do que
+qualquer outra plataforma de vídeo nos
+
+42
+00:00:49,110 --> 00:00:49,120
+qualquer outra plataforma de vídeo nos
+ 
+
+43
+00:00:49,120 --> 00:00:50,830
+qualquer outra plataforma de vídeo nos
+resultados de pesquisa de inteligência
+
+44
+00:00:50,830 --> 00:00:50,840
+resultados de pesquisa de inteligência
+ 
+
+45
+00:00:50,840 --> 00:00:53,430
+resultados de pesquisa de inteligência
+artificial. De acordo com novos dados da
+
+46
+00:00:53,430 --> 00:00:53,440
+artificial. De acordo com novos dados da
+ 
+
+47
+00:00:53,440 --> 00:00:55,510
+artificial. De acordo com novos dados da
+plataforma de SEO, empresária é o
+
+48
+00:00:55,510 --> 00:00:55,520
+plataforma de SEO, empresária é o
+ 
+
+49
+00:00:55,520 --> 00:00:57,029
+plataforma de SEO, empresária é o
+Brighthead.
+
+50
+00:00:57,029 --> 00:00:57,039
+Brighthead.
+ 
+
+51
+00:00:57,039 --> 00:01:00,110
+Brighthead.
+O YouTube foi citado mais de 200 vezes,
+
+52
+00:01:00,110 --> 00:01:00,120
+O YouTube foi citado mais de 200 vezes,
+ 
+
+53
+00:01:00,120 --> 00:01:01,950
+O YouTube foi citado mais de 200 vezes,
+presente aqui, ó, em qualquer plataforma
+
+54
+00:01:01,950 --> 00:01:01,960
+presente aqui, ó, em qualquer plataforma
+ 
+
+55
+00:01:01,960 --> 00:01:03,670
+presente aqui, ó, em qualquer plataforma
+de vídeo pelo do que qualquer outra
+
+56
+00:01:03,670 --> 00:01:03,680
+de vídeo pelo do que qualquer outra
+ 
+
+57
+00:01:03,680 --> 00:01:05,229
+de vídeo pelo do que qualquer outra
+plataforma de vídeo pelo chat EPT,
+
+58
+00:01:05,229 --> 00:01:05,239
+plataforma de vídeo pelo chat EPT,
+ 
+
+59
+00:01:05,239 --> 00:01:07,550
+plataforma de vídeo pelo chat EPT,
+Perplexity e produtos de IA do Google. É
+
+60
+00:01:07,550 --> 00:01:07,560
+Perplexity e produtos de IA do Google. É
+ 
+
+61
+00:01:07,560 --> 00:01:09,990
+Perplexity e produtos de IA do Google. É
+claro que a IA do Google vai privilegiar
+
+62
+00:01:09,990 --> 00:01:10,000
+claro que a IA do Google vai privilegiar
+ 
+
+63
+00:01:10,000 --> 00:01:11,109
+claro que a IA do Google vai privilegiar
+o YouTube, né? Isso aí ninguém tem
+
+64
+00:01:11,109 --> 00:01:11,119
+o YouTube, né? Isso aí ninguém tem
+ 
+
+65
+00:01:11,119 --> 00:01:14,030
+o YouTube, né? Isso aí ninguém tem
+dúvida. presente em todas as plataformas
+
+66
+00:01:14,030 --> 00:01:14,040
+dúvida. presente em todas as plataformas
+ 
+
+67
+00:01:14,040 --> 00:01:16,070
+dúvida. presente em todas as plataformas
+e essencialmente a única fonte de vídeo
+
+68
+00:01:16,070 --> 00:01:16,080
+e essencialmente a única fonte de vídeo
+ 
+
+69
+00:01:16,080 --> 00:01:18,550
+e essencialmente a única fonte de vídeo
+que importa. Uma das principais
+
+70
+00:01:18,550 --> 00:01:18,560
+que importa. Uma das principais
+ 
+
+71
+00:01:18,560 --> 00:01:20,469
+que importa. Uma das principais
+autoridades em informações, rivalizando
+
+72
+00:01:20,469 --> 00:01:20,479
+autoridades em informações, rivalizando
+ 
+
+73
+00:01:20,479 --> 00:01:23,030
+autoridades em informações, rivalizando
+com a Meil Clinic e a Investopédia.
+
+74
+00:01:23,030 --> 00:01:23,040
+com a Meil Clinic e a Investopédia.
+ 
+
+75
+00:01:23,040 --> 00:01:25,230
+com a Meil Clinic e a Investopédia.
+Vamos lá. Olha isso daqui como é
+
+76
+00:01:25,230 --> 00:01:25,240
+Vamos lá. Olha isso daqui como é
+ 
+
+77
+00:01:25,240 --> 00:01:28,749
+Vamos lá. Olha isso daqui como é
+importante. Tem Instagram, tem TikTok, a
+
+78
+00:01:28,749 --> 00:01:28,759
+importante. Tem Instagram, tem TikTok, a
+ 
+
+79
+00:01:28,759 --> 00:01:30,630
+importante. Tem Instagram, tem TikTok, a
+galera fala muito, todo mundo fala que é
+
+80
+00:01:30,630 --> 00:01:30,640
+galera fala muito, todo mundo fala que é
+ 
+
+81
+00:01:30,640 --> 00:01:31,789
+galera fala muito, todo mundo fala que é
+maravilhoso, tem que entrar na rede
+
+82
+00:01:31,789 --> 00:01:31,799
+maravilhoso, tem que entrar na rede
+ 
+
+83
+00:01:31,799 --> 00:01:33,670
+maravilhoso, tem que entrar na rede
+social nova, o TikTok tá crescendo, pá,
+
+84
+00:01:33,670 --> 00:01:33,680
+social nova, o TikTok tá crescendo, pá,
+ 
+
+85
+00:01:33,680 --> 00:01:35,670
+social nova, o TikTok tá crescendo, pá,
+não sei o quê. Instagram é muito bom. Eu
+
+86
+00:01:35,670 --> 00:01:35,680
+não sei o quê. Instagram é muito bom. Eu
+ 
+
+87
+00:01:35,680 --> 00:01:38,109
+não sei o quê. Instagram é muito bom. Eu
+concordo agora, meu amigo,
+
+88
+00:01:38,109 --> 00:01:38,119
+concordo agora, meu amigo,
+ 
+
+89
+00:01:38,119 --> 00:01:41,990
+concordo agora, meu amigo,
+ninguém está nem perto de ter a mesma
+
+90
+00:01:41,990 --> 00:01:42,000
+ninguém está nem perto de ter a mesma
+ 
+
+91
+00:01:42,000 --> 00:01:44,830
+ninguém está nem perto de ter a mesma
+proeminência que o YouTube. Ou seja, não
+
+92
+00:01:44,830 --> 00:01:44,840
+proeminência que o YouTube. Ou seja, não
+ 
+
+93
+00:01:44,840 --> 00:01:47,550
+proeminência que o YouTube. Ou seja, não
+ter um canal do YouTube hoje, não estar
+
+94
+00:01:47,550 --> 00:01:47,560
+ter um canal do YouTube hoje, não estar
+ 
+
+95
+00:01:47,560 --> 00:01:50,510
+ter um canal do YouTube hoje, não estar
+aqui gravando vídeos constantemente, tá
+
+96
+00:01:50,510 --> 00:01:50,520
+aqui gravando vídeos constantemente, tá
+ 
+
+97
+00:01:50,520 --> 00:01:53,109
+aqui gravando vídeos constantemente, tá
+te deixando para trás, garantido. Já
+
+98
+00:01:53,109 --> 00:01:53,119
+te deixando para trás, garantido. Já
+ 
+
+99
+00:01:53,119 --> 00:01:54,870
+te deixando para trás, garantido. Já
+tenho vários alunos que mando lá no
+
+100
+00:01:54,870 --> 00:01:54,880
+tenho vários alunos que mando lá no
+ 
+
+101
+00:01:54,880 --> 00:01:57,270
+tenho vários alunos que mando lá no
+nosso grupo do projeto OPB, que é o meu
+
+102
+00:01:57,270 --> 00:01:57,280
+nosso grupo do projeto OPB, que é o meu
+ 
+
+103
+00:01:57,280 --> 00:01:58,630
+nosso grupo do projeto OPB, que é o meu
+projeto onde eu ensino você a ter o seu
+
+104
+00:01:58,630 --> 00:01:58,640
+projeto onde eu ensino você a ter o seu
+ 
+
+105
+00:01:58,640 --> 00:02:00,029
+projeto onde eu ensino você a ter o seu
+próprio negócio de uma pessoa só no
+
+106
+00:02:00,029 --> 00:02:00,039
+próprio negócio de uma pessoa só no
+ 
+
+107
+00:02:00,039 --> 00:02:01,950
+próprio negócio de uma pessoa só no
+digital, o link tá na descrição, que
+
+108
+00:02:01,950 --> 00:02:01,960
+digital, o link tá na descrição, que
+ 
+
+109
+00:02:01,960 --> 00:02:04,389
+digital, o link tá na descrição, que
+mandam print, fizeram uma pesquisa na
+
+110
+00:02:04,389 --> 00:02:04,399
+mandam print, fizeram uma pesquisa na
+ 
+
+111
+00:02:04,399 --> 00:02:06,789
+mandam print, fizeram uma pesquisa na
+inteligência artificial e o a IA
+
+112
+00:02:06,789 --> 00:02:06,799
+inteligência artificial e o a IA
+ 
+
+113
+00:02:06,799 --> 00:02:09,669
+inteligência artificial e o a IA
+recomendou o meu vídeo. Então os meus
+
+114
+00:02:09,669 --> 00:02:09,679
+recomendou o meu vídeo. Então os meus
+ 
+
+115
+00:02:09,679 --> 00:02:11,990
+recomendou o meu vídeo. Então os meus
+vídeos aparecem nas pesquisas de IA e
+
+116
+00:02:11,990 --> 00:02:12,000
+vídeos aparecem nas pesquisas de IA e
+ 
+
+117
+00:02:12,000 --> 00:02:14,229
+vídeos aparecem nas pesquisas de IA e
+isso é coisa importante, tá? Aqui em
+
+118
+00:02:14,229 --> 00:02:14,239
+isso é coisa importante, tá? Aqui em
+ 
+
+119
+00:02:14,239 --> 00:02:15,589
+isso é coisa importante, tá? Aqui em
+casa a gente não pesquisa mais nada no
+
+120
+00:02:15,589 --> 00:02:15,599
+casa a gente não pesquisa mais nada no
+ 
+
+121
+00:02:15,599 --> 00:02:18,630
+casa a gente não pesquisa mais nada no
+Google, eu e minha esposa, só chatt.
+
+122
+00:02:18,630 --> 00:02:18,640
+Google, eu e minha esposa, só chatt.
+ 
+
+123
+00:02:18,640 --> 00:02:20,229
+Google, eu e minha esposa, só chatt.
+Que coisa, né? A gente parou de ir no
+
+124
+00:02:20,229 --> 00:02:20,239
+Que coisa, né? A gente parou de ir no
+ 
+
+125
+00:02:20,239 --> 00:02:21,710
+Que coisa, né? A gente parou de ir no
+Google, a gente tá indo só no chat EPT
+
+126
+00:02:21,710 --> 00:02:21,720
+Google, a gente tá indo só no chat EPT
+ 
+
+127
+00:02:21,720 --> 00:02:23,309
+Google, a gente tá indo só no chat EPT
+perguntar as coisas. Por quê? Porque eu
+
+128
+00:02:23,309 --> 00:02:23,319
+perguntar as coisas. Por quê? Porque eu
+ 
+
+129
+00:02:23,319 --> 00:02:24,830
+perguntar as coisas. Por quê? Porque eu
+sei que ele já vai dar a resposta, já
+
+130
+00:02:24,830 --> 00:02:24,840
+sei que ele já vai dar a resposta, já
+ 
+
+131
+00:02:24,840 --> 00:02:26,229
+sei que ele já vai dar a resposta, já
+vai citar as fontes e se eu quiser eu
+
+132
+00:02:26,229 --> 00:02:26,239
+vai citar as fontes e se eu quiser eu
+ 
+
+133
+00:02:26,239 --> 00:02:28,070
+vai citar as fontes e se eu quiser eu
+vou nas fontes que ele citou. Então
+
+134
+00:02:28,070 --> 00:02:28,080
+vou nas fontes que ele citou. Então
+ 
+
+135
+00:02:28,080 --> 00:02:31,150
+vou nas fontes que ele citou. Então
+assim, muita gente deve estar migrando
+
+136
+00:02:31,150 --> 00:02:31,160
+assim, muita gente deve estar migrando
+ 
+
+137
+00:02:31,160 --> 00:02:33,110
+assim, muita gente deve estar migrando
+para esse tipo de comportamento.
+
+138
+00:02:33,110 --> 00:02:33,120
+para esse tipo de comportamento.
+ 
+
+139
+00:02:33,120 --> 00:02:34,830
+para esse tipo de comportamento.
+Aparecer nas pesquisas de inteligência
+
+140
+00:02:34,830 --> 00:02:34,840
+Aparecer nas pesquisas de inteligência
+ 
+
+141
+00:02:34,840 --> 00:02:37,509
+Aparecer nas pesquisas de inteligência
+artificial eventualmente vai ser no
+
+142
+00:02:37,509 --> 00:02:37,519
+artificial eventualmente vai ser no
+ 
+
+143
+00:02:37,519 --> 00:02:39,270
+artificial eventualmente vai ser no
+mínimo tão importante quanto aparecer
+
+144
+00:02:39,270 --> 00:02:39,280
+mínimo tão importante quanto aparecer
+ 
+
+145
+00:02:39,280 --> 00:02:42,030
+mínimo tão importante quanto aparecer
+nas pesquisas do Google e eventualmente
+
+146
+00:02:42,030 --> 00:02:42,040
+nas pesquisas do Google e eventualmente
+ 
+
+147
+00:02:42,040 --> 00:02:45,589
+nas pesquisas do Google e eventualmente
+mais, tá? Pelos números, o YouTube tinha
+
+148
+00:02:45,589 --> 00:02:45,599
+mais, tá? Pelos números, o YouTube tinha
+ 
+
+149
+00:02:45,599 --> 00:02:47,149
+mais, tá? Pelos números, o YouTube tinha
+uma vantagem de 200 vezes sobre seu
+
+150
+00:02:47,149 --> 00:02:47,159
+uma vantagem de 200 vezes sobre seu
+ 
+
+151
+00:02:47,159 --> 00:02:49,270
+uma vantagem de 200 vezes sobre seu
+rival mais próximo, que é o Vim. Não é
+
+152
+00:02:49,270 --> 00:02:49,280
+rival mais próximo, que é o Vim. Não é
+ 
+
+153
+00:02:49,280 --> 00:02:52,309
+rival mais próximo, que é o Vim. Não é
+nem o TikTok. Até mesmo plataformas como
+
+154
+00:02:52,309 --> 00:02:52,319
+nem o TikTok. Até mesmo plataformas como
+ 
+
+155
+00:02:52,319 --> 00:02:54,229
+nem o TikTok. Até mesmo plataformas como
+Perplexity Chat EPT que não tem
+
+156
+00:02:54,229 --> 00:02:54,239
+Perplexity Chat EPT que não tem
+ 
+
+157
+00:02:54,239 --> 00:02:56,070
+Perplexity Chat EPT que não tem
+incentivo para favorecer as propriedades
+
+158
+00:02:56,070 --> 00:02:56,080
+incentivo para favorecer as propriedades
+ 
+
+159
+00:02:56,080 --> 00:02:57,990
+incentivo para favorecer as propriedades
+do Google citam YouTube de forma
+
+160
+00:02:57,990 --> 00:02:58,000
+do Google citam YouTube de forma
+ 
+
+161
+00:02:58,000 --> 00:02:59,550
+do Google citam YouTube de forma
+esmagadora.
+
+162
+00:02:59,550 --> 00:02:59,560
+esmagadora.
+ 
+
+163
+00:02:59,560 --> 00:03:02,270
+esmagadora.
+Média de 20% de participação de citações
+
+164
+00:03:02,270 --> 00:03:02,280
+Média de 20% de participação de citações
+ 
+
+165
+00:03:02,280 --> 00:03:03,990
+Média de 20% de participação de citações
+do YouTube em todas as plataformas de
+
+166
+00:03:03,990 --> 00:03:04,000
+do YouTube em todas as plataformas de
+ 
+
+167
+00:03:04,000 --> 00:03:07,670
+do YouTube em todas as plataformas de
+IA. 29,5% das visões gerais de A do
+
+168
+00:03:07,670 --> 00:03:07,680
+IA. 29,5% das visões gerais de A do
+ 
+
+169
+00:03:07,680 --> 00:03:09,670
+IA. 29,5% das visões gerais de A do
+Google citam YouTube, sendo o principal
+
+170
+00:03:09,670 --> 00:03:09,680
+Google citam YouTube, sendo o principal
+ 
+
+171
+00:03:09,680 --> 00:03:13,910
+Google citam YouTube, sendo o principal
+domínio à frente do Myoclinic.
+
+172
+00:03:13,910 --> 00:03:13,920
+domínio à frente do Myoclinic.
+ 
+
+173
+00:03:13,920 --> 00:03:17,309
+domínio à frente do Myoclinic.
+Crescimento de 100% semana após semana
+
+174
+00:03:17,309 --> 00:03:17,319
+Crescimento de 100% semana após semana
+ 
+
+175
+00:03:17,319 --> 00:03:19,830
+Crescimento de 100% semana após semana
+para chat EPT.
+
+176
+00:03:19,830 --> 00:03:19,840
+para chat EPT.
+ 
+
+177
+00:03:19,840 --> 00:03:23,309
+para chat EPT.
+E ah, vamos ver por plataforma. Bom, eu
+
+178
+00:03:23,309 --> 00:03:23,319
+E ah, vamos ver por plataforma. Bom, eu
+ 
+
+179
+00:03:23,319 --> 00:03:24,910
+E ah, vamos ver por plataforma. Bom, eu
+quero um lugar que ele compare, cara.
+
+180
+00:03:24,910 --> 00:03:24,920
+quero um lugar que ele compare, cara.
+ 
+
+181
+00:03:24,920 --> 00:03:26,110
+quero um lugar que ele compare, cara.
+Quero lugar que ele compare com as
+
+182
+00:03:26,110 --> 00:03:26,120
+Quero lugar que ele compare com as
+ 
+
+183
+00:03:26,120 --> 00:03:29,270
+Quero lugar que ele compare com as
+coisas. Por que isso é importante? Bom,
+
+184
+00:03:29,270 --> 00:03:29,280
+coisas. Por que isso é importante? Bom,
+ 
+
+185
+00:03:29,280 --> 00:03:30,270
+coisas. Por que isso é importante? Bom,
+se sua marca não estiver criando
+
+186
+00:03:30,270 --> 00:03:30,280
+se sua marca não estiver criando
+ 
+
+187
+00:03:30,280 --> 00:03:33,429
+se sua marca não estiver criando
+conteúdo, você poderá tá aqui é só
+
+188
+00:03:33,429 --> 00:03:33,439
+conteúdo, você poderá tá aqui é só
+ 
+
+189
+00:03:33,439 --> 00:03:36,149
+conteúdo, você poderá tá aqui é só
+conversa fiada aqui pra frente, né? Um
+
+190
+00:03:36,149 --> 00:03:36,159
+conversa fiada aqui pra frente, né? Um
+ 
+
+191
+00:03:36,159 --> 00:03:39,149
+conversa fiada aqui pra frente, né? Um
+artigo curto, não tem muita coisa, o que
+
+192
+00:03:39,149 --> 00:03:39,159
+artigo curto, não tem muita coisa, o que
+ 
+
+193
+00:03:39,159 --> 00:03:40,390
+artigo curto, não tem muita coisa, o que
+me faz querer abrir um outro artigo que
+
+194
+00:03:40,390 --> 00:03:40,400
+me faz querer abrir um outro artigo que
+ 
+
+195
+00:03:40,400 --> 00:03:42,350
+me faz querer abrir um outro artigo que
+eu tenho aqui,
+
+196
+00:03:42,350 --> 00:03:42,360
+eu tenho aqui,
+ 
+
+197
+00:03:42,360 --> 00:03:43,630
+eu tenho aqui,
+que eu acho que ele vai ser útil para
+
+198
+00:03:43,630 --> 00:03:43,640
+que eu acho que ele vai ser útil para
+ 
+
+199
+00:03:43,640 --> 00:03:45,589
+que eu acho que ele vai ser útil para
+nós. Vamos ver aqui. Eu ia usar esse
+
+200
+00:03:45,589 --> 00:03:45,599
+nós. Vamos ver aqui. Eu ia usar esse
+ 
+
+201
+00:03:45,599 --> 00:03:48,110
+nós. Vamos ver aqui. Eu ia usar esse
+artigo em outro vídeo, mas ele vai ser
+
+202
+00:03:48,110 --> 00:03:48,120
+artigo em outro vídeo, mas ele vai ser
+ 
+
+203
+00:03:48,120 --> 00:03:49,710
+artigo em outro vídeo, mas ele vai ser
+muito importante pra gente continuar
+
+204
+00:03:49,710 --> 00:03:49,720
+muito importante pra gente continuar
+ 
+
+205
+00:03:49,720 --> 00:03:52,949
+muito importante pra gente continuar
+essa conversa. A mudança de SEO que você
+
+206
+00:03:52,949 --> 00:03:52,959
+essa conversa. A mudança de SEO que você
+ 
+
+207
+00:03:52,959 --> 00:03:54,789
+essa conversa. A mudança de SEO que você
+não pode ignorar, o vídeo está se
+
+208
+00:03:54,789 --> 00:03:54,799
+não pode ignorar, o vídeo está se
+ 
+
+209
+00:03:54,799 --> 00:03:57,149
+não pode ignorar, o vídeo está se
+tornando um material de origem. Veja que
+
+210
+00:03:57,149 --> 00:03:57,159
+tornando um material de origem. Veja que
+ 
+
+211
+00:03:57,159 --> 00:04:00,309
+tornando um material de origem. Veja que
+que vamos traduzir SEO para português.
+
+212
+00:04:00,309 --> 00:04:00,319
+que vamos traduzir SEO para português.
+ 
+
+213
+00:04:00,319 --> 00:04:02,229
+que vamos traduzir SEO para português.
+Você quer criar, tem dois jeitos de você
+
+214
+00:04:02,229 --> 00:04:02,239
+Você quer criar, tem dois jeitos de você
+ 
+
+215
+00:04:02,239 --> 00:04:04,830
+Você quer criar, tem dois jeitos de você
+criar conteúdo na internet. Ou você cria
+
+216
+00:04:04,830 --> 00:04:04,840
+criar conteúdo na internet. Ou você cria
+ 
+
+217
+00:04:04,840 --> 00:04:07,429
+criar conteúdo na internet. Ou você cria
+um conteúdo que a o algoritmo da rede
+
+218
+00:04:07,429 --> 00:04:07,439
+um conteúdo que a o algoritmo da rede
+ 
+
+219
+00:04:07,439 --> 00:04:09,670
+um conteúdo que a o algoritmo da rede
+social vai mostrar pros outros. Então
+
+220
+00:04:09,670 --> 00:04:09,680
+social vai mostrar pros outros. Então
+ 
+
+221
+00:04:09,680 --> 00:04:11,190
+social vai mostrar pros outros. Então
+vou lá, faço um post no Instagram que
+
+222
+00:04:11,190 --> 00:04:11,200
+vou lá, faço um post no Instagram que
+ 
+
+223
+00:04:11,200 --> 00:04:13,390
+vou lá, faço um post no Instagram que
+vai aparecer na aba pesquisar ou faço um
+
+224
+00:04:13,390 --> 00:04:13,400
+vai aparecer na aba pesquisar ou faço um
+ 
+
+225
+00:04:13,400 --> 00:04:15,030
+vai aparecer na aba pesquisar ou faço um
+vídeo no YouTube que vai ser recomendado
+
+226
+00:04:15,030 --> 00:04:15,040
+vídeo no YouTube que vai ser recomendado
+ 
+
+227
+00:04:15,040 --> 00:04:17,310
+vídeo no YouTube que vai ser recomendado
+pelo algoritmo. Ou eu crio conteúdo
+
+228
+00:04:17,310 --> 00:04:17,320
+pelo algoritmo. Ou eu crio conteúdo
+ 
+
+229
+00:04:17,320 --> 00:04:20,030
+pelo algoritmo. Ou eu crio conteúdo
+pensando no comportamento do usuário e
+
+230
+00:04:20,030 --> 00:04:20,040
+pensando no comportamento do usuário e
+ 
+
+231
+00:04:20,040 --> 00:04:22,030
+pensando no comportamento do usuário e
+nas coisas que ele vai pesquisar. Então
+
+232
+00:04:22,030 --> 00:04:22,040
+nas coisas que ele vai pesquisar. Então
+ 
+
+233
+00:04:22,040 --> 00:04:24,150
+nas coisas que ele vai pesquisar. Então
+eu vou lá e crio um site para que eu vá
+
+234
+00:04:24,150 --> 00:04:24,160
+eu vou lá e crio um site para que eu vá
+ 
+
+235
+00:04:24,160 --> 00:04:25,590
+eu vou lá e crio um site para que eu vá
+alimentando esse site, eventualmente
+
+236
+00:04:25,590 --> 00:04:25,600
+alimentando esse site, eventualmente
+ 
+
+237
+00:04:25,600 --> 00:04:26,830
+alimentando esse site, eventualmente
+quando alguém pesquisar algo no Google,
+
+238
+00:04:26,830 --> 00:04:26,840
+quando alguém pesquisar algo no Google,
+ 
+
+239
+00:04:26,840 --> 00:04:28,950
+quando alguém pesquisar algo no Google,
+o meu site apareça primeiro. Eu vou lá
+
+240
+00:04:28,950 --> 00:04:28,960
+o meu site apareça primeiro. Eu vou lá
+ 
+
+241
+00:04:28,960 --> 00:04:30,270
+o meu site apareça primeiro. Eu vou lá
+gravar vídeo no YouTube para que
+
+242
+00:04:30,270 --> 00:04:30,280
+gravar vídeo no YouTube para que
+ 
+
+243
+00:04:30,280 --> 00:04:31,790
+gravar vídeo no YouTube para que
+eventualmente quando as pessoas
+
+244
+00:04:31,790 --> 00:04:31,800
+eventualmente quando as pessoas
+ 
+
+245
+00:04:31,800 --> 00:04:33,350
+eventualmente quando as pessoas
+pesquisarem alguma coisa no YouTube, o
+
+246
+00:04:33,350 --> 00:04:33,360
+pesquisarem alguma coisa no YouTube, o
+ 
+
+247
+00:04:33,360 --> 00:04:36,189
+pesquisarem alguma coisa no YouTube, o
+meu vídeo apareça primeiro. Isso é um
+
+248
+00:04:36,189 --> 00:04:36,199
+meu vídeo apareça primeiro. Isso é um
+ 
+
+249
+00:04:36,199 --> 00:04:38,070
+meu vídeo apareça primeiro. Isso é um
+uma estratégia fundamental de longo
+
+250
+00:04:38,070 --> 00:04:38,080
+uma estratégia fundamental de longo
+ 
+
+251
+00:04:38,080 --> 00:04:40,230
+uma estratégia fundamental de longo
+prazo de qualquer pessoa que quer viver
+
+252
+00:04:40,230 --> 00:04:40,240
+prazo de qualquer pessoa que quer viver
+ 
+
+253
+00:04:40,240 --> 00:04:42,550
+prazo de qualquer pessoa que quer viver
+de digital. Quem vive, quem quer viver
+
+254
+00:04:42,550 --> 00:04:42,560
+de digital. Quem vive, quem quer viver
+ 
+
+255
+00:04:42,560 --> 00:04:45,870
+de digital. Quem vive, quem quer viver
+de digital e não tem uma estratégia de
+
+256
+00:04:45,870 --> 00:04:45,880
+de digital e não tem uma estratégia de
+ 
+
+257
+00:04:45,880 --> 00:04:47,909
+de digital e não tem uma estratégia de
+pesquisa, não está gravando conteúdo,
+
+258
+00:04:47,909 --> 00:04:47,919
+pesquisa, não está gravando conteúdo,
+ 
+
+259
+00:04:47,919 --> 00:04:49,590
+pesquisa, não está gravando conteúdo,
+não está criando nenhum tipo de conteúdo
+
+260
+00:04:49,590 --> 00:04:49,600
+não está criando nenhum tipo de conteúdo
+ 
+
+261
+00:04:49,600 --> 00:04:51,350
+não está criando nenhum tipo de conteúdo
+que vai ser encontrado com o passar do
+
+262
+00:04:51,350 --> 00:04:51,360
+que vai ser encontrado com o passar do
+ 
+
+263
+00:04:51,360 --> 00:04:54,230
+que vai ser encontrado com o passar do
+tempo, sem depender só da recomendação
+
+264
+00:04:54,230 --> 00:04:54,240
+tempo, sem depender só da recomendação
+ 
+
+265
+00:04:54,240 --> 00:04:56,590
+tempo, sem depender só da recomendação
+do algoritmo, vai ficar para trás e vai
+
+266
+00:04:56,590 --> 00:04:56,600
+do algoritmo, vai ficar para trás e vai
+ 
+
+267
+00:04:56,600 --> 00:04:59,270
+do algoritmo, vai ficar para trás e vai
+morrer no caminho. Isso é certo. Então,
+
+268
+00:04:59,270 --> 00:04:59,280
+morrer no caminho. Isso é certo. Então,
+ 
+
+269
+00:04:59,280 --> 00:05:02,110
+morrer no caminho. Isso é certo. Então,
+se é isso, eu organizar o meu conteúdo
+
+270
+00:05:02,110 --> 00:05:02,120
+se é isso, eu organizar o meu conteúdo
+ 
+
+271
+00:05:02,120 --> 00:05:05,270
+se é isso, eu organizar o meu conteúdo
+para que ele apareça para quem pesquisa.
+
+272
+00:05:05,270 --> 00:05:05,280
+para que ele apareça para quem pesquisa.
+ 
+
+273
+00:05:05,280 --> 00:05:06,710
+para que ele apareça para quem pesquisa.
+As visões gerais de inteligência
+
+274
+00:05:06,710 --> 00:05:06,720
+As visões gerais de inteligência
+ 
+
+275
+00:05:06,720 --> 00:05:09,430
+As visões gerais de inteligência
+artificial e o do Google mudam a
+
+276
+00:05:09,430 --> 00:05:09,440
+artificial e o do Google mudam a
+ 
+
+277
+00:05:09,440 --> 00:05:11,830
+artificial e o do Google mudam a
+estratégia de SEO. Os vídeos do YouTube,
+
+278
+00:05:11,830 --> 00:05:11,840
+estratégia de SEO. Os vídeos do YouTube,
+ 
+
+279
+00:05:11,840 --> 00:05:14,270
+estratégia de SEO. Os vídeos do YouTube,
+do TikTok, de outros sites agora são a o
+
+280
+00:05:14,270 --> 00:05:14,280
+do TikTok, de outros sites agora são a o
+ 
+
+281
+00:05:14,280 --> 00:05:16,189
+do TikTok, de outros sites agora são a o
+principal material de origem para
+
+282
+00:05:16,189 --> 00:05:16,199
+principal material de origem para
+ 
+
+283
+00:05:16,199 --> 00:05:17,990
+principal material de origem para
+pesquisa.
+
+284
+00:05:17,990 --> 00:05:18,000
+pesquisa.
+ 
+
+285
+00:05:18,000 --> 00:05:19,990
+pesquisa.
+Uma transformação sutil, mas profunda.
+
+286
+00:05:19,990 --> 00:05:20,000
+Uma transformação sutil, mas profunda.
+ 
+
+287
+00:05:20,000 --> 00:05:21,670
+Uma transformação sutil, mas profunda.
+Está em andamento, redefinindo a forma
+
+288
+00:05:21,670 --> 00:05:21,680
+Está em andamento, redefinindo a forma
+ 
+
+289
+00:05:21,680 --> 00:05:23,430
+Está em andamento, redefinindo a forma
+como as pessoas pesquisam e o conteúdo
+
+290
+00:05:23,430 --> 00:05:23,440
+como as pessoas pesquisam e o conteúdo
+ 
+
+291
+00:05:23,440 --> 00:05:24,990
+como as pessoas pesquisam e o conteúdo
+que o Google considera que vale a pena
+
+292
+00:05:24,990 --> 00:05:25,000
+que o Google considera que vale a pena
+ 
+
+293
+00:05:25,000 --> 00:05:27,029
+que o Google considera que vale a pena
+encontrar. Eu acho muito ruim a tradução
+
+294
+00:05:27,029 --> 00:05:27,039
+encontrar. Eu acho muito ruim a tradução
+ 
+
+295
+00:05:27,039 --> 00:05:28,110
+encontrar. Eu acho muito ruim a tradução
+para português essas coisas aqui. Eu
+
+296
+00:05:28,110 --> 00:05:28,120
+para português essas coisas aqui. Eu
+ 
+
+297
+00:05:28,120 --> 00:05:29,909
+para português essas coisas aqui. Eu
+prefiro ler em inglês, mas tudo bem.
+
+298
+00:05:29,909 --> 00:05:29,919
+prefiro ler em inglês, mas tudo bem.
+ 
+
+299
+00:05:29,919 --> 00:05:31,629
+prefiro ler em inglês, mas tudo bem.
+Todos nós já vimos as manchetes e os
+
+300
+00:05:31,629 --> 00:05:31,639
+Todos nós já vimos as manchetes e os
+ 
+
+301
+00:05:31,639 --> 00:05:33,870
+Todos nós já vimos as manchetes e os
+dados. Os usuários mais jovens estão
+
+302
+00:05:33,870 --> 00:05:33,880
+dados. Os usuários mais jovens estão
+ 
+
+303
+00:05:33,880 --> 00:05:35,510
+dados. Os usuários mais jovens estão
+recorrendo ao TikTok e ao YouTube para
+
+304
+00:05:35,510 --> 00:05:35,520
+recorrendo ao TikTok e ao YouTube para
+ 
+
+305
+00:05:35,520 --> 00:05:39,350
+recorrendo ao TikTok e ao YouTube para
+fazer descobertas. Mas o que antes era,
+
+306
+00:05:39,350 --> 00:05:39,360
+fazer descobertas. Mas o que antes era,
+ 
+
+307
+00:05:39,360 --> 00:05:41,150
+fazer descobertas. Mas o que antes era,
+o os que antes eram considerados
+
+308
+00:05:41,150 --> 00:05:41,160
+o os que antes eram considerados
+ 
+
+309
+00:05:41,160 --> 00:05:43,790
+o os que antes eram considerados
+micromecanismos de pesquisa, agora estão
+
+310
+00:05:43,790 --> 00:05:43,800
+micromecanismos de pesquisa, agora estão
+ 
+
+311
+00:05:43,800 --> 00:05:46,070
+micromecanismos de pesquisa, agora estão
+moldando os resultados do principal
+
+312
+00:05:46,070 --> 00:05:46,080
+moldando os resultados do principal
+ 
+
+313
+00:05:46,080 --> 00:05:49,350
+moldando os resultados do principal
+participante do jogo, o Google. Com o
+
+314
+00:05:49,350 --> 00:05:49,360
+participante do jogo, o Google. Com o
+ 
+
+315
+00:05:49,360 --> 00:05:50,870
+participante do jogo, o Google. Com o
+surgimento das visões gerais de
+
+316
+00:05:50,870 --> 00:05:50,880
+surgimento das visões gerais de
+ 
+
+317
+00:05:50,880 --> 00:05:52,990
+surgimento das visões gerais de
+inteligência artificial, o Google está
+
+318
+00:05:52,990 --> 00:05:53,000
+inteligência artificial, o Google está
+ 
+
+319
+00:05:53,000 --> 00:05:54,790
+inteligência artificial, o Google está
+obtendo um conjunto mais amplo de
+
+320
+00:05:54,790 --> 00:05:54,800
+obtendo um conjunto mais amplo de
+ 
+
+321
+00:05:54,800 --> 00:05:57,230
+obtendo um conjunto mais amplo de
+conteúdo do que nunca, incluindo vídeos.
+
+322
+00:05:57,230 --> 00:05:57,240
+conteúdo do que nunca, incluindo vídeos.
+ 
+
+323
+00:05:57,240 --> 00:05:58,749
+conteúdo do que nunca, incluindo vídeos.
+E não apenas vídeos hospedados em
+
+324
+00:05:58,749 --> 00:05:58,759
+E não apenas vídeos hospedados em
+ 
+
+325
+00:05:58,759 --> 00:06:00,629
+E não apenas vídeos hospedados em
+plataformas próprias e operadas como o
+
+326
+00:06:00,629 --> 00:06:00,639
+plataformas próprias e operadas como o
+ 
+
+327
+00:06:00,639 --> 00:06:02,909
+plataformas próprias e operadas como o
+YouTube. Cada vez mais, o conteúdo
+
+328
+00:06:02,909 --> 00:06:02,919
+YouTube. Cada vez mais, o conteúdo
+ 
+
+329
+00:06:02,919 --> 00:06:04,870
+YouTube. Cada vez mais, o conteúdo
+gerado pelo usuário de plataformas como
+
+330
+00:06:04,870 --> 00:06:04,880
+gerado pelo usuário de plataformas como
+ 
+
+331
+00:06:04,880 --> 00:06:07,950
+gerado pelo usuário de plataformas como
+TikTok, Redit e YouTube está moldando os
+
+332
+00:06:07,950 --> 00:06:07,960
+TikTok, Redit e YouTube está moldando os
+ 
+
+333
+00:06:07,960 --> 00:06:10,830
+TikTok, Redit e YouTube está moldando os
+resultados de pesquisa do Google.
+
+334
+00:06:10,830 --> 00:06:10,840
+resultados de pesquisa do Google.
+ 
+
+335
+00:06:10,840 --> 00:06:12,309
+resultados de pesquisa do Google.
+A linha entre pesquisa e as redes
+
+336
+00:06:12,309 --> 00:06:12,319
+A linha entre pesquisa e as redes
+ 
+
+337
+00:06:12,319 --> 00:06:13,909
+A linha entre pesquisa e as redes
+sociais está se confundindo ainda mais
+
+338
+00:06:13,909 --> 00:06:13,919
+sociais está se confundindo ainda mais
+ 
+
+339
+00:06:13,919 --> 00:06:15,909
+sociais está se confundindo ainda mais
+rápido do que muitas marcas imaginam.
+
+340
+00:06:15,909 --> 00:06:15,919
+rápido do que muitas marcas imaginam.
+ 
+
+341
+00:06:15,919 --> 00:06:17,909
+rápido do que muitas marcas imaginam.
+Vamos fazer um parêntese. Eu falei aqui
+
+342
+00:06:17,909 --> 00:06:17,919
+Vamos fazer um parêntese. Eu falei aqui
+ 
+
+343
+00:06:17,919 --> 00:06:19,710
+Vamos fazer um parêntese. Eu falei aqui
+há pouco que o YouTube tá muito melhor
+
+344
+00:06:19,710 --> 00:06:19,720
+há pouco que o YouTube tá muito melhor
+ 
+
+345
+00:06:19,720 --> 00:06:22,110
+há pouco que o YouTube tá muito melhor
+do que o TikTok ainda, mas a gente não
+
+346
+00:06:22,110 --> 00:06:22,120
+do que o TikTok ainda, mas a gente não
+ 
+
+347
+00:06:22,120 --> 00:06:24,830
+do que o TikTok ainda, mas a gente não
+pode, deixa eu reorganizar minha fala. É
+
+348
+00:06:24,830 --> 00:06:24,840
+pode, deixa eu reorganizar minha fala. É
+ 
+
+349
+00:06:24,840 --> 00:06:27,189
+pode, deixa eu reorganizar minha fala. É
+óbvio que se você pode estar em mais de
+
+350
+00:06:27,189 --> 00:06:27,199
+óbvio que se você pode estar em mais de
+ 
+
+351
+00:06:27,199 --> 00:06:29,469
+óbvio que se você pode estar em mais de
+um lugar, é muito importante que você
+
+352
+00:06:29,469 --> 00:06:29,479
+um lugar, é muito importante que você
+ 
+
+353
+00:06:29,479 --> 00:06:32,830
+um lugar, é muito importante que você
+esteja no YouTube e no TikTok.
+
+354
+00:06:32,830 --> 00:06:32,840
+esteja no YouTube e no TikTok.
+ 
+
+355
+00:06:32,840 --> 00:06:35,589
+esteja no YouTube e no TikTok.
+A regra para mim é assim, ó. Se eu posso
+
+356
+00:06:35,589 --> 00:06:35,599
+A regra para mim é assim, ó. Se eu posso
+ 
+
+357
+00:06:35,599 --> 00:06:37,629
+A regra para mim é assim, ó. Se eu posso
+estar em todos os lugares, estarei em
+
+358
+00:06:37,629 --> 00:06:37,639
+estar em todos os lugares, estarei em
+ 
+
+359
+00:06:37,639 --> 00:06:40,189
+estar em todos os lugares, estarei em
+todos os lugares. A questão é para quem
+
+360
+00:06:40,189 --> 00:06:40,199
+todos os lugares. A questão é para quem
+ 
+
+361
+00:06:40,199 --> 00:06:42,430
+todos os lugares. A questão é para quem
+trabalha sozinho do tipo, sou só eu que
+
+362
+00:06:42,430 --> 00:06:42,440
+trabalha sozinho do tipo, sou só eu que
+ 
+
+363
+00:06:42,440 --> 00:06:43,510
+trabalha sozinho do tipo, sou só eu que
+gravo meu conteúdo ou não tenho um
+
+364
+00:06:43,510 --> 00:06:43,520
+gravo meu conteúdo ou não tenho um
+ 
+
+365
+00:06:43,520 --> 00:06:45,629
+gravo meu conteúdo ou não tenho um
+social mídia que vai postar meu conteúdo
+
+366
+00:06:45,629 --> 00:06:45,639
+social mídia que vai postar meu conteúdo
+ 
+
+367
+00:06:45,639 --> 00:06:48,350
+social mídia que vai postar meu conteúdo
+outro lugar? Cara, eu não quero replicar
+
+368
+00:06:48,350 --> 00:06:48,360
+outro lugar? Cara, eu não quero replicar
+ 
+
+369
+00:06:48,360 --> 00:06:49,830
+outro lugar? Cara, eu não quero replicar
+um conteúdo de um lugar para outro. Eu
+
+370
+00:06:49,830 --> 00:06:49,840
+um conteúdo de um lugar para outro. Eu
+ 
+
+371
+00:06:49,840 --> 00:06:51,189
+um conteúdo de um lugar para outro. Eu
+acho que se você tá em mais de uma rede
+
+372
+00:06:51,189 --> 00:06:51,199
+acho que se você tá em mais de uma rede
+ 
+
+373
+00:06:51,199 --> 00:06:53,830
+acho que se você tá em mais de uma rede
+social, o conteúdo de cada rede social é
+
+374
+00:06:53,830 --> 00:06:53,840
+social, o conteúdo de cada rede social é
+ 
+
+375
+00:06:53,840 --> 00:06:55,909
+social, o conteúdo de cada rede social é
+diferente. O meu conteúdo do YouTube tem
+
+376
+00:06:55,909 --> 00:06:55,919
+diferente. O meu conteúdo do YouTube tem
+ 
+
+377
+00:06:55,919 --> 00:06:57,629
+diferente. O meu conteúdo do YouTube tem
+que ser diferente do conteúdo do TikTok,
+
+378
+00:06:57,629 --> 00:06:57,639
+que ser diferente do conteúdo do TikTok,
+ 
+
+379
+00:06:57,639 --> 00:06:58,950
+que ser diferente do conteúdo do TikTok,
+diferente do conteúdo do Instagram,
+
+380
+00:06:58,950 --> 00:06:58,960
+diferente do conteúdo do Instagram,
+ 
+
+381
+00:06:58,960 --> 00:07:00,230
+diferente do conteúdo do Instagram,
+diferente do conteúdo do substeck,
+
+382
+00:07:00,230 --> 00:07:00,240
+diferente do conteúdo do substeck,
+ 
+
+383
+00:07:00,240 --> 00:07:01,869
+diferente do conteúdo do substeck,
+diferente do conteúdo do Red, diferente
+
+384
+00:07:01,869 --> 00:07:01,879
+diferente do conteúdo do Red, diferente
+ 
+
+385
+00:07:01,879 --> 00:07:04,550
+diferente do conteúdo do Red, diferente
+tudo. Então sozinho, eu não acho que dá
+
+386
+00:07:04,550 --> 00:07:04,560
+tudo. Então sozinho, eu não acho que dá
+ 
+
+387
+00:07:04,560 --> 00:07:06,909
+tudo. Então sozinho, eu não acho que dá
+para você estar em tantos lugares. Você
+
+388
+00:07:06,909 --> 00:07:06,919
+para você estar em tantos lugares. Você
+ 
+
+389
+00:07:06,919 --> 00:07:09,869
+para você estar em tantos lugares. Você
+pensando dessa forma, o melhor lugar é o
+
+390
+00:07:09,869 --> 00:07:09,879
+pensando dessa forma, o melhor lugar é o
+ 
+
+391
+00:07:09,879 --> 00:07:12,070
+pensando dessa forma, o melhor lugar é o
+YouTube. Eu acho que vai continuar sendo
+
+392
+00:07:12,070 --> 00:07:12,080
+YouTube. Eu acho que vai continuar sendo
+ 
+
+393
+00:07:12,080 --> 00:07:14,589
+YouTube. Eu acho que vai continuar sendo
+por muito tempo. Eu não acho que vai
+
+394
+00:07:14,589 --> 00:07:14,599
+por muito tempo. Eu não acho que vai
+ 
+
+395
+00:07:14,599 --> 00:07:17,670
+por muito tempo. Eu não acho que vai
+mudar tão cedo. E eu ainda acho também
+
+396
+00:07:17,670 --> 00:07:17,680
+mudar tão cedo. E eu ainda acho também
+ 
+
+397
+00:07:17,680 --> 00:07:21,189
+mudar tão cedo. E eu ainda acho também
+que o público que assiste vídeos mais
+
+398
+00:07:21,189 --> 00:07:21,199
+que o público que assiste vídeos mais
+ 
+
+399
+00:07:21,199 --> 00:07:23,430
+que o público que assiste vídeos mais
+longos é um público mais qualificado à
+
+400
+00:07:23,430 --> 00:07:23,440
+longos é um público mais qualificado à
+ 
+
+401
+00:07:23,440 --> 00:07:26,909
+longos é um público mais qualificado à
+compra de produtos de educação. Então se
+
+402
+00:07:26,909 --> 00:07:26,919
+compra de produtos de educação. Então se
+ 
+
+403
+00:07:26,919 --> 00:07:30,189
+compra de produtos de educação. Então se
+você vende mentorias, consultorias,
+
+404
+00:07:30,189 --> 00:07:30,199
+você vende mentorias, consultorias,
+ 
+
+405
+00:07:30,199 --> 00:07:33,749
+você vende mentorias, consultorias,
+cursos online, o vídeo longo te ajuda.
+
+406
+00:07:33,749 --> 00:07:33,759
+cursos online, o vídeo longo te ajuda.
+ 
+
+407
+00:07:33,759 --> 00:07:37,150
+cursos online, o vídeo longo te ajuda.
+Se você vende atendimentos que exigem
+
+408
+00:07:37,150 --> 00:07:37,160
+Se você vende atendimentos que exigem
+ 
+
+409
+00:07:37,160 --> 00:07:39,550
+Se você vende atendimentos que exigem
+construção de autoridade, você é um
+
+410
+00:07:39,550 --> 00:07:39,560
+construção de autoridade, você é um
+ 
+
+411
+00:07:39,560 --> 00:07:41,589
+construção de autoridade, você é um
+médico, você é um psicólogo, você é um
+
+412
+00:07:41,589 --> 00:07:41,599
+médico, você é um psicólogo, você é um
+ 
+
+413
+00:07:41,599 --> 00:07:43,670
+médico, você é um psicólogo, você é um
+advogado, você tem que ter autoridade
+
+414
+00:07:43,670 --> 00:07:43,680
+advogado, você tem que ter autoridade
+ 
+
+415
+00:07:43,680 --> 00:07:45,670
+advogado, você tem que ter autoridade
+para as pessoas te contratarem, o vídeo
+
+416
+00:07:45,670 --> 00:07:45,680
+para as pessoas te contratarem, o vídeo
+ 
+
+417
+00:07:45,680 --> 00:07:47,110
+para as pessoas te contratarem, o vídeo
+mais longo também é melhor do que o
+
+418
+00:07:47,110 --> 00:07:47,120
+mais longo também é melhor do que o
+ 
+
+419
+00:07:47,120 --> 00:07:51,270
+mais longo também é melhor do que o
+vídeo curto. É um pensamento óbvio, tá?
+
+420
+00:07:51,270 --> 00:07:51,280
+vídeo curto. É um pensamento óbvio, tá?
+ 
+
+421
+00:07:51,280 --> 00:07:52,790
+vídeo curto. É um pensamento óbvio, tá?
+Por que que o mais longo é melhor do que
+
+422
+00:07:52,790 --> 00:07:52,800
+Por que que o mais longo é melhor do que
+ 
+
+423
+00:07:52,800 --> 00:07:55,869
+Por que que o mais longo é melhor do que
+o mais curto? lá ele, porque no vídeo
+
+424
+00:07:55,869 --> 00:07:55,879
+o mais curto? lá ele, porque no vídeo
+ 
+
+425
+00:07:55,879 --> 00:07:58,350
+o mais curto? lá ele, porque no vídeo
+mais longo eu consigo mostrar mais
+
+426
+00:07:58,350 --> 00:07:58,360
+mais longo eu consigo mostrar mais
+ 
+
+427
+00:07:58,360 --> 00:08:01,469
+mais longo eu consigo mostrar mais
+informações, você vai ver mais sobre o
+
+428
+00:08:01,469 --> 00:08:01,479
+informações, você vai ver mais sobre o
+ 
+
+429
+00:08:01,479 --> 00:08:03,710
+informações, você vai ver mais sobre o
+meu próprio conhecimento. Então, é
+
+430
+00:08:03,710 --> 00:08:03,720
+meu próprio conhecimento. Então, é
+ 
+
+431
+00:08:03,720 --> 00:08:06,589
+meu próprio conhecimento. Então, é
+claro, em 1 minuto e meio eu consigo te
+
+432
+00:08:06,589 --> 00:08:06,599
+claro, em 1 minuto e meio eu consigo te
+ 
+
+433
+00:08:06,599 --> 00:08:08,670
+claro, em 1 minuto e meio eu consigo te
+mostrar pouco do meu conhecimento, mas
+
+434
+00:08:08,670 --> 00:08:08,680
+mostrar pouco do meu conhecimento, mas
+ 
+
+435
+00:08:08,680 --> 00:08:10,270
+mostrar pouco do meu conhecimento, mas
+em meia hora eu consigo mostrar muito
+
+436
+00:08:10,270 --> 00:08:10,280
+em meia hora eu consigo mostrar muito
+ 
+
+437
+00:08:10,280 --> 00:08:12,309
+em meia hora eu consigo mostrar muito
+mais. Então, é claro que eu vou
+
+438
+00:08:12,309 --> 00:08:12,319
+mais. Então, é claro que eu vou
+ 
+
+439
+00:08:12,319 --> 00:08:14,230
+mais. Então, é claro que eu vou
+construir autoridade muito mais rápido
+
+440
+00:08:14,230 --> 00:08:14,240
+construir autoridade muito mais rápido
+ 
+
+441
+00:08:14,240 --> 00:08:15,749
+construir autoridade muito mais rápido
+com vídeos longos do que com vídeos
+
+442
+00:08:15,749 --> 00:08:15,759
+com vídeos longos do que com vídeos
+ 
+
+443
+00:08:15,759 --> 00:08:18,390
+com vídeos longos do que com vídeos
+curtos. Dito isso, vamos continuar no
+
+444
+00:08:18,390 --> 00:08:18,400
+curtos. Dito isso, vamos continuar no
+ 
+
+445
+00:08:18,400 --> 00:08:19,830
+curtos. Dito isso, vamos continuar no
+nosso artigo aqui. Esse aqui é maior,
+
+446
+00:08:19,830 --> 00:08:19,840
+nosso artigo aqui. Esse aqui é maior,
+ 
+
+447
+00:08:19,840 --> 00:08:21,830
+nosso artigo aqui. Esse aqui é maior,
+vai dar mais pano paraa manga. A
+
+448
+00:08:21,830 --> 00:08:21,840
+vai dar mais pano paraa manga. A
+ 
+
+449
+00:08:21,840 --> 00:08:24,629
+vai dar mais pano paraa manga. A
+evolução do vídeo de bom para ter a
+
+450
+00:08:24,629 --> 00:08:24,639
+evolução do vídeo de bom para ter a
+ 
+
+451
+00:08:24,639 --> 00:08:26,430
+evolução do vídeo de bom para ter a
+obrigatório. Antes era bom ter, agora
+
+452
+00:08:26,430 --> 00:08:26,440
+obrigatório. Antes era bom ter, agora
+ 
+
+453
+00:08:26,440 --> 00:08:28,710
+obrigatório. Antes era bom ter, agora
+obrigatório. Eu concordo.
+
+454
+00:08:28,710 --> 00:08:28,720
+obrigatório. Eu concordo.
+ 
+
+455
+00:08:28,720 --> 00:08:30,230
+obrigatório. Eu concordo.
+Para entender porque esse momento é
+
+456
+00:08:30,230 --> 00:08:30,240
+Para entender porque esse momento é
+ 
+
+457
+00:08:30,240 --> 00:08:32,670
+Para entender porque esse momento é
+importante, vamos voltar ao passado. O
+
+458
+00:08:32,670 --> 00:08:32,680
+importante, vamos voltar ao passado. O
+ 
+
+459
+00:08:32,680 --> 00:08:34,949
+importante, vamos voltar ao passado. O
+Google e o YouTube estão entrelaçados
+
+460
+00:08:34,949 --> 00:08:34,959
+Google e o YouTube estão entrelaçados
+ 
+
+461
+00:08:34,959 --> 00:08:36,870
+Google e o YouTube estão entrelaçados
+desde 2006, quando o Google adquiriu o
+
+462
+00:08:36,870 --> 00:08:36,880
+desde 2006, quando o Google adquiriu o
+ 
+
+463
+00:08:36,880 --> 00:08:38,990
+desde 2006, quando o Google adquiriu o
+YouTube. Com o passar do tempo, cara, 19
+
+464
+00:08:38,990 --> 00:08:39,000
+YouTube. Com o passar do tempo, cara, 19
+ 
+
+465
+00:08:39,000 --> 00:08:41,790
+YouTube. Com o passar do tempo, cara, 19
+anos já. O espaço dedicado ao vídeo,
+
+466
+00:08:41,790 --> 00:08:41,800
+anos já. O espaço dedicado ao vídeo,
+ 
+
+467
+00:08:41,800 --> 00:08:44,910
+anos já. O espaço dedicado ao vídeo,
+não, na Serp, dedicado ao vídeo, cresceu
+
+468
+00:08:44,910 --> 00:08:44,920
+não, na Serp, dedicado ao vídeo, cresceu
+ 
+
+469
+00:08:44,920 --> 00:08:47,150
+não, na Serp, dedicado ao vídeo, cresceu
+substancialmente. Pensa em carrois de
+
+470
+00:08:47,150 --> 00:08:47,160
+substancialmente. Pensa em carrois de
+ 
+
+471
+00:08:47,160 --> 00:08:49,230
+substancialmente. Pensa em carrois de
+vídeo, rich snippets e destaques de
+
+472
+00:08:49,230 --> 00:08:49,240
+vídeo, rich snippets e destaques de
+ 
+
+473
+00:08:49,240 --> 00:08:51,070
+vídeo, rich snippets e destaques de
+momento chave. Todo, é tipos de vídeo
+
+474
+00:08:51,070 --> 00:08:51,080
+momento chave. Todo, é tipos de vídeo
+ 
+
+475
+00:08:51,080 --> 00:08:52,870
+momento chave. Todo, é tipos de vídeo
+diferente. Mas para a maioria das
+
+476
+00:08:52,870 --> 00:08:52,880
+diferente. Mas para a maioria das
+ 
+
+477
+00:08:52,880 --> 00:08:54,470
+diferente. Mas para a maioria das
+marcas, o vídeo ainda era considerado
+
+478
+00:08:54,470 --> 00:08:54,480
+marcas, o vídeo ainda era considerado
+ 
+
+479
+00:08:54,480 --> 00:08:57,350
+marcas, o vídeo ainda era considerado
+opcional, um item que é bom ter. Esse
+
+480
+00:08:57,350 --> 00:08:57,360
+opcional, um item que é bom ter. Esse
+ 
+
+481
+00:08:57,360 --> 00:08:58,910
+opcional, um item que é bom ter. Esse
+não é mais o caso. Esse artigo,
+
+482
+00:08:58,910 --> 00:08:58,920
+não é mais o caso. Esse artigo,
+ 
+
+483
+00:08:58,920 --> 00:09:02,069
+não é mais o caso. Esse artigo,
+inclusive, ele é um artigo,
+
+484
+00:09:02,069 --> 00:09:02,079
+inclusive, ele é um artigo,
+ 
+
+485
+00:09:02,079 --> 00:09:05,670
+inclusive, ele é um artigo,
+ele foi escrito no dia 18 de setembro de
+
+486
+00:09:05,670 --> 00:09:05,680
+ele foi escrito no dia 18 de setembro de
+ 
+
+487
+00:09:05,680 --> 00:09:08,350
+ele foi escrito no dia 18 de setembro de
+2025. Beleza?
+
+488
+00:09:08,350 --> 00:09:08,360
+2025. Beleza?
+ 
+
+489
+00:09:08,360 --> 00:09:10,670
+2025. Beleza?
+Então, vamos lá. As visões gerais de IA,
+
+490
+00:09:10,670 --> 00:09:10,680
+Então, vamos lá. As visões gerais de IA,
+ 
+
+491
+00:09:10,680 --> 00:09:12,389
+Então, vamos lá. As visões gerais de IA,
+que começaram a ser implementadas em
+
+492
+00:09:12,389 --> 00:09:12,399
+que começaram a ser implementadas em
+ 
+
+493
+00:09:12,399 --> 00:09:14,470
+que começaram a ser implementadas em
+2024, representam a maior mudança do
+
+494
+00:09:14,470 --> 00:09:14,480
+2024, representam a maior mudança do
+ 
+
+495
+00:09:14,480 --> 00:09:15,990
+2024, representam a maior mudança do
+Google na experiência de pesquisa em
+
+496
+00:09:15,990 --> 00:09:16,000
+Google na experiência de pesquisa em
+ 
+
+497
+00:09:16,000 --> 00:09:18,110
+Google na experiência de pesquisa em
+mais de duas décadas. Em vez de
+
+498
+00:09:18,110 --> 00:09:18,120
+mais de duas décadas. Em vez de
+ 
+
+499
+00:09:18,120 --> 00:09:19,910
+mais de duas décadas. Em vez de
+apresentar apenas os tradicionais 10
+
+500
+00:09:19,910 --> 00:09:19,920
+apresentar apenas os tradicionais 10
+ 
+
+501
+00:09:19,920 --> 00:09:22,069
+apresentar apenas os tradicionais 10
+links azuis, as visões gerais de
+
+502
+00:09:22,069 --> 00:09:22,079
+links azuis, as visões gerais de
+ 
+
+503
+00:09:22,079 --> 00:09:23,269
+links azuis, as visões gerais de
+inteligência artificial oferecem
+
+504
+00:09:23,269 --> 00:09:23,279
+inteligência artificial oferecem
+ 
+
+505
+00:09:23,279 --> 00:09:25,310
+inteligência artificial oferecem
+instantâneos gerados por IA. Claro, a
+
+506
+00:09:25,310 --> 00:09:25,320
+instantâneos gerados por IA. Claro, a
+ 
+
+507
+00:09:25,320 --> 00:09:26,550
+instantâneos gerados por IA. Claro, a
+hora que você pesquisa no Google, a
+
+508
+00:09:26,550 --> 00:09:26,560
+hora que você pesquisa no Google, a
+ 
+
+509
+00:09:26,560 --> 00:09:28,630
+hora que você pesquisa no Google, a
+primeira coisa que aparece agora é uma
+
+510
+00:09:28,630 --> 00:09:28,640
+primeira coisa que aparece agora é uma
+ 
+
+511
+00:09:28,640 --> 00:09:30,310
+primeira coisa que aparece agora é uma
+resposta da inteligência artificial e
+
+512
+00:09:30,310 --> 00:09:30,320
+resposta da inteligência artificial e
+ 
+
+513
+00:09:30,320 --> 00:09:33,110
+resposta da inteligência artificial e
+não os links dos sites.
+
+514
+00:09:33,110 --> 00:09:33,120
+não os links dos sites.
+ 
+
+515
+00:09:33,120 --> 00:09:35,430
+não os links dos sites.
+E aqui está o ponto alto. Essas fontes
+
+516
+00:09:35,430 --> 00:09:35,440
+E aqui está o ponto alto. Essas fontes
+ 
+
+517
+00:09:35,440 --> 00:09:37,150
+E aqui está o ponto alto. Essas fontes
+não estão mais limitadas a posts de
+
+518
+00:09:37,150 --> 00:09:37,160
+não estão mais limitadas a posts de
+ 
+
+519
+00:09:37,160 --> 00:09:39,750
+não estão mais limitadas a posts de
+blogs e páginas de web bem estruturados.
+
+520
+00:09:39,750 --> 00:09:39,760
+blogs e páginas de web bem estruturados.
+ 
+
+521
+00:09:39,760 --> 00:09:41,030
+blogs e páginas de web bem estruturados.
+As visões gerais de inteligência
+
+522
+00:09:41,030 --> 00:09:41,040
+As visões gerais de inteligência
+ 
+
+523
+00:09:41,040 --> 00:09:42,910
+As visões gerais de inteligência
+artificial estão obtendo uma combinação
+
+524
+00:09:42,910 --> 00:09:42,920
+artificial estão obtendo uma combinação
+ 
+
+525
+00:09:42,920 --> 00:09:45,870
+artificial estão obtendo uma combinação
+mais ampla de fontes do que nunca. Tudo,
+
+526
+00:09:45,870 --> 00:09:45,880
+mais ampla de fontes do que nunca. Tudo,
+ 
+
+527
+00:09:45,880 --> 00:09:48,350
+mais ampla de fontes do que nunca. Tudo,
+desde tópicos do Redit a discussões do
+
+528
+00:09:48,350 --> 00:09:48,360
+desde tópicos do Redit a discussões do
+ 
+
+529
+00:09:48,360 --> 00:09:50,949
+desde tópicos do Redit a discussões do
+Cora, até TikTok, Instagrams e, é claro,
+
+530
+00:09:50,949 --> 00:09:50,959
+Cora, até TikTok, Instagrams e, é claro,
+ 
+
+531
+00:09:50,959 --> 00:09:53,470
+Cora, até TikTok, Instagrams e, é claro,
+vídeos de YouTube. E eles não estão
+
+532
+00:09:53,470 --> 00:09:53,480
+vídeos de YouTube. E eles não estão
+ 
+
+533
+00:09:53,480 --> 00:09:55,190
+vídeos de YouTube. E eles não estão
+escondidos em um carrossel na metade da
+
+534
+00:09:55,190 --> 00:09:55,200
+escondidos em um carrossel na metade da
+ 
+
+535
+00:09:55,200 --> 00:09:57,310
+escondidos em um carrossel na metade da
+página, eles estão aparecendo na frente
+
+536
+00:09:57,310 --> 00:09:57,320
+página, eles estão aparecendo na frente
+ 
+
+537
+00:09:57,320 --> 00:09:59,590
+página, eles estão aparecendo na frente
+e no centro, moldando a maneira como o
+
+538
+00:09:59,590 --> 00:09:59,600
+e no centro, moldando a maneira como o
+ 
+
+539
+00:09:59,600 --> 00:10:01,949
+e no centro, moldando a maneira como o
+Google responde as perguntas do usuário.
+
+540
+00:10:01,949 --> 00:10:01,959
+Google responde as perguntas do usuário.
+ 
+
+541
+00:10:01,959 --> 00:10:03,470
+Google responde as perguntas do usuário.
+Isso é fundamental para a maneira como o
+
+542
+00:10:03,470 --> 00:10:03,480
+Isso é fundamental para a maneira como o
+ 
+
+543
+00:10:03,480 --> 00:10:06,190
+Isso é fundamental para a maneira como o
+Google responde às consultas. O Google
+
+544
+00:10:06,190 --> 00:10:06,200
+Google responde às consultas. O Google
+ 
+
+545
+00:10:06,200 --> 00:10:08,030
+Google responde às consultas. O Google
+está redefinindo o que conta como
+
+546
+00:10:08,030 --> 00:10:08,040
+está redefinindo o que conta como
+ 
+
+547
+00:10:08,040 --> 00:10:10,670
+está redefinindo o que conta como
+material de fonte confiável. Por que que
+
+548
+00:10:10,670 --> 00:10:10,680
+material de fonte confiável. Por que que
+ 
+
+549
+00:10:10,680 --> 00:10:12,069
+material de fonte confiável. Por que que
+é importante aparecer em primeiro lugar
+
+550
+00:10:12,069 --> 00:10:12,079
+é importante aparecer em primeiro lugar
+ 
+
+551
+00:10:12,079 --> 00:10:15,509
+é importante aparecer em primeiro lugar
+no Google? Porque inconscientemente você
+
+552
+00:10:15,509 --> 00:10:15,519
+no Google? Porque inconscientemente você
+ 
+
+553
+00:10:15,519 --> 00:10:17,150
+no Google? Porque inconscientemente você
+pressupõe que aquela fonte é boa e
+
+554
+00:10:17,150 --> 00:10:17,160
+pressupõe que aquela fonte é boa e
+ 
+
+555
+00:10:17,160 --> 00:10:20,470
+pressupõe que aquela fonte é boa e
+confiável. Agora, você não quer ser o
+
+556
+00:10:20,470 --> 00:10:20,480
+confiável. Agora, você não quer ser o
+ 
+
+557
+00:10:20,480 --> 00:10:22,310
+confiável. Agora, você não quer ser o
+primeiro site do Google apenas, você
+
+558
+00:10:22,310 --> 00:10:22,320
+primeiro site do Google apenas, você
+ 
+
+559
+00:10:22,320 --> 00:10:24,710
+primeiro site do Google apenas, você
+quer estar na inteligência artificial
+
+560
+00:10:24,710 --> 00:10:24,720
+quer estar na inteligência artificial
+ 
+
+561
+00:10:24,720 --> 00:10:27,030
+quer estar na inteligência artificial
+que aparece antes de todos os sites,
+
+562
+00:10:27,030 --> 00:10:27,040
+que aparece antes de todos os sites,
+ 
+
+563
+00:10:27,040 --> 00:10:30,030
+que aparece antes de todos os sites,
+porque ali é onde muita gente vai parar.
+
+564
+00:10:30,030 --> 00:10:30,040
+porque ali é onde muita gente vai parar.
+ 
+
+565
+00:10:30,040 --> 00:10:31,470
+porque ali é onde muita gente vai parar.
+A pesquisa vai ser aquilo ali. O cara
+
+566
+00:10:31,470 --> 00:10:31,480
+A pesquisa vai ser aquilo ali. O cara
+ 
+
+567
+00:10:31,480 --> 00:10:33,670
+A pesquisa vai ser aquilo ali. O cara
+vai confiar naquela informação e você
+
+568
+00:10:33,670 --> 00:10:33,680
+vai confiar naquela informação e você
+ 
+
+569
+00:10:33,680 --> 00:10:36,310
+vai confiar naquela informação e você
+quer que o teu vídeo apareça ali. A
+
+570
+00:10:36,310 --> 00:10:36,320
+quer que o teu vídeo apareça ali. A
+ 
+
+571
+00:10:36,320 --> 00:10:38,590
+quer que o teu vídeo apareça ali. A
+mudança do Google de texto para pesquisa
+
+572
+00:10:38,590 --> 00:10:38,600
+mudança do Google de texto para pesquisa
+ 
+
+573
+00:10:38,600 --> 00:10:40,550
+mudança do Google de texto para pesquisa
+com vídeo em primeiro lugar.
+
+574
+00:10:40,550 --> 00:10:40,560
+com vídeo em primeiro lugar.
+ 
+
+575
+00:10:40,560 --> 00:10:42,509
+com vídeo em primeiro lugar.
+Historicamente o Google tem se apoiado.
+
+576
+00:10:42,509 --> 00:10:42,519
+Historicamente o Google tem se apoiado.
+ 
+
+577
+00:10:42,519 --> 00:10:43,629
+Historicamente o Google tem se apoiado.
+Qual que é o problema da tradução
+
+578
+00:10:43,629 --> 00:10:43,639
+Qual que é o problema da tradução
+ 
+
+579
+00:10:43,639 --> 00:10:46,230
+Qual que é o problema da tradução
+automática, né? Ficou esses textos nada
+
+580
+00:10:46,230 --> 00:10:46,240
+automática, né? Ficou esses textos nada
+ 
+
+581
+00:10:46,240 --> 00:10:49,150
+automática, né? Ficou esses textos nada
+fluídos, eles com esquis a construção
+
+582
+00:10:49,150 --> 00:10:49,160
+fluídos, eles com esquis a construção
+ 
+
+583
+00:10:49,160 --> 00:10:51,949
+fluídos, eles com esquis a construção
+frasal é muito ruim, mas tudo bem.
+
+584
+00:10:51,949 --> 00:10:51,959
+frasal é muito ruim, mas tudo bem.
+ 
+
+585
+00:10:51,959 --> 00:10:54,190
+frasal é muito ruim, mas tudo bem.
+Historicamente, o Google tem se apoiado
+
+586
+00:10:54,190 --> 00:10:54,200
+Historicamente, o Google tem se apoiado
+ 
+
+587
+00:10:54,200 --> 00:10:56,269
+Historicamente, o Google tem se apoiado
+muito em conteúdo escrito, sites
+
+588
+00:10:56,269 --> 00:10:56,279
+muito em conteúdo escrito, sites
+ 
+
+589
+00:10:56,279 --> 00:10:58,230
+muito em conteúdo escrito, sites
+estruturados, postagens otimizadas em
+
+590
+00:10:58,230 --> 00:10:58,240
+estruturados, postagens otimizadas em
+ 
+
+591
+00:10:58,240 --> 00:11:00,150
+estruturados, postagens otimizadas em
+blogs e guias de formato longo t sido a
+
+592
+00:11:00,150 --> 00:11:00,160
+blogs e guias de formato longo t sido a
+ 
+
+593
+00:11:00,160 --> 00:11:03,030
+blogs e guias de formato longo t sido a
+moeda corrente do SU. Porém, com as
+
+594
+00:11:03,030 --> 00:11:03,040
+moeda corrente do SU. Porém, com as
+ 
+
+595
+00:11:03,040 --> 00:11:04,829
+moeda corrente do SU. Porém, com as
+visões gerais de inteligência artificial
+
+596
+00:11:04,829 --> 00:11:04,839
+visões gerais de inteligência artificial
+ 
+
+597
+00:11:04,839 --> 00:11:06,629
+visões gerais de inteligência artificial
+e o surgimento da otimização de
+
+598
+00:11:06,629 --> 00:11:06,639
+e o surgimento da otimização de
+ 
+
+599
+00:11:06,639 --> 00:11:08,710
+e o surgimento da otimização de
+mecanismo generativo, que é isso aqui,
+
+600
+00:11:08,710 --> 00:11:08,720
+mecanismo generativo, que é isso aqui,
+ 
+
+601
+00:11:08,720 --> 00:11:11,430
+mecanismo generativo, que é isso aqui,
+né, em inglês é de, estamos vendo uma
+
+602
+00:11:11,430 --> 00:11:11,440
+né, em inglês é de, estamos vendo uma
+ 
+
+603
+00:11:11,440 --> 00:11:13,430
+né, em inglês é de, estamos vendo uma
+variedade maior de fontes alimentando o
+
+604
+00:11:13,430 --> 00:11:13,440
+variedade maior de fontes alimentando o
+ 
+
+605
+00:11:13,440 --> 00:11:15,350
+variedade maior de fontes alimentando o
+índice do Google. Você vê que engraçado,
+
+606
+00:11:15,350 --> 00:11:15,360
+índice do Google. Você vê que engraçado,
+ 
+
+607
+00:11:15,360 --> 00:11:20,550
+índice do Google. Você vê que engraçado,
+né? Soo e do eles vão pro mesmo lugar.
+
+608
+00:11:20,550 --> 00:11:20,560
+né? Soo e do eles vão pro mesmo lugar.
+ 
+
+609
+00:11:20,560 --> 00:11:23,269
+né? Soo e do eles vão pro mesmo lugar.
+É, eu apresentando pro meu usuário um
+
+610
+00:11:23,269 --> 00:11:23,279
+É, eu apresentando pro meu usuário um
+ 
+
+611
+00:11:23,279 --> 00:11:25,910
+É, eu apresentando pro meu usuário um
+conteúdo de acordo com a pesquisa dele.
+
+612
+00:11:25,910 --> 00:11:25,920
+conteúdo de acordo com a pesquisa dele.
+ 
+
+613
+00:11:25,920 --> 00:11:27,509
+conteúdo de acordo com a pesquisa dele.
+Beleza?
+
+614
+00:11:27,509 --> 00:11:27,519
+Beleza?
+ 
+
+615
+00:11:27,519 --> 00:11:29,150
+Beleza?
+Essa evolução apresenta apenas algumas
+
+616
+00:11:29,150 --> 00:11:29,160
+Essa evolução apresenta apenas algumas
+ 
+
+617
+00:11:29,160 --> 00:11:31,629
+Essa evolução apresenta apenas algumas
+implicações importantes. Apenas, não,
+
+618
+00:11:31,629 --> 00:11:31,639
+implicações importantes. Apenas, não,
+ 
+
+619
+00:11:31,639 --> 00:11:34,150
+implicações importantes. Apenas, não,
+apresenta algumas.
+
+620
+00:11:34,150 --> 00:11:34,160
+apresenta algumas.
+ 
+
+621
+00:11:34,160 --> 00:11:35,550
+apresenta algumas.
+O vídeo está se tornando material de
+
+622
+00:11:35,550 --> 00:11:35,560
+O vídeo está se tornando material de
+ 
+
+623
+00:11:35,560 --> 00:11:37,430
+O vídeo está se tornando material de
+origem. As visões gerais de inteligência
+
+624
+00:11:37,430 --> 00:11:37,440
+origem. As visões gerais de inteligência
+ 
+
+625
+00:11:37,440 --> 00:11:39,230
+origem. As visões gerais de inteligência
+artificial resumem a uma variedade de
+
+626
+00:11:39,230 --> 00:11:39,240
+artificial resumem a uma variedade de
+ 
+
+627
+00:11:39,240 --> 00:11:41,829
+artificial resumem a uma variedade de
+fontes, fóruns, artigos de instruções,
+
+628
+00:11:41,829 --> 00:11:41,839
+fontes, fóruns, artigos de instruções,
+ 
+
+629
+00:11:41,839 --> 00:11:43,949
+fontes, fóruns, artigos de instruções,
+postagem, blá blá blá blá, e cada vez
+
+630
+00:11:43,949 --> 00:11:43,959
+postagem, blá blá blá blá, e cada vez
+ 
+
+631
+00:11:43,959 --> 00:11:46,190
+postagem, blá blá blá blá, e cada vez
+mais conteúdo em vídeo, tá? Ele tá vai
+
+632
+00:11:46,190 --> 00:11:46,200
+mais conteúdo em vídeo, tá? Ele tá vai
+ 
+
+633
+00:11:46,200 --> 00:11:47,710
+mais conteúdo em vídeo, tá? Ele tá vai
+ficar repetindo, repetindo, repetindo.
+
+634
+00:11:47,710 --> 00:11:47,720
+ficar repetindo, repetindo, repetindo.
+ 
+
+635
+00:11:47,720 --> 00:11:49,509
+ficar repetindo, repetindo, repetindo.
+Então vamos continuar. Vamos pular essa
+
+636
+00:11:49,509 --> 00:11:49,519
+Então vamos continuar. Vamos pular essa
+ 
+
+637
+00:11:49,519 --> 00:11:52,350
+Então vamos continuar. Vamos pular essa
+parte repetitiva aqui, tá? A forma curta
+
+638
+00:11:52,350 --> 00:11:52,360
+parte repetitiva aqui, tá? A forma curta
+ 
+
+639
+00:11:52,360 --> 00:11:53,870
+parte repetitiva aqui, tá? A forma curta
+está influenciando a forma longa. Olha,
+
+640
+00:11:53,870 --> 00:11:53,880
+está influenciando a forma longa. Olha,
+ 
+
+641
+00:11:53,880 --> 00:11:55,230
+está influenciando a forma longa. Olha,
+muito interessante. Quero ler essa
+
+642
+00:11:55,230 --> 00:11:55,240
+muito interessante. Quero ler essa
+ 
+
+643
+00:11:55,240 --> 00:11:58,190
+muito interessante. Quero ler essa
+parte. Plataformas como TikTok e os Rels
+
+644
+00:11:58,190 --> 00:11:58,200
+parte. Plataformas como TikTok e os Rels
+ 
+
+645
+00:11:58,200 --> 00:12:00,870
+parte. Plataformas como TikTok e os Rels
+não são mais apenas para entretenimento.
+
+646
+00:12:00,870 --> 00:12:00,880
+não são mais apenas para entretenimento.
+ 
+
+647
+00:12:00,880 --> 00:12:02,590
+não são mais apenas para entretenimento.
+Elas agora são consideradas mecanismos
+
+648
+00:12:02,590 --> 00:12:02,600
+Elas agora são consideradas mecanismos
+ 
+
+649
+00:12:02,600 --> 00:12:04,750
+Elas agora são consideradas mecanismos
+de descoberta por si só. Essa é uma
+
+650
+00:12:04,750 --> 00:12:04,760
+de descoberta por si só. Essa é uma
+ 
+
+651
+00:12:04,760 --> 00:12:06,590
+de descoberta por si só. Essa é uma
+mudança importante do Instagram recente,
+
+652
+00:12:06,590 --> 00:12:06,600
+mudança importante do Instagram recente,
+ 
+
+653
+00:12:06,600 --> 00:12:10,030
+mudança importante do Instagram recente,
+né? O Instagram tá começando, ele mudou
+
+654
+00:12:10,030 --> 00:12:10,040
+né? O Instagram tá começando, ele mudou
+ 
+
+655
+00:12:10,040 --> 00:12:12,829
+né? O Instagram tá começando, ele mudou
+seu algoritmo para rankear os res também
+
+656
+00:12:12,829 --> 00:12:12,839
+seu algoritmo para rankear os res também
+ 
+
+657
+00:12:12,839 --> 00:12:14,990
+seu algoritmo para rankear os res também
+nessas pesquisas do Google. Isso é uma
+
+658
+00:12:14,990 --> 00:12:15,000
+nessas pesquisas do Google. Isso é uma
+ 
+
+659
+00:12:15,000 --> 00:12:17,870
+nessas pesquisas do Google. Isso é uma
+mudança muito drástica do Instagram, não
+
+660
+00:12:17,870 --> 00:12:17,880
+mudança muito drástica do Instagram, não
+ 
+
+661
+00:12:17,880 --> 00:12:21,110
+mudança muito drástica do Instagram, não
+tinha isso até alguns meses atrás. Então
+
+662
+00:12:21,110 --> 00:12:21,120
+tinha isso até alguns meses atrás. Então
+ 
+
+663
+00:12:21,120 --> 00:12:22,710
+tinha isso até alguns meses atrás. Então
+era uma porcaria viver de Instagram
+
+664
+00:12:22,710 --> 00:12:22,720
+era uma porcaria viver de Instagram
+ 
+
+665
+00:12:22,720 --> 00:12:24,069
+era uma porcaria viver de Instagram
+porque você era dependente só do
+
+666
+00:12:24,069 --> 00:12:24,079
+porque você era dependente só do
+ 
+
+667
+00:12:24,079 --> 00:12:28,310
+porque você era dependente só do
+algoritmo. Isso muda, isso faz com que
+
+668
+00:12:28,310 --> 00:12:28,320
+algoritmo. Isso muda, isso faz com que
+ 
+
+669
+00:12:28,320 --> 00:12:31,189
+algoritmo. Isso muda, isso faz com que
+criar conteúdo no Instagram tenha seja
+
+670
+00:12:31,189 --> 00:12:31,199
+criar conteúdo no Instagram tenha seja
+ 
+
+671
+00:12:31,199 --> 00:12:32,590
+criar conteúdo no Instagram tenha seja
+um pouco mais interessante do que era
+
+672
+00:12:32,590 --> 00:12:32,600
+um pouco mais interessante do que era
+ 
+
+673
+00:12:32,600 --> 00:12:34,189
+um pouco mais interessante do que era
+antes. Eu ainda continuo com a minha
+
+674
+00:12:34,189 --> 00:12:34,199
+antes. Eu ainda continuo com a minha
+ 
+
+675
+00:12:34,199 --> 00:12:35,509
+antes. Eu ainda continuo com a minha
+defesa. Eu tenho meu vídeo falando
+
+676
+00:12:35,509 --> 00:12:35,519
+defesa. Eu tenho meu vídeo falando
+ 
+
+677
+00:12:35,519 --> 00:12:36,990
+defesa. Eu tenho meu vídeo falando
+porque que eu parei de fazer conteúdo no
+
+678
+00:12:36,990 --> 00:12:37,000
+porque que eu parei de fazer conteúdo no
+ 
+
+679
+00:12:37,000 --> 00:12:39,509
+porque que eu parei de fazer conteúdo no
+Instagram, de que o conteúdo curto é uma
+
+680
+00:12:39,509 --> 00:12:39,519
+Instagram, de que o conteúdo curto é uma
+ 
+
+681
+00:12:39,519 --> 00:12:41,870
+Instagram, de que o conteúdo curto é uma
+porcaria pra tua cabeça. Inclusive,
+
+682
+00:12:41,870 --> 00:12:41,880
+porcaria pra tua cabeça. Inclusive,
+ 
+
+683
+00:12:41,880 --> 00:12:43,430
+porcaria pra tua cabeça. Inclusive,
+algum amigo meu me mandou, eu vou fazer
+
+684
+00:12:43,430 --> 00:12:43,440
+algum amigo meu me mandou, eu vou fazer
+ 
+
+685
+00:12:43,440 --> 00:12:46,350
+algum amigo meu me mandou, eu vou fazer
+um vídeo depois sobre isso, ã, uma
+
+686
+00:12:46,350 --> 00:12:46,360
+um vídeo depois sobre isso, ã, uma
+ 
+
+687
+00:12:46,360 --> 00:12:48,629
+um vídeo depois sobre isso, ã, uma
+notícia de que um dos cofundadores do
+
+688
+00:12:48,629 --> 00:12:48,639
+notícia de que um dos cofundadores do
+ 
+
+689
+00:12:48,639 --> 00:12:51,110
+notícia de que um dos cofundadores do
+YouTube não vai deixar seus filhos vem
+
+690
+00:12:51,110 --> 00:12:51,120
+YouTube não vai deixar seus filhos vem
+ 
+
+691
+00:12:51,120 --> 00:12:54,670
+YouTube não vai deixar seus filhos vem
+shorts, porque ele se preocupa muito com
+
+692
+00:12:54,670 --> 00:12:54,680
+shorts, porque ele se preocupa muito com
+ 
+
+693
+00:12:54,680 --> 00:12:56,870
+shorts, porque ele se preocupa muito com
+a influência dos vídeos curtos,
+
+694
+00:12:56,870 --> 00:12:56,880
+a influência dos vídeos curtos,
+ 
+
+695
+00:12:56,880 --> 00:12:58,910
+a influência dos vídeos curtos,
+atrapalhando a concentração dos seus
+
+696
+00:12:58,910 --> 00:12:58,920
+atrapalhando a concentração dos seus
+ 
+
+697
+00:12:58,920 --> 00:13:00,310
+atrapalhando a concentração dos seus
+filhos para coisas realmente
+
+698
+00:13:00,310 --> 00:13:00,320
+filhos para coisas realmente
+ 
+
+699
+00:13:00,320 --> 00:13:04,230
+filhos para coisas realmente
+importantes. Então, assim, eh, a, em
+
+700
+00:13:04,230 --> 00:13:04,240
+importantes. Então, assim, eh, a, em
+ 
+
+701
+00:13:04,240 --> 00:13:06,870
+importantes. Então, assim, eh, a, em
+termos de pesquisa, os vídeos curtos,
+
+702
+00:13:06,870 --> 00:13:06,880
+termos de pesquisa, os vídeos curtos,
+ 
+
+703
+00:13:06,880 --> 00:13:09,269
+termos de pesquisa, os vídeos curtos,
+muito bom. Se você pensar nesse formato
+
+704
+00:13:09,269 --> 00:13:09,279
+muito bom. Se você pensar nesse formato
+ 
+
+705
+00:13:09,279 --> 00:13:11,949
+muito bom. Se você pensar nesse formato
+empresarial, OK, em termos humanos e
+
+706
+00:13:11,949 --> 00:13:11,959
+empresarial, OK, em termos humanos e
+ 
+
+707
+00:13:11,959 --> 00:13:14,110
+empresarial, OK, em termos humanos e
+qualidade do público, eu sou, eu acho,
+
+708
+00:13:14,110 --> 00:13:14,120
+qualidade do público, eu sou, eu acho,
+ 
+
+709
+00:13:14,120 --> 00:13:16,310
+qualidade do público, eu sou, eu acho,
+sou contra, eu não quero fazer. O Google
+
+710
+00:13:16,310 --> 00:13:16,320
+sou contra, eu não quero fazer. O Google
+ 
+
+711
+00:13:16,320 --> 00:13:18,189
+sou contra, eu não quero fazer. O Google
+está citando os mecanismos de descoberta
+
+712
+00:13:18,189 --> 00:13:18,199
+está citando os mecanismos de descoberta
+ 
+
+713
+00:13:18,199 --> 00:13:20,389
+está citando os mecanismos de descoberta
+em seus resultados, explorando-os para
+
+714
+00:13:20,389 --> 00:13:20,399
+em seus resultados, explorando-os para
+ 
+
+715
+00:13:20,399 --> 00:13:22,750
+em seus resultados, explorando-os para
+obter as principais conclusões e
+
+716
+00:13:22,750 --> 00:13:22,760
+obter as principais conclusões e
+ 
+
+717
+00:13:22,760 --> 00:13:25,189
+obter as principais conclusões e
+usando-os para validar a intenção. Isso
+
+718
+00:13:25,189 --> 00:13:25,199
+usando-os para validar a intenção. Isso
+ 
+
+719
+00:13:25,199 --> 00:13:26,750
+usando-os para validar a intenção. Isso
+é especialmente verdadeiro para públicos
+
+720
+00:13:26,750 --> 00:13:26,760
+é especialmente verdadeiro para públicos
+ 
+
+721
+00:13:26,760 --> 00:13:28,870
+é especialmente verdadeiro para públicos
+mais jovens, como a geração Z ou geração
+
+722
+00:13:28,870 --> 00:13:28,880
+mais jovens, como a geração Z ou geração
+ 
+
+723
+00:13:28,880 --> 00:13:30,750
+mais jovens, como a geração Z ou geração
+alfa, que valorizam respostas rápidas e
+
+724
+00:13:30,750 --> 00:13:30,760
+alfa, que valorizam respostas rápidas e
+ 
+
+725
+00:13:30,760 --> 00:13:33,870
+alfa, que valorizam respostas rápidas e
+visuais. Inclusive, cara, eh, coisas a
+
+726
+00:13:33,870 --> 00:13:33,880
+visuais. Inclusive, cara, eh, coisas a
+ 
+
+727
+00:13:33,880 --> 00:13:37,670
+visuais. Inclusive, cara, eh, coisas a
+se pensar aqui, tá? Eu não vendo quase
+
+728
+00:13:37,670 --> 00:13:37,680
+se pensar aqui, tá? Eu não vendo quase
+ 
+
+729
+00:13:37,680 --> 00:13:39,829
+se pensar aqui, tá? Eu não vendo quase
+nada paraa geração Z. Poucas pessoas da
+
+730
+00:13:39,829 --> 00:13:39,839
+nada paraa geração Z. Poucas pessoas da
+ 
+
+731
+00:13:39,839 --> 00:13:41,629
+nada paraa geração Z. Poucas pessoas da
+geração Z me acompanham. Eu tenho 31
+
+732
+00:13:41,629 --> 00:13:41,639
+geração Z me acompanham. Eu tenho 31
+ 
+
+733
+00:13:41,639 --> 00:13:43,430
+geração Z me acompanham. Eu tenho 31
+anos.
+
+734
+00:13:43,430 --> 00:13:43,440
+anos.
+ 
+
+735
+00:13:43,440 --> 00:13:46,670
+anos.
+Eu não acho e a minha geração e as
+
+736
+00:13:46,670 --> 00:13:46,680
+Eu não acho e a minha geração e as
+ 
+
+737
+00:13:46,680 --> 00:13:48,990
+Eu não acho e a minha geração e as
+gerações próximas à minha. Então, a
+
+738
+00:13:48,990 --> 00:13:49,000
+gerações próximas à minha. Então, a
+ 
+
+739
+00:13:49,000 --> 00:13:53,990
+gerações próximas à minha. Então, a
+geração da pessoas que tm entre 30 e 45
+
+740
+00:13:53,990 --> 00:13:54,000
+geração da pessoas que tm entre 30 e 45
+ 
+
+741
+00:13:54,000 --> 00:13:58,710
+geração da pessoas que tm entre 30 e 45
+anos hoje ou 30 e 40 pelo menos, são
+
+742
+00:13:58,710 --> 00:13:58,720
+anos hoje ou 30 e 40 pelo menos, são
+ 
+
+743
+00:13:58,720 --> 00:14:00,829
+anos hoje ou 30 e 40 pelo menos, são
+pessoas que vão usar internet por muito
+
+744
+00:14:00,829 --> 00:14:00,839
+pessoas que vão usar internet por muito
+ 
+
+745
+00:14:00,839 --> 00:14:02,990
+pessoas que vão usar internet por muito
+tempo. Então eu não necessariamente, pro
+
+746
+00:14:02,990 --> 00:14:03,000
+tempo. Então eu não necessariamente, pro
+ 
+
+747
+00:14:03,000 --> 00:14:05,629
+tempo. Então eu não necessariamente, pro
+meu, pra marca Elton Luiz, eu não
+
+748
+00:14:05,629 --> 00:14:05,639
+meu, pra marca Elton Luiz, eu não
+ 
+
+749
+00:14:05,639 --> 00:14:08,389
+meu, pra marca Elton Luiz, eu não
+necessariamente preciso me preocupar em
+
+750
+00:14:08,389 --> 00:14:08,399
+necessariamente preciso me preocupar em
+ 
+
+751
+00:14:08,399 --> 00:14:10,829
+necessariamente preciso me preocupar em
+aparecer para a geração Z para que daqui
+
+752
+00:14:10,829 --> 00:14:10,839
+aparecer para a geração Z para que daqui
+ 
+
+753
+00:14:10,839 --> 00:14:12,870
+aparecer para a geração Z para que daqui
+5, 10 anos eu tenha compradores. Eu
+
+754
+00:14:12,870 --> 00:14:12,880
+5, 10 anos eu tenha compradores. Eu
+ 
+
+755
+00:14:12,880 --> 00:14:15,189
+5, 10 anos eu tenha compradores. Eu
+acredito que das minhas gerações, da
+
+756
+00:14:15,189 --> 00:14:15,199
+acredito que das minhas gerações, da
+ 
+
+757
+00:14:15,199 --> 00:14:17,710
+acredito que das minhas gerações, da
+minha geração, uma geração anterior, a
+
+758
+00:14:17,710 --> 00:14:17,720
+minha geração, uma geração anterior, a
+ 
+
+759
+00:14:17,720 --> 00:14:20,150
+minha geração, uma geração anterior, a
+minha, eu e depois a minha não é geração
+
+760
+00:14:20,150 --> 00:14:20,160
+minha, eu e depois a minha não é geração
+ 
+
+761
+00:14:20,160 --> 00:14:23,030
+minha, eu e depois a minha não é geração
+Z ainda, se eu não me engano, do que 90,
+
+762
+00:14:23,030 --> 00:14:23,040
+Z ainda, se eu não me engano, do que 90,
+ 
+
+763
+00:14:23,040 --> 00:14:24,710
+Z ainda, se eu não me engano, do que 90,
+eu nasci em 93, né? Não lembro quando
+
+764
+00:14:24,710 --> 00:14:24,720
+eu nasci em 93, né? Não lembro quando
+ 
+
+765
+00:14:24,720 --> 00:14:27,110
+eu nasci em 93, né? Não lembro quando
+começa a geração Z, acho que é 95, né?
+
+766
+00:14:27,110 --> 00:14:27,120
+começa a geração Z, acho que é 95, né?
+ 
+
+767
+00:14:27,120 --> 00:14:29,350
+começa a geração Z, acho que é 95, né?
+Eh, 95 começa a outra geração, a geração
+
+768
+00:14:29,350 --> 00:14:29,360
+Eh, 95 começa a outra geração, a geração
+ 
+
+769
+00:14:29,360 --> 00:14:31,389
+Eh, 95 começa a outra geração, a geração
+Z é depois. Eu não lembro, não estudei
+
+770
+00:14:31,389 --> 00:14:31,399
+Z é depois. Eu não lembro, não estudei
+ 
+
+771
+00:14:31,399 --> 00:14:34,389
+Z é depois. Eu não lembro, não estudei
+esse negócio direito, mas enfim, eu não
+
+772
+00:14:34,389 --> 00:14:34,399
+esse negócio direito, mas enfim, eu não
+ 
+
+773
+00:14:34,399 --> 00:14:36,629
+esse negócio direito, mas enfim, eu não
+acho que eu preciso criar conteúdo
+
+774
+00:14:36,629 --> 00:14:36,639
+acho que eu preciso criar conteúdo
+ 
+
+775
+00:14:36,639 --> 00:14:39,030
+acho que eu preciso criar conteúdo
+pensando na geração Z, que é o único
+
+776
+00:14:39,030 --> 00:14:39,040
+pensando na geração Z, que é o único
+ 
+
+777
+00:14:39,040 --> 00:14:41,310
+pensando na geração Z, que é o único
+motivo que me faria ir pro TikTok euou
+
+778
+00:14:41,310 --> 00:14:41,320
+motivo que me faria ir pro TikTok euou
+ 
+
+779
+00:14:41,320 --> 00:14:43,629
+motivo que me faria ir pro TikTok euou
+ficar fazendo res hoje. Isso não
+
+780
+00:14:43,629 --> 00:14:43,639
+ficar fazendo res hoje. Isso não
+ 
+
+781
+00:14:43,639 --> 00:14:45,069
+ficar fazendo res hoje. Isso não
+significa o conteúdo de formato longo
+
+782
+00:14:45,069 --> 00:14:45,079
+significa o conteúdo de formato longo
+ 
+
+783
+00:14:45,079 --> 00:14:46,949
+significa o conteúdo de formato longo
+seja morto, muito contrário, mas
+
+784
+00:14:46,949 --> 00:14:46,959
+seja morto, muito contrário, mas
+ 
+
+785
+00:14:46,959 --> 00:14:48,430
+seja morto, muito contrário, mas
+significa que o formato curto está
+
+786
+00:14:48,430 --> 00:14:48,440
+significa que o formato curto está
+ 
+
+787
+00:14:48,440 --> 00:14:49,910
+significa que o formato curto está
+ajudando a definir a agenda do que os
+
+788
+00:14:49,910 --> 00:14:49,920
+ajudando a definir a agenda do que os
+ 
+
+789
+00:14:49,920 --> 00:14:52,269
+ajudando a definir a agenda do que os
+usuários esperam encontrar. Sou outra
+
+790
+00:14:52,269 --> 00:14:52,279
+usuários esperam encontrar. Sou outra
+ 
+
+791
+00:14:52,279 --> 00:14:54,110
+usuários esperam encontrar. Sou outra
+tradicional não é mais suficiente, que é
+
+792
+00:14:54,110 --> 00:14:54,120
+tradicional não é mais suficiente, que é
+ 
+
+793
+00:14:54,120 --> 00:14:56,110
+tradicional não é mais suficiente, que é
+fazer blog, basicamente. Óbvio,
+
+794
+00:14:56,110 --> 00:14:56,120
+fazer blog, basicamente. Óbvio,
+ 
+
+795
+00:14:56,120 --> 00:14:58,990
+fazer blog, basicamente. Óbvio,
+concordo. E aí vamos ver a resposta do
+
+796
+00:14:58,990 --> 00:14:59,000
+concordo. E aí vamos ver a resposta do
+ 
+
+797
+00:14:59,000 --> 00:15:01,389
+concordo. E aí vamos ver a resposta do
+TikTok. Tal, todas as marcas realmente
+
+798
+00:15:01,389 --> 00:15:01,399
+TikTok. Tal, todas as marcas realmente
+ 
+
+799
+00:15:01,399 --> 00:15:03,350
+TikTok. Tal, todas as marcas realmente
+precisam estar no TikTok? Resposta
+
+800
+00:15:03,350 --> 00:15:03,360
+precisam estar no TikTok? Resposta
+ 
+
+801
+00:15:03,360 --> 00:15:05,870
+precisam estar no TikTok? Resposta
+curta, talvez. Concordo com a resposta
+
+802
+00:15:05,870 --> 00:15:05,880
+curta, talvez. Concordo com a resposta
+ 
+
+803
+00:15:05,880 --> 00:15:08,870
+curta, talvez. Concordo com a resposta
+curta. Resposta mais longa: O valor de
+
+804
+00:15:08,870 --> 00:15:08,880
+curta. Resposta mais longa: O valor de
+ 
+
+805
+00:15:08,880 --> 00:15:10,949
+curta. Resposta mais longa: O valor de
+seu conteúdo ainda é o mais importante,
+
+806
+00:15:10,949 --> 00:15:10,959
+seu conteúdo ainda é o mais importante,
+ 
+
+807
+00:15:10,959 --> 00:15:12,670
+seu conteúdo ainda é o mais importante,
+mas as marcas precisam pensar como
+
+808
+00:15:12,670 --> 00:15:12,680
+mas as marcas precisam pensar como
+ 
+
+809
+00:15:12,680 --> 00:15:14,310
+mas as marcas precisam pensar como
+editoras, não apenas como profissionais
+
+810
+00:15:14,310 --> 00:15:14,320
+editoras, não apenas como profissionais
+ 
+
+811
+00:15:14,320 --> 00:15:17,710
+editoras, não apenas como profissionais
+de marketing. Por exemplo, eu trabalho
+
+812
+00:15:17,710 --> 00:15:17,720
+de marketing. Por exemplo, eu trabalho
+ 
+
+813
+00:15:17,720 --> 00:15:20,069
+de marketing. Por exemplo, eu trabalho
+para uma editora de livros. Eu acredito
+
+814
+00:15:20,069 --> 00:15:20,079
+para uma editora de livros. Eu acredito
+ 
+
+815
+00:15:20,079 --> 00:15:21,990
+para uma editora de livros. Eu acredito
+que essa editora precisa estar no
+
+816
+00:15:21,990 --> 00:15:22,000
+que essa editora precisa estar no
+ 
+
+817
+00:15:22,000 --> 00:15:24,150
+que essa editora precisa estar no
+TikTok, sem dúvida. Por quê? Tem que
+
+818
+00:15:24,150 --> 00:15:24,160
+TikTok, sem dúvida. Por quê? Tem que
+ 
+
+819
+00:15:24,160 --> 00:15:26,470
+TikTok, sem dúvida. Por quê? Tem que
+mostrar o livro lá no TikTok, meu amigo.
+
+820
+00:15:26,470 --> 00:15:26,480
+mostrar o livro lá no TikTok, meu amigo.
+ 
+
+821
+00:15:26,480 --> 00:15:27,710
+mostrar o livro lá no TikTok, meu amigo.
+Tem que ir lá e falar: "Olha aqui o
+
+822
+00:15:27,710 --> 00:15:27,720
+Tem que ir lá e falar: "Olha aqui o
+ 
+
+823
+00:15:27,720 --> 00:15:29,910
+Tem que ir lá e falar: "Olha aqui o
+livro aqui, tá? Vê meu livro". Entendeu?
+
+824
+00:15:29,910 --> 00:15:29,920
+livro aqui, tá? Vê meu livro". Entendeu?
+ 
+
+825
+00:15:29,920 --> 00:15:32,670
+livro aqui, tá? Vê meu livro". Entendeu?
+Agora eu, Elton Luiz, não acho que eu
+
+826
+00:15:32,670 --> 00:15:32,680
+Agora eu, Elton Luiz, não acho que eu
+ 
+
+827
+00:15:32,680 --> 00:15:35,110
+Agora eu, Elton Luiz, não acho que eu
+preciso. Como marca pessoal, Elton Luiz,
+
+828
+00:15:35,110 --> 00:15:35,120
+preciso. Como marca pessoal, Elton Luiz,
+ 
+
+829
+00:15:35,120 --> 00:15:37,230
+preciso. Como marca pessoal, Elton Luiz,
+não acho que eu preciso.
+
+830
+00:15:37,230 --> 00:15:37,240
+não acho que eu preciso.
+ 
+
+831
+00:15:37,240 --> 00:15:38,350
+não acho que eu preciso.
+Posso mudar de ideia em algum momento,
+
+832
+00:15:38,350 --> 00:15:38,360
+Posso mudar de ideia em algum momento,
+ 
+
+833
+00:15:38,360 --> 00:15:39,749
+Posso mudar de ideia em algum momento,
+tá?
+
+834
+00:15:39,749 --> 00:15:39,759
+tá?
+ 
+
+835
+00:15:39,759 --> 00:15:41,749
+tá?
+Se o seu público está demonstrando
+
+836
+00:15:41,749 --> 00:15:41,759
+Se o seu público está demonstrando
+ 
+
+837
+00:15:41,759 --> 00:15:43,749
+Se o seu público está demonstrando
+preferência por respostas baseadas em
+
+838
+00:15:43,749 --> 00:15:43,759
+preferência por respostas baseadas em
+ 
+
+839
+00:15:43,759 --> 00:15:45,710
+preferência por respostas baseadas em
+vídeo e se o Google está apresentando
+
+840
+00:15:45,710 --> 00:15:45,720
+vídeo e se o Google está apresentando
+ 
+
+841
+00:15:45,720 --> 00:15:47,189
+vídeo e se o Google está apresentando
+esses vídeos como material de fonte
+
+842
+00:15:47,189 --> 00:15:47,199
+esses vídeos como material de fonte
+ 
+
+843
+00:15:47,199 --> 00:15:49,309
+esses vídeos como material de fonte
+confiável, então sua estratégia de
+
+844
+00:15:49,309 --> 00:15:49,319
+confiável, então sua estratégia de
+ 
+
+845
+00:15:49,319 --> 00:15:50,990
+confiável, então sua estratégia de
+conteúdo precisa atender a esse momento.
+
+846
+00:15:50,990 --> 00:15:51,000
+conteúdo precisa atender a esse momento.
+ 
+
+847
+00:15:51,000 --> 00:15:53,550
+conteúdo precisa atender a esse momento.
+Concordo, mas para mim é o YouTube. Isso
+
+848
+00:15:53,550 --> 00:15:53,560
+Concordo, mas para mim é o YouTube. Isso
+ 
+
+849
+00:15:53,560 --> 00:15:55,389
+Concordo, mas para mim é o YouTube. Isso
+não significa que toda marca precisa
+
+850
+00:15:55,389 --> 00:15:55,399
+não significa que toda marca precisa
+ 
+
+851
+00:15:55,399 --> 00:15:57,990
+não significa que toda marca precisa
+dançar no TikTok, mas significa e
+
+852
+00:15:57,990 --> 00:15:58,000
+dançar no TikTok, mas significa e
+ 
+
+853
+00:15:58,000 --> 00:16:02,509
+dançar no TikTok, mas significa e
+inclusive eventualmente eu acho que esse
+
+854
+00:16:02,509 --> 00:16:02,519
+inclusive eventualmente eu acho que esse
+ 
+
+855
+00:16:02,519 --> 00:16:04,189
+inclusive eventualmente eu acho que esse
+ha
+
+856
+00:16:04,189 --> 00:16:04,199
+ha
+ 
+
+857
+00:16:04,199 --> 00:16:06,189
+ha
+paradigma de que o TikTok é de dancinha
+
+858
+00:16:06,189 --> 00:16:06,199
+paradigma de que o TikTok é de dancinha
+ 
+
+859
+00:16:06,199 --> 00:16:07,949
+paradigma de que o TikTok é de dancinha
+vai desaparecer, porque conforme o tempo
+
+860
+00:16:07,949 --> 00:16:07,959
+vai desaparecer, porque conforme o tempo
+ 
+
+861
+00:16:07,959 --> 00:16:09,550
+vai desaparecer, porque conforme o tempo
+vai passando, pessoas mais velhas vão
+
+862
+00:16:09,550 --> 00:16:09,560
+vai passando, pessoas mais velhas vão
+ 
+
+863
+00:16:09,560 --> 00:16:12,269
+vai passando, pessoas mais velhas vão
+entrando no TikTok e vai aumentando a
+
+864
+00:16:12,269 --> 00:16:12,279
+entrando no TikTok e vai aumentando a
+ 
+
+865
+00:16:12,279 --> 00:16:14,350
+entrando no TikTok e vai aumentando a
+quantidade de conteúdo sério. Segundo
+
+866
+00:16:14,350 --> 00:16:14,360
+quantidade de conteúdo sério. Segundo
+ 
+
+867
+00:16:14,360 --> 00:16:17,749
+quantidade de conteúdo sério. Segundo
+ponto importante, a moça que cuida de
+
+868
+00:16:17,749 --> 00:16:17,759
+ponto importante, a moça que cuida de
+ 
+
+869
+00:16:17,759 --> 00:16:20,670
+ponto importante, a moça que cuida de
+TikTok aqui na empresa com a gente, ela
+
+870
+00:16:20,670 --> 00:16:20,680
+TikTok aqui na empresa com a gente, ela
+ 
+
+871
+00:16:20,680 --> 00:16:21,829
+TikTok aqui na empresa com a gente, ela
+já me explicou várias coisas
+
+872
+00:16:21,829 --> 00:16:21,839
+já me explicou várias coisas
+ 
+
+873
+00:16:21,839 --> 00:16:23,230
+já me explicou várias coisas
+interessantes. Uma delas que eu acho que
+
+874
+00:16:23,230 --> 00:16:23,240
+interessantes. Uma delas que eu acho que
+ 
+
+875
+00:16:23,240 --> 00:16:27,309
+interessantes. Uma delas que eu acho que
+é bem útil é que o TikTok ele vive muito
+
+876
+00:16:27,309 --> 00:16:27,319
+é bem útil é que o TikTok ele vive muito
+ 
+
+877
+00:16:27,319 --> 00:16:29,710
+é bem útil é que o TikTok ele vive muito
+dos ciclos das trends. O YouTube ele
+
+878
+00:16:29,710 --> 00:16:29,720
+dos ciclos das trends. O YouTube ele
+ 
+
+879
+00:16:29,720 --> 00:16:30,990
+dos ciclos das trends. O YouTube ele
+ainda é uma rede social e acho que
+
+880
+00:16:30,990 --> 00:16:31,000
+ainda é uma rede social e acho que
+ 
+
+881
+00:16:31,000 --> 00:16:33,189
+ainda é uma rede social e acho que
+sempre vai ser, tá? De conteúdos mais
+
+882
+00:16:33,189 --> 00:16:33,199
+sempre vai ser, tá? De conteúdos mais
+ 
+
+883
+00:16:33,199 --> 00:16:37,590
+sempre vai ser, tá? De conteúdos mais
+perenes. Então se o seu conteúdo
+
+884
+00:16:37,590 --> 00:16:37,600
+perenes. Então se o seu conteúdo
+ 
+
+885
+00:16:37,600 --> 00:16:40,470
+perenes. Então se o seu conteúdo
+ou se o seu produto, o seu serviço, eles
+
+886
+00:16:40,470 --> 00:16:40,480
+ou se o seu produto, o seu serviço, eles
+ 
+
+887
+00:16:40,480 --> 00:16:42,550
+ou se o seu produto, o seu serviço, eles
+envolvem uma certa seriedade do tipo um
+
+888
+00:16:42,550 --> 00:16:42,560
+envolvem uma certa seriedade do tipo um
+ 
+
+889
+00:16:42,560 --> 00:16:45,110
+envolvem uma certa seriedade do tipo um
+atendimento médico, eu ainda acho que
+
+890
+00:16:45,110 --> 00:16:45,120
+atendimento médico, eu ainda acho que
+ 
+
+891
+00:16:45,120 --> 00:16:49,030
+atendimento médico, eu ainda acho que
+você vai, a construção de autoridade é
+
+892
+00:16:49,030 --> 00:16:49,040
+você vai, a construção de autoridade é
+ 
+
+893
+00:16:49,040 --> 00:16:51,629
+você vai, a construção de autoridade é
+mais importante nos conteúdos longos. Eu
+
+894
+00:16:51,629 --> 00:16:51,639
+mais importante nos conteúdos longos. Eu
+ 
+
+895
+00:16:51,639 --> 00:16:53,030
+mais importante nos conteúdos longos. Eu
+acho que o conteúdo curto tem o seu
+
+896
+00:16:53,030 --> 00:16:53,040
+acho que o conteúdo curto tem o seu
+ 
+
+897
+00:16:53,040 --> 00:16:54,670
+acho que o conteúdo curto tem o seu
+papel de descoberta, as pessoas te
+
+898
+00:16:54,670 --> 00:16:54,680
+papel de descoberta, as pessoas te
+ 
+
+899
+00:16:54,680 --> 00:16:56,829
+papel de descoberta, as pessoas te
+descobrirem. Isso é muito interessante
+
+900
+00:16:56,829 --> 00:16:56,839
+descobrirem. Isso é muito interessante
+ 
+
+901
+00:16:56,839 --> 00:16:59,389
+descobrirem. Isso é muito interessante
+no conteúdo curto, mas na construção da
+
+902
+00:16:59,389 --> 00:16:59,399
+no conteúdo curto, mas na construção da
+ 
+
+903
+00:16:59,399 --> 00:17:01,030
+no conteúdo curto, mas na construção da
+sua reputação, para mim é o conteúdo
+
+904
+00:17:01,030 --> 00:17:01,040
+sua reputação, para mim é o conteúdo
+ 
+
+905
+00:17:01,040 --> 00:17:03,389
+sua reputação, para mim é o conteúdo
+longo. Onde meu público está pesquisando
+
+906
+00:17:03,389 --> 00:17:03,399
+longo. Onde meu público está pesquisando
+ 
+
+907
+00:17:03,399 --> 00:17:06,270
+longo. Onde meu público está pesquisando
+em quais formatos ele confia. A geração
+
+908
+00:17:06,270 --> 00:17:06,280
+em quais formatos ele confia. A geração
+ 
+
+909
+00:17:06,280 --> 00:17:08,669
+em quais formatos ele confia. A geração
+Z pode procurar primeiro no TikTok,
+
+910
+00:17:08,669 --> 00:17:08,679
+Z pode procurar primeiro no TikTok,
+ 
+
+911
+00:17:08,679 --> 00:17:10,949
+Z pode procurar primeiro no TikTok,
+enquanto os profissionais, ou seja,
+
+912
+00:17:10,949 --> 00:17:10,959
+enquanto os profissionais, ou seja,
+ 
+
+913
+00:17:10,959 --> 00:17:12,630
+enquanto os profissionais, ou seja,
+geração Z não é profissional de acordo
+
+914
+00:17:12,630 --> 00:17:12,640
+geração Z não é profissional de acordo
+ 
+
+915
+00:17:12,640 --> 00:17:15,029
+geração Z não é profissional de acordo
+com este artigo, podem preferir
+
+916
+00:17:15,029 --> 00:17:15,039
+com este artigo, podem preferir
+ 
+
+917
+00:17:15,039 --> 00:17:16,630
+com este artigo, podem preferir
+demonstrações no YouTube ou vídeos
+
+918
+00:17:16,630 --> 00:17:16,640
+demonstrações no YouTube ou vídeos
+ 
+
+919
+00:17:16,640 --> 00:17:18,350
+demonstrações no YouTube ou vídeos
+explicativos no LinkedIn. O que ele quer
+
+920
+00:17:18,350 --> 00:17:18,360
+explicativos no LinkedIn. O que ele quer
+ 
+
+921
+00:17:18,360 --> 00:17:19,590
+explicativos no LinkedIn. O que ele quer
+dizer é o seguinte, quanto mais velha a
+
+922
+00:17:19,590 --> 00:17:19,600
+dizer é o seguinte, quanto mais velha a
+ 
+
+923
+00:17:19,600 --> 00:17:22,470
+dizer é o seguinte, quanto mais velha a
+pessoa, mais ela tá tendenciosa a olhar
+
+924
+00:17:22,470 --> 00:17:22,480
+pessoa, mais ela tá tendenciosa a olhar
+ 
+
+925
+00:17:22,480 --> 00:17:24,909
+pessoa, mais ela tá tendenciosa a olhar
+só YouTube, LinkedIn. LinkedIn é a
+
+926
+00:17:24,909 --> 00:17:24,919
+só YouTube, LinkedIn. LinkedIn é a
+ 
+
+927
+00:17:24,919 --> 00:17:26,990
+só YouTube, LinkedIn. LinkedIn é a
+galera do mercado corporativo, galera do
+
+928
+00:17:26,990 --> 00:17:27,000
+galera do mercado corporativo, galera do
+ 
+
+929
+00:17:27,000 --> 00:17:30,789
+galera do mercado corporativo, galera do
+CLT é forte no LinkedIn. O a galera do
+
+930
+00:17:30,789 --> 00:17:30,799
+CLT é forte no LinkedIn. O a galera do
+ 
+
+931
+00:17:30,799 --> 00:17:32,710
+CLT é forte no LinkedIn. O a galera do
+empreendedorismo, empreendedorismo
+
+932
+00:17:32,710 --> 00:17:32,720
+empreendedorismo, empreendedorismo
+ 
+
+933
+00:17:32,720 --> 00:17:34,990
+empreendedorismo, empreendedorismo
+digital, que a galera com quem eu sempre
+
+934
+00:17:34,990 --> 00:17:35,000
+digital, que a galera com quem eu sempre
+ 
+
+935
+00:17:35,000 --> 00:17:37,310
+digital, que a galera com quem eu sempre
+conversei, não tá no LinkedIn com a
+
+936
+00:17:37,310 --> 00:17:37,320
+conversei, não tá no LinkedIn com a
+ 
+
+937
+00:17:37,320 --> 00:17:39,669
+conversei, não tá no LinkedIn com a
+mesma força que tá no YouTube. Meu
+
+938
+00:17:39,669 --> 00:17:39,679
+mesma força que tá no YouTube. Meu
+ 
+
+939
+00:17:39,679 --> 00:17:41,190
+mesma força que tá no YouTube. Meu
+conteúdo pode responder a uma pergunta
+
+940
+00:17:41,190 --> 00:17:41,200
+conteúdo pode responder a uma pergunta
+ 
+
+941
+00:17:41,200 --> 00:17:42,750
+conteúdo pode responder a uma pergunta
+complexa melhor em vídeo do que em
+
+942
+00:17:42,750 --> 00:17:42,760
+complexa melhor em vídeo do que em
+ 
+
+943
+00:17:42,760 --> 00:17:44,950
+complexa melhor em vídeo do que em
+texto? Se sim, então o vídeo deve ser o
+
+944
+00:17:44,950 --> 00:17:44,960
+texto? Se sim, então o vídeo deve ser o
+ 
+
+945
+00:17:44,960 --> 00:17:48,150
+texto? Se sim, então o vídeo deve ser o
+padrão, não uma reflexão tardia.
+
+946
+00:17:48,150 --> 00:17:48,160
+padrão, não uma reflexão tardia.
+ 
+
+947
+00:17:48,160 --> 00:17:51,510
+padrão, não uma reflexão tardia.
+Cara, opinião sincera,
+
+948
+00:17:51,510 --> 00:17:51,520
+Cara, opinião sincera,
+ 
+
+949
+00:17:51,520 --> 00:17:53,549
+Cara, opinião sincera,
+se você puder ter os dois, é melhor. Se
+
+950
+00:17:53,549 --> 00:17:53,559
+se você puder ter os dois, é melhor. Se
+ 
+
+951
+00:17:53,559 --> 00:17:56,029
+se você puder ter os dois, é melhor. Se
+você só pode ter um, eu acho que ele tá
+
+952
+00:17:56,029 --> 00:17:56,039
+você só pode ter um, eu acho que ele tá
+ 
+
+953
+00:17:56,039 --> 00:17:57,990
+você só pode ter um, eu acho que ele tá
+certo, infelizmente.
+
+954
+00:17:57,990 --> 00:17:58,000
+certo, infelizmente.
+ 
+
+955
+00:17:58,000 --> 00:18:01,270
+certo, infelizmente.
+Você ter o teu conteúdo em vídeo é mais
+
+956
+00:18:01,270 --> 00:18:01,280
+Você ter o teu conteúdo em vídeo é mais
+ 
+
+957
+00:18:01,280 --> 00:18:03,470
+Você ter o teu conteúdo em vídeo é mais
+importante hoje do que ter em texto.
+
+958
+00:18:03,470 --> 00:18:03,480
+importante hoje do que ter em texto.
+ 
+
+959
+00:18:03,480 --> 00:18:05,830
+importante hoje do que ter em texto.
+Ainda acho que perguntas complexas
+
+960
+00:18:05,830 --> 00:18:05,840
+Ainda acho que perguntas complexas
+ 
+
+961
+00:18:05,840 --> 00:18:07,870
+Ainda acho que perguntas complexas
+exigem tempo para responder, por isso
+
+962
+00:18:07,870 --> 00:18:07,880
+exigem tempo para responder, por isso
+ 
+
+963
+00:18:07,880 --> 00:18:10,149
+exigem tempo para responder, por isso
+vídeos longos. Meus vídeos estão
+
+964
+00:18:10,149 --> 00:18:10,159
+vídeos longos. Meus vídeos estão
+ 
+
+965
+00:18:10,159 --> 00:18:12,230
+vídeos longos. Meus vídeos estão
+otimizados em todos os canais. Títulos
+
+966
+00:18:12,230 --> 00:18:12,240
+otimizados em todos os canais. Títulos
+ 
+
+967
+00:18:12,240 --> 00:18:14,110
+otimizados em todos os canais. Títulos
+claros, transcrições, marcação de
+
+968
+00:18:14,110 --> 00:18:14,120
+claros, transcrições, marcação de
+ 
+
+969
+00:18:14,120 --> 00:18:16,310
+claros, transcrições, marcação de
+esquema, legendas ajudam mecanismo de
+
+970
+00:18:16,310 --> 00:18:16,320
+esquema, legendas ajudam mecanismo de
+ 
+
+971
+00:18:16,320 --> 00:18:17,990
+esquema, legendas ajudam mecanismo de
+pesquisa. Isso aqui é você aprender tudo
+
+972
+00:18:17,990 --> 00:18:18,000
+pesquisa. Isso aqui é você aprender tudo
+ 
+
+973
+00:18:18,000 --> 00:18:20,870
+pesquisa. Isso aqui é você aprender tudo
+que faz você ranquear o teu vídeo.
+
+974
+00:18:20,870 --> 00:18:20,880
+que faz você ranquear o teu vídeo.
+ 
+
+975
+00:18:20,880 --> 00:18:24,070
+que faz você ranquear o teu vídeo.
+Ponto. A oportunidade é menos sobre
+
+976
+00:18:24,070 --> 00:18:24,080
+Ponto. A oportunidade é menos sobre
+ 
+
+977
+00:18:24,080 --> 00:18:25,830
+Ponto. A oportunidade é menos sobre
+estar em todos os lugares e mais sobre
+
+978
+00:18:25,830 --> 00:18:25,840
+estar em todos os lugares e mais sobre
+ 
+
+979
+00:18:25,840 --> 00:18:27,390
+estar em todos os lugares e mais sobre
+estar no lugar certo, com o formato
+
+980
+00:18:27,390 --> 00:18:27,400
+estar no lugar certo, com o formato
+ 
+
+981
+00:18:27,400 --> 00:18:29,430
+estar no lugar certo, com o formato
+certo na hora certa. Isso aqui é
+
+982
+00:18:29,430 --> 00:18:29,440
+certo na hora certa. Isso aqui é
+ 
+
+983
+00:18:29,440 --> 00:18:32,350
+certo na hora certa. Isso aqui é
+conversa. Ah, essa conversa é
+
+984
+00:18:32,350 --> 00:18:32,360
+conversa. Ah, essa conversa é
+ 
+
+985
+00:18:32,360 --> 00:18:33,870
+conversa. Ah, essa conversa é
+verdadeira, mas é sempre aquele discurso
+
+986
+00:18:33,870 --> 00:18:33,880
+verdadeira, mas é sempre aquele discurso
+ 
+
+987
+00:18:33,880 --> 00:18:36,310
+verdadeira, mas é sempre aquele discurso
+vazio, né? Olha, mais importante
+
+988
+00:18:36,310 --> 00:18:36,320
+vazio, né? Olha, mais importante
+ 
+
+989
+00:18:36,320 --> 00:18:40,350
+vazio, né? Olha, mais importante
+acertar. Claro que é. É mais importante
+
+990
+00:18:40,350 --> 00:18:40,360
+acertar. Claro que é. É mais importante
+ 
+
+991
+00:18:40,360 --> 00:18:42,190
+acertar. Claro que é. É mais importante
+um bom vídeo do que muitos vídeos. Mas
+
+992
+00:18:42,190 --> 00:18:42,200
+um bom vídeo do que muitos vídeos. Mas
+ 
+
+993
+00:18:42,200 --> 00:18:43,590
+um bom vídeo do que muitos vídeos. Mas
+claro que é. Agora, se você puder fazer
+
+994
+00:18:43,590 --> 00:18:43,600
+claro que é. Agora, se você puder fazer
+ 
+
+995
+00:18:43,600 --> 00:18:45,710
+claro que é. Agora, se você puder fazer
+muitos bons vídeos, melhor ainda. Então,
+
+996
+00:18:45,710 --> 00:18:45,720
+muitos bons vídeos, melhor ainda. Então,
+ 
+
+997
+00:18:45,720 --> 00:18:48,669
+muitos bons vídeos, melhor ainda. Então,
+assim, o que que eu acho? Você tem que
+
+998
+00:18:48,669 --> 00:18:48,679
+assim, o que que eu acho? Você tem que
+ 
+
+999
+00:18:48,679 --> 00:18:50,909
+assim, o que que eu acho? Você tem que
+estar em plataforma de vídeo. Eu acho
+
+1000
+00:18:50,909 --> 00:18:50,919
+estar em plataforma de vídeo. Eu acho
+ 
+
+1001
+00:18:50,919 --> 00:18:52,870
+estar em plataforma de vídeo. Eu acho
+que o YouTube é a primeira e o TikTok
+
+1002
+00:18:52,870 --> 00:18:52,880
+que o YouTube é a primeira e o TikTok
+ 
+
+1003
+00:18:52,880 --> 00:18:55,230
+que o YouTube é a primeira e o TikTok
+pode ser a segunda. Um dos maiores
+
+1004
+00:18:55,230 --> 00:18:55,240
+pode ser a segunda. Um dos maiores
+ 
+
+1005
+00:18:55,240 --> 00:18:57,390
+pode ser a segunda. Um dos maiores
+equívocos é que um vídeo precisa ter
+
+1006
+00:18:57,390 --> 00:18:57,400
+equívocos é que um vídeo precisa ter
+ 
+
+1007
+00:18:57,400 --> 00:18:58,669
+equívocos é que um vídeo precisa ter
+milhões de visualizações para causar
+
+1008
+00:18:58,669 --> 00:18:58,679
+milhões de visualizações para causar
+ 
+
+1009
+00:18:58,679 --> 00:19:00,870
+milhões de visualizações para causar
+impacto. Isso não é verdade. Concordo. O
+
+1010
+00:19:00,870 --> 00:19:00,880
+impacto. Isso não é verdade. Concordo. O
+ 
+
+1011
+00:19:00,880 --> 00:19:02,350
+impacto. Isso não é verdade. Concordo. O
+seu vídeo pode ser curto, ele pode ter
+
+1012
+00:19:02,350 --> 00:19:02,360
+seu vídeo pode ser curto, ele pode ter
+ 
+
+1013
+00:19:02,360 --> 00:19:03,630
+seu vídeo pode ser curto, ele pode ter
+pouca gente, quer dizer, ele pode ter
+
+1014
+00:19:03,630 --> 00:19:03,640
+pouca gente, quer dizer, ele pode ter
+ 
+
+1015
+00:19:03,640 --> 00:19:06,190
+pouca gente, quer dizer, ele pode ter
+pouca visualização, que não é isso que
+
+1016
+00:19:06,190 --> 00:19:06,200
+pouca visualização, que não é isso que
+ 
+
+1017
+00:19:06,200 --> 00:19:08,510
+pouca visualização, que não é isso que
+tá definindo o rankeamento, mas é a tua
+
+1018
+00:19:08,510 --> 00:19:08,520
+tá definindo o rankeamento, mas é a tua
+ 
+
+1019
+00:19:08,520 --> 00:19:12,149
+tá definindo o rankeamento, mas é a tua
+capacidade de programar o SEO dele. E eu
+
+1020
+00:19:12,149 --> 00:19:12,159
+capacidade de programar o SEO dele. E eu
+ 
+
+1021
+00:19:12,159 --> 00:19:13,789
+capacidade de programar o SEO dele. E eu
+tenho muitos exemplos de alunos e
+
+1022
+00:19:13,789 --> 00:19:13,799
+tenho muitos exemplos de alunos e
+ 
+
+1023
+00:19:13,799 --> 00:19:15,789
+tenho muitos exemplos de alunos e
+clientes que tem poucas visualizações,
+
+1024
+00:19:15,789 --> 00:19:15,799
+clientes que tem poucas visualizações,
+ 
+
+1025
+00:19:15,799 --> 00:19:17,750
+clientes que tem poucas visualizações,
+mas vendem bem. Por quê? Porque eles
+
+1026
+00:19:17,750 --> 00:19:17,760
+mas vendem bem. Por quê? Porque eles
+ 
+
+1027
+00:19:17,760 --> 00:19:20,029
+mas vendem bem. Por quê? Porque eles
+estão falando com o público certo.
+
+1028
+00:19:20,029 --> 00:19:20,039
+estão falando com o público certo.
+ 
+
+1029
+00:19:20,039 --> 00:19:22,390
+estão falando com o público certo.
+Aquele público é pequeno mesmo e aquelas
+
+1030
+00:19:22,390 --> 00:19:22,400
+Aquele público é pequeno mesmo e aquelas
+ 
+
+1031
+00:19:22,400 --> 00:19:23,630
+Aquele público é pequeno mesmo e aquelas
+pessoas estão encontrando eles
+
+1032
+00:19:23,630 --> 00:19:23,640
+pessoas estão encontrando eles
+ 
+
+1033
+00:19:23,640 --> 00:19:26,070
+pessoas estão encontrando eles
+vagarosamente. Uma vez que encontram,
+
+1034
+00:19:26,070 --> 00:19:26,080
+vagarosamente. Uma vez que encontram,
+ 
+
+1035
+00:19:26,080 --> 00:19:27,909
+vagarosamente. Uma vez que encontram,
+percebem a qualidade daquilo, elas
+
+1036
+00:19:27,909 --> 00:19:27,919
+percebem a qualidade daquilo, elas
+ 
+
+1037
+00:19:27,919 --> 00:19:30,350
+percebem a qualidade daquilo, elas
+compram. O objetivo é aparecer quando as
+
+1038
+00:19:30,350 --> 00:19:30,360
+compram. O objetivo é aparecer quando as
+ 
+
+1039
+00:19:30,360 --> 00:19:32,070
+compram. O objetivo é aparecer quando as
+pessoas estiverem pesquisando as
+
+1040
+00:19:32,070 --> 00:19:32,080
+pessoas estiverem pesquisando as
+ 
+
+1041
+00:19:32,080 --> 00:19:34,270
+pessoas estiverem pesquisando as
+perguntas que sua marca responde melhor.
+
+1042
+00:19:34,270 --> 00:19:34,280
+perguntas que sua marca responde melhor.
+ 
+
+1043
+00:19:34,280 --> 00:19:36,470
+perguntas que sua marca responde melhor.
+Isso aí. Para marcas, isso significa
+
+1044
+00:19:36,470 --> 00:19:36,480
+Isso aí. Para marcas, isso significa
+ 
+
+1045
+00:19:36,480 --> 00:19:38,190
+Isso aí. Para marcas, isso significa
+priorizar clareza, demonstração e
+
+1046
+00:19:38,190 --> 00:19:38,200
+priorizar clareza, demonstração e
+ 
+
+1047
+00:19:38,200 --> 00:19:39,750
+priorizar clareza, demonstração e
+solução de problemas em cada peça que
+
+1048
+00:19:39,750 --> 00:19:39,760
+solução de problemas em cada peça que
+ 
+
+1049
+00:19:39,760 --> 00:19:41,149
+solução de problemas em cada peça que
+você cria. Claro, por isso que o
+
+1050
+00:19:41,149 --> 00:19:41,159
+você cria. Claro, por isso que o
+ 
+
+1051
+00:19:41,159 --> 00:19:43,789
+você cria. Claro, por isso que o
+conteúdo como fazer tal coisa é o
+
+1052
+00:19:43,789 --> 00:19:43,799
+conteúdo como fazer tal coisa é o
+ 
+
+1053
+00:19:43,799 --> 00:19:46,549
+conteúdo como fazer tal coisa é o
+conteúdo mais interessante. Muito bem,
+
+1054
+00:19:46,549 --> 00:19:46,559
+conteúdo mais interessante. Muito bem,
+ 
+
+1055
+00:19:46,559 --> 00:19:48,430
+conteúdo mais interessante. Muito bem,
+vamos, vamos aqui, ó, considerações
+
+1056
+00:19:48,430 --> 00:19:48,440
+vamos, vamos aqui, ó, considerações
+ 
+
+1057
+00:19:48,440 --> 00:19:51,990
+vamos, vamos aqui, ó, considerações
+práticas, beleza? E a gente para porque
+
+1058
+00:19:51,990 --> 00:19:52,000
+práticas, beleza? E a gente para porque
+ 
+
+1059
+00:19:52,000 --> 00:19:53,270
+práticas, beleza? E a gente para porque
+é bastante coisa. Acho que a gente não
+
+1060
+00:19:53,270 --> 00:19:53,280
+é bastante coisa. Acho que a gente não
+ 
+
+1061
+00:19:53,280 --> 00:19:54,510
+é bastante coisa. Acho que a gente não
+precisa continuar. Aqui tem a foto da
+
+1062
+00:19:54,510 --> 00:19:54,520
+precisa continuar. Aqui tem a foto da
+ 
+
+1063
+00:19:54,520 --> 00:19:56,990
+precisa continuar. Aqui tem a foto da
+moça que escreveu o artigo, beleza?
+
+1064
+00:19:56,990 --> 00:19:57,000
+moça que escreveu o artigo, beleza?
+ 
+
+1065
+00:19:57,000 --> 00:19:58,470
+moça que escreveu o artigo, beleza?
+Deixar o link dos artigos aqui na
+
+1066
+00:19:58,470 --> 00:19:58,480
+Deixar o link dos artigos aqui na
+ 
+
+1067
+00:19:58,480 --> 00:20:00,350
+Deixar o link dos artigos aqui na
+descrição do vídeo, tá? para você ler aí
+
+1068
+00:20:00,350 --> 00:20:00,360
+descrição do vídeo, tá? para você ler aí
+ 
+
+1069
+00:20:00,360 --> 00:20:03,630
+descrição do vídeo, tá? para você ler aí
+se você quiser. Ã,
+
+1070
+00:20:03,630 --> 00:20:03,640
+se você quiser. Ã,
+ 
+
+1071
+00:20:03,640 --> 00:20:06,549
+se você quiser. Ã,
+considerações práticas. Audite formato
+
+1072
+00:20:06,549 --> 00:20:06,559
+considerações práticas. Audite formato
+ 
+
+1073
+00:20:06,559 --> 00:20:09,029
+considerações práticas. Audite formato
+de conteúdo. Observe suas palavraschave,
+
+1074
+00:20:09,029 --> 00:20:09,039
+de conteúdo. Observe suas palavraschave,
+ 
+
+1075
+00:20:09,039 --> 00:20:11,149
+de conteúdo. Observe suas palavraschave,
+consultas de melhor desempenho. Claro,
+
+1076
+00:20:11,149 --> 00:20:11,159
+consultas de melhor desempenho. Claro,
+ 
+
+1077
+00:20:11,159 --> 00:20:13,510
+consultas de melhor desempenho. Claro,
+no YouTube você usa o Vid IQ ou o Tub
+
+1078
+00:20:13,510 --> 00:20:13,520
+no YouTube você usa o Vid IQ ou o Tub
+ 
+
+1079
+00:20:13,520 --> 00:20:15,310
+no YouTube você usa o Vid IQ ou o Tub
+Buddy. São duas extensões que te ajudam
+
+1080
+00:20:15,310 --> 00:20:15,320
+Buddy. São duas extensões que te ajudam
+ 
+
+1081
+00:20:15,320 --> 00:20:19,110
+Buddy. São duas extensões que te ajudam
+a construir melhor o SEO do seu vídeo.
+
+1082
+00:20:19,110 --> 00:20:19,120
+a construir melhor o SEO do seu vídeo.
+ 
+
+1083
+00:20:19,120 --> 00:20:21,909
+a construir melhor o SEO do seu vídeo.
+Beleza? Então esse auditar é isso aí.
+
+1084
+00:20:21,909 --> 00:20:21,919
+Beleza? Então esse auditar é isso aí.
+ 
+
+1085
+00:20:21,919 --> 00:20:23,190
+Beleza? Então esse auditar é isso aí.
+Vamos pular esse segundo que é a mesma
+
+1086
+00:20:23,190 --> 00:20:23,200
+Vamos pular esse segundo que é a mesma
+ 
+
+1087
+00:20:23,200 --> 00:20:26,029
+Vamos pular esse segundo que é a mesma
+coisa, tá? A mesma coisa ou a mesma
+
+1088
+00:20:26,029 --> 00:20:26,039
+coisa, tá? A mesma coisa ou a mesma
+ 
+
+1089
+00:20:26,039 --> 00:20:28,549
+coisa, tá? A mesma coisa ou a mesma
+ideia. Invista em vídeos que resolvam
+
+1090
+00:20:28,549 --> 00:20:28,559
+ideia. Invista em vídeos que resolvam
+ 
+
+1091
+00:20:28,559 --> 00:20:30,990
+ideia. Invista em vídeos que resolvam
+problemas. 100%.
+
+1092
+00:20:30,990 --> 00:20:31,000
+problemas. 100%.
+ 
+
+1093
+00:20:31,000 --> 00:20:33,190
+problemas. 100%.
+Como fazer tal coisa tende a ser o jeito
+
+1094
+00:20:33,190 --> 00:20:33,200
+Como fazer tal coisa tende a ser o jeito
+ 
+
+1095
+00:20:33,200 --> 00:20:34,830
+Como fazer tal coisa tende a ser o jeito
+mais fácil de você criar vídeo que
+
+1096
+00:20:34,830 --> 00:20:34,840
+mais fácil de você criar vídeo que
+ 
+
+1097
+00:20:34,840 --> 00:20:36,390
+mais fácil de você criar vídeo que
+resolva o problema. Como trocar a
+
+1098
+00:20:36,390 --> 00:20:36,400
+resolva o problema. Como trocar a
+ 
+
+1099
+00:20:36,400 --> 00:20:38,310
+resolva o problema. Como trocar a
+lâmpada? Como dar comida pro meu
+
+1100
+00:20:38,310 --> 00:20:38,320
+lâmpada? Como dar comida pro meu
+ 
+
+1101
+00:20:38,320 --> 00:20:40,110
+lâmpada? Como dar comida pro meu
+cachorro? Como gravar um vídeo no
+
+1102
+00:20:40,110 --> 00:20:40,120
+cachorro? Como gravar um vídeo no
+ 
+
+1103
+00:20:40,120 --> 00:20:42,390
+cachorro? Como gravar um vídeo no
+YouTube? Como trocar de roupa? Como
+
+1104
+00:20:42,390 --> 00:20:42,400
+YouTube? Como trocar de roupa? Como
+ 
+
+1105
+00:20:42,400 --> 00:20:45,070
+YouTube? Como trocar de roupa? Como
+fazer minha mulher feliz? Cara, vídeos
+
+1106
+00:20:45,070 --> 00:20:45,080
+fazer minha mulher feliz? Cara, vídeos
+ 
+
+1107
+00:20:45,080 --> 00:20:47,510
+fazer minha mulher feliz? Cara, vídeos
+que começam com o jeito mais fácil para
+
+1108
+00:20:47,510 --> 00:20:47,520
+que começam com o jeito mais fácil para
+ 
+
+1109
+00:20:47,520 --> 00:20:50,350
+que começam com o jeito mais fácil para
+você criar vídeos de resolver problemas.
+
+1110
+00:20:50,350 --> 00:20:50,360
+você criar vídeos de resolver problemas.
+ 
+
+1111
+00:20:50,360 --> 00:20:52,230
+você criar vídeos de resolver problemas.
+Beleza?
+
+1112
+00:20:52,230 --> 00:20:52,240
+Beleza?
+ 
+
+1113
+00:20:52,240 --> 00:20:53,990
+Beleza?
+Eu concordo com que ele fala. Toda marca
+
+1114
+00:20:53,990 --> 00:20:54,000
+Eu concordo com que ele fala. Toda marca
+ 
+
+1115
+00:20:54,000 --> 00:20:55,669
+Eu concordo com que ele fala. Toda marca
+deve ter um conteúdo de vídeo educativo
+
+1116
+00:20:55,669 --> 00:20:55,679
+deve ter um conteúdo de vídeo educativo
+ 
+
+1117
+00:20:55,679 --> 00:20:58,110
+deve ter um conteúdo de vídeo educativo
+e perene que resolva problemas reais dos
+
+1118
+00:20:58,110 --> 00:20:58,120
+e perene que resolva problemas reais dos
+ 
+
+1119
+00:20:58,120 --> 00:21:01,590
+e perene que resolva problemas reais dos
+clientes. Comece aos poucos. Concordo.
+
+1120
+00:21:01,590 --> 00:21:01,600
+clientes. Comece aos poucos. Concordo.
+ 
+
+1121
+00:21:01,600 --> 00:21:03,549
+clientes. Comece aos poucos. Concordo.
+Você precisa de uma estratégia de 2 a 5
+
+1122
+00:21:03,549 --> 00:21:03,559
+Você precisa de uma estratégia de 2 a 5
+ 
+
+1123
+00:21:03,559 --> 00:21:06,110
+Você precisa de uma estratégia de 2 a 5
+anos criando vídeos assim toda semana.
+
+1124
+00:21:06,110 --> 00:21:06,120
+anos criando vídeos assim toda semana.
+ 
+
+1125
+00:21:06,120 --> 00:21:07,270
+anos criando vídeos assim toda semana.
+Daqui dois a 5 anos você vai me
+
+1126
+00:21:07,270 --> 00:21:07,280
+Daqui dois a 5 anos você vai me
+ 
+
+1127
+00:21:07,280 --> 00:21:09,510
+Daqui dois a 5 anos você vai me
+agradecer por ter te falado isso se você
+
+1128
+00:21:09,510 --> 00:21:09,520
+agradecer por ter te falado isso se você
+ 
+
+1129
+00:21:09,520 --> 00:21:12,630
+agradecer por ter te falado isso se você
+fizer. Otimiza capaz descoberta. Mesma
+
+1130
+00:21:12,630 --> 00:21:12,640
+fizer. Otimiza capaz descoberta. Mesma
+ 
+
+1131
+00:21:12,640 --> 00:21:14,470
+fizer. Otimiza capaz descoberta. Mesma
+coisa. Você vê que esses artigos, cara,
+
+1132
+00:21:14,470 --> 00:21:14,480
+coisa. Você vê que esses artigos, cara,
+ 
+
+1133
+00:21:14,480 --> 00:21:15,470
+coisa. Você vê que esses artigos, cara,
+por isso que eu não gosto desses
+
+1134
+00:21:15,470 --> 00:21:15,480
+por isso que eu não gosto desses
+ 
+
+1135
+00:21:15,480 --> 00:21:17,830
+por isso que eu não gosto desses
+artigos, eles são ultra repetitivos. O
+
+1136
+00:21:17,830 --> 00:21:17,840
+artigos, eles são ultra repetitivos. O
+ 
+
+1137
+00:21:17,840 --> 00:21:22,950
+artigos, eles são ultra repetitivos. O
+um, o dois e o três é a mesma coisa.
+
+1138
+00:21:22,950 --> 00:21:22,960
+um, o dois e o três é a mesma coisa.
+ 
+
+1139
+00:21:22,960 --> 00:21:24,390
+um, o dois e o três é a mesma coisa.
+Aceite o cenário de pesquisa, mesma
+
+1140
+00:21:24,390 --> 00:21:24,400
+Aceite o cenário de pesquisa, mesma
+ 
+
+1141
+00:21:24,400 --> 00:21:26,710
+Aceite o cenário de pesquisa, mesma
+coisa. Integre o vídeo em sua estratégia
+
+1142
+00:21:26,710 --> 00:21:26,720
+coisa. Integre o vídeo em sua estratégia
+ 
+
+1143
+00:21:26,720 --> 00:21:29,029
+coisa. Integre o vídeo em sua estratégia
+conteúdo tudo isso aqui relevante.
+
+1144
+00:21:29,029 --> 00:21:29,039
+conteúdo tudo isso aqui relevante.
+ 
+
+1145
+00:21:29,039 --> 00:21:30,590
+conteúdo tudo isso aqui relevante.
+Vamos, vamos concluir esse negócio aqui,
+
+1146
+00:21:30,590 --> 00:21:30,600
+Vamos, vamos concluir esse negócio aqui,
+ 
+
+1147
+00:21:30,600 --> 00:21:33,350
+Vamos, vamos concluir esse negócio aqui,
+tá? O que você deve pensar a partir de
+
+1148
+00:21:33,350 --> 00:21:33,360
+tá? O que você deve pensar a partir de
+ 
+
+1149
+00:21:33,360 --> 00:21:34,870
+tá? O que você deve pensar a partir de
+agora?
+
+1150
+00:21:34,870 --> 00:21:34,880
+agora?
+ 
+
+1151
+00:21:34,880 --> 00:21:37,669
+agora?
+o seu vídeo, criar vídeo vai ser cada
+
+1152
+00:21:37,669 --> 00:21:37,679
+o seu vídeo, criar vídeo vai ser cada
+ 
+
+1153
+00:21:37,679 --> 00:21:40,029
+o seu vídeo, criar vídeo vai ser cada
+vez mais importante, porque os seus
+
+1154
+00:21:40,029 --> 00:21:40,039
+vez mais importante, porque os seus
+ 
+
+1155
+00:21:40,039 --> 00:21:42,789
+vez mais importante, porque os seus
+vídeos vão aparecer nas pesquisas de
+
+1156
+00:21:42,789 --> 00:21:42,799
+vídeos vão aparecer nas pesquisas de
+ 
+
+1157
+00:21:42,799 --> 00:21:45,390
+vídeos vão aparecer nas pesquisas de
+inteligência artificial que vão cada vez
+
+1158
+00:21:45,390 --> 00:21:45,400
+inteligência artificial que vão cada vez
+ 
+
+1159
+00:21:45,400 --> 00:21:47,710
+inteligência artificial que vão cada vez
+mais dominar o comportamento do usuário.
+
+1160
+00:21:47,710 --> 00:21:47,720
+mais dominar o comportamento do usuário.
+ 
+
+1161
+00:21:47,720 --> 00:21:49,430
+mais dominar o comportamento do usuário.
+Então, na minha opinião, você deve
+
+1162
+00:21:49,430 --> 00:21:49,440
+Então, na minha opinião, você deve
+ 
+
+1163
+00:21:49,440 --> 00:21:52,230
+Então, na minha opinião, você deve
+imediatamente estar no YouTube. E se
+
+1164
+00:21:52,230 --> 00:21:52,240
+imediatamente estar no YouTube. E se
+ 
+
+1165
+00:21:52,240 --> 00:21:54,230
+imediatamente estar no YouTube. E se
+fizer sentido para você, se o teu
+
+1166
+00:21:54,230 --> 00:21:54,240
+fizer sentido para você, se o teu
+ 
+
+1167
+00:21:54,240 --> 00:21:56,630
+fizer sentido para você, se o teu
+negócio se beneficiar disso e você tiver
+
+1168
+00:21:56,630 --> 00:21:56,640
+negócio se beneficiar disso e você tiver
+ 
+
+1169
+00:21:56,640 --> 00:21:58,990
+negócio se beneficiar disso e você tiver
+como fazer, você começa a fazer também
+
+1170
+00:21:58,990 --> 00:21:59,000
+como fazer, você começa a fazer também
+ 
+
+1171
+00:21:59,000 --> 00:22:01,710
+como fazer, você começa a fazer também
+TikTok e res no Instagram. Se tiver que
+
+1172
+00:22:01,710 --> 00:22:01,720
+TikTok e res no Instagram. Se tiver que
+ 
+
+1173
+00:22:01,720 --> 00:22:03,830
+TikTok e res no Instagram. Se tiver que
+dar preferência, YouTube sempre, vídeo
+
+1174
+00:22:03,830 --> 00:22:03,840
+dar preferência, YouTube sempre, vídeo
+ 
+
+1175
+00:22:03,840 --> 00:22:06,070
+dar preferência, YouTube sempre, vídeo
+longo sempre. Comenta aí o que que você
+
+1176
+00:22:06,070 --> 00:22:06,080
+longo sempre. Comenta aí o que que você
+ 
+
+1177
+00:22:06,080 --> 00:22:07,630
+longo sempre. Comenta aí o que que você
+acha dessa ideia toda, o que que você
+
+1178
+00:22:07,630 --> 00:22:07,640
+acha dessa ideia toda, o que que você
+ 
+
+1179
+00:22:07,640 --> 00:22:09,669
+acha dessa ideia toda, o que que você
+pensa a respeito desse tema, o que mais
+
+1180
+00:22:09,669 --> 00:22:09,679
+pensa a respeito desse tema, o que mais
+ 
+
+1181
+00:22:09,679 --> 00:22:11,230
+pensa a respeito desse tema, o que mais
+você quer que eu traga aqui. Se quiser,
+
+1182
+00:22:11,230 --> 00:22:11,240
+você quer que eu traga aqui. Se quiser,
+ 
+
+1183
+00:22:11,240 --> 00:22:14,590
+você quer que eu traga aqui. Se quiser,
+me deixa mais artigos e notícias que
+
+1184
+00:22:14,590 --> 00:22:14,600
+me deixa mais artigos e notícias que
+ 
+
+1185
+00:22:14,600 --> 00:22:16,430
+me deixa mais artigos e notícias que
+você quer que eu venha ler pra gente
+
+1186
+00:22:16,430 --> 00:22:16,440
+você quer que eu venha ler pra gente
+ 
+
+1187
+00:22:16,440 --> 00:22:18,029
+você quer que eu venha ler pra gente
+conversar a respeito deles aqui no
+
+1188
+00:22:18,029 --> 00:22:18,039
+conversar a respeito deles aqui no
+ 
+
+1189
+00:22:18,039 --> 00:22:21,720
+conversar a respeito deles aqui no
+canal. Estamos juntto e até a próxima.
+

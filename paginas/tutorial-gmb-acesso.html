@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Dar Acesso ao Google Meu Negócio — Assessoria Raiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Agatho';
+            src: url('assets/Agatho-Bold.otf') format('opentype');
+            font-weight: 700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #F0F2F0;
+            color: #1a1a1a;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        a { color: #1E3D34; }
+
+        /* ── Top bar ── */
+        .topbar {
+            background: #1E3D34;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topbar img { height: 28px; }
+
+        .topbar .brand {
+            font-family: 'Agatho', 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #F5F5F5;
+        }
+
+        .topbar .sep {
+            color: rgba(255,255,255,0.25);
+            margin: 0 4px;
+        }
+
+        .topbar .page-title {
+            font-size: 13px;
+            color: rgba(255,255,255,0.55);
+        }
+
+        /* ── Page header ── */
+        .page-header {
+            background: #fff;
+            border-bottom: 1px solid #e0e4e0;
+            padding: 40px 32px 36px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .page-header .label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #CBA135;
+            margin-bottom: 10px;
+        }
+
+        .page-header h1 {
+            font-family: 'Agatho', 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1E3D34;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .page-header .subtitle {
+            font-size: 15px;
+            color: #555;
+            max-width: 560px;
+        }
+
+        .page-header .meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .meta-item .icon { font-size: 14px; }
+
+        /* ── Content wrapper ── */
+        .wrapper {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+
+        /* ── Section ── */
+        .section {
+            background: #fff;
+            border: 1px solid #e0e4e0;
+            border-radius: 6px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid #e8ece8;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .step-badge {
+            background: #1E3D34;
+            color: #CBA135;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 3px;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .step-badge.zero {
+            background: #F0F2F0;
+            color: #888;
+            border: 1px solid #d8dcd8;
+        }
+
+        .section-header h2 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .section-body {
+            padding: 22px 24px;
+        }
+
+        .section-body p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section-body p:last-child { margin-bottom: 0; }
+
+        .section-body p strong { color: #1E3D34; }
+
+        /* ── Device cards ── */
+        .device-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .device-card {
+            border: 1px solid #e0e4e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .device-card-head {
+            background: #1E3D34;
+            padding: 11px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .device-card-head .d-icon { font-size: 15px; }
+
+        .device-card-head .d-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #CBA135;
+        }
+
+        .device-card-steps {
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .d-step {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .d-num {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            background: #F0F2F0;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1E3D34;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .d-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .d-text strong { color: #1E3D34; }
+
+        /* ── Divider with text ── */
+        .section-divider {
+            margin: 28px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e4e0;
+        }
+
+        .section-divider span {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #aaa;
+            white-space: nowrap;
+        }
+
+        /* ── Sub steps (within a section) ── */
+        .sub-steps {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .sub-step {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f2f0;
+        }
+
+        .sub-step:last-child { border-bottom: none; padding-bottom: 0; }
+        .sub-step:first-child { padding-top: 0; }
+
+        .sub-num {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border: 2px solid #1E3D34;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            color: #1E3D34;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .sub-content p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .sub-content p strong { color: #1E3D34; }
+
+        /* ── Callout boxes ── */
+        .callout {
+            border-radius: 5px;
+            padding: 14px 16px;
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .callout .c-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+        .callout.tip {
+            background: #f0f7f4;
+            border: 1px solid #b8d9cc;
+            color: #1E3D34;
+        }
+
+        .callout.warning {
+            background: #fdf6e3;
+            border: 1px solid #e8d08a;
+            color: #7a5c00;
+        }
+
+        .callout strong { font-weight: 700; }
+
+        /* ── Email highlight ── */
+        .email-block {
+            margin: 16px 0;
+            padding: 14px 18px;
+            background: #f0f7f4;
+            border: 2px solid #CBA135;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .email-block .e-icon { font-size: 16px; color: #CBA135; flex-shrink: 0; }
+
+        .email-block span {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1E3D34;
+            letter-spacing: 0.2px;
+        }
+
+        /* ── Google Mockup ── */
+        .gmb {
+            background: #202124;
+            border-radius: 5px;
+            overflow: hidden;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin-top: 16px;
+            border: 1px solid #3c3f43;
+        }
+
+        .gmb-bar {
+            background: #303134;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #404144;
+        }
+
+        .gmb-bar .t {
+            color: #e8eaed;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gmb-bar .t .bk { color: #9aa0a6; font-size: 15px; }
+
+        .gmb-bar .ic { color: #9aa0a6; font-size: 13px; display: flex; gap: 12px; }
+
+        .gmb-row {
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #2c2e31;
+        }
+
+        .gmb-row:last-child { border-bottom: none; }
+
+        .gmb-row.hl { background: rgba(138,180,248,0.06); }
+
+        .gmb-row .rl { color: #e8eaed; font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+        .gmb-row.hl .rl { color: #8ab4f8; }
+
+        .gmb-row .rd { color: #9aa0a6; font-size: 11px; line-height: 1.4; max-width: 300px; }
+
+        .gmb-arr { color: #9aa0a6; font-size: 14px; }
+
+        /* Role picker */
+        .gmb-role {
+            padding: 14px 16px;
+            border-bottom: 1px solid #2c2e31;
+        }
+
+        .role-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .radio {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            border: 2px solid #9aa0a6;
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radio.on { border-color: #8ab4f8; background: #8ab4f8; }
+        .radio.on::after { content:''; width:6px; height:6px; border-radius:50%; background:#202124; }
+
+        .rn { color: #e8eaed; font-size: 13px; font-weight: 500; }
+        .rn.on { color: #8ab4f8; }
+        .rd2 { color: #9aa0a6; font-size: 11px; margin-top: 2px; line-height: 1.4; }
+
+        .gmb-btns {
+            padding: 10px 14px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .bc { color: #8ab4f8; background: transparent; border: none; padding: 7px 12px; font-size: 13px; border-radius: 3px; cursor: pointer; }
+        .bi { background: #8ab4f8; color: #202124; border: none; padding: 7px 16px; font-size: 13px; font-weight: 600; border-radius: 3px; cursor: pointer; }
+
+        /* ── Final callout ── */
+        .final-box {
+            background: #1E3D34;
+            border-radius: 6px;
+            padding: 22px 24px;
+            margin-top: 20px;
+            color: #F5F5F5;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .final-box strong { color: #CBA135; }
+
+        /* ── Footer ── */
+        .footer {
+            border-top: 1px solid #e0e4e0;
+            padding: 32px;
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .topbar { padding: 12px 20px; }
+            .page-header { padding: 28px 20px 24px; }
+            .wrapper { padding: 0 16px 60px; }
+            .section-body { padding: 18px 16px; }
+            .device-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top bar -->
+    <nav class="topbar">
+        <img src="assets/logo-raiz.png" alt="Raiz"
+             onerror="this.outerHTML='<span class=&quot;brand&quot;>RAIZ</span>'">
+        <span class="sep">/</span>
+        <span class="page-title">Tutorial</span>
+    </nav>
+
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="label">Google Meu Negócio</div>
+        <h1>Como dar acesso ao<br>Google Meu Negocio</h1>
+        <p class="subtitle">Siga os passos abaixo para nos adicionar como gerentes do seu perfil. Você vai precisar da conta do Google que administra a empresa.</p>
+        <div class="meta">
+            <div class="meta-item"><span class="icon">⏱️</span> Menos de 3 minutos</div>
+            <div class="meta-item"><span class="icon">📋</span> 4 passos</div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="wrapper">
+
+        <!-- Passo 0 — Encontrar a ficha -->
+        <div class="section">
+            <div class="section-header">
+                <span class="step-badge zero">Antes de começar</span>
+                <h2>Como acessar a sua ficha</h2>
+            </div>
+            <div class="section-body">
+                <p>O caminho para chegar até a ficha é diferente no computador e no celular. Veja qual se aplica ao seu caso:</p>
+
+                <div class="device-grid">
+                    <div class="device-card">
+                        <div class="device-card-head">
+                            <span class="d-icon">🖥️</span>
+                            <span class="d-label">Computador</span>
+                        </div>
+                        <div class="device-card-steps">
+                            <div class="d-step">
+                                <div class="d-num">1</div>
+                                <div class="d-text">Abra o <strong>Google Chrome</strong> logado com a conta que administra a empresa.</div>
+                            </div>
+                            <div class="d-step">
+                                <div class="d-num">2</div>
+                                <div class="d-text">Pesquise o <strong>nome da empresa</strong> ou busque por <strong>"Meu Negócio"</strong>.</div>
+                            </div>
+                            <div class="d-step">
+                                <div class="d-num">3</div>
+                                <div class="d-text">A ficha aparece no lado direito. Clique em <strong>"Editar perfil"</strong> para acessar.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="device-card">
+                        <div class="device-card-head">
+                            <span class="d-icon">📱</span>
+                            <span class="d-label">Celular</span>
+                        </div>
+                        <div class="device-card-steps">
+                            <div class="d-step">
+                                <div class="d-num">1</div>
+                                <div class="d-text">Abra o <strong>Google Maps</strong> logado com a conta que administra a empresa.</div>
+                            </div>
+                            <div class="d-step">
+                                <div class="d-num">2</div>
+                                <div class="d-text">Toque na <strong>foto do perfil</strong> (canto superior direito) e selecione <strong>"Seu negócio"</strong>.</div>
+                            </div>
+                            <div class="d-step">
+                                <div class="d-num">3</div>
+                                <div class="d-text">Selecione a empresa e toque em <strong>"Editar perfil"</strong>.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout tip" style="margin-top: 18px;">
+                    <span class="c-icon">💡</span>
+                    <div>Use sempre a conta do Google que é proprietária da empresa. Se entrar com outra conta não vai aparecer a ficha para editar.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"><span>agora sim, os 4 passos</span></div>
+
+        <!-- Passo 1 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="step-badge">Passo 1 de 4</span>
+                <h2>Abra as Configurações do Perfil</h2>
+            </div>
+            <div class="section-body">
+                <p>Dentro da ficha da empresa, clique nos <strong>três pontinhos</strong> ao lado do gráfico "Força do Perfil". No menu que abrir, selecione <strong>"Configurações do Perfil da Empresa"</strong>.</p>
+
+                <div class="gmb">
+                    <div class="gmb-bar">
+                        <div class="t"><span class="bk">←</span> Forca do perfil</div>
+                        <div class="ic"><span>⋮</span></div>
+                    </div>
+                    <div class="gmb-row hl">
+                        <div><div class="rl">Configuracoes do Perfil da Empresa</div></div>
+                    </div>
+                    <div class="gmb-row">
+                        <div><div class="rl">Notificacoes</div></div>
+                    </div>
+                    <div class="gmb-row">
+                        <div><div class="rl">Adicionar um novo Perfil da Empresa</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="step-badge">Passo 2 de 4</span>
+                <h2>Clique em "Pessoas e acesso"</h2>
+            </div>
+            <div class="section-body">
+                <p>Dentro das configurações, clique no módulo <strong>"Pessoas e acesso"</strong> para gerenciar quem tem permissão na ficha.</p>
+
+                <div class="gmb">
+                    <div class="gmb-bar">
+                        <div class="t"><span class="bk">←</span> Configuracoes do Perfil da Empresa</div>
+                        <div class="ic"><span>⋮</span><span>✕</span></div>
+                    </div>
+                    <div class="gmb-row hl">
+                        <div>
+                            <div class="rl">Pessoas e acesso</div>
+                            <div class="rd">Adicionar, editar ou remover o acesso das pessoas</div>
+                        </div>
+                        <span class="gmb-arr">›</span>
+                    </div>
+                    <div class="gmb-row">
+                        <div>
+                            <div class="rl">Configuracoes avancadas</div>
+                            <div class="rd">Veja o ID do perfil e gerencie as etiquetas, os codigos das lojas, entre outras configuracoes.</div>
+                        </div>
+                        <span class="gmb-arr">›</span>
+                    </div>
+                    <div class="gmb-row">
+                        <div>
+                            <div class="rl">Contas vinculadas</div>
+                            <div class="rd">Veja e gerencie os pedidos de vinculacao de outros produtos do Google</div>
+                        </div>
+                        <span class="gmb-arr" style="font-size:11px;">↗</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo 3 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="step-badge">Passo 3 de 4</span>
+                <h2>Clique em "Adicionar"</h2>
+            </div>
+            <div class="section-body">
+                <p>Uma nova tela vai abrir com a lista de pessoas que já têm acesso. Clique em <strong>"Adicionar"</strong> para convidar alguém novo.</p>
+
+                <div class="gmb">
+                    <div class="gmb-bar">
+                        <div class="t"><span class="bk">←</span> Pessoas e acesso</div>
+                        <div class="ic"><span>⋮</span><span>✕</span></div>
+                    </div>
+                    <div style="padding: 10px 14px; color: #9aa0a6; font-size: 12px; border-bottom: 1px solid #2c2e31;">
+                        Adicionar, editar ou remover o acesso das pessoas ao Perfil da Empresa
+                    </div>
+                    <div class="gmb-row hl">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="font-size:14px; color:#8ab4f8;">👤</span>
+                            <div class="rl">Adicionar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passo 4 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="step-badge">Passo 4 de 4</span>
+                <h2>Digite o e-mail e convide como Gerente</h2>
+            </div>
+            <div class="section-body">
+                <p>No campo de busca, digite o endereço abaixo. Depois selecione a função <strong>"Gerente"</strong> e clique em <strong>"Convidar"</strong>.</p>
+
+                <div class="email-block">
+                    <span class="e-icon">✉</span>
+                    <span>assessoriaraizz@gmail.com</span>
+                </div>
+
+                <div class="callout warning">
+                    <span class="c-icon">⚠️</span>
+                    <div>Certifique-se de selecionar <strong>Gerente</strong>, não Proprietário. O proprietário tem poderes de transferência que não precisamos ter.</div>
+                </div>
+
+                <div class="gmb" style="margin-top: 16px;">
+                    <div class="gmb-bar">
+                        <div class="t"><span class="bk">←</span> Adicionar pessoa</div>
+                        <div class="ic"><span>⋮</span><span>✕</span></div>
+                    </div>
+                    <div style="padding: 14px 16px; border-bottom: 1px solid #2c2e31;">
+                        <div style="color: #9aa0a6; font-size: 10px; margin-bottom: 4px;">Endereco de e-mail</div>
+                        <div style="color: #CBA135; font-size: 13px; font-weight: 600;">assessoriaraizz@gmail.com</div>
+                    </div>
+                    <div class="gmb-role">
+                        <div style="color:#9aa0a6; font-size:11px; margin-bottom:12px;">Selecione a funcao que voce quer atribuir</div>
+                        <div class="role-row">
+                            <div class="radio"></div>
+                            <div>
+                                <div class="rn">Proprietario</div>
+                                <div class="rd2">Pode editar, adicionar pessoas e transferir a propriedade</div>
+                            </div>
+                        </div>
+                        <div class="role-row">
+                            <div class="radio on"></div>
+                            <div>
+                                <div class="rn on">Gerente</div>
+                                <div class="rd2">Pode fazer mudancas no Perfil da Empresa na Pesquisa Google e no Maps</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gmb-btns">
+                        <button class="bc">Cancelar</button>
+                        <button class="bi">Convidar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final -->
+        <div class="final-box">
+            <strong>Pronto!</strong> Assim que o convite for enviado, nossa equipe recebe uma notificação e aceita o acesso para dar início ao processo de otimização do seu perfil.
+        </div>
+
+        <div class="footer">
+            <p>Assessoria Raiz &bull; Dúvidas? Fale com a gente pelo WhatsApp.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

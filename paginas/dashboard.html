@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — @omatheusfariaa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0A0C10;
+      color: #EDF0F7;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      min-height: 100vh;
+      padding: 32px 20px 48px;
+    }
+
+    .container { max-width: 480px; margin: 0 auto; }
+
+    /* ── HEADER ── */
+    .header { margin-bottom: 32px; }
+    .header-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #3e636f;
+      margin-bottom: 6px;
+    }
+    .header-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #EDF0F7;
+    }
+    .header-sub {
+      font-size: 12px;
+      color: #4A5568;
+      margin-top: 4px;
+    }
+
+    /* ── PERIOD TOGGLE ── */
+    .period-toggle {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+    .period-btn {
+      background: #13161E;
+      border: 1px solid #1E2330;
+      color: #7A8499;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.5px;
+    }
+    .period-btn.active {
+      background: #3e636f;
+      border-color: #3e636f;
+      color: #EDF0F7;
+    }
+
+    /* ── FUNIL ── */
+    .funnel { display: flex; flex-direction: column; gap: 6px; }
+
+    .funnel-step {
+      background: #13161E;
+      border-left: 2px solid #1E2330;
+      padding: 16px 18px;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+    .funnel-step.top { border-left-color: #3e636f; }
+    .funnel-step.conversion { border-left-color: #5a9a6f; }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .step-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #7A8499;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .step-count {
+      font-size: 20px;
+      font-weight: 600;
+      color: #EDF0F7;
+    }
+    .step-pct {
+      font-size: 11px;
+      color: #4A5568;
+      margin-left: 6px;
+    }
+
+    /* barra de progresso */
+    .bar-track {
+      height: 3px;
+      background: #1E2330;
+      width: 100%;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: #3e636f;
+      transition: width 0.8s ease;
+      width: 0%;
+    }
+    .funnel-step.conversion .bar-fill { background: #5a9a6f; }
+
+    /* seta entre steps */
+    .funnel-arrow {
+      text-align: center;
+      color: #1E2330;
+      font-size: 14px;
+      line-height: 1;
+      margin: -2px 0;
+    }
+
+    /* ── SETUP / ERROR ── */
+    .setup-card {
+      background: #13161E;
+      border: 1px solid #1E2330;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .setup-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #EDF0F7;
+      margin-bottom: 6px;
+    }
+    .setup-desc {
+      font-size: 12px;
+      color: #7A8499;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .setup-input {
+      width: 100%;
+      background: #0A0C10;
+      border: 1px solid #1E2330;
+      color: #EDF0F7;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 10px 12px;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    .setup-input:focus { border-color: #3e636f; }
+    .setup-btn {
+      background: #3e636f;
+      border: none;
+      color: #EDF0F7;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.15s;
+    }
+    .setup-btn:hover { background: #4d7a87; }
+
+    /* ── STATUS ── */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+    .status-text {
+      font-size: 11px;
+      color: #4A5568;
+    }
+    .refresh-btn {
+      background: none;
+      border: 1px solid #1E2330;
+      color: #7A8499;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .refresh-btn:hover { border-color: #3e636f; color: #EDF0F7; }
+
+    .error-msg {
+      background: #1A0C0C;
+      border-left: 2px solid #8B2020;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #E07070;
+      margin-bottom: 16px;
+    }
+
+    .loading { color: #4A5568; font-size: 13px; text-align: center; padding: 40px 0; }
+
+    @media (min-width: 480px) {
+      body { padding: 48px 24px 64px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-label">Pixel · omatheusfariaa.pages.dev</div>
+    <div class="header-title">Funil de conversão</div>
+    <div class="header-sub" id="date-range">—</div>
+  </div>
+
+  <div id="setup-section" style="display:none">
+    <div class="setup-card">
+      <div class="setup-title">Conectar Meta Pixel</div>
+      <div class="setup-desc">Cole o token de acesso da Graph API Explorer para carregar os dados do Pixel <strong>1408057586913272</strong>.</div>
+      <input class="setup-input" id="token-input" type="password" placeholder="EAAxxxxxxx...">
+      <button class="setup-btn" onclick="saveToken()">Conectar</button>
+    </div>
+  </div>
+
+  <div id="error-section" style="display:none">
+    <div class="error-msg" id="error-msg"></div>
+  </div>
+
+  <div class="period-toggle">
+    <button class="period-btn active" onclick="setPeriod(7, this)">7 dias</button>
+    <button class="period-btn" onclick="setPeriod(30, this)">30 dias</button>
+  </div>
+
+  <div id="loading" class="loading" style="display:none">Carregando dados...</div>
+
+  <div id="funnel-section" style="display:none">
+    <div class="funnel">
+
+      <div class="funnel-step top">
+        <div class="step-header">
+          <div class="step-label">Visitas</div>
+          <div>
+            <span class="step-count" id="count-pageview">—</span>
+          </div>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-pageview" style="width:100%"></div></div>
+      </div>
+
+      <div class="funnel-arrow">↓</div>
+
+      <div class="funnel-step">
+        <div class="step-header">
+          <div class="step-label">YouTube</div>
+          <div>
+            <span class="step-count" id="count-yt">—</span>
+            <span class="step-pct" id="pct-yt"></span>
+          </div>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-yt"></div></div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="step-header">
+          <div class="step-label">Instagram</div>
+          <div>
+            <span class="step-count" id="count-ig">—</span>
+            <span class="step-pct" id="pct-ig"></span>
+          </div>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-ig"></div></div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="step-header">
+          <div class="step-label">TikTok</div>
+          <div>
+            <span class="step-count" id="count-tt">—</span>
+            <span class="step-pct" id="pct-tt"></span>
+          </div>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-tt"></div></div>
+      </div>
+
+      <div class="funnel-arrow">↓</div>
+
+      <div class="funnel-step conversion">
+        <div class="step-header">
+          <div class="step-label">WhatsApp (conversão)</div>
+          <div>
+            <span class="step-count" id="count-wa">—</span>
+            <span class="step-pct" id="pct-wa"></span>
+          </div>
+        </div>
+        <div class="bar-track"><div class="bar-fill" id="bar-wa"></div></div>
+      </div>
+
+    </div>
+
+    <div class="status-bar">
+      <div class="status-text" id="last-update">—</div>
+      <button class="refresh-btn" onclick="loadData()">↻ Atualizar</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const PIXEL_ID = '1408057586913272';
+  let currentDays = 7;
+
+  function getToken() { return localStorage.getItem('meta_token'); }
+  function saveToken() {
+    const t = document.getElementById('token-input').value.trim();
+    if (!t) return;
+    localStorage.setItem('meta_token', t);
+    document.getElementById('setup-section').style.display = 'none';
+    loadData();
+  }
+
+  function setPeriod(days, btn) {
+    currentDays = days;
+    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadData();
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('error-section');
+    document.getElementById('error-msg').textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function updateFunnel(events) {
+    const pv = events['PageView'] || 0;
+    const yt = events['YouTubeClick'] || 0;
+    const ig = events['InstagramClick'] || 0;
+    const tt = events['TikTokClick'] || 0;
+    const wa = events['Contact'] || 0;
+
+    const set = (id, val, base) => {
+      document.getElementById('count-' + id).textContent = val.toLocaleString('pt-BR');
+      const pct = base > 0 ? Math.round((val / base) * 100) : 0;
+      const pctEl = document.getElementById('pct-' + id);
+      if (pctEl) pctEl.textContent = pct + '%';
+      setTimeout(() => {
+        document.getElementById('bar-' + id).style.width = (base > 0 ? pct : 100) + '%';
+      }, 100);
+    };
+
+    set('pageview', pv, pv);
+    set('yt', yt, pv);
+    set('ig', ig, pv);
+    set('tt', tt, pv);
+    set('wa', wa, pv);
+
+    document.getElementById('last-update').textContent =
+      'Atualizado ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  async function loadData() {
+    const token = getToken();
+    if (!token) { document.getElementById('setup-section').style.display = 'block'; return; }
+
+    document.getElementById('error-section').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('funnel-section').style.display = 'none';
+
+    const end = Math.floor(Date.now() / 1000);
+    const start = end - (currentDays * 86400);
+
+    const label = currentDays === 7 ? 'Últimos 7 dias' : 'Últimos 30 dias';
+    document.getElementById('date-range').textContent = label;
+
+    try {
+      const url = `https://graph.facebook.com/v20.0/${PIXEL_ID}/stats?aggregation=event&start_time=${start}&end_time=${end}&access_token=${token}`;
+      const res = await fetch(url);
+      const json = await res.json();
+
+      if (json.error) {
+        document.getElementById('loading').style.display = 'none';
+        if (json.error.code === 190) {
+          localStorage.removeItem('meta_token');
+          document.getElementById('setup-section').style.display = 'block';
+          showError('Token expirado. Cola um novo token abaixo.');
+        } else {
+          showError('Erro da API: ' + json.error.message);
+        }
+        return;
+      }
+
+      const events = {};
+      (json.data || []).forEach(bucket => {
+        (bucket.data || []).forEach(d => {
+          events[d.value] = (events[d.value] || 0) + d.count;
+        });
+      });
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('funnel-section').style.display = 'block';
+      updateFunnel(events);
+
+    } catch (e) {
+      document.getElementById('loading').style.display = 'none';
+      showError('Erro ao buscar dados. Verifica o token e tenta novamente.');
+    }
+  }
+
+  loadData();
+</script>
+</body>
+</html>

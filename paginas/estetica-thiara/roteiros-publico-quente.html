@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiros · Público Quente · @esteticathiara</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #c9a77c;
+    --rose-light: #e8d5be;
+    --rose-dark: #9e7d57;
+    --cream: #faf7f3;
+    --dark: #1a1714;
+    --mid: #2e2a26;
+    --mid2: #242019;
+    --text: #4a4540;
+    --muted: #9a9088;
+    --line: rgba(201,167,124,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 40px 80px;
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(201,167,124,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 85%, rgba(201,167,124,0.04) 0%, transparent 50%);
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a77c' fill-opacity='0.025'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--rose); }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 480px;
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+
+  .section-intro {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 64px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+    margin: 0 40px;
+    opacity: 0.2;
+  }
+
+  /* ── ROTEIRO CARD ── */
+  .roteiro-card {
+    border: 1px solid var(--line);
+    background: var(--mid);
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .roteiro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+  }
+
+  .roteiro-header {
+    padding: 32px 40px 24px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .roteiro-num {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .roteiro-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .roteiro-titulo em { font-style: italic; color: var(--rose); }
+
+  .roteiro-duracao {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .roteiro-body {
+    padding: 32px 40px 40px;
+  }
+
+  /* ── CENA ── */
+  .cena {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: 20px 24px;
+    background: rgba(201,167,124,0.04);
+    border-left: 2px solid rgba(201,167,124,0.3);
+  }
+
+  .cena-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    white-space: nowrap;
+    margin-top: 2px;
+    min-width: 60px;
+  }
+
+  .cena-texto {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── FALA ── */
+  .fala-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .fala-texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--cream);
+    margin-bottom: 32px;
+  }
+
+  .fala-texto p + p {
+    margin-top: 16px;
+  }
+
+  /* ── OVERLAY TAG ── */
+  .overlay-wrap {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .overlay-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .overlay-tag {
+    background: rgba(201,167,124,0.12);
+    border: 1px solid rgba(201,167,124,0.3);
+    color: var(--rose-light);
+    font-size: 14px;
+    padding: 8px 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── DICA BOX ── */
+  .dica-box {
+    background: rgba(201,167,124,0.06);
+    border: 1px solid var(--line);
+    padding: 32px 40px;
+    margin-top: 16px;
+  }
+
+  .dica-box-title {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .dica-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dica-lista li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .dica-lista li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--rose);
+    font-size: 12px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 60px 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+
+  .footer-sub {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .section { padding: 60px 24px; }
+    .roteiro-header { flex-direction: column; gap: 12px; padding: 24px; }
+    .roteiro-body { padding: 24px; }
+    .cena { flex-direction: column; gap: 8px; }
+    .overlay-wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .dica-box { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Assessoria Raiz · Estética Thiara</p>
+  <h1>Roteiros para<br><em>público quente</em></h1>
+  <p class="hero-sub">Três vídeos curtos para quem já te acompanha e ainda não agendou. Gravar no celular, direto da clínica.</p>
+  <div class="hero-line"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROTEIROS -->
+<section class="section">
+
+  <p class="section-eyebrow">Os roteiros</p>
+  <p class="section-intro">Cada roteiro fala com uma persona diferente do seu público quente. Não precisa gravar os três de uma vez — pode ir um por semana, no seu ritmo.</p>
+
+  <!-- ROTEIRO 1 -->
+  <div class="roteiro-card">
+    <div class="roteiro-header">
+      <div>
+        <span class="roteiro-num">Roteiro 01</span>
+        <h2 class="roteiro-titulo"><em>HiPro</em> — firmeza e contorno facial</h2>
+      </div>
+      <span class="roteiro-duracao">~30 segundos</span>
+    </div>
+    <div class="roteiro-body">
+
+      <div class="cena">
+        <span class="cena-label">Cena</span>
+        <span class="cena-texto">Você na câmera, com a clínica ao fundo. Luz boa, ambiente limpo. Pode ser sentada ou em pé.</span>
+      </div>
+
+      <span class="fala-label">Fala</span>
+      <div class="fala-texto">
+        <p>"Se você me acompanha aqui e já ficou curiosa sobre o HiPro...</p>
+        <p>É o procedimento que eu mais indico pra quem quer trabalhar firmeza e contorno facial. A gente usa ultrassom microfocado, que age em camadas que cremes e equipamentos de superfície não chegam.</p>
+        <p>O resultado aparece de forma progressiva — natural, sem parecer que você fez alguma coisa.</p>
+        <p>Tenho vagas essa semana. Se quiser entender se faz sentido pro seu caso, me manda uma mensagem. A gente conversa antes de qualquer coisa."</p>
+      </div>
+
+      <div class="overlay-wrap">
+        <span class="overlay-label">Texto na tela</span>
+        <span class="overlay-tag">Tira suas dúvidas comigo 👇</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROTEIRO 2 -->
+  <div class="roteiro-card">
+    <div class="roteiro-header">
+      <div>
+        <span class="roteiro-num">Roteiro 02</span>
+        <h2 class="roteiro-titulo"><em>Laser</em> — a melhor época é agora</h2>
+      </div>
+      <span class="roteiro-duracao">~35 segundos</span>
+    </div>
+    <div class="roteiro-body">
+
+      <div class="cena">
+        <span class="cena-label">Cena</span>
+        <span class="cena-texto">Você na câmera ou mostrando o equipamento de laser ao fundo. Tom descontraído, como se estivesse contando uma coisa importante pra uma amiga.</span>
+      </div>
+
+      <span class="fala-label">Fala</span>
+      <div class="fala-texto">
+        <p>"O inverno é a melhor época pra fazer laser — e não é papo.</p>
+        <p>Com menos sol, a pele responde melhor ao tratamento e o resultado aparece mais rápido. É o melhor tratamento que tenho pra quem quer trabalhar manchas, textura e rejuvenescimento de verdade.</p>
+        <p>Aqui eu faço um final de semana de laser por mês. As vagas desse mês tão abertas — me manda uma mensagem."</p>
+      </div>
+
+      <div class="overlay-wrap">
+        <span class="overlay-label">Texto na tela</span>
+        <span class="overlay-tag">Tira suas dúvidas comigo 👇</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROTEIRO 3 -->
+  <div class="roteiro-card">
+    <div class="roteiro-header">
+      <div>
+        <span class="roteiro-num">Roteiro 03</span>
+        <h2 class="roteiro-titulo"><em>Consultiva</em> — pra quem acompanha mas nunca veio</h2>
+      </div>
+      <span class="roteiro-duracao">~30 segundos</span>
+    </div>
+    <div class="roteiro-body">
+
+      <div class="cena">
+        <span class="cena-label">Cena</span>
+        <span class="cena-texto">Você na câmera, tom próximo e direto. Como se estivesse falando com uma pessoa específica — não um anúncio, uma conversa.</span>
+      </div>
+
+      <span class="fala-label">Fala</span>
+      <div class="fala-texto">
+        <p>"Você me segue há um tempo, provavelmente já viu bastante coisa aqui sobre os procedimentos que faço.</p>
+        <p>Mas se ainda não veio, quero te dizer uma coisa: antes de agendar qualquer coisa, a gente faz uma avaliação. Eu analiso o seu caso e te digo com honestidade o que faz sentido pra você, o que não faz, e qual o caminho certo.</p>
+        <p>Não precisa chegar sabendo o que quer. É pra isso que eu tô aqui.</p>
+        <p>Me manda uma mensagem. Tem horário essa semana."</p>
+      </div>
+
+      <div class="overlay-wrap">
+        <span class="overlay-label">Texto na tela</span>
+        <span class="overlay-tag">Tira suas dúvidas comigo 👇</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DICAS DE GRAVAÇÃO -->
+  <div class="dica-box">
+    <span class="dica-box-title">Dicas de gravação</span>
+    <ul class="dica-lista">
+      <li>Grave no celular em modo vertical (Stories/Reels). Não precisa de câmera profissional.</li>
+      <li>Luz natural de frente é suficiente. Evite contraluz (janela atrás de você).</li>
+      <li>Fundo limpo da clínica passa mais credibilidade do que fundo branco.</li>
+      <li>Não precisa ser uma take perfeita. Tom natural converte mais do que vídeo muito produzido.</li>
+      <li>O texto "Tira suas dúvidas comigo 👇" pode ser adicionado na edição ou direto no Instagram ao postar.</li>
+    </ul>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-logo">Assessoria Raiz</p>
+  <p class="footer-sub">assessoria de tráfego pago · @esteticathiara</p>
+</footer>
+
+</body>
+</html>

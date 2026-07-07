@@ -1,0 +1,168 @@
+# ============================================================================
+# Meta Ads Ratos — Cadastro de Contas
+# ============================================================================
+#
+# Preencha este arquivo com as contas de anuncio, paginas e perfis do
+# Instagram de cada cliente. O Claude consulta este arquivo automaticamente
+# quando voce mencionar o nome do cliente (ex: "cria campanha pra DobraLabs").
+#
+# Dica: rode `read.py accounts` pra ver todas as contas disponiveis.
+#
+# Estrutura:
+#   - slug unico (sem espacos, lowercase)
+#     - nome de exibicao
+#     - conta de anuncio (act_XXX)
+#     - pagina do Facebook (page_id)
+#     - conta do Instagram (instagram_actor_id)
+#     - moeda
+#     - notas opcionais
+#
+# ============================================================================
+
+clientes:
+
+  gs-acabamentos:
+    nome: "GS Acabamentos"
+    conta_anuncio: "act_2335179543550695"
+    pagina_facebook: "162980617749260"
+    instagram_id: "17841402948824622"
+    instagram_username: "@gs.gessoacabamentos"
+    moeda: "BRL"
+    notas: "Pagina FB: GS Gesso"
+
+  assessoria-raiz:
+    nome: "Assessoria Raiz"
+    conta_anuncio: "act_1278967806049217"
+    pagina_facebook: "114240631700354"
+    instagram_id: "17841402055246616"
+    instagram_username: "@olucaslunardi"
+    moeda: "BRL"
+    notas: "Conta do Lucas. Veiculamos anuncios proprios da Raiz aqui."
+
+  boye-motors:
+    nome: "Boye Motors"
+    conta_anuncio: "act_1216712125709162"
+    pagina_facebook: "132389344131923"
+    instagram_id: "17841417290486858"
+    instagram_username: "@boyemotors"
+    moeda: "BRL"
+
+  casa-valerio:
+    nome: "Casa Valério"
+    conta_anuncio: "act_1325552292609363"
+    pagina_facebook: "793453710520242"
+    instagram_id: "17841403436061649"
+    instagram_username: "@casavalerio_oficial"
+    moeda: "BRL"
+    notas: "Pagina FB: Casa Valério - Restaurante"
+
+  cipriani:
+    nome: "Cipriani Multimarcas"
+    conta_anuncio: "act_1716577406370633"
+    pagina_facebook: "101641282744702"
+    instagram_id: "17841453228659163"
+    instagram_username: "@ciprianimultimarcas"
+    moeda: "BRL"
+
+  duoz:
+    nome: "Duoz Organizadores"
+    conta_anuncio: "act_1395757504860824"
+    pagina_facebook: "169438636894955"
+    instagram_id: "17841406974420274"
+    instagram_username: "@duozorganiza"
+    moeda: "BRL"
+
+  estetica-thiara:
+    nome: "Estética Thiara"
+    conta_anuncio: "act_1334780665210277"
+    pagina_facebook: "107237337734876"
+    instagram_id: "17841406999759541"
+    instagram_username: "@esteticathiara"
+    moeda: "BRL"
+
+  mk-beauty:
+    nome: "MK Beauty"
+    conta_anuncio: "act_8135326936567648"
+    pagina_facebook: "506141185913849"
+    instagram_id: "17841469729080906"
+    instagram_username: "@mkbeauty_cascavel"
+    moeda: "BRL"
+    notas: "Conta principal (SL). Tem tambem SL2 (act_1184726903074730) e SL3 (act_2612279375828570)."
+
+  motocar:
+    nome: "Motocar Veículos"
+    conta_anuncio: "act_1608394320127373"
+    pagina_facebook: "430679206798232"
+    instagram_id: "17841461542394919"
+    instagram_username: "@moto.carveiculos"
+    moeda: "BRL"
+
+  podium-racing:
+    nome: "Podium Racing"
+    conta_anuncio: "act_2033259974120473"
+    pagina_facebook: "125177054805694"
+    instagram_id: "17841406092618442"
+    instagram_username: "@racingpodium"
+    moeda: "BRL"
+
+  re-imports:
+    nome: "R.E Imports"
+    conta_anuncio: "act_704620040773444"
+    pagina_facebook: "116738653452088"
+    instagram_id: "17841447398344715"
+    instagram_username: "@r.eimportsoficial"
+    moeda: "BRL"
+    notas: "Tem tambem CA2 (act_1219891666971194) e CA3 (act_1318939490268308)."
+
+  rt-motors:
+    nome: "R/T Motors"
+    conta_anuncio: "act_2493015264403505"
+    pagina_facebook: "102268678429381"
+    instagram_id: "17841473531794830"
+    instagram_username: "@rtmotors_rs"
+    moeda: "BRL"
+
+  robert-eddlei:
+    nome: "Robert Eddlei Ink"
+    conta_anuncio: "act_127722550258206"
+    pagina_facebook: "341643905696442"
+    instagram_id: "17841449482618864"
+    instagram_username: "@eddleink"
+    moeda: "BRL"
+
+  efatah:
+    nome: "Efatah Veículos"
+    conta_anuncio: "act_555706870788495"
+    pagina_facebook: "412668008596682"
+    instagram_id: "17841453629906452"
+    instagram_username: "@efatahveiculos"
+    moeda: "BRL"
+    notas: "Tem tambem CA2 (act_920758494273371) e CA3 (act_2761406884214156)."
+
+  encanto-mix:
+    nome: "Encanto Mix"
+    conta_anuncio: "act_1202704861611030"
+    pagina_facebook: "1762568517206171"
+    instagram_id: "17841409985382396"
+    instagram_username: "@encanto__mix"
+    moeda: "BRL"
+    notas: "Tem tambem conta nova: Encanto Mix_NEW (act_2324112504346843)."
+
+  jetor-veiculos:
+    nome: "Jetor Veículos"
+    conta_anuncio: "act_1182722890380366"
+    pagina_facebook: "101350876159559"
+    instagram_id: "17841478283023237"
+    instagram_username: "@jetor.veiculos"
+    moeda: "BRL"
+    notas: "Americana/SP. Responsáveis: João (dono) e Ivo (vendedor). WhatsApp leads: número 7367. IA pré-atendimento via Carchat (G30/Gadelha)."
+
+  mediari:
+    nome: "Mediari Cobranças"
+    conta_anuncio: "act_1758945342145133"
+    pagina_facebook: "109035622099165"
+    instagram_id: "17841457411777765"
+    instagram_biz_id: "5759034567523804"
+    instagram_username: "@mediaricobrancas"
+    moeda: "BRL"
+    notas: "Pagina FB: Mediari Inovação Cobranças. instagram_biz_id é o ID usado em engagement audiences (ig_business source type), diferente do instagram_id (user ID)."

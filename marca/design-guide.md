@@ -55,9 +55,10 @@ Sofisticado, sóbrio e profissional. Influência editorial — espaços em branc
 - **Versão 4K (alta resolução):** `marca/logo-verde-4k.png`
 - **Versão fundo escuro:** `marca/logo-bege-fundo-verde.png` — texto bege sobre fundo verde petróleo
 - **Versão desenhada:** `marca/logo-desenhada-fundo-verde.png` — símbolo das raízes com iluminação, fundo verde
+- **Versão transparente:** `marca/raiz com fundo transparente.png` — PNG com fundo removido, ideal para carrosséis e slides com fundo escuro
 - **Onde usar:**
   - Fundo claro → `logo-verde.png`
-  - Fundo verde/escuro → `logo-bege-fundo-verde.png`
+  - Fundo verde/escuro → `raiz com fundo transparente.png` (preferir em carrosséis) ou `logo-bege-fundo-verde.png`
   - Elemento decorativo / marca d'água → `logo-desenhada-fundo-verde.png`
 - **Tamanho sugerido:** largura entre 120-200px nos HTMLs; 4K para impressão
 

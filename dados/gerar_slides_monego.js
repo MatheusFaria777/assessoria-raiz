@@ -1,0 +1,640 @@
+// Gerador de slides de onboarding em HTML — Assessoria Raiz
+// Padrão atual (substitui o PPTX): gera um deck HTML autocontido, navegável,
+// com a identidade visual fixa da Raiz. Adaptar só as constantes abaixo a cada cliente.
+//
+// Nunca usar travessão (—) em nenhum texto gerado aqui. Trocar por vírgula, ponto,
+// dois pontos, parênteses ou "·" (separador estrutural). Regra de estilo da Raiz.
+
+const fs = require("fs");
+const path = require("path");
+
+// ---- Dados do cliente (adaptar a cada novo onboarding) ----
+const NOME_EMPRESA = "Mônego Eletromec";
+const NOME_RESPONSAVEL = "Cristian";
+const CIDADE = "Caxias do Sul, RS";
+const NICHO = "industrial";
+const OUT = "Clientes/monego-eletromec/Entregaveis/onboard-slides.html";
+
+// ---- Identidade visual Raiz (fixa — nunca usar cores do cliente) ----
+const COR_FUNDO = "#1E3D34";
+const COR_TEXTO = "#F5F5F5";
+const COR_DESTAQUE = "#CBA135";
+const COR_CARD = "#254337";
+const COR_BORDA = "#356050";
+const COR_TRANS_FUNDO = "#CBA135";
+const COR_TRANS_TEXTO = "#1E3D34";
+
+// ---- Imagens embutidas como base64 (HTML autocontido, sem dependência de pasta imgs/) ----
+// Fonte: .claude/skills/onboarding/referencias/ — imagens fixas da Raiz, iguais para todos os clientes.
+// print-drive.png: screenshot genérico da pasta Drive (substituir pelo da pasta real do cliente se quiser).
+const IMGS_DIR = path.join(__dirname, "../Clientes/.claude/skills/onboarding/referencias");
+function imgBase64(filename) {
+  return `data:image/png;base64,${fs.readFileSync(path.join(IMGS_DIR, filename)).toString("base64")}`;
+}
+const IMG_GRUPO_WHATSAPP = imgBase64("grupo-whatsapp.png");
+const IMG_PASTA_DRIVE = imgBase64("print-drive.png");
+const IMG_PACK_RAIZ = imgBase64("packraiz.png");
+
+const slides = [
+  // 1 — Abertura
+  `
+  <section class="slide slide-abertura">
+    <p class="kicker">Onboarding · ${NOME_EMPRESA}</p>
+    <h1>Hoje a gente define<br>as regras do jogo</h1>
+  </section>`,
+
+  // 2 — Como funciona essa reunião (slide só de apoio visual, sem script fixo)
+  `
+  <section class="slide">
+    <p class="kicker">Como funciona essa reunião</p>
+    <h2>O roteiro de hoje</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="num">1</span>
+        <h3>O que está incluído na parceria</h3>
+        <p>O que você vai ter, e o que fica fora do escopo.</p>
+      </div>
+      <div class="card">
+        <span class="num">2</span>
+        <h3>Onde a maioria erra</h3>
+        <p>Quando contrata marketing, pra gente não repetir isso.</p>
+      </div>
+      <div class="card">
+        <span class="num">3</span>
+        <h3>Seu negócio</h3>
+        <p>Perguntas, próximos passos e prazos.</p>
+      </div>
+    </div>
+  </section>`,
+
+  // 3 — CAJ
+  `
+  <section class="slide">
+    <p class="kicker">Como a gente se comunica</p>
+    <h2>Café · Almoço · Janta</h2>
+    <p class="intro">Você vai ter suporte direto pelo nosso grupo no WhatsApp. A gente organiza as respostas em janelas fixas pra te dar previsibilidade e não deixar nada passar.</p>
+    <div class="grid grid-3">
+      <div class="card center">
+        <span class="emoji">☕</span>
+        <h3>Café</h3>
+        <p>Janela da manhã</p>
+      </div>
+      <div class="card center">
+        <span class="emoji">🍽️</span>
+        <h3>Almoço</h3>
+        <p>Janela do meio-dia</p>
+      </div>
+      <div class="card center">
+        <span class="emoji">🌙</span>
+        <h3>Janta</h3>
+        <p>Janela do fim do dia</p>
+      </div>
+    </div>
+    <p class="nota">Pode mandar mensagem a qualquer hora. Se cair fora dessas janelas, respondemos na próxima. Em caso de urgência real, é só ligar no grupo que a gente entra na hora.</p>
+  </section>`,
+
+  // 4 — Onde tudo mora: o grupo do WhatsApp (+ Pack Raiz pra nicho automotivo)
+  `
+  <section class="slide slide-print-full">
+    <p class="kicker">Onde tudo mora</p>
+    <h2>O grupo do WhatsApp</h2>
+    <div class="${NICHO === "automotivo" ? "print-duo" : "print-duo print-duo--single"}">
+      <img class="print-duo-img" src="${IMG_GRUPO_WHATSAPP}" alt="Print do grupo do WhatsApp">
+      ${NICHO === "automotivo" ? `<img class="print-duo-img" src="${IMG_PACK_RAIZ}" alt="Print do Pack Raiz">` : ""}
+    </div>
+  </section>`,
+
+  // 5 — Onde tudo mora: a pasta do Drive
+  `
+  <section class="slide slide-print-full">
+    <p class="kicker">Onde tudo mora</p>
+    <h2>A pasta do Drive</h2>
+    <img class="print-img-full" src="${IMG_PASTA_DRIVE}" alt="Print da pasta do Drive organizada em subpastas">
+  </section>`,
+
+  // 6 — Relatórios / Como você acompanha tudo
+  `
+  <section class="slide">
+    <p class="kicker">Acompanhamento</p>
+    <h2>Como você acompanha tudo</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Relatório semanal</h3>
+        <p>Mais simples, pra você bater o olho e ver o rumo do projeto a qualquer momento.</p>
+      </div>
+      <div class="card">
+        <h3>Relatório mensal</h3>
+        <p>Mais completo, com reunião: prestamos contas do investimento e do retorno, entendemos o que funcionou e decidimos juntos as prioridades do próximo mês.</p>
+      </div>
+    </div>
+  </section>`,
+
+  // 7 — Além das campanhas (Google Ads: GMB + Site)
+  `
+  <section class="slide">
+    <p class="kicker">Presença e posicionamento</p>
+    <h2>Além das campanhas</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Google Meu Negócio</h3>
+        <p>Atualização e manutenção da ficha. No fim de todo mês a gente passa por lá: responde as avaliações, cuida dos acessos e faz a manutenção.</p>
+      </div>
+      <div class="card">
+        <h3>Site focado em vendas</h3>
+        <p>Desenvolvimento de um site com identidade visual forte, pensado pra converter visitante em contato. Incluso no pacote.</p>
+      </div>
+    </div>
+  </section>`,
+
+  // 8 — Erro 1: GPS (Largada · Estrada · Ajuste de rota)
+  `
+  <section class="slide slide-erro">
+    <p class="kicker erro-tag">Erro 1</p>
+    <h2>Começar sem método</h2>
+    <p class="intro">É como viajar sem GPS: você anda, gasta, mas não sabe se está indo pro lugar certo. Aqui a gente trabalha com um método em 3 fases, pensa como uma viagem:</p>
+    <ol class="etapas">
+      <li><strong>Embarque</strong>: arrumar a bagagem e definir o destino. Acessos, forma de pagamento, público, oferta, margem, ticket e objetivo</li>
+      <li><strong>Estrada</strong>: escolher a rota e partir. As primeiras campanhas e criativos no ar</li>
+      <li class="destaque"><strong>Ajuste de rota</strong>: o GPS recalcula. Testa anúncios e públicos, repete o que funciona e lapida os detalhes</li>
+    </ol>
+    <p class="nota">Por isso tráfego não é apertar um botão.</p>
+  </section>`,
+
+  // 9 — Erro 2: 4 peças
+  `
+  <section class="slide slide-erro">
+    <p class="kicker erro-tag">Erro 2</p>
+    <h2>Focar só na ferramenta</h2>
+    <p class="intro">Tráfego é combustível. Mas combustível não faz o carro andar se o motor estiver ruim. O resultado vem de 4 peças juntas:</p>
+    <div class="grid grid-4">
+      <div class="card center"><span class="num">1</span><h3>Oferta</h3><p>o que você vende e por que vale</p></div>
+      <div class="card center"><span class="num">2</span><h3>Criativo</h3><p>o que a pessoa vê</p></div>
+      <div class="card center"><span class="num">3</span><h3>Atendimento</h3><p>o que você responde e como conduz</p></div>
+      <div class="card center"><span class="num">4</span><h3>Tráfego</h3><p>o que leva a pessoa até você</p></div>
+    </div>
+    <p class="nota">Se uma dessas peças falha, o tráfego só deixa isso mais visível.</p>
+  </section>`,
+
+  // 13 — Erro 3: a criança + roadmap de 3 meses
+  `
+  <section class="slide slide-erro">
+    <p class="kicker erro-tag">Erro 3</p>
+    <div class="erro-layout">
+      <span class="emoji big">🚼</span>
+      <div>
+        <h2>Querer resultado do dia pra noite</h2>
+        <p>É como ensinar uma criança a andar: ela não levanta e sai correndo no primeiro dia. Primeiro tenta, cai, dá dois passos, e vai evoluindo.</p>
+        <p>No tráfego é parecido: no começo a gente precisa de um período pra entender o que funciona. Conforme aprende, melhora e acelera.</p>
+        <div class="prazos" style="margin-top:16px;">
+          <div class="prazo-item">→ <strong>1º mês:</strong> planejamento, ajustes iniciais e estruturação das campanhas</div>
+          <div class="prazo-item">→ <strong>2º mês:</strong> testes, otimização e validação da estratégia, incluindo o funil de vendas</div>
+          <div class="prazo-item">→ <strong>3º mês:</strong> escala do que funcionou e definição de metas mais ambiciosas</div>
+        </div>
+        <p class="destaque-texto">Preferimos prometer processo e melhoria contínua do que vender um foguete e frustrar.</p>
+      </div>
+    </div>
+  </section>`,
+
+  // 14 — Erro 4: piloto e torre (3 blocos)
+  `
+  <section class="slide slide-erro">
+    <p class="kicker erro-tag">Erro 4</p>
+    <h2>Achar que depende só do gestor</h2>
+    <p class="intro">Pensa num avião: o piloto faz a parte dele, mas precisa da torre e da pista. Aqui é igual, a gente cuida das campanhas e da estratégia, você cuida do que transforma oportunidade em venda. Pra isso funcionar bem, a gente precisa de 3 coisas suas:</p>
+    <div class="grid grid-3">
+      <div class="card center"><span class="num">1</span><h3>Caminho livre pra operação rodar</h3><p>investimento em dia e acessos liberados</p></div>
+      <div class="card center"><span class="num">2</span><h3>Material quando a gente pedir</h3><p>foto, vídeo, informação</p></div>
+      <div class="card center"><span class="num">3</span><h3>Conduzir bem a venda e contar o resultado</h3><p>atendimento rápido e retorno sobre o que virou venda de verdade</p></div>
+    </div>
+    <p class="nota">Quando os dois lados fazem bem feito, o tráfego vira previsível.</p>
+  </section>`,
+
+  // 15 — Prazos
+  `
+  <section class="slide">
+    <p class="kicker">Prazos</p>
+    <h2>Prazos operacionais</h2>
+    <p class="intro">Pra você saber exatamente o que esperar quando precisar de algo:</p>
+    <div class="prazos">
+      <div class="prazo-item">→ <strong>Alterações pontuais</strong> (localização, criativo novo, pausar criativo): <strong>1 dia útil</strong></div>
+      <div class="prazo-item">→ <strong>Estratégia, roteiro ou campanha nova do zero</strong>: <strong>7 dias úteis</strong></div>
+      <div class="prazo-item">→ <strong>Campanhas sazonais</strong> (Black Friday, feirão, data comemorativa): <strong>30 dias corridos de antecedência</strong></div>
+    </div>
+    <p class="nota">Tudo a partir do momento em que a gente recebe o material completo. A gente pede esses prazos porque cuida de vários parceiros ao mesmo tempo, e isso é o que garante uma entrega boa pra todo mundo.</p>
+  </section>`,
+
+  // 16 — Próximos passos (linha do tempo visual)
+  `
+  <section class="slide">
+    <p class="kicker">Próximos passos</p>
+    <h2>O caminho daqui pra frente</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-icone">📄</span>
+        <p class="timeline-texto"><strong>Assinatura</strong> do contrato</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-icone">💻</span>
+        <p class="timeline-texto"><strong>Onboarding</strong> essa conversa de hoje</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-icone">⚙️</span>
+        <p class="timeline-texto"><strong>Acessos</strong> configuração liberada</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-icone">🎯</span>
+        <p class="timeline-texto"><strong>Estratégia</strong> plano e aprovação</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-icone">🖥️</span>
+        <p class="timeline-texto"><strong>Landing page</strong> criação e aprovação</p>
+      </div>
+      <div class="timeline-item destaque">
+        <span class="timeline-icone">🏁</span>
+        <p class="timeline-texto"><strong>Largada</strong> em até 3 dias úteis após a landing page, campanhas no ar</p>
+      </div>
+    </div>
+  </section>`,
+
+  // 17 — Transição
+  `
+  <section class="slide slide-transicao">
+    <h1>Agora vamos falar<br>do seu negócio</h1>
+    <p class="lead">Algumas perguntas pra entender o teu negócio a fundo e montar a estratégia certa.</p>
+  </section>`,
+];
+
+const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onboarding · ${NOME_EMPRESA}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fundo: ${COR_FUNDO};
+    --texto: ${COR_TEXTO};
+    --destaque: ${COR_DESTAQUE};
+    --card: ${COR_CARD};
+    --borda: ${COR_BORDA};
+    --trans-fundo: ${COR_TRANS_FUNDO};
+    --trans-texto: ${COR_TRANS_TEXTO};
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: #000;
+    color: var(--texto);
+    overflow: hidden;
+  }
+  .deck {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stage {
+    position: relative;
+    width: min(100vw, 177.78vh);
+    height: min(100vh, 56.25vw);
+    background: var(--fundo);
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(0,0,0,0.5);
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(28px, 6vw, 90px);
+  }
+  .slide.active { display: flex; }
+  .slide.slide-transicao { background: var(--trans-fundo); color: var(--trans-texto); }
+
+  .kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--destaque);
+    margin-bottom: clamp(10px, 1.6vw, 18px);
+    font-weight: 500;
+  }
+  .slide-transicao .kicker { color: var(--trans-texto); }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(34px, 6vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 4.2vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.5px;
+    margin-bottom: clamp(14px, 2vw, 22px);
+  }
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(16px, 1.6vw, 21px);
+    margin-bottom: 8px;
+    color: var(--destaque);
+  }
+  .lead {
+    font-size: clamp(15px, 1.6vw, 20px);
+    color: var(--destaque);
+    margin-top: clamp(16px, 2.4vw, 28px);
+    max-width: 60ch;
+  }
+  .slide-transicao .lead { color: var(--trans-texto); opacity: 0.75; }
+  .intro {
+    font-size: clamp(14px, 1.5vw, 18px);
+    line-height: 1.6;
+    max-width: 78ch;
+    margin-bottom: clamp(18px, 2.6vw, 30px);
+    color: var(--texto);
+    opacity: 0.92;
+  }
+  .nota {
+    font-size: clamp(12px, 1.15vw, 14px);
+    color: var(--destaque);
+    margin-top: clamp(16px, 2.4vw, 26px);
+    max-width: 80ch;
+    line-height: 1.5;
+  }
+  p { line-height: 1.6; font-size: clamp(13px, 1.4vw, 17px); }
+  strong { color: var(--destaque); font-weight: 500; }
+
+  .grid { display: grid; gap: clamp(10px, 1.4vw, 18px); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: clamp(16px, 2vw, 26px);
+  }
+  .card.center { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .card.small p { font-size: clamp(11px, 1.05vw, 14px); margin: 0; }
+  .card p { margin: 0; opacity: 0.9; }
+  .card .emoji { font-size: clamp(28px, 3.6vw, 44px); margin-bottom: 10px; }
+  .card .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: clamp(26px, 2.6vw, 34px); height: clamp(26px, 2.6vw, 34px);
+    border-radius: 50%; background: var(--destaque); color: var(--fundo);
+    font-weight: 600; font-size: clamp(13px, 1.3vw, 16px); margin-bottom: 10px;
+  }
+  .icone-bloco { font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 10px; display: block; }
+
+  .etapas { list-style: none; counter-reset: etapa; max-width: 90ch; }
+  .etapas li {
+    counter-increment: etapa;
+    position: relative;
+    padding: clamp(10px, 1.3vw, 14px) clamp(16px, 2vw, 22px) clamp(10px, 1.3vw, 14px) clamp(46px, 4vw, 56px);
+    margin-bottom: clamp(7px, 1vw, 10px);
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: clamp(13px, 1.35vw, 16px);
+  }
+  .etapas li::before {
+    content: counter(etapa);
+    position: absolute;
+    left: clamp(14px, 1.6vw, 20px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--destaque);
+    font-size: clamp(15px, 1.6vw, 19px);
+  }
+  .etapas li.destaque {
+    background: var(--destaque);
+    border-color: var(--destaque);
+    color: var(--fundo);
+  }
+  .etapas li.destaque::before { color: var(--fundo); }
+  .etapas li.destaque strong { color: var(--fundo); }
+
+  .erro-tag { color: var(--destaque); }
+  .erro-layout {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 4vw, 60px);
+  }
+  .emoji.big { font-size: clamp(70px, 11vw, 150px); line-height: 1; flex-shrink: 0; }
+  .erro-layout p { margin-bottom: 12px; max-width: 70ch; opacity: 0.92; }
+  .destaque-texto { color: var(--destaque) !important; opacity: 1 !important; }
+
+  .prazos { display: flex; flex-direction: column; gap: clamp(8px, 1.2vw, 14px); max-width: 90ch; }
+  .prazo-item {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: clamp(14px, 1.8vw, 20px) clamp(18px, 2.2vw, 26px);
+    font-size: clamp(14px, 1.5vw, 18px);
+  }
+
+  .slide-abertura h1 { max-width: 16ch; }
+
+  /* Slide de estatística (50% do resultado) */
+  .stat-slide { align-items: center; text-align: center; }
+  .stat-numero {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(90px, 16vw, 220px);
+    line-height: 1;
+    color: var(--destaque);
+    letter-spacing: -2px;
+  }
+  .stat-legenda {
+    font-size: clamp(16px, 2.2vw, 28px);
+    max-width: 46ch;
+    margin-top: clamp(10px, 2vw, 20px);
+    opacity: 0.95;
+  }
+  .stat-fonte {
+    font-size: clamp(11px, 1vw, 13px);
+    opacity: 0.6;
+    margin-top: clamp(20px, 3vw, 30px);
+  }
+
+  /* Slides com print de tela (grupo do WhatsApp / pasta do Drive) */
+  .print-layout { display: flex; align-items: center; gap: clamp(20px, 3.4vw, 56px); }
+  .print-img {
+    max-height: 58vh;
+    max-width: 46%;
+    border-radius: 10px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.4);
+    object-fit: contain;
+  }
+  .print-texto { flex: 1; }
+
+  /* Dois prints lado a lado (grupo do WhatsApp + Pack Raiz) */
+  .print-duo {
+    display: flex;
+    gap: clamp(14px, 2vw, 28px);
+    justify-content: center;
+    align-items: center;
+    margin-top: clamp(14px, 2vw, 22px);
+  }
+  .print-duo--single { justify-content: center; }
+  .print-duo-img {
+    max-height: 62vh;
+    max-width: 48%;
+    border-radius: 14px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.4);
+    object-fit: contain;
+  }
+  .print-duo--single .print-duo-img {
+    max-height: 72vh;
+    max-width: 38%;
+  }
+
+  /* Slide com print em destaque sozinho (sem texto ao lado) */
+  .slide-print-full { align-items: center; }
+  .slide-print-full .kicker, .slide-print-full h2 { text-align: center; }
+  .print-img-full {
+    max-height: 68vh;
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    object-fit: contain;
+  }
+
+  /* Linha do tempo (próximos passos) */
+  .timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: clamp(30px, 5vw, 60px);
+    padding: 0 clamp(6px, 1.4vw, 16px);
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: clamp(20px, 2.6vw, 28px);
+    left: 4%;
+    right: 4%;
+    height: 1px;
+    background: var(--borda);
+  }
+  .timeline-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .timeline-icone {
+    width: clamp(40px, 4.4vw, 56px);
+    height: clamp(40px, 4.4vw, 56px);
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(18px, 2vw, 26px);
+    margin-bottom: clamp(10px, 1.6vw, 16px);
+    z-index: 1;
+  }
+  .timeline-item.destaque .timeline-icone { background: var(--destaque); border-color: var(--destaque); }
+  .timeline-texto { font-size: clamp(11px, 1.1vw, 14px); max-width: 16ch; opacity: 0.92; }
+  .timeline-texto strong { display: block; color: var(--destaque); margin-bottom: 2px; }
+
+  /* Navegação */
+  .nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    padding: 8px 18px;
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
+  .nav button {
+    background: none;
+    border: none;
+    color: var(--texto);
+    font-size: 18px;
+    cursor: pointer;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .nav button:hover { background: rgba(255,255,255,0.12); }
+  .nav .counter {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--texto);
+    opacity: 0.7;
+    min-width: 50px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="deck">
+    <div class="stage" id="stage">
+      ${slides.map((s, i) => s.replace('<section class="slide', `<section data-index="${i}" class="slide${i === 0 ? " active" : ""}`)).join("\n")}
+    </div>
+  </div>
+
+  <div class="nav">
+    <button id="prev" aria-label="Slide anterior">‹</button>
+    <span class="counter"><span id="current">1</span> / ${slides.length}</span>
+    <button id="next" aria-label="Próximo slide">›</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('current');
+    let idx = 0;
+
+    function go(n) {
+      slides[idx].classList.remove('active');
+      idx = (n + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      counter.textContent = idx + 1;
+    }
+
+    document.getElementById('prev').addEventListener('click', () => go(idx - 1));
+    document.getElementById('next').addEventListener('click', () => go(idx + 1));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') go(idx + 1);
+      if (e.key === 'ArrowLeft') go(idx - 1);
+    });
+  </script>
+</body>
+</html>
+`;
+
+fs.writeFileSync(OUT, html, "utf-8");
+console.log(`Slides HTML gerados em: ${OUT}`);
