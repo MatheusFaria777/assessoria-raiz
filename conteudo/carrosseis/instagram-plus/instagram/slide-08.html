@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #F5F5F5;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: #CBA135;
+    }
+    .progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(30,61,52,0.12);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: #CBA135;
+    }
+    .content {
+      position: absolute;
+      left: 86px; right: 80px;
+      top: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 64px;
+    }
+    .intro {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(44,44,44,0.4);
+    }
+    /* Pergunta grande — editorial */
+    .big-question {
+      font-family: 'Playfair Display', serif;
+      font-size: 76px;
+      font-weight: 900;
+      color: #1E3D34;
+      line-height: 0.95;
+      letter-spacing: -2px;
+    }
+    .big-question em {
+      font-style: italic;
+      font-weight: 400;
+      color: #CBA135;
+    }
+    /* CTA */
+    .cta-save {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #1E3D34;
+      border-radius: 6px;
+      padding: 20px 28px;
+    }
+    .cta-save svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .cta-save span {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #F5F5F5;
+    }
+    /* Logo e handle */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand img {
+      height: 40px;
+      opacity: 0.7;
+      filter: invert(1) sepia(1) saturate(0) brightness(0.3);
+    }
+    .brand span {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: rgba(44,44,44,0.45);
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="progress"><div class="progress-fill"></div></div>
+
+  <div class="content">
+    <div class="intro">Agora você sabe</div>
+
+    <div class="big-question">
+      Já assinou<br>o <em>Instagram</em><br><em>Plus</em>?
+    </div>
+
+    <div class="cta-save">
+      <svg viewBox="0 0 26 26" fill="none">
+        <path d="M5 4h16v18l-8-5-8 5V4z" stroke="#CBA135" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <span>Salva esse post pra consultar antes de decidir</span>
+    </div>
+
+    <div class="brand">
+      <span>@omatheusfariaa</span>
+    </div>
+  </div>
+</body>
+</html>

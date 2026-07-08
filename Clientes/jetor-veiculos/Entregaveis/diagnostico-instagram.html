@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Digital · @jetor.veiculos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #c0392b;
+    --accent-light: #e07a6c;
+    --cream: #f2efe9;
+    --dark: #131313;
+    --mid: #1d1d1d;
+    --muted: #8f8f89;
+    --ok: #5fa882;
+    --bad: #d68a3c;
+    --line: rgba(192, 57, 43, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 65% 25%, rgba(192,57,43,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 75%, rgba(192,57,43,0.06) 0%, transparent 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c0392b' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 24px;
+    max-width: 540px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-handle {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0 40px;
+    opacity: 0.2;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* SNAPSHOT */
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 48px;
+    border: 1px solid var(--line);
+  }
+
+  .snap-card {
+    padding: 32px 24px;
+    background: var(--mid);
+    text-align: center;
+  }
+
+  .snap-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    display: block;
+  }
+
+  .snap-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ALERT */
+  .alert {
+    border-left: 2px solid var(--bad);
+    padding: 20px 24px;
+    background: rgba(214,138,60,0.07);
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bad);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .alert p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* DIAG CARDS */
+  .diag-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .diag-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+
+  .diag-card:hover { border-color: var(--accent); }
+
+  .diag-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .diag-card:hover::before { transform: scaleY(1); }
+
+  .diag-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .diag-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .diag-content { flex: 1; }
+
+  .diag-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .diag-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .diag-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .diag-card.open .diag-body {
+    max-height: 2600px;
+    opacity: 1;
+    margin-top: 28px;
+  }
+
+  .diag-body p { margin-bottom: 14px; }
+  .diag-body p:last-child { margin-bottom: 0; }
+
+  .diag-toggle {
+    position: absolute;
+    top: 40px; right: 40px;
+    width: 28px; height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--accent);
+    transition: transform 0.3s, background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .diag-card.open .diag-toggle {
+    transform: rotate(45deg);
+    background: rgba(192,57,43,0.12);
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent);
+    margin: 4px 4px 4px 0;
+    letter-spacing: 1px;
+  }
+
+  .pill.ok { border-color: var(--ok); color: var(--ok); }
+  .pill.bad { border-color: var(--bad); color: var(--bad); }
+
+  /* TITULO COMPARE */
+  .title-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .title-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 18px 22px;
+  }
+
+  .title-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .title-box.antes .title-box-label { color: var(--bad); }
+  .title-box.depois .title-box-label { color: var(--ok); }
+
+  .title-box p {
+    font-size: 13px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* BIO COMPARE */
+  .bio-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .bio-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+
+  .bio-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .bio-box.antes .bio-box-label { color: var(--bad); }
+  .bio-box.depois .bio-box-label { color: var(--ok); }
+
+  .bio-box p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* BIO FRAMEWORK */
+  .bio-framework {
+    margin: 22px 0;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .bf-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 22px;
+    background: var(--dark);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bf-line:last-child { border-bottom: none; }
+
+  .bf-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 30px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .bf-content { flex: 1; }
+
+  .bf-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .bf-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .bf-example {
+    font-size: 12px;
+    color: var(--cream);
+    font-style: italic;
+    margin-top: 6px;
+    opacity: 0.6;
+  }
+
+  /* BIO TEMPLATE */
+  .bio-template {
+    background: var(--dark);
+    border: 1px dashed rgba(192,57,43,0.3);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .bt-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .bt-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .bt-line:last-child { border-bottom: none; }
+
+  .bt-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.6;
+    white-space: nowrap;
+    min-width: 68px;
+    flex-shrink: 0;
+    font-style: normal;
+  }
+
+  /* LINK CARD */
+  .link-card {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 22px 26px;
+    margin: 18px 0;
+    border-radius: 2px;
+  }
+
+  .link-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ok);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .link-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent-light);
+    word-break: break-all;
+    line-height: 1.6;
+    background: rgba(192,57,43,0.08);
+    padding: 10px 14px;
+    border-radius: 3px;
+    flex: 1;
+    font-weight: 400;
+  }
+
+  .copy-btn {
+    background: rgba(192,57,43,0.14);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { background: var(--accent); color: white; }
+  .copy-btn.copied { background: var(--ok); border-color: var(--ok); color: white; }
+
+  /* DESTAQUES */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 24px 0;
+  }
+
+  .dest-item {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .dest-item.missing {
+    border-style: dashed;
+    opacity: 0.7;
+  }
+
+  .dest-icon { font-size: 22px; display: block; margin-bottom: 10px; }
+
+  .dest-name {
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .dest-item.missing .dest-name { color: var(--bad); }
+
+  .dest-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* HL */
+  .hl { color: var(--cream); font-weight: 400; }
+
+  /* ROADMAP */
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 48px;
+    margin-top: 24px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .rm-item {
+    padding: 0 0 52px 24px;
+    position: relative;
+  }
+
+  .rm-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .rm-week {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .rm-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .rm-tasks li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .rm-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* CONTEXT SECTION */
+  .context-section {
+    background: var(--mid);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 100px 40px;
+  }
+
+  .context-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .context-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .context-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .context-title em { font-style: italic; color: var(--accent); }
+
+  .context-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .context-body p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .context-highlight {
+    grid-column: 1 / -1;
+    border-left: 3px solid var(--accent);
+    padding: 20px 28px;
+    background: rgba(192,57,43,0.07);
+    font-size: 16px !important;
+    color: var(--cream) !important;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.6 !important;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .context-section { padding: 60px 24px; }
+    .context-body { grid-template-columns: 1fr; }
+    .context-highlight { grid-column: 1; }
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .section { padding: 60px 24px; }
+    .snapshot-grid { grid-template-columns: 1fr; }
+    .bio-compare, .title-compare { grid-template-columns: 1fr; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .diag-card { padding: 28px 24px; }
+    .diag-toggle { top: 28px; right: 24px; }
+    .hero { padding: 60px 24px; }
+    .link-row { flex-direction: column; align-items: stretch; }
+    .roadmap { padding-left: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Assessoria Raiz · Diagnóstico Digital</p>
+  <h1>Seu perfil no<br>Instagram, <em>analisado.</em></h1>
+  <p class="hero-sub">Uma análise completa do @jetor.veiculos com recomendações concretas pra atrair mais clientes qualificados em Americana e região.</p>
+  <div class="hero-divider"></div>
+  <p class="hero-handle">@jetor.veiculos · Americana, SP</p>
+</section>
+
+<!-- CONTEXTO -->
+<section class="context-section reveal">
+  <div class="context-inner">
+    <p class="context-label">Por que isso importa</p>
+    <h2 class="context-title">O tráfego traz a visita.<br>O Instagram decide <em>se ela converte.</em></h2>
+    <div class="context-body">
+      <p>O tráfego pago traz pessoas novas pra conhecer a Jetor. O que elas encontram quando chegam decide se mandam mensagem ou fecham o app e vão embora.</p>
+      <p>Pensa numa loja física com vitrine linda, mas sem placa de preço e sem vendedor na porta. O anúncio trouxe o cliente até a calçada. A loja não fez a parte dela.</p>
+      <p class="context-highlight">As melhorias abaixo não são sobre estética. São sobre não desperdiçar a pessoa que o anúncio já trouxe.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 01 SITUAÇÃO ATUAL -->
+<section class="section reveal">
+  <p class="section-label">01 · Situação Atual</p>
+  <h2 class="section-title">O que o perfil<br><em>comunica hoje</em></h2>
+
+  <div class="snapshot-grid">
+    <div class="snap-card">
+      <span class="snap-num">217</span>
+      <span class="snap-label">Posts publicados</span>
+    </div>
+    <div class="snap-card">
+      <span class="snap-num">709</span>
+      <span class="snap-label">Seguidores</span>
+    </div>
+    <div class="snap-card">
+      <span class="snap-num">333</span>
+      <span class="snap-label">Seguindo</span>
+    </div>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">Zero Destaques no Perfil</p>
+    <p>Hoje quem entra no @jetor.veiculos não encontra nenhum destaque. Nenhum jeito rápido de ver o estoque, entender financiamento ou ver prova social sem rolar 217 posts.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">Stories sem Rotina</p>
+    <p>O perfil não tem rotina de Stories. Quando a conta fica alguns dias sem postar, o Instagram entende que esfriou e passa a mostrar menos o conteúdo de vocês pra quem já segue.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">O Link da Bio Leva Pro Site, Não Pra Conversa</p>
+    <p>Quem clica no link da bio cai no jetorveiculos.com.br, não direto numa conversa de WhatsApp já iniciada. É um passo a mais entre o interesse da pessoa e o primeiro contato com o Ivo.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 02 RECOMENDAÇÕES -->
+<section class="section reveal">
+  <p class="section-label">02 · Recomendações</p>
+  <h2 class="section-title"><em>O que mudar</em><br>e como fazer</h2>
+
+  <div class="diag-grid">
+
+    <!-- 01 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">01</span>
+        <div class="diag-content">
+          <span class="diag-tag">Posicionamento</span>
+          <h3 class="diag-title">A bio lista telefone, mas não diz por que comprar na Jetor</h3>
+          <div class="diag-body">
+            <p>A bio atual lista o que a loja faz e dois telefones. Nada ali diferencia a Jetor de qualquer outra revenda da cidade. Abaixo está a versão corrigida, pronta pra copiar e colar.</p>
+
+            <div class="bio-template">
+              <span class="bt-label">Bio sugerida · pronta pra usar</span>
+              <div class="bt-line">
+                <span class="bt-tag">linha 01</span>
+                22 anos realizando sonhos em Americana
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 02</span>
+                Todas as financeiras · Troca avaliada na hora · Atendemos no seu horário
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 03</span>
+                📍 Vila Cordenonsi, Americana
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 04</span>
+                Fale no WhatsApp 👇
+              </div>
+            </div>
+
+            <p>Além da bio, tem um ajuste no <span class="hl">título</span> (o nome em negrito abaixo da foto) que ajuda a Jetor aparecer quando alguém pesquisa "loja de carro Americana" no Instagram:</p>
+
+            <div class="title-compare">
+              <div class="title-box antes">
+                <span class="title-box-label">❌ Como está</span>
+                <p>Jetor Veículos</p>
+              </div>
+              <div class="title-box depois">
+                <span class="title-box-label">✓ Como deve ficar</span>
+                <p>Jetor Veículos | Seminovos em Americana</p>
+              </div>
+            </div>
+
+            <p>A lógica por trás das 4 linhas da bio, se quiserem adaptar no futuro:</p>
+
+            <div class="bio-framework">
+              <div class="bf-line">
+                <span class="bf-num">01</span>
+                <div class="bf-content">
+                  <span class="bf-label">Resultado · Transformação</span>
+                  <p class="bf-desc">O que muda na vida de quem compra com vocês. Não descreve o carro, descreve o resultado que a pessoa sai com.</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">02</span>
+                <div class="bf-content">
+                  <span class="bf-label">Diferencial único da loja</span>
+                  <p class="bf-desc">O que só a Jetor oferece. Específico e real. Nunca "ótimo atendimento", que qualquer loja poderia escrever.</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">03</span>
+                <div class="bf-content">
+                  <span class="bf-label">Endereço</span>
+                  <p class="bf-desc">Bairro e cidade com 📍. Endereço completo com CEP ocupa espaço que deveria ser um convite pra entrar em contato.</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">04</span>
+                <div class="bf-content">
+                  <span class="bf-label">Chamada para ação</span>
+                  <p class="bf-desc">O que a pessoa deve fazer agora. Sem isso, ela lê tudo e não sabe qual é o próximo passo.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bio-box antes" style="margin-top: 20px;">
+              <span class="bio-box-label">❌ Como está hoje</span>
+              <p>Jetor Veículos<br>🚗 Compra, venda e troca de veículos<br>🌎 Americana e região<br>☎️ 19 3013-1437 | 📱 19 99736-7367<br>📍 Avenida da Saudade, 367, Vila Cordenonsi, Americana, Sao Paulo 13472-520</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">02</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conversão</span>
+          <h3 class="diag-title">O link da bio pode reunir WhatsApp, site e mapa num clique só</h3>
+          <div class="diag-body">
+            <p>Hoje o link da bio vai direto pro jetorveiculos.com.br. Quem chega pelo anúncio e clica precisa navegar pelo site até achar onde falar com alguém. A maioria não tem paciência pra isso.</p>
+            <p>A solução não é trocar o site pelo WhatsApp. É colocar os dois num link único com três opções claras, usando um agregador como Linktree ou bio.link:</p>
+
+            <div class="dest-grid" style="grid-template-columns: 1fr 1fr 1fr; margin: 18px 0;">
+              <div class="dest-item">
+                <span class="dest-icon">💬</span>
+                <p class="dest-name">WhatsApp</p>
+                <p class="dest-desc">Primeira opção, já com mensagem pronta</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">🌐</span>
+                <p class="dest-name">Site</p>
+                <p class="dest-desc">Estoque completo pra quem quer ver tudo</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">📍</span>
+                <p class="dest-name">Como Chegar</p>
+                <p class="dest-desc">Google Maps pra quem quer ir até a loja</p>
+              </div>
+            </div>
+
+            <p>Quem quer mandar mensagem vai direto pro WhatsApp. Quem prefere ver o estoque vai pro site. Quem quer ir até a loja abre o mapa. Cada um no seu caminho, sem precisar procurar.</p>
+
+            <div class="link-card">
+              <span class="link-label">Link do WhatsApp · já com mensagem pronta</span>
+              <div class="link-row">
+                <span class="link-text" id="link-jetor">https://wa.me/5519997367367?text=Ol%C3%A1!+Vim+pelo+Instagram+e+quero+ver+os+ve%C3%ADculos+dispon%C3%ADveis</span>
+                <button class="copy-btn" onclick="copyLink(event, 'link-jetor')">Copiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">03</span>
+        <div class="diag-content">
+          <span class="diag-tag">Destaques</span>
+          <h3 class="diag-title">Zero destaques: quem chega não acha nada sem rolar 217 posts</h3>
+          <div class="diag-body">
+            <p>O perfil não tem nenhum destaque salvo. Isso significa que as duas primeiras perguntas de qualquer visitante (o que vocês têm pra vender hoje e como funciona o financiamento) ficam sem resposta rápida.</p>
+
+            <div class="dest-grid">
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Veículos Disponíveis</p>
+                <p class="dest-desc">Faltando: o estoque de hoje, sempre atualizado</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Financiamento</p>
+                <p class="dest-desc">Faltando: multibanco, aceite de troca, como funciona</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Entregas</p>
+                <p class="dest-desc">Faltando: prova social que já existe no feed (ver card 04)</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Como Chegar</p>
+                <p class="dest-desc">Faltando: endereço, mapa, horário</p>
+              </div>
+            </div>
+
+            <p>Três pra criar com prioridade: <span class="hl">Veículos Disponíveis</span>, com fotos do que está no pátio agora (a regra de ouro é manter atualizado: carro vendido some do destaque assim que sai); <span class="hl">Financiamento</span>, mostrando que aceitam troca e trabalham com praticamente todas as financeiras; e <span class="hl">Entregas</span>, reunindo o que já é a marca registrada visual da loja.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">04</span>
+        <div class="diag-content">
+          <span class="diag-tag">Prova Social</span>
+          <h3 class="diag-title">O laço vermelho já é a assinatura visual da Jetor, só falta reunir num destaque</h3>
+          <div class="diag-body">
+            <p>Isso é raro de ver: praticamente toda venda da Jetor vira uma foto do carro com um laço vermelho gigante no capô, muitas vezes com o cliente do lado segurando a chave. A maioria das revendas não tem nenhum ritual de entrega assim, e a Jetor já faz isso de forma consistente há tempo.</p>
+            <p>O problema é que essa prova social está espalhada entre 217 posts. Quem visita o perfil pela primeira vez não tem como ver de uma vez só "olha quanta gente já comprou aqui e saiu satisfeita". Esse é exatamente o tipo de conteúdo que mais convence quem está em dúvida entre a Jetor e outra loja.</p>
+            <p><span class="hl">O que fazer:</span> criar o destaque "Entregas" e puxar as fotos do laço vermelho que já existem no feed pra dentro dele. Não precisa fotografar nada novo pra começar, o material já existe. Daqui pra frente, toda entrega nova entra direto nesse destaque.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">05</span>
+        <div class="diag-content">
+          <span class="diag-tag">Presença</span>
+          <h3 class="diag-title">Stories diários mantêm o perfil quente pra quem já segue</h3>
+          <div class="diag-body">
+            <p>Stories são o jeito mais fácil de manter o perfil ativo. Quando a conta passa dias sem postar, o Instagram entende que esfriou e reduz a frequência com que mostra o conteúdo de vocês pra quem já segue. É um ciclo: posta menos, aparece menos, e cada vez fica mais difícil ser visto.</p>
+            <p>Não precisa de produção pra resolver isso. Story não exige câmera boa nem edição.</p>
+            <p><span class="hl">Ideias fáceis pra retomar:</span></p>
+            <p>
+              1. Foto do carro chegando no pátio, antes mesmo de virar post no feed.<br><br>
+              2. Bastidor de uma negociação fechando, sem mostrar rosto se preferir.<br><br>
+              3. Enquete simples: "Troca ou à vista?", "Qual cor você prefere nesse Corsa?"
+            </p>
+            <p>Meta inicial: 3 a 5 stories por dia. É o suficiente pra manter a conta "quente" pro algoritmo e criar intimidade com quem já segue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 03 PLANO -->
+<section class="section reveal">
+  <p class="section-label">03 · Próximos Passos</p>
+  <h2 class="section-title">Plano de<br><em>implementação</em></h2>
+
+  <div class="roadmap">
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 1 · Estrutura do Perfil</div>
+      <h3 class="rm-title">Ajustes imediatos, sem câmera e sem produção</h3>
+      <ul class="rm-tasks">
+        <li>Atualizar o título para "Jetor Veículos | Seminovos em Americana"</li>
+        <li>Reescrever a bio com diferencial real, multibanco, endereço curto e CTA pro WhatsApp</li>
+        <li>Trocar o link da bio pelo link de WhatsApp com mensagem pronta</li>
+        <li>Criar destaque "Veículos Disponíveis" com o estoque atual</li>
+        <li>Criar destaque "Financiamento" explicando troca e multibanco</li>
+        <li>Criar destaque "Entregas" usando as fotos do laço vermelho que já existem no feed</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 2 · Destaques e Identidade</div>
+      <h3 class="rm-title">Finalizar os destaques e padronizar o visual</h3>
+      <ul class="rm-tasks">
+        <li>Padronizar as capas dos três destaques novos</li>
+        <li>Criar destaque "Como Chegar" com endereço e horário</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 3 · Presença Diária</div>
+      <h3 class="rm-title">Retomar a rotina de Stories</h3>
+      <ul class="rm-tasks">
+        <li>Retomar rotina de Stories: mínimo 3 a 5 por dia</li>
+        <li>Próxima entrega: gravar o momento do laço vermelho, não só fotografar</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Mês 2 em Diante · Consistência</div>
+      <h3 class="rm-title">Manutenção e crescimento real</h3>
+      <ul class="rm-tasks">
+        <li>Toda venda gera post de entrega no feed e entra no destaque "Entregas"</li>
+        <li>Revisão mensal: alcance de não-seguidores, cliques no link, mensagens recebidas</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+  <p class="footer-brand">Assessoria Raiz</p>
+  <p class="footer-sub">Diagnóstico preparado para @jetor.veiculos · Jetor Veículos · Americana, SP</p>
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+
+  function copyLink(event, id) {
+    event.stopPropagation();
+    const text = document.getElementById(id).textContent.trim();
+    const btn = event.currentTarget;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

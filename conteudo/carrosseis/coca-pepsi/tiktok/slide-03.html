@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  position: relative;
+  background: #0F0608;
+  font-family: 'Inter', sans-serif;
+}
+.glow {
+  position: absolute;
+  top: 20%;
+  left: -8%;
+  width: 760px;
+  height: 560px;
+  background: radial-gradient(ellipse at center, rgba(190,18,18,0.14) 0%, transparent 68%);
+  pointer-events: none;
+}
+.accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: #C41A00;
+}
+.content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 130px 80px 110px 108px;
+  gap: 0;
+}
+.headline {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 88px;
+  line-height: 1.04;
+  color: #F5F5F5;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+.headline .red {
+  color: #C41A00;
+}
+.body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.68;
+  color: #B8B8B8;
+}
+.closing {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 50px;
+  color: #F5F5F5;
+  margin-top: 44px;
+  padding-top: 44px;
+  border-top: 1px solid rgba(196,26,0,0.35);
+  line-height: 1.2;
+}
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 463px;
+  background: #ffffff;
+}
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="accent-bar"></div>
+  <div class="content">
+    <div class="headline">A Pepsi tinha razão no <span class="red">sabor.</span></div>
+    <div class="body-text">
+      E estava errada em tudo o resto.
+      <br><br>
+      Ganhar no copo cego não moveu as vendas.
+      <br><br>
+      Porque o cliente não compra o que é melhor.
+      <span class="closing">Ele compra o que ele já reconhece.</span>
+    </div>
+  </div>
+  <div class="progress"></div>
+</body>
+</html>

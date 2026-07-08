@@ -1,0 +1,917 @@
+[08/07/2026 11:13:38,95] Iniciando auto-sync 
+Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/settings.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/alinhamento-mensal/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/analisar-reuniao/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/diagnostico-instagram/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/diagnostico-instagram/checklist-automotivo.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/diagnostico-instagram/checklist-estetica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/falar-bem/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: adding embedded git repository: Clientes/.claude/skills/google-ads-ratos
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint:
+hint: 	git submodule add <url> Clientes/.claude/skills/google-ads-ratos
+hint:
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint:
+hint: 	git rm --cached Clientes/.claude/skills/google-ads-ratos
+hint:
+hint: See "git help submodule" for more information.
+hint: Disable this message with "git config set advice.addEmbeddedRepo false"
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/aprendizados.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/contas.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/references/api-reference.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/references/padroes-campanha.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/scripts/lib/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/meta-ads-ratos/scripts/lib/pagination.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/onboarding/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/onboarding/perguntas-automotivo.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/onboarding/prazos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/.claude/skills/onboarding/roteiro.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/_modelo-cliente/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/Entregaveis/copy-criativos-06-07.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/assessoria-raiz/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/Entregaveis/estrategia.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/Entregaveis/onboard-slides.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/Entregaveis/onboard.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/autocerto-multimarcas/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/alinhamento 03-06.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/alinhamento 12-03.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/diagnostico', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/estrategica', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/Transcrições/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/diagnostico-campanhas.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/boye-motors/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/relatorios/2026-04/2026-04-alinhamento-notas.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/relatorios/2026-04/2026-04-alinhamento.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/casa-valerio/tom-de-voz.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/Entregaveis/diagnostico-instagram.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/Entregaveis/roteiros-captacao-jun2026.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/Transcricoes/Onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/Transcricoes/Treinamento-Comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cipriani-veiculos/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Entregaveis/2026-06-alinhamento-notas.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Entregaveis/2026-06-alinhamento.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Transcricoes/reuniao-alinhamento.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Transcricoes/reuniao-estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/Transcricoes/reuniao-onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/cronograma-otimizacoes.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/historico-otimizacoes.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/cz-contabilize/plano-google-ads.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/Entregaveis/diagnostico-instagram-v2.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/Entregaveis/diagnostico-instagram.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/Transcrições/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/Transcrições/estrategico.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/Transcrições/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/efatah-veiculos/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Entregaveis/2026-05-alinhamento-notas.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Entregaveis/2026-05-alinhamento.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Entregaveis/diagnostico-instagram.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Entregaveis/estrategia.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Entregaveis/roteiros-publico-quente.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/estetica-thiara/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Entregaveis/diagnostico-instagram.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Entregaveis/estrategia.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Entregaveis/onboard-slides.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Entregaveis/onboard.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Transcricoes/alinhamento1.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/check_page_token.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/create_form_ads.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/test_copy_ad022.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/jetor-veiculos/test_tos_param.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/listas/cipriani.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/listas/efatah.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/listas/todos-clientes.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mediari-cobrancas/Entregaveis/diagnostico-instagram.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mediari-cobrancas/Transcrições/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mediari-cobrancas/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mediari-cobrancas/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mediari-cobrancas/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mediari-cobrancas/onboard.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mj-sondagem/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mj-sondagem/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mj-sondagem/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/Transcricoes/alinhamento-1.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/Transcricoes/alinhamento-2.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/Transcricoes/triagem.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/mk-beauty/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Entregaveis/estrategia.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Entregaveis/lp-rascunho.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Entregaveis/onboard-slides.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/onboard.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/criativos/card-cta-remarketing.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/dados/clientes-meta.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/motocar-veiculos/onboard.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/relatorios/2026-04/2026-05-13-retencao-notas.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/podium-racing/relatorios/2026-04/2026-05-13-retencao.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/re-imports/Entregaveis/retencao-junho-2026.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/re-imports/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/re-imports/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/re-imports/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/relatorios/2026-04/2026-04-alinhamento-notas.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/relatorios/2026-04/2026-04-alinhamento.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/relatorios/2026-04/ata-reuniao-2026-04-25.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/robert-eddlei/relatorios/2026-04/transcrição 2026-04.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Entregaveis/consignacao-jun2026.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Entregaveis/copies-videos-mai2026.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Entregaveis/cta-carrossel-remarketing.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Transcricoes/alinhamento.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/Transcricoes/triagem-comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/rt-motors/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/Entregaveis/estrategia.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/Entregaveis/onboard-slides.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/Entregaveis/onboard.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/Transcricoes/comercial.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/Transcricoes/estrategica.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/Transcricoes/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/briefing.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/contexto.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/feedback.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/vargas-veiculos/onboarding.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/bombril-v2/carousel-text.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/bombril-v2/imagens/guinness-logo.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/carousel-text.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/instagram/slide-02-var.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/instagram/slide-02.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/instagram/slide-05.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/instagram/slide-06.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/instagram/slide-07.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-01.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-02.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-03.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-04.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-05.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-06.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/coca-pepsi/tiktok/slide-07.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/carousel-text.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-01.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-02.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-03.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-04.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-05.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-06.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-07.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/instagram/slide-08.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-01.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-02.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-03.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-04.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-05.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-06.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-07.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/carrosseis/instagram-plus/tiktok/slide-08.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/pipeline.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-05-amazon.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-05-bombril.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-05-brahma-collab.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-05-cbf.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-05-coca-pepsi.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-06-copa-3-acoes.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-06-instagram-plus.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/2026-06-uma-vida-com-propositos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/omatheusfariaa/publicados/_template.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/ideias/conteudo-mix-resultado-video.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/ideias/copa-2026-brinde-alto-ticket.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/ideias/repurpose-melhores-conteudos-instagram.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/ideias/stanley-crocs-terence-reilly.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/newsletter/ideias.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/newsletter/nomes.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/planejamento/newsletter/referencias.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/referencias/perguntas-captacao-veiculos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/referencias/reels/raw-content.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/referencias/referencia-mentora.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/roteiros/roteiro-colecionaveis-recorrencia-2026-05-17.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/roteiros/roteiro-copa-3-acoes-2026-06.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/roteiros/roteiro-redbull-preco-1min-2026-05-17.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/roteiros/roteiro-redbull-preco-2026-05-17.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/roteiros/roteiro-teleprompter-instagram-2026-06-10.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'conteudo/roteiros/roteiro-treinamento-comercial-seneca-2026-05-22.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/.claude/skills/brand-guidelines-matheus/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/.claude/skills/carrossel-livros/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/.claude/skills/falar-bem/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/.claude/skills/maquina-conteudo/SKILL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/alter-ego.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/brand.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-01.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-02.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-03.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-04.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-05.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-06.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-07.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/design-doc.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/duvidas.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/estrategia.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/a-coragem-de-nao-agradar.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/como-falar-bem-e-ficar-rico.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/roteiro-coragem-nao-agradar.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/roteiro-uma-vida-com-propositos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/storybrand.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/superfans.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/livros/uma-vida-com-propositos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/plano-youtube.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/capitulos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/roteiro-tiktok.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/roteiro.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/transcricao.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/uma-vida-com-propositos/aprendizados.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/uma-vida-com-propositos/capitulos.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/uma-vida-com-propositos/roteiro.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/uma-vida-com-propositos/shorts/ranking.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/videos/uma-vida-com-propositos/transcricao.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/comunidade-leitura/youtube.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'projetos/pack-raiz/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tarefas.md', LF will be replaced by CRLF the next time Git touches it
+[main bef1b5e] auto-sync: 08/07/2026 11:14:12,69
+ 524 files changed, 55102 insertions(+), 28 deletions(-)
+ create mode 100644 .claude/automation/auto-sync.log
+ create mode 100644 Clientes/.claude/commands/atualizar.md
+ create mode 100644 Clientes/.claude/commands/novo-projeto.md
+ create mode 100644 Clientes/.claude/settings.json
+ create mode 100644 Clientes/.claude/skills/alinhamento-mensal/SKILL.md
+ create mode 100644 Clientes/.claude/skills/analisar-reuniao/SKILL.md
+ create mode 100644 Clientes/.claude/skills/diagnostico-instagram/SKILL.md
+ create mode 100644 Clientes/.claude/skills/diagnostico-instagram/checklist-automotivo.md
+ create mode 100644 Clientes/.claude/skills/diagnostico-instagram/checklist-estetica.md
+ create mode 100644 Clientes/.claude/skills/falar-bem/SKILL.md
+ create mode 160000 Clientes/.claude/skills/google-ads-ratos
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/.gitignore
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/README.md
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/SKILL.md
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/aprendizados.md
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/contas.yaml
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/references/api-reference.md
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/references/padroes-campanha.md
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/scripts/lib/__init__.py
+ create mode 100644 Clientes/.claude/skills/meta-ads-ratos/scripts/lib/pagination.py
+ create mode 100644 Clientes/.claude/skills/onboarding/SKILL.md
+ create mode 100644 Clientes/.claude/skills/onboarding/perguntas-automotivo.md
+ create mode 100644 Clientes/.claude/skills/onboarding/prazos.md
+ create mode 100644 Clientes/.claude/skills/onboarding/ref-prazos.png
+ create mode 100644 Clientes/.claude/skills/onboarding/referencias/Onboarding_Parceiros_Modelo_Generico.pdf
+ create mode 100644 Clientes/.claude/skills/onboarding/referencias/grupo-whatsapp.png
+ create mode 100644 Clientes/.claude/skills/onboarding/referencias/packraiz.png
+ create mode 100644 Clientes/.claude/skills/onboarding/referencias/print-drive.png
+ create mode 100644 Clientes/.claude/skills/onboarding/roteiro.md
+ create mode 100644 Clientes/CLAUDE.md
+ create mode 100644 Clientes/_modelo-cliente/Entregaveis/.gitkeep
+ create mode 100644 Clientes/_modelo-cliente/Transcricoes/comercial.md
+ create mode 100644 Clientes/_modelo-cliente/Transcricoes/estrategica.md
+ create mode 100644 Clientes/_modelo-cliente/Transcricoes/onboarding.md
+ create mode 100644 Clientes/_modelo-cliente/briefing.md
+ create mode 100644 Clientes/_modelo-cliente/contexto.md
+ create mode 100644 Clientes/_modelo-cliente/feedback.md
+ create mode 100644 Clientes/_modelo-cliente/onboarding.md
+ create mode 100644 Clientes/assessoria-raiz/Entregaveis/.gitkeep
+ create mode 100644 Clientes/assessoria-raiz/Entregaveis/copy-criativos-06-07.md
+ create mode 100644 Clientes/assessoria-raiz/Transcricoes/comercial.md
+ create mode 100644 Clientes/assessoria-raiz/Transcricoes/estrategica.md
+ create mode 100644 Clientes/assessoria-raiz/Transcricoes/onboarding.md
+ create mode 100644 Clientes/assessoria-raiz/briefing.md
+ create mode 100644 Clientes/assessoria-raiz/contexto.md
+ create mode 100644 Clientes/assessoria-raiz/criativos/0521(3).mp4
+ create mode 100644 Clientes/assessoria-raiz/feedback.md
+ create mode 100644 Clientes/autocerto-multimarcas/Entregaveis/estrategia.html
+ create mode 100644 Clientes/autocerto-multimarcas/Entregaveis/onboard-slides.html
+ create mode 100644 Clientes/autocerto-multimarcas/Entregaveis/onboard.md
+ create mode 100644 Clientes/autocerto-multimarcas/Transcricoes/comercial.md
+ create mode 100644 Clientes/autocerto-multimarcas/Transcricoes/onboarding.md
+ create mode 100644 Clientes/autocerto-multimarcas/briefing.md
+ create mode 100644 Clientes/autocerto-multimarcas/contexto.md
+ create mode 100644 Clientes/autocerto-multimarcas/feedback.md
+ create mode 100644 Clientes/boye-motors/CLAUDE.md
+ create mode 100644 Clientes/boye-motors/Entregaveis/.gitkeep
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/.gitkeep"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/alinhamento 03-06.md"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/alinhamento 12-03.md"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/comercial.md"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/diagnostico"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/estrategica"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/estrategica.md"
+ create mode 100644 "Clientes/boye-motors/Transcri\303\247\303\265es/onboarding.md"
+ create mode 100644 Clientes/boye-motors/briefing.md
+ create mode 100644 Clientes/boye-motors/contexto.md
+ create mode 100644 Clientes/boye-motors/diagnostico-campanhas.md
+ create mode 100644 Clientes/boye-motors/feedback.md
+ create mode 100644 Clientes/boye-motors/onboarding.md
+ create mode 100644 Clientes/casa-valerio/CLAUDE.md
+ create mode 100644 Clientes/casa-valerio/Entregaveis/.gitkeep
+ create mode 100644 Clientes/casa-valerio/Transcricoes/comercial.md
+ create mode 100644 Clientes/casa-valerio/Transcricoes/estrategica.md
+ create mode 100644 Clientes/casa-valerio/Transcricoes/onboarding.md
+ create mode 100644 Clientes/casa-valerio/briefing.md
+ create mode 100644 Clientes/casa-valerio/contexto.md
+ create mode 100644 Clientes/casa-valerio/relatorios/2026-04/2026-04-alinhamento-notas.html
+ create mode 100644 Clientes/casa-valerio/relatorios/2026-04/2026-04-alinhamento.html
+ create mode 100644 Clientes/casa-valerio/tom-de-voz.md
+ create mode 100644 Clientes/casa-valerio/videos/.gitkeep
+ create mode 100644 Clientes/casa-valerio/videos/SnapInsta.to_AQM59IRJvJ7cnRjCjRYzucCMMQmngHgCH5Zi1Nqyvcl97jTExegFKHXPGyKbO-2jxHqXW5dIziIdmOX4hQjLfUISXY54D1i1o2LIois.mp4
+ create mode 100644 Clientes/casa-valerio/videos/SnapInsta.to_AQMImVaVomMllBdKWtImq_W7U1VMdvEQTTyBDK-3hzaFmoql_bx0LjTDumnP8iTOHkPV0uTVh8dL2qjhmVUA8ZRQ.mp4
+ create mode 100644 Clientes/casa-valerio/videos/SnapInsta.to_AQMjIk6vYa-Gf3Djlf7N00X8KVGpq1l_J7VmMk3UnOWbic0njSjP7A7gvYZw1E2MxvPByIBduCnLodpAN9onDW65.mp4
+ create mode 100644 Clientes/casa-valerio/videos/SnapInsta.to_AQN3DV2KTyeqYI4vjMHiksBHUidPL4XUkdvYTBRYVUPHgenkNxvAtWZYnTTsDPu5oWpqy9TmZOJ46_ZZdbtlFEPWs0D5CY3pivOTXas.mp4
+ create mode 100644 Clientes/casa-valerio/videos/SnapInsta.to_AQNuv0LT7XwpYh2br2xo-ZHT1iSlW2QKcTSKrRcTckTl1_M7JsU7o2VKdv2fcdWE81T3JTZE-iM1pCjL44T5js9r.mp4
+ create mode 100644 Clientes/casa-valerio/videos/transcricoes.md
+ create mode 100644 Clientes/cipriani-veiculos/Entregaveis/diagnostico-instagram.html
+ create mode 100644 Clientes/cipriani-veiculos/Entregaveis/roteiros-captacao-jun2026.md
+ create mode 100644 Clientes/cipriani-veiculos/Transcricoes/.gitkeep
+ create mode 100644 Clientes/cipriani-veiculos/Transcricoes/Onboarding.md
+ create mode 100644 Clientes/cipriani-veiculos/Transcricoes/Treinamento-Comercial.md
+ create mode 100644 Clientes/cipriani-veiculos/briefing.md
+ create mode 100644 Clientes/cipriani-veiculos/contexto.md
+ create mode 100644 Clientes/cipriani-veiculos/feedback.md
+ create mode 100644 Clientes/cipriani-veiculos/onboarding.md
+ create mode 100644 Clientes/cz-contabilize/Entregaveis/.gitkeep
+ create mode 100644 Clientes/cz-contabilize/Entregaveis/2026-06-alinhamento-notas.html
+ create mode 100644 Clientes/cz-contabilize/Entregaveis/2026-06-alinhamento.html
+ create mode 100644 Clientes/cz-contabilize/Transcricoes/comercial.md
+ create mode 100644 Clientes/cz-contabilize/Transcricoes/estrategica.md
+ create mode 100644 Clientes/cz-contabilize/Transcricoes/onboarding.md
+ create mode 100644 Clientes/cz-contabilize/Transcricoes/reuniao-alinhamento.md
+ create mode 100644 Clientes/cz-contabilize/Transcricoes/reuniao-estrategica.md
+ create mode 100644 Clientes/cz-contabilize/Transcricoes/reuniao-onboarding.md
+ create mode 100644 Clientes/cz-contabilize/briefing.md
+ create mode 100644 Clientes/cz-contabilize/contexto.md
+ create mode 100644 Clientes/cz-contabilize/cronograma-otimizacoes.md
+ create mode 100644 Clientes/cz-contabilize/feedback.md
+ create mode 100644 Clientes/cz-contabilize/historico-otimizacoes.md
+ create mode 100644 Clientes/cz-contabilize/lucro real.csv
+ create mode 100644 Clientes/cz-contabilize/onboarding.md
+ create mode 100644 Clientes/cz-contabilize/plano-google-ads.md
+ create mode 100644 Clientes/efatah-veiculos/Entregaveis/.gitkeep
+ create mode 100644 Clientes/efatah-veiculos/Entregaveis/diagnostico-instagram-v2.html
+ create mode 100644 Clientes/efatah-veiculos/Entregaveis/diagnostico-instagram.html
+ create mode 100644 "Clientes/efatah-veiculos/Transcri\303\247\303\265es/.gitkeep"
+ create mode 100644 "Clientes/efatah-veiculos/Transcri\303\247\303\265es/comercial.md"
+ create mode 100644 "Clientes/efatah-veiculos/Transcri\303\247\303\265es/estrategico.md"
+ create mode 100644 "Clientes/efatah-veiculos/Transcri\303\247\303\265es/onboarding.md"
+ create mode 100644 Clientes/efatah-veiculos/briefing.md
+ create mode 100644 Clientes/efatah-veiculos/contexto.md
+ create mode 100644 Clientes/efatah-veiculos/feedback.md
+ create mode 100644 Clientes/efatah-veiculos/onboarding.md
+ create mode 100644 Clientes/estetica-thiara/Entregaveis/.gitkeep
+ create mode 100644 Clientes/estetica-thiara/Entregaveis/2026-05-alinhamento-notas.html
+ create mode 100644 Clientes/estetica-thiara/Entregaveis/2026-05-alinhamento.html
+ create mode 100644 Clientes/estetica-thiara/Entregaveis/diagnostico-instagram.html
+ create mode 100644 Clientes/estetica-thiara/Entregaveis/estrategia.html
+ create mode 100644 Clientes/estetica-thiara/Entregaveis/roteiros-publico-quente.html
+ create mode 100644 Clientes/estetica-thiara/Transcricoes/.gitkeep
+ create mode 100644 Clientes/estetica-thiara/Transcricoes/comercial.md
+ create mode 100644 Clientes/estetica-thiara/Transcricoes/estrategica.md
+ create mode 100644 Clientes/estetica-thiara/Transcricoes/onboarding.md
+ create mode 100644 Clientes/estetica-thiara/briefing.md
+ create mode 100644 Clientes/estetica-thiara/contexto.md
+ create mode 100644 Clientes/estetica-thiara/feedback.md
+ create mode 100644 Clientes/estetica-thiara/onboarding.md
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/.gitkeep
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/diagnostico-instagram.html
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/estrategia.html
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/imgs/grupo-whatsapp.png
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/imgs/packraiz.png
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/imgs/print-drive.png
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/lista-compradores-meta.csv
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/onboard-slides.html
+ create mode 100644 Clientes/jetor-veiculos/Entregaveis/onboard.md
+ create mode 100644 Clientes/jetor-veiculos/Transcricoes/alinhamento1.md
+ create mode 100644 Clientes/jetor-veiculos/Transcricoes/comercial.md
+ create mode 100644 Clientes/jetor-veiculos/Transcricoes/estrategica.md
+ create mode 100644 Clientes/jetor-veiculos/Transcricoes/onboarding.md
+ create mode 100644 Clientes/jetor-veiculos/briefing.md
+ create mode 100644 Clientes/jetor-veiculos/check_page_token.py
+ create mode 100644 Clientes/jetor-veiculos/contexto.md
+ create mode 100644 Clientes/jetor-veiculos/create_form_ads.py
+ create mode 100644 Clientes/jetor-veiculos/feedback.md
+ create mode 100644 Clientes/jetor-veiculos/onboarding.md
+ create mode 100644 Clientes/jetor-veiculos/test_copy_ad022.py
+ create mode 100644 Clientes/jetor-veiculos/test_tos_param.py
+ create mode 100644 Clientes/listas/cipriani.csv
+ create mode 100644 Clientes/listas/efatah.csv
+ create mode 100644 Clientes/listas/todos-clientes.csv
+ create mode 100644 Clientes/mediari-cobrancas/Entregaveis/.gitkeep
+ create mode 100644 Clientes/mediari-cobrancas/Entregaveis/diagnostico-instagram.html
+ create mode 100644 "Clientes/mediari-cobrancas/Transcri\303\247\303\265es/alinhamento-mensal.md"
+ create mode 100644 "Clientes/mediari-cobrancas/Transcri\303\247\303\265es/comercial.md"
+ create mode 100644 "Clientes/mediari-cobrancas/Transcri\303\247\303\265es/estrategica.md"
+ create mode 100644 "Clientes/mediari-cobrancas/Transcri\303\247\303\265es/onboarding.md"
+ create mode 100644 Clientes/mediari-cobrancas/briefing.md
+ create mode 100644 Clientes/mediari-cobrancas/contexto.md
+ create mode 100644 Clientes/mediari-cobrancas/feedback.md
+ create mode 100644 Clientes/mediari-cobrancas/lista-administradoras.csv
+ create mode 100644 Clientes/mediari-cobrancas/onboard.md
+ create mode 100644 Clientes/mj-sondagem/Entregaveis/.gitkeep
+ create mode 100644 "Clientes/mj-sondagem/Transcri\303\247\303\265es/.gitkeep"
+ create mode 100644 Clientes/mj-sondagem/briefing.md
+ create mode 100644 Clientes/mj-sondagem/contexto.md
+ create mode 100644 Clientes/mj-sondagem/feedback.md
+ create mode 100644 Clientes/mk-beauty/Entregaveis/.gitkeep
+ create mode 100644 Clientes/mk-beauty/Entregaveis/publico-personalizado-meta.csv
+ create mode 100644 Clientes/mk-beauty/Transcricoes/alinhamento-1.md
+ create mode 100644 Clientes/mk-beauty/Transcricoes/alinhamento-2.md
+ create mode 100644 Clientes/mk-beauty/Transcricoes/triagem.md
+ create mode 100644 Clientes/mk-beauty/briefing.md
+ create mode 100644 Clientes/mk-beauty/contexto.md
+ create mode 100644 Clientes/mk-beauty/feedback.md
+ create mode 100644 Clientes/mk-beauty/onboarding.md
+ create mode 100644 Clientes/monego-eletromec/Entregaveis/estrategia.html
+ create mode 100644 Clientes/monego-eletromec/Entregaveis/lp-rascunho.html
+ create mode 100644 Clientes/monego-eletromec/Entregaveis/onboard-slides.html
+ create mode 100644 Clientes/monego-eletromec/Transcricoes/comercial.md
+ create mode 100644 Clientes/monego-eletromec/Transcricoes/estrategica.md
+ create mode 100644 Clientes/monego-eletromec/Transcricoes/onboarding.md
+ create mode 100644 Clientes/monego-eletromec/briefing.md
+ create mode 100644 Clientes/monego-eletromec/contexto.md
+ create mode 100644 Clientes/monego-eletromec/feedback.md
+ create mode 100644 Clientes/monego-eletromec/onboard.md
+ create mode 100644 Clientes/monego-eletromec/onboarding.md
+ create mode 100644 Clientes/motocar-veiculos/CLAUDE.md
+ create mode 100644 Clientes/motocar-veiculos/Entregaveis/.gitkeep
+ create mode 100644 Clientes/motocar-veiculos/Transcricoes/comercial.md
+ create mode 100644 Clientes/motocar-veiculos/Transcricoes/estrategica.md
+ create mode 100644 Clientes/motocar-veiculos/Transcricoes/onboarding.md
+ create mode 100644 Clientes/motocar-veiculos/assets/logo-motocar.jpg
+ create mode 100644 Clientes/motocar-veiculos/briefing.md
+ create mode 100644 Clientes/motocar-veiculos/contexto.md
+ create mode 100644 Clientes/motocar-veiculos/criativos/card-cta-remarketing.html
+ create mode 100644 Clientes/motocar-veiculos/dados/LISTA DE CLIENTES - motocar.pdf
+ create mode 100644 Clientes/motocar-veiculos/dados/clientes-meta.csv
+ create mode 100644 Clientes/motocar-veiculos/feedback.md
+ create mode 100644 Clientes/motocar-veiculos/onboard.md
+ create mode 100644 Clientes/podium-racing/CLAUDE.md
+ create mode 100644 Clientes/podium-racing/Entregaveis/.gitkeep
+ create mode 100644 Clientes/podium-racing/Transcricoes/comercial.md
+ create mode 100644 Clientes/podium-racing/Transcricoes/estrategica.md
+ create mode 100644 Clientes/podium-racing/Transcricoes/onboarding.md
+ create mode 100644 Clientes/podium-racing/briefing.md
+ create mode 100644 Clientes/podium-racing/contexto.md
+ create mode 100644 Clientes/podium-racing/feedback.md
+ create mode 100644 Clientes/podium-racing/relatorios/2026-04/2026-05-13-retencao-notas.html
+ create mode 100644 Clientes/podium-racing/relatorios/2026-04/2026-05-13-retencao.html
+ create mode 100644 Clientes/re-imports/Entregaveis/retencao-junho-2026.html
+ create mode 100644 Clientes/re-imports/briefing.md
+ create mode 100644 Clientes/re-imports/contexto.md
+ create mode 100644 Clientes/re-imports/feedback.md
+ create mode 100644 Clientes/robert-eddlei/Entregaveis/.gitkeep
+ create mode 100644 Clientes/robert-eddlei/Transcricoes/comercial.md
+ create mode 100644 Clientes/robert-eddlei/Transcricoes/estrategica.md
+ create mode 100644 Clientes/robert-eddlei/Transcricoes/onboarding.md
+ create mode 100644 Clientes/robert-eddlei/briefing.md
+ create mode 100644 Clientes/robert-eddlei/contexto.md
+ create mode 100644 Clientes/robert-eddlei/feedback.md
+ create mode 100644 Clientes/robert-eddlei/relatorios/2026-04/2026-04-alinhamento-notas.html
+ create mode 100644 Clientes/robert-eddlei/relatorios/2026-04/2026-04-alinhamento.html
+ create mode 100644 Clientes/robert-eddlei/relatorios/2026-04/ata-reuniao-2026-04-25.md
+ create mode 100644 "Clientes/robert-eddlei/relatorios/2026-04/transcri\303\247\303\243o 2026-04.md"
+ create mode 100644 Clientes/rt-motors/Criativos/.gitkeep
+ create mode 100644 Clientes/rt-motors/Criativos/V2.mp4
+ create mode 100644 Clientes/rt-motors/Criativos/V4.mp4
+ create mode 100644 Clientes/rt-motors/Entregaveis/consignacao-jun2026.md
+ create mode 100644 Clientes/rt-motors/Entregaveis/copies-videos-mai2026.md
+ create mode 100644 Clientes/rt-motors/Entregaveis/cta-carrossel-remarketing.html
+ create mode 100644 Clientes/rt-motors/Entregaveis/cta-carrossel-remarketing.png
+ create mode 100644 Clientes/rt-motors/Marca/.gitkeep
+ create mode 100644 Clientes/rt-motors/Marca/logo1.jpg
+ create mode 100644 Clientes/rt-motors/Marca/logo2.jpeg
+ create mode 100644 Clientes/rt-motors/Transcricoes/alinhamento.md
+ create mode 100644 Clientes/rt-motors/Transcricoes/comercial.md
+ create mode 100644 Clientes/rt-motors/Transcricoes/estrategica.md
+ create mode 100644 Clientes/rt-motors/Transcricoes/onboarding.md
+ create mode 100644 Clientes/rt-motors/Transcricoes/triagem-comercial.md
+ create mode 100644 Clientes/rt-motors/briefing.md
+ create mode 100644 Clientes/rt-motors/contexto.md
+ create mode 100644 Clientes/rt-motors/feedback.md
+ create mode 100644 Clientes/rt-motors/onboarding.md
+ create mode 100644 Clientes/tmp_rt_14d_camp.json
+ create mode 100644 Clientes/vargas-veiculos/Entregaveis/.gitkeep
+ create mode 100644 Clientes/vargas-veiculos/Entregaveis/estrategia.html
+ create mode 100644 Clientes/vargas-veiculos/Entregaveis/onboard-slides.html
+ create mode 100644 Clientes/vargas-veiculos/Entregaveis/onboard.md
+ create mode 100644 Clientes/vargas-veiculos/Transcricoes/comercial.md
+ create mode 100644 Clientes/vargas-veiculos/Transcricoes/estrategica.md
+ create mode 100644 Clientes/vargas-veiculos/Transcricoes/onboarding.md
+ create mode 100644 Clientes/vargas-veiculos/briefing.md
+ create mode 100644 Clientes/vargas-veiculos/contexto.md
+ create mode 100644 Clientes/vargas-veiculos/feedback.md
+ create mode 100644 Clientes/vargas-veiculos/onboarding.md
+ create mode 100644 Sistema-raiz/frontend/src/assets/hero.png
+ create mode 100644 Sistema-raiz/frontend/src/assets/raiz-logo.png
+ create mode 100644 Sistema-raiz/screenshot-clientes.png
+ create mode 100644 Sistema-raiz/screenshot-fase0.png
+ create mode 100644 Sistema-raiz/screenshot-final.png
+ create mode 100644 Sistema-raiz/screenshot-fix.png
+ create mode 100644 Sistema-raiz/screenshot-fullwidth.png
+ create mode 100644 Sistema-raiz/screenshot-loaded.png
+ create mode 100644 conteudo/carrosseis/bombril-v2/carousel-text.md
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/UKQPUM5BWVJ2FKM7PT5XUBUXHE.avif
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/bombril sem fundo.png
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/bombril-produto.png
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/carlos-moreno-bombril.jpg
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/carlos-moreno.jpg
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/guinness-logo.png
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/guinness-logo.svg
+ create mode 100644 conteudo/carrosseis/bombril-v2/imagens/image.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/carousel-text.md
+ create mode 100644 conteudo/carrosseis/coca-pepsi/imagens/urso escolhendo pepsi.jpg
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-01.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-01.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-02-var.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-02-var.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-02.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-02.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-03.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-03.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-04.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-04.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-05.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-05.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-06.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-06.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-07.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/instagram/slide-07.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-01.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-01.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-02.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-02.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-03.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-03.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-04.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-04.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-05.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-05.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-06.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-06.png
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-07.html
+ create mode 100644 conteudo/carrosseis/coca-pepsi/tiktok/slide-07.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/carousel-text.md
+ create mode 100644 conteudo/carrosseis/instagram-plus/imagens/capa-celular-instagram.jpg
+ create mode 100644 conteudo/carrosseis/instagram-plus/imagens/instagram-phone.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/imagens/instagram-plus-funcoes.webp
+ create mode 100644 conteudo/carrosseis/instagram-plus/imagens/instagram-plus-teaser.webp
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-01.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-01.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-02.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-02.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-03.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-03.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-04.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-04.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-05.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-05.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-06.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-06.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-07.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-07.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-08.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/instagram/slide-08.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-01.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-01.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-02.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-02.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-03.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-03.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-04.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-04.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-05.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-05.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-06.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-06.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-07.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-07.png
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-08.html
+ create mode 100644 conteudo/carrosseis/instagram-plus/tiktok/slide-08.png
+ create mode 100644 conteudo/omatheusfariaa/CLAUDE.md
+ create mode 100644 conteudo/omatheusfariaa/pipeline.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-05-amazon.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-05-bombril.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-05-brahma-collab.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-05-cbf.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-05-coca-pepsi.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-06-copa-3-acoes.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-06-instagram-plus.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/2026-06-uma-vida-com-propositos.md
+ create mode 100644 conteudo/omatheusfariaa/publicados/_template.md
+ create mode 100644 conteudo/planejamento/ideias/conteudo-mix-resultado-video.md
+ create mode 100644 conteudo/planejamento/ideias/copa-2026-brinde-alto-ticket.md
+ create mode 100644 conteudo/planejamento/ideias/repurpose-melhores-conteudos-instagram.md
+ create mode 100644 conteudo/planejamento/ideias/stanley-crocs-terence-reilly.md
+ create mode 100644 conteudo/planejamento/newsletter/ideias.md
+ create mode 100644 conteudo/planejamento/newsletter/nomes.md
+ create mode 100644 conteudo/planejamento/newsletter/referencias.md
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-1.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-2.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-3.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-4.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-5.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-6.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-7.png
+ create mode 100644 conteudo/referencias/carrosseis/Carrossel spotify/slide-8.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-a.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide1.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide2.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide3.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide4.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide5.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide6.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-01-slide7.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide1.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide2.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide3.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide4.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide5.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide6.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-02-slide7.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide1.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide2.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide3.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide4.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide5.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide6.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-03-slide7.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide1.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide2.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide3.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide4.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide5.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide6.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-04-slide7.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide1.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide2.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide3.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide4.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide5.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide6.png
+ create mode 100644 conteudo/referencias/carrosseis/Nemora ref/nemora-ref-05-slide7.png
+ create mode 100644 conteudo/referencias/perguntas-captacao-veiculos.md
+ create mode 100644 conteudo/referencias/reels/raw-content.md
+ create mode 100644 conteudo/referencias/reels/reels.md
+ create mode 100644 conteudo/referencias/referencia-mentora.md
+ create mode 100644 conteudo/roteiros/roteiro-colecionaveis-recorrencia-2026-05-17.md
+ create mode 100644 conteudo/roteiros/roteiro-copa-3-acoes-2026-06.md
+ create mode 100644 conteudo/roteiros/roteiro-redbull-preco-1min-2026-05-17.md
+ create mode 100644 conteudo/roteiros/roteiro-redbull-preco-2026-05-17.md
+ create mode 100644 conteudo/roteiros/roteiro-teleprompter-instagram-2026-06-10.md
+ create mode 100644 conteudo/roteiros/roteiro-treinamento-comercial-seneca-2026-05-22.md
+ create mode 100644 "dados/COMO ADICIONAR ADMINISTRADOR NA CONTA DO GOOGLE MEU NEG\303\223CIO.pdf"
+ create mode 100644 dados/Onboarding Vanesmar/1.png
+ create mode 100644 dados/Onboarding Vanesmar/10.png
+ create mode 100644 dados/Onboarding Vanesmar/2.png
+ create mode 100644 dados/Onboarding Vanesmar/3.png
+ create mode 100644 dados/Onboarding Vanesmar/4.png
+ create mode 100644 dados/Onboarding Vanesmar/5.png
+ create mode 100644 dados/Onboarding Vanesmar/6.png
+ create mode 100644 dados/Onboarding Vanesmar/7.png
+ create mode 100644 dados/Onboarding Vanesmar/8 (outros 50%  do resultado) .png
+ create mode 100644 dados/Onboarding Vanesmar/9.png
+ create mode 100644 dados/Onboarding Vanesmar/Carrossel/IMG_8892.PNG
+ create mode 100644 dados/Onboarding Vanesmar/Carrossel/ref-story.png
+ create mode 100644 dados/Onboarding Vanesmar/Grupo-whatsapp.png
+ create mode 100644 dados/Onboarding Vanesmar/Print-drive.png
+ create mode 100644 dados/Onboarding Vanesmar/packraiz.png
+ create mode 100644 marca/logo-bege-fundo-verde.png
+ create mode 100644 marca/logo-desenhada-fundo-verde.png
+ create mode 100644 marca/logo-verde-4k.png
+ create mode 100644 marca/logo-verde.png
+ create mode 100644 marca/raiz com fundo transparente.png
+ create mode 100644 paginas/assets/logo-raiz.png
+ create mode 100644 paginas/eu.png
+ create mode 100644 projetos/comunidade-leitura/.claude/skills/brand-guidelines-matheus/SKILL.md
+ create mode 100644 projetos/comunidade-leitura/.claude/skills/carrossel-livros/SKILL.md
+ create mode 100644 projetos/comunidade-leitura/.claude/skills/falar-bem/SKILL.md
+ create mode 100644 projetos/comunidade-leitura/.claude/skills/maquina-conteudo/SKILL.md
+ create mode 100644 projetos/comunidade-leitura/CLAUDE.md
+ create mode 100644 projetos/comunidade-leitura/alter-ego.md
+ create mode 100644 projetos/comunidade-leitura/brand.md
+ create mode 100644 projetos/comunidade-leitura/conteudo.md
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-01.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-01.png
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-02.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-02.png
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-03.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-03.png
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-04.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-04.png
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-05.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-05.png
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-06.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-06.png
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-07.html
+ create mode 100644 projetos/comunidade-leitura/conteudo/carrosseis/uma-vida-com-propositos/slide-07.png
+ create mode 100644 projetos/comunidade-leitura/design-doc.md
+ create mode 100644 projetos/comunidade-leitura/duvidas.md
+ create mode 100644 projetos/comunidade-leitura/estrategia.md
+ create mode 100644 projetos/comunidade-leitura/livros/a-coragem-de-nao-agradar.md
+ create mode 100644 projetos/comunidade-leitura/livros/como-falar-bem-e-ficar-rico.md
+ create mode 100644 projetos/comunidade-leitura/livros/roteiro-coragem-nao-agradar.md
+ create mode 100644 projetos/comunidade-leitura/livros/roteiro-uma-vida-com-propositos.md
+ create mode 100644 projetos/comunidade-leitura/livros/storybrand.md
+ create mode 100644 projetos/comunidade-leitura/livros/superfans.md
+ create mode 100644 projetos/comunidade-leitura/livros/uma-vida-com-propositos.md
+ create mode 100644 projetos/comunidade-leitura/plano-youtube.md
+ create mode 100644 projetos/comunidade-leitura/referencias/1/1.png
+ create mode 100644 projetos/comunidade-leitura/referencias/1/2.png
+ create mode 100644 projetos/comunidade-leitura/referencias/1/3.png
+ create mode 100644 projetos/comunidade-leitura/referencias/1/4.png
+ create mode 100644 projetos/comunidade-leitura/referencias/11.png
+ create mode 100644 projetos/comunidade-leitura/referencias/2/1.png
+ create mode 100644 projetos/comunidade-leitura/referencias/2/2.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/2/3.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/2/4.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/2/5.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/2/6.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/2/7.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/22.png
+ create mode 100644 projetos/comunidade-leitura/referencias/3/1.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/3/2.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/3/3.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/3/4.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/3/5.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/3/6.jpg
+ create mode 100644 projetos/comunidade-leitura/referencias/Fe alves.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/PERFIL.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/carrossel/1.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/carrossel/2.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/carrossel/3.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/carrossel/4.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/carrossel/5.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/carrossel/6.png
+ create mode 100644 projetos/comunidade-leitura/referencias/Sofia/image.png
+ create mode 100644 projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/capitulos.md
+ create mode 100644 projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/roteiro-tiktok.md
+ create mode 100644 projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/roteiro.md
+ create mode 100644 projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/shorts/.gitkeep
+ create mode 100644 projetos/comunidade-leitura/videos/a-coragem-de-nao-agradar/transcricao.md
+ create mode 100644 projetos/comunidade-leitura/videos/uma-vida-com-propositos/aprendizados.md
+ create mode 100644 projetos/comunidade-leitura/videos/uma-vida-com-propositos/capitulos.md
+ create mode 100644 projetos/comunidade-leitura/videos/uma-vida-com-propositos/roteiro.md
+ create mode 100644 projetos/comunidade-leitura/videos/uma-vida-com-propositos/shorts/.gitkeep
+ create mode 100644 projetos/comunidade-leitura/videos/uma-vida-com-propositos/shorts/ranking.md
+ create mode 100644 projetos/comunidade-leitura/videos/uma-vida-com-propositos/transcricao.md
+ create mode 100644 projetos/comunidade-leitura/youtube.md
+ create mode 100644 projetos/pack-raiz/CLAUDE.md
+ create mode 100644 tarefas.md
+remote: error: Trace: 34f130c5f96d28ed66dc642cdec8897b131aeba5253a4caa4ee76f146f1162f1        
+remote: error: See https://gh.io/lfs for more information.        
+remote: error: File Clientes/rt-motors/Criativos/V4.mp4 is 476.27 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: File Clientes/rt-motors/Criativos/V2.mp4 is 537.34 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/MatheusFaria777/assessoria-raiz.git'
+[08/07/2026 11:14:12,69] Mudancas sincronizadas 
+[08/07/2026 11:28:32,89] Iniciando auto-sync 
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+error: unable to unlink old '.claude/automation/auto-sync.log': Invalid argument
+fatal: could not reset --hard
+Created autostash: c3a809e
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[main 031126a] auto-sync: 08/07/2026 11:28:33,82
+ 1 file changed, 5 insertions(+)
+remote: error: Trace: d6abfecaef8b4b37b87ba720bb68d15b0d758657de0ad0f4f05adbcbc443cbea        
+remote: error: See https://gh.io/lfs for more information.        
+remote: error: File Clientes/rt-motors/Criativos/V4.mp4 is 476.27 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: File Clientes/rt-motors/Criativos/V2.mp4 is 537.34 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/MatheusFaria777/assessoria-raiz.git'
+[08/07/2026 11:28:33,82] Mudancas sincronizadas 
+[08/07/2026 11:58:32,89] Iniciando auto-sync 
+fatal: It seems that there is already a rebase-merge directory, and
+I wonder if you are in the middle of another rebase.  If that is the
+case, please try
+	git rebase (--continue | --abort | --skip)
+If that is not the case, please
+	rm -fr ".git/rebase-merge"
+and run me again.  I am stopping in case you still have something
+valuable there.
+
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[main 9ebd379] auto-sync: 08/07/2026 11:58:33,59
+ 1 file changed, 22 insertions(+)
+remote: error: Trace: 9b7cff9bab5764e4d96e2b772e7565a4483a1079126a5b349e49d3a5a5de4644        
+remote: error: See https://gh.io/lfs for more information.        
+remote: error: File Clientes/rt-motors/Criativos/V4.mp4 is 476.27 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: File Clientes/rt-motors/Criativos/V2.mp4 is 537.34 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/MatheusFaria777/assessoria-raiz.git'
+[08/07/2026 11:58:33,59] Mudancas sincronizadas 
+[08/07/2026 12:28:32,95] Iniciando auto-sync 
+fatal: It seems that there is already a rebase-merge directory, and
+I wonder if you are in the middle of another rebase.  If that is the
+case, please try
+	git rebase (--continue | --abort | --skip)
+If that is not the case, please
+	rm -fr ".git/rebase-merge"
+and run me again.  I am stopping in case you still have something
+valuable there.
+
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[main a61be1b] auto-sync: 08/07/2026 12:28:34,34
+ 1 file changed, 22 insertions(+)
+remote: error: Trace: 8fd5b1807764ddca59ec5829563f4309a24d5cacfa452eccba74a0eb1c1bb4c3        
+remote: error: See https://gh.io/lfs for more information.        
+remote: error: File Clientes/rt-motors/Criativos/V2.mp4 is 537.34 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: File Clientes/rt-motors/Criativos/V4.mp4 is 476.27 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/MatheusFaria777/assessoria-raiz.git'
+[08/07/2026 12:28:34,34] Mudancas sincronizadas 

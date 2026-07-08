@@ -59,6 +59,11 @@ def _format_loja(loja: dict) -> str:
     return LOJA_TEMPLATE.format(cidade=cidade, telefone=loja.get("telefone", "[TELEFONE]"))
 
 
+def _normalize_year(text: str) -> str:
+    """Substitui formato de ano 'AAAA/AAAA' pelo segundo ano (ex: 2012/2013 → 2013)."""
+    return re.sub(r'\b(\d{4})/(\d{4})\b', lambda m: m.group(2), text)
+
+
 def _parse(text: str) -> dict:
     text = re.sub(r"```(?:json)?\s*|\s*```", "", text).strip()
     if not text:
@@ -67,6 +72,10 @@ def _parse(text: str) -> dict:
         data = json.loads(text)
     except json.JSONDecodeError:
         raise ValueError(f"Claude retornou resposta não-JSON ao gerar copy: {text[:300]}")
+    # Normaliza ano no formato AAAA/AAAA → segundo ano em todos os campos
+    for key in ("nome_anuncio", "titulo", "descricao_principal"):
+        if key in data:
+            data[key] = _normalize_year(data[key])
     if "descricao_principal" in data:
         data["descricao_principal"] = re.sub(r"\n{3,}", "\n\n", data["descricao_principal"]).strip()
     return data
@@ -76,6 +85,7 @@ def generate_copy(caption: str, api_key: str, loja: dict = None, post_type: str 
     """Gera copy do anúncio usando Claude. Retorna {nome_anuncio, titulo, descricao_principal}."""
     if not caption.strip():
         raise ValueError("Caption vazio — o post não tem descrição.")
+    caption = _normalize_year(caption)
 
     cta = CTA_VIDEO if post_type == "video" else CTA_CAROUSEL
     loja_padrao = _format_loja(loja or {})

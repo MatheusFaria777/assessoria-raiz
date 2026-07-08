@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #F5F5F5;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: #CBA135;
+    }
+    .progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(30,61,52,0.12);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 62.5%;
+      background: #CBA135;
+    }
+    .phone-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 500px;
+      background: url('../imagens/instagram-plus-funcoes.webp') center/cover no-repeat;
+      background-position: 50% 30%;
+    }
+    .phone-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #F5F5F5 0%, rgba(245,245,245,0.6) 40%, transparent 100%);
+    }
+    .content {
+      position: absolute;
+      left: 86px;
+      right: 520px;
+      top: 0; bottom: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+    }
+    .perfil-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(30,61,52,0.45);
+    }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      font-weight: 900;
+      color: #1E3D34;
+      line-height: 0.9;
+      letter-spacing: -2px;
+    }
+    .headline em {
+      font-style: italic;
+      font-weight: 400;
+      font-size: 68px;
+      color: #CBA135;
+    }
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 25px;
+      font-weight: 400;
+      color: #2C2C2C;
+      line-height: 1.6;
+    }
+    .body-text strong {
+      color: #1E3D34;
+      font-weight: 700;
+    }
+    .highlight-box {
+      background: #1E3D34;
+      border-radius: 6px;
+      padding: 22px 24px;
+    }
+    .highlight-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-style: italic;
+      color: #F5F5F5;
+      line-height: 1.5;
+    }
+    .highlight-box p strong {
+      color: #CBA135;
+      font-style: normal;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="progress"><div class="progress-fill"></div></div>
+  <div class="phone-image"></div>
+  <div class="content">
+    <div class="perfil-tag">Perfil 3</div>
+    <div class="headline">Dono<br><em>de negócio</em></div>
+    <div class="body-text">
+      Quem usa o Instagram pra vender tem acesso a algo que <strong>vai além de novidade de rede social.</strong>
+    </div>
+    <div class="body-text">
+      Saber quem revisou seu story: quem assiste mais de uma vez está sinalizando interesse real. São as pessoas <strong>mais próximas de comprar de você.</strong>
+    </div>
+    <div class="highlight-box">
+      <p>Sem precisar perguntar.<br>Sem gastar com <strong>anúncio</strong> pra descobrir.</p>
+    </div>
+  </div>
+</body>
+</html>

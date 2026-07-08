@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #1E3D34;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(203,161,53,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: #CBA135;
+    }
+    .progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(245,245,245,0.1);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 87.5%;
+      background: #CBA135;
+    }
+    .content {
+      position: absolute;
+      left: 86px; right: 80px;
+      top: 0; bottom: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    .anafora-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 64px;
+    }
+    .anafora-line {
+      font-family: 'Playfair Display', serif;
+      font-size: 86px;
+      font-weight: 900;
+      color: rgba(245,245,245,0.88);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(245,245,245,0.1);
+    }
+    .anafora-line:first-child {
+      border-top: 1px solid rgba(245,245,245,0.1);
+    }
+    .anafora-line em {
+      font-style: italic;
+      color: #CBA135;
+    }
+    .anafora-line .dot { color: #CBA135; }
+    .sep {
+      width: 48px;
+      height: 2px;
+      background: rgba(203,161,53,0.5);
+      margin-bottom: 44px;
+    }
+    .context-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: rgba(245,245,245,0.55);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+    .question-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #F5F5F5;
+      line-height: 1.5;
+    }
+    .question-text em {
+      font-style: italic;
+      font-weight: 400;
+      color: #CBA135;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="progress"><div class="progress-fill"></div></div>
+  <div class="content">
+    <div class="anafora-block">
+      <div class="anafora-line">Quem paga vê <em>mais</em><span class="dot">.</span></div>
+      <div class="anafora-line">Quem não paga<br>aparece <em>menos</em><span class="dot">.</span></div>
+      <div class="anafora-line">Isso já aconteceu<br>antes<span class="dot">.</span></div>
+    </div>
+    <div class="sep"></div>
+    <div class="context-text">
+      Facebook em 2012. TikTok depois.<br>Agora é a vez do Instagram.
+    </div>
+    <div class="question-text">
+      A pergunta não é <em>"vale R$10?"</em><br>
+      É: quanto vale saber <em>quem está mais perto<br>de comprar de você?</em>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Digital · @efatahveiculos · v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #d4921e;
+    --accent-light: #f0bc5e;
+    --cream: #eef2f7;
+    --dark: #0d1520;
+    --mid: #172030;
+    --muted: #64809a;
+    --ok: #5fa882;
+    --bad: #b84e4e;
+    --line: rgba(212, 146, 30, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 65% 25%, rgba(212,146,30,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 75%, rgba(212,146,30,0.05) 0%, transparent 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4921e' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 24px;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-handle {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0 40px;
+    opacity: 0.2;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* SNAPSHOT */
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 48px;
+    border: 1px solid var(--line);
+  }
+
+  .snap-card {
+    padding: 32px 24px;
+    background: var(--mid);
+    text-align: center;
+  }
+
+  .snap-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    display: block;
+  }
+
+  .snap-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ALERT */
+  .alert {
+    border-left: 2px solid var(--bad);
+    padding: 20px 24px;
+    background: rgba(184,78,78,0.06);
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bad);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .alert p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* DIAG CARDS */
+  .diag-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .diag-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+
+  .diag-card:hover { border-color: var(--accent); }
+
+  .diag-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .diag-card:hover::before { transform: scaleY(1); }
+
+  .diag-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .diag-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .diag-content { flex: 1; }
+
+  .diag-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .diag-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .diag-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .diag-card.open .diag-body {
+    max-height: 2400px;
+    opacity: 1;
+    margin-top: 28px;
+  }
+
+  .diag-body p { margin-bottom: 14px; }
+  .diag-body p:last-child { margin-bottom: 0; }
+
+  .diag-toggle {
+    position: absolute;
+    top: 40px; right: 40px;
+    width: 28px; height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--accent);
+    transition: transform 0.3s, background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .diag-card.open .diag-toggle {
+    transform: rotate(45deg);
+    background: rgba(212,146,30,0.1);
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--accent);
+    margin: 4px 4px 4px 0;
+    letter-spacing: 1px;
+  }
+
+  .pill.ok { border-color: var(--ok); color: var(--ok); }
+  .pill.bad { border-color: var(--bad); color: var(--bad); }
+
+  /* TITULO COMPARE */
+  .title-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .title-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 18px 22px;
+  }
+
+  .title-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .title-box.antes .title-box-label { color: var(--bad); }
+  .title-box.depois .title-box-label { color: var(--ok); }
+
+  .title-box p {
+    font-size: 13px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* BIO COMPARE */
+  .bio-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .bio-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+
+  .bio-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .bio-box.antes .bio-box-label { color: var(--bad); }
+  .bio-box.depois .bio-box-label { color: var(--ok); }
+
+  .bio-box p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* BIO FRAMEWORK */
+  .bio-framework {
+    margin: 22px 0;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .bf-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 22px;
+    background: var(--dark);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bf-line:last-child { border-bottom: none; }
+
+  .bf-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 30px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .bf-content { flex: 1; }
+
+  .bf-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .bf-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .bf-example {
+    font-size: 12px;
+    color: var(--cream);
+    font-style: italic;
+    margin-top: 6px;
+    opacity: 0.6;
+  }
+
+  /* BIO TEMPLATE */
+  .bio-template {
+    background: var(--dark);
+    border: 1px dashed rgba(212,146,30,0.25);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .bt-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .bt-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .bt-line:last-child { border-bottom: none; }
+
+  .bt-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.5;
+    white-space: nowrap;
+    min-width: 68px;
+    flex-shrink: 0;
+    font-style: normal;
+  }
+
+  /* LINK CARD */
+  .link-card {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 22px 26px;
+    margin: 18px 0;
+    border-radius: 2px;
+  }
+
+  .link-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ok);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .link-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent-light);
+    word-break: break-all;
+    line-height: 1.6;
+    background: rgba(212,146,30,0.07);
+    padding: 10px 14px;
+    border-radius: 3px;
+    flex: 1;
+    font-weight: 400;
+  }
+
+  .copy-btn {
+    background: rgba(212,146,30,0.12);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { background: var(--accent); color: var(--dark); }
+  .copy-btn.copied { background: var(--ok); border-color: var(--ok); color: white; }
+
+  /* DESTAQUES */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 24px 0;
+  }
+
+  .dest-item {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .dest-item.missing {
+    border-style: dashed;
+    opacity: 0.65;
+  }
+
+  .dest-icon { font-size: 22px; display: block; margin-bottom: 10px; }
+
+  .dest-name {
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .dest-item.missing .dest-name { color: var(--bad); }
+
+  .dest-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* HL */
+  .hl { color: var(--cream); font-weight: 400; }
+
+  /* ROADMAP */
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 48px;
+    margin-top: 24px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .rm-item {
+    padding: 0 0 52px 24px;
+    position: relative;
+  }
+
+  .rm-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .rm-week {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .rm-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .rm-tasks li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .rm-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .section { padding: 60px 24px; }
+    .snapshot-grid { grid-template-columns: 1fr; }
+    .bio-compare, .title-compare { grid-template-columns: 1fr; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .diag-card { padding: 28px 24px; }
+    .diag-toggle { top: 28px; right: 24px; }
+    .hero { padding: 60px 24px; }
+    .link-row { flex-direction: column; align-items: stretch; }
+    .roadmap { padding-left: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Assessoria Raiz · Diagnóstico Digital</p>
+  <h1>Seu perfil no<br>Instagram, <em>analisado.</em></h1>
+  <p class="hero-sub">Uma análise completa do @efatahveiculos com recomendações concretas para gerar mais leads e fechar mais vendas em Lucas do Rio Verde.</p>
+  <div class="hero-divider"></div>
+  <p class="hero-handle">@efatahveiculos · Lucas do Rio Verde, MT</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- 01 SITUAÇÃO ATUAL -->
+<section class="section reveal">
+  <p class="section-label">01 · Situação Atual</p>
+  <h2 class="section-title">O que o perfil<br><em>comunica hoje</em></h2>
+
+  <div class="snapshot-grid">
+    <div class="snap-card">
+      <span class="snap-num">539</span>
+      <span class="snap-label">Posts publicados</span>
+    </div>
+    <div class="snap-card">
+      <span class="snap-num">1.500</span>
+      <span class="snap-label">Seguidores</span>
+    </div>
+    <div class="snap-card" style="border-left: 1px solid rgba(184,78,78,0.35);">
+      <span class="snap-num" style="color: var(--bad);">1.331</span>
+      <span class="snap-label" style="color: var(--bad);">Seguindo ⚠</span>
+    </div>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">Você Segue Quase Todo Mundo Que Te Segue</p>
+    <p>A Efatah tem 1.500 seguidores e segue 1.331 contas. A diferença é de apenas 169 pessoas. Ao longo do tempo, a loja foi seguindo de volta quem a seguia, e isso afeta como o perfil aparece pra quem chega pela primeira vez.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">Zero Reels Publicados</p>
+    <p>Com 539 posts e nenhum Reel, a Efatah ignora o único formato do Instagram que aparece pra quem ainda não te segue. Uma conta com 1.500 seguidores pode alcançar 15.000 pessoas na região com um único Reel, sem gastar R$1 em anúncio.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">A Bio Não Aproveita o Espaço</p>
+    <p>A bio atual não deixa claro o que a Efatah tem de diferente. Financiamento facilitado, todas as financeiras, carência de 120 dias. Nada disso aparece. E o endereço completo com CEP ocupa espaço onde deveria estar um convite para entrar em contato.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 02 RECOMENDAÇÕES -->
+<section class="section reveal">
+  <p class="section-label">02 · Recomendações</p>
+  <h2 class="section-title"><em>O que mudar</em><br>e como fazer</h2>
+
+  <div class="diag-grid">
+
+    <!-- 01 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">01</span>
+        <div class="diag-content">
+          <span class="diag-tag">Posicionamento</span>
+          <h3 class="diag-title">A bio não comunica por que comprar na Efatah</h3>
+          <div class="diag-body">
+            <p>Tem dois lugares no perfil que a maioria das lojas trata como se fossem a mesma coisa, mas não são: o título e a bio. Cada um tem uma função diferente.</p>
+
+            <p><span class="hl">O título</span> é o nome em negrito abaixo da foto de perfil. É o que o Instagram usa pra decidir se vai te mostrar quando alguém pesquisa "seminovos Lucas do Rio Verde" — funciona como uma palavra-chave de busca.</p>
+
+            <div class="title-compare">
+              <div class="title-box antes">
+                <span class="title-box-label">❌ Como está</span>
+                <p>Efatah Veículos</p>
+              </div>
+              <div class="title-box depois">
+                <span class="title-box-label">✓ Como deve ficar</span>
+                <p>Efatah Veículos | Seminovos em Lucas do Rio Verde</p>
+              </div>
+            </div>
+
+            <p><span class="hl">A bio</span> são as linhas abaixo do título. É o único espaço pra convencer alguém a entrar em contato antes mesmo de ver um carro. A estrutura que funciona pra loja de carro é essa:</p>
+
+            <div class="bio-framework">
+              <div class="bf-line">
+                <span class="bf-num">01</span>
+                <div class="bf-content">
+                  <span class="bf-label">Resultado · Transformação</span>
+                  <p class="bf-desc">O que muda na vida de quem compra com vocês. Não descreve o carro — descreve o resultado que a pessoa vai ter depois da compra.</p>
+                  <p class="bf-example">"Seu próximo carro com parcela que cabe no mês" · "Do sonho à chave na mão"</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">02</span>
+                <div class="bf-content">
+                  <span class="bf-label">Diferencial único da loja</span>
+                  <p class="bf-desc">O que só vocês oferecem. Tem que ser específico — "ótimo atendimento" qualquer loja escreve. Pense: o que alguém que comprou de vocês falaria pra um amigo que está em dúvida?</p>
+                  <p class="bf-example">"Carência 120 dias · Aceite de troca · Todas as financeiras"</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">03</span>
+                <div class="bf-content">
+                  <span class="bf-label">Endereço</span>
+                  <p class="bf-desc">Bairro e cidade com 📍. Quem vem de Nova Mutum ou Tapurá precisa saber onde chegar antes de fazer a viagem.</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">04</span>
+                <div class="bf-content">
+                  <span class="bf-label">Chamada para ação</span>
+                  <p class="bf-desc">O que a pessoa deve fazer agora. Direto — não deixa ela sem direção depois de ler tudo.</p>
+                  <p class="bf-example">"Fale no WhatsApp 👇" · "Veja o estoque 👇"</p>
+                </div>
+              </div>
+            </div>
+
+            <p>Agora pense nessas quatro linhas pra bio de vocês. Qual é o resultado que quem compra um carro na Efatah leva pra casa? O que vocês têm que nenhuma outra loja de Lucas do Rio Verde oferece?</p>
+
+            <div class="bio-template">
+              <span class="bt-label">Rascunho · preencha com o que é da Efatah</span>
+              <div class="bt-line">
+                <span class="bt-tag">linha 01</span>
+                [O que muda na vida de quem compra aqui]
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 02</span>
+                [Diferencial 1] · [Diferencial 2] · [Diferencial 3]
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 03</span>
+                📍 [Endereço], Lucas do Rio Verde
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 04</span>
+                Fale no WhatsApp 👇
+              </div>
+            </div>
+
+            <div class="bio-box antes" style="margin-top: 20px;">
+              <span class="bio-box-label">❌ Como está hoje</span>
+              <p>REALIZANDO SONHOS!<br>Aqui é o lugar certo para aquisição do seu veículo 🚗<br>av.Brasil, esquina com av.Itanhanga, Lucas do Rio Verde 78455-000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">02</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conversão</span>
+          <h3 class="diag-title">O WhatsApp tá lá, mas a pessoa chega numa conversa em branco</h3>
+          <div class="diag-body">
+            <p>O Linkbio já tem o WhatsApp do Ricardo e do Adailton — isso é ótimo. O problema é que quando alguém clica, o WhatsApp abre sem nada escrito. A pessoa fica olhando pra tela sem saber o que digitar e, boa parte das vezes, fecha sem mandar nada.</p>
+            <p>A solução é simples: trocar o link por uma versão que já abre com uma mensagem pronta. A pessoa clica, aparece "Olá, vim pelo Instagram e gostaria de ver os veículos disponíveis" e ela só precisa apertar enviar. Menos atrito, mais conversa.</p>
+
+            <div class="link-card">
+              <span class="link-label">Link sugerido · WhatsApp do Ricardo com mensagem pronta</span>
+              <div class="link-row">
+                <span class="link-text" id="link-ricardo">https://wa.me/5566992623651?text=Ol%C3%A1%2C+Ricardo!+Vim+pelo+Instagram+e+gostaria+de+ver+os+ve%C3%ADculos+dispon%C3%ADveis.</span>
+                <button class="copy-btn" onclick="copyLink(event, 'link-ricardo')">Copiar</button>
+              </div>
+            </div>
+
+            <p><span class="hl">O que ainda falta no Linkbio:</span> um botão de Google Maps. Clientes de Nova Mutum, Tapurá e Feliz Natal que nunca foram à Efatah precisam saber exatamente onde chegar antes de fazer a viagem.</p>
+
+            <div class="link-card">
+              <span class="link-label">Link do Google Maps · adicione como botão no Linkbio</span>
+              <div class="link-row">
+                <span class="link-text" id="link-maps">https://www.google.com/maps/search/Efatah+Veiculos+Lucas+do+Rio+Verde+MT</span>
+                <button class="copy-btn" onclick="copyLink(event, 'link-maps')">Copiar</button>
+              </div>
+            </div>
+
+            <p>Ordem ideal dos botões no Linkbio: <span class="hl">WhatsApp Ricardo, WhatsApp Adailton, Google Maps, Instagram, Facebook.</span> O comprador que quer saber onde fica a loja não deve ter que procurar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">03</span>
+        <div class="diag-content">
+          <span class="diag-tag">Credibilidade</span>
+          <h3 class="diag-title">Você segue quase todo mundo que te segue — e isso tem um custo</h3>
+          <div class="diag-body">
+            <p>A diferença entre seguindo e seguidores é de apenas 169 contas. Em algum momento, a loja foi seguindo de volta quem a seguia pra ganhar seguidores. Isso é bem comum, mas o Instagram entende esse padrão e tende a mostrar o conteúdo pra menos pessoas quando o perfil faz isso.</p>
+            <p>Quem visita e vê <span class="hl">1.331 seguindo · 1.500 seguidores</span> também percebe algo fora do lugar. Uma loja com história em Lucas do Rio Verde deveria ter seguidores bem acima do número de contas que segue.</p>
+            <p><span class="hl">Como resolver:</span> parar de seguir contas que não têm nada a ver com o negócio. Perfis aleatórios, contas inativas, outros estabelecimentos. A meta é chegar a no máximo 150-200 seguindo. Vai aos poucos, 20-30 por dia. O número de seguidores não cai com isso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">04</span>
+        <div class="diag-content">
+          <span class="diag-tag">Alcance Orgânico</span>
+          <h3 class="diag-title">Sem Reels, a Efatah é invisível pra quem ainda não te segue</h3>
+          <div class="diag-body">
+            <p>Você tem 539 posts e nenhum Reel. Pensa comigo: a foto que você publica hoje chega pra 1.500 seguidores. Um Reel bem feito pode chegar pra 15.000 pessoas em Lucas do Rio Verde, Nova Mutum, Tapurá e região. Sem gastar R$1 em anúncio. O Instagram distribui Reels pra quem ainda não te segue. Foto não.</p>
+            <p>O Ricardo disse que quer aparecer em vídeo mas nunca começou. Esse é o momento. Não precisa ser produção profissional. Um celular na mão e 60 segundos já funcionam: "Boa tarde, pessoal. Esse Amarok acabou de entrar no pátio da Efatah, vou mostrar pra vocês..."</p>
+            <p><span class="hl">Três ideias pra começar agora:</span></p>
+            <p>
+              1. Ricardo apresenta o Amarok ou o C4 por dentro e por fora. Os modelos que tão parados há mais tempo e precisam sair.<br><br>
+              2. "Quanto fica a parcela do Onix [preço] financiado aqui em Lucas do Rio Verde?" Ricardo responde na câmera, simples assim.<br><br>
+              3. Entrega de carro: cliente recebendo a chave, aperto de mão, saindo com o carro. Esse é o Reel com maior chance de ser compartilhado.
+            </p>
+            <p>As referências que o Adailton citou — General Tarros em Sinop e H&M Automóveis em Cuiabá — usam Reels com frequência. É o que faz eles aparecerem pra quem nunca ouviu falar deles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">05</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conteúdo</span>
+          <h3 class="diag-title">O feed tá cheio de carro, mas falta a loja por trás do carro</h3>
+          <div class="diag-body">
+            <p>Foto de carro no feed é necessário. O problema é quando isso é tudo que tem. 539 posts, todos no mesmo estilo: carro parado, ângulo lateral, céu azul. Quem entra no perfil vê um catálogo, não uma loja.</p>
+            <p>Quem compra carro não compra de um catálogo. Compra de uma loja em que confia. E confiança vem de ver rostos, histórias de clientes e informações que ajudam a decidir.</p>
+            <p><span class="hl">Mix ideal pra Efatah:</span></p>
+            <p>
+              <span class="pill">40% Estoque</span>
+              <span class="pill">30% Prova social</span>
+              <span class="pill">20% Educativo</span>
+              <span class="pill">10% Bastidores</span>
+            </p>
+            <p>Na prática: a cada 10 posts, 4 são fotos de carro com preço e como entrar em contato (como hoje), 3 são entregas ou depoimentos, 2 são conteúdo que responde dúvidas — como funciona o financiamento, o que checar num seminovo antes de comprar — e 1 é bastidor: Ricardo verificando um carro que chegou, o Adailton fechando uma negociação, o pátio numa manhã movimentada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">06</span>
+        <div class="diag-content">
+          <span class="diag-tag">Prova Social</span>
+          <h3 class="diag-title">539 posts e nenhum mostra um cliente saindo com um carro</h3>
+          <div class="diag-body">
+            <p>Os destaques de "Realizados" existem e têm valor. Mas o feed não tem uma única foto de entrega. Cliente satisfeito, chave na mão, aperto de mão. Essa é a imagem mais poderosa que uma loja de carro pode publicar.</p>
+            <p>Pensa em quem tá em Nova Mutum considerando fazer 80 km até Lucas do Rio Verde pra comprar um carro. Ele entra no perfil. Se só vê fotos de veículo, fica sem referência. Se vê uma foto de entrega com um cliente sorrindo e a legenda "Mais um realizado!", ele pensa: outras pessoas já compraram aqui e foram embora satisfeitas.</p>
+            <p><span class="hl">O que fazer a partir de agora:</span> na próxima venda, fotografar a entrega. Cliente na frente do carro com a chave. Pedir autorização pra publicar — quase todo mundo aceita, principalmente se for marcado na foto. Legenda simples: "Mais um realizado. Parabéns, [nome]! Seu [modelo] tá na mão. 🤝" Esse post converte mais do que qualquer descrição técnica.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">07</span>
+        <div class="diag-content">
+          <span class="diag-tag">Destaques</span>
+          <h3 class="diag-title">Os destaques mostram o passado, mas não ajudam a converter hoje</h3>
+          <div class="diag-body">
+            <p>A estrutura atual tá centrada em "Realizados" — o histórico de carros vendidos. Tem valor como prova social, mas não responde as duas perguntas que qualquer visitante tem antes de entrar em contato: como funciona o financiamento e onde fica a loja.</p>
+
+            <div class="dest-grid">
+              <div class="dest-item">
+                <span class="dest-icon">✅</span>
+                <p class="dest-name">Realizados</p>
+                <p class="dest-desc">Existe — prova social de vendas anteriores</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">✅</span>
+                <p class="dest-name">EFATAH</p>
+                <p class="dest-desc">Existe — apresentação da empresa</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Veículos Disponíveis</p>
+                <p class="dest-desc">Faltando — o que tem no pátio agora, sempre atualizado</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Financiamento</p>
+                <p class="dest-desc">Faltando — principal dúvida do comprador</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Como Chegar</p>
+                <p class="dest-desc">Faltando — mapa, horários, referência</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">Depoimentos</p>
+                <p class="dest-desc">Faltando — prova social em vídeo ou texto</p>
+              </div>
+            </div>
+
+            <p>Três destaques pra criar com prioridade. <span class="hl">Veículos Disponíveis</span>: os carros que estão no pátio agora, com fotos e preço. Importante manter atualizado — quem entra no perfil quer saber o que tem pra vender hoje, não o que tinha há três meses. <span class="hl">Financiamento</span>: mostrar que trabalham com todas as financeiras, carência de 120 dias e aceite de troca. <span class="hl">Como Chegar</span>: endereço, mapa e horário pra quem vem de Nova Mutum, Tapurá ou Feliz Natal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 03 PLANO -->
+<section class="section reveal">
+  <p class="section-label">03 · Próximos Passos</p>
+  <h2 class="section-title">Plano de<br><em>implementação</em></h2>
+
+  <div class="roadmap">
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 1 · Estrutura do Perfil</div>
+      <h3 class="rm-title">Ajustes imediatos, sem câmera e sem produção</h3>
+      <ul class="rm-tasks">
+        <li>Atualizar o título para "Efatah Veículos | Seminovos em Lucas do Rio Verde"</li>
+        <li>Reescrever a bio com financiamento, carência 120 dias, endereço e CTA para WhatsApp</li>
+        <li>Trocar os links do Linkbio para a versão com mensagem pré-preenchida</li>
+        <li>Adicionar botão de Google Maps no Linkbio</li>
+        <li>Criar destaque "Veículos Disponíveis" com o estoque atual — e combinar uma rotina de atualizar toda semana</li>
+        <li>Criar destaque "Financiamento" explicando condições, carência de 120 dias e financeiras parceiras</li>
+        <li>Criar destaque "Como Chegar" com mapa e horário de funcionamento</li>
+        <li>Começar a deixar de seguir contas irrelevantes (20-30 por dia)</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 2 · Primeiro Vídeo e Primeira Entrega</div>
+      <h3 class="rm-title">Ricardo na câmera pela primeira vez</h3>
+      <ul class="rm-tasks">
+        <li>Ricardo filma o primeiro Reel: apresentação do Amarok ou do C4 que precisam sair do pátio</li>
+        <li>Na próxima venda: fotografar a entrega com o cliente antes de ele ir embora</li>
+        <li>Publicar a foto de entrega no feed com legenda humanizada</li>
+        <li>Padronizar as capas dos destaques com a identidade visual da Efatah</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 3 · Conteúdo que Educa</div>
+      <h3 class="rm-title">Primeiro post que responde dúvidas do comprador</h3>
+      <ul class="rm-tasks">
+        <li>Publicar post educativo: "Como funciona o financiamento aqui na Efatah" ou "3 coisas pra checar num seminovo antes de comprar"</li>
+        <li>Começar rotina de stories: ao menos 3 vezes por semana (carro chegando no pátio, bastidor, enquete)</li>
+        <li>Segundo Reel: Ricardo respondendo "Quanto fica a parcela do Onix [preço]?"</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Mês 2 em Diante · Consistência</div>
+      <h3 class="rm-title">Manutenção e crescimento real</h3>
+      <ul class="rm-tasks">
+        <li>1 Reel por semana com o Ricardo apresentando carros do estoque</li>
+        <li>Toda venda gera uma foto de entrega publicada no feed e nos stories</li>
+        <li>Usar o perfil pra atrair carros consignados: post pedindo indicações de quem quer vender</li>
+        <li>Revisão mensal: alcance de pessoas novas, cliques no link, mensagens recebidas pelo perfil</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+  <p class="footer-brand">Assessoria Raiz</p>
+  <p class="footer-sub">Diagnóstico preparado para @efatahveiculos · Efatah Veículos · Lucas do Rio Verde, MT</p>
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+
+  function copyLink(event, id) {
+    event.stopPropagation();
+    const text = document.getElementById(id).textContent.trim();
+    const btn = event.currentTarget;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

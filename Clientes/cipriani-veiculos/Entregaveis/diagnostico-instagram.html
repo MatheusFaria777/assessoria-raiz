@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Digital · @ciprianimultimarcas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #c0392b;
+    --accent-light: #e05555;
+    --cream: #f0f0f0;
+    --dark: #0d0d0d;
+    --mid: #191919;
+    --muted: #787878;
+    --ok: #5fa882;
+    --bad: #cc5555;
+    --line: rgba(192, 57, 43, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(192,57,43,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(192,57,43,0.06) 0%, transparent 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23c0392b' fill-opacity='0.025'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 24px;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-handle {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0 40px;
+    opacity: 0.2;
+  }
+
+  .section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 48px;
+    border: 1px solid var(--line);
+  }
+
+  .snap-card {
+    padding: 32px 24px;
+    background: var(--mid);
+    text-align: center;
+  }
+
+  .snap-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    display: block;
+  }
+
+  .snap-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .alert {
+    border-left: 2px solid var(--bad);
+    padding: 20px 24px;
+    background: rgba(204,85,85,0.05);
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bad);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .alert p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  .diag-grid { display: flex; flex-direction: column; gap: 2px; }
+
+  .diag-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+
+  .diag-card:hover { border-color: var(--accent); }
+
+  .diag-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .diag-card:hover::before { transform: scaleY(1); }
+
+  .diag-header { display: flex; align-items: flex-start; gap: 24px; }
+
+  .diag-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .diag-content { flex: 1; }
+
+  .diag-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .diag-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .diag-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .diag-card.open .diag-body {
+    max-height: 3200px;
+    opacity: 1;
+    margin-top: 28px;
+  }
+
+  .diag-body p { margin-bottom: 14px; }
+  .diag-body p:last-child { margin-bottom: 0; }
+
+  .diag-toggle {
+    position: absolute;
+    top: 40px; right: 40px;
+    width: 28px; height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--accent);
+    transition: transform 0.3s, background 0.3s;
+    flex-shrink: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .diag-card.open .diag-toggle {
+    transform: rotate(45deg);
+    background: rgba(192,57,43,0.1);
+  }
+
+  .hl { color: var(--cream); font-weight: 500; }
+
+  .title-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .title-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 18px 22px;
+  }
+
+  .title-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .title-box.antes .title-box-label { color: var(--bad); }
+  .title-box.depois .title-box-label { color: var(--ok); }
+
+  .title-box p { font-size: 13px; color: var(--cream); font-weight: 500; line-height: 1.5; }
+
+  .bio-framework {
+    margin: 22px 0;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .bf-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 22px;
+    background: var(--dark);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bf-line:last-child { border-bottom: none; }
+
+  .bf-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 30px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .bf-content { flex: 1; }
+
+  .bf-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .bf-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  .bf-example { font-size: 12px; color: var(--cream); font-style: italic; margin-top: 6px; opacity: 0.65; }
+
+  .bio-template {
+    background: var(--dark);
+    border: 1px dashed rgba(192,57,43,0.28);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .bt-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .bt-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .bt-line:last-child { border-bottom: none; }
+
+  .bt-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.5;
+    white-space: nowrap;
+    min-width: 68px;
+    flex-shrink: 0;
+    font-style: normal;
+  }
+
+  .link-card {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 22px 26px;
+    margin: 18px 0;
+  }
+
+  .link-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ok);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .link-row { display: flex; align-items: center; gap: 12px; }
+
+  .link-text {
+    font-size: 12px;
+    color: var(--accent-light);
+    word-break: break-all;
+    line-height: 1.6;
+    background: rgba(192,57,43,0.07);
+    padding: 10px 14px;
+    flex: 1;
+  }
+
+  .copy-btn {
+    background: rgba(192,57,43,0.12);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { background: var(--accent); color: white; }
+  .copy-btn.copied { background: var(--ok); border-color: var(--ok); color: white; }
+
+  .dest-section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 10px;
+  }
+
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .dest-item {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .dest-item.missing { border-style: dashed; }
+  .dest-item.problem { border-color: rgba(204,85,85,0.3); }
+
+  .dest-icon { font-size: 22px; display: block; margin-bottom: 10px; }
+
+  .dest-name { font-size: 12px; color: var(--cream); font-weight: 500; margin-bottom: 4px; }
+  .dest-item.missing .dest-name { color: var(--bad); }
+  .dest-item.problem .dest-name { color: #d4a050; }
+
+  .dest-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .task-list li {
+    padding-left: 18px;
+    position: relative;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .task-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
+
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 48px;
+    margin-top: 24px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 12px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .rm-item { padding: 0 0 52px 24px; position: relative; }
+
+  .rm-dot {
+    position: absolute;
+    left: -36px; top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .rm-week {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .rm-tasks { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+
+  .rm-tasks li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .rm-tasks li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
+
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--accent); margin-bottom: 12px; }
+  .footer-sub { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .section { padding: 60px 24px; }
+    .snapshot-grid { grid-template-columns: 1fr; }
+    .title-compare { grid-template-columns: 1fr; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .diag-card { padding: 28px 24px; }
+    .diag-toggle { top: 28px; right: 24px; }
+    .hero { padding: 60px 24px; }
+    .link-row { flex-direction: column; align-items: stretch; }
+    .roadmap { padding-left: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Assessoria Raiz · Diagnóstico Digital</p>
+  <h1>Seu perfil no<br>Instagram, <em>analisado.</em></h1>
+  <p class="hero-sub">Uma análise completa do @ciprianimultimarcas com recomendações concretas para atrair mais compradores no Alto Vale do Itajaí.</p>
+  <div class="hero-divider"></div>
+  <p class="hero-handle">@ciprianimultimarcas · Agrolândia, SC</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SITUAÇÃO ATUAL -->
+<section class="section reveal">
+  <p class="section-label">01 · Situação Atual</p>
+  <h2 class="section-title">O que o perfil<br><em>comunica hoje</em></h2>
+
+  <div class="snapshot-grid">
+    <div class="snap-card">
+      <span class="snap-num">259</span>
+      <span class="snap-label">Posts publicados</span>
+    </div>
+    <div class="snap-card">
+      <span class="snap-num">1.833</span>
+      <span class="snap-label">Seguidores</span>
+    </div>
+    <div class="snap-card" style="border-left: 1px solid rgba(204,85,85,0.4);">
+      <span class="snap-num" style="color: var(--bad);">1.785</span>
+      <span class="snap-label" style="color: var(--bad);">Seguindo ⚠</span>
+    </div>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">Você segue quase a mesma quantidade que te segue</p>
+    <p>A Cipriani tem 1.833 seguidores e segue 1.785 contas. Diferença de apenas 48 pessoas. Pra quem chega no perfil pela primeira vez, essa proporção passa a impressão de que a conta cresceu seguindo todo mundo de volta, não por ter conteúdo que vale acompanhar.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">A bio não comunica nenhum diferencial real</p>
+    <p>"REVENDA DE VEÍCULOS, COMPRA, VENDE, TROCA E FINANCIA." é o que qualquer loja da região diria. A Cipriani tem 42 anos de mecânica na cidade, revisão completa antes de cada venda, Pix na hora e avaliação em 15 minutos. Nada disso aparece.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">O link na bio leva para um site que não existe mais</p>
+    <p>O perfil tem um link, mas ele aponta para um site que não está mais ativo. Quem clica cai numa página quebrada e volta pro Instagram sem entrar em contato. É o tipo de coisa que o visitante nota antes de decidir se manda mensagem ou não.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RECOMENDAÇÕES -->
+<section class="section reveal">
+  <p class="section-label">02 · Recomendações</p>
+  <h2 class="section-title">O que ajustar e<br><em>como fazer</em></h2>
+
+  <div class="diag-grid">
+
+    <!-- 01 BIO -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">01</span>
+        <div class="diag-content">
+          <span class="diag-tag">Posicionamento</span>
+          <h3 class="diag-title">A bio não vende o que a loja tem de melhor</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+
+        <p><span class="hl">Sobre o campo nome.</span> No Instagram, o campo "nome" (o texto em negrito acima da bio) é indexado pela busca interna do app. Se alguém digita "multimarcas Agrolândia" ou "carros SC" no Instagram, o perfil aparece. O @ não conta para isso.</p>
+
+        <div class="title-compare">
+          <div class="title-box antes">
+            <span class="title-box-label">Como está hoje</span>
+            <p>CIPRIANI MULTIMARCAS</p>
+          </div>
+          <div class="title-box depois">
+            <span class="title-box-label">Como poderia ser</span>
+            <p>Cipriani Multimarcas | Agrolândia SC</p>
+          </div>
+        </div>
+
+        <p>Com "Agrolândia SC" no campo nome, quem está na região e busca por loja de carro no Instagram tem mais chance de achar a Cipriani sem precisar de anúncio.</p>
+
+        <p style="margin-top: 20px;"><span class="hl">Sobre a bio.</span> A bio atual diz "REVENDA DE VEÍCULOS, COMPRA, VENDE, TROCA E FINANCIA." Isso é verdade, mas é o mesmo que qualquer revenda da região diria. Quem chega no perfil tem 3 segundos pra entender: por que aqui e não em outra loja?</p>
+
+        <p>A Cipriani tem respostas concretas: revisão mecânica completa antes de cada venda, 42 anos de oficina na cidade, Pix na hora, avaliação em 15 minutos, compra financiados. Nada disso aparece. A estrutura que funciona pra loja de carro segue 4 linhas:</p>
+
+        <div class="bio-framework">
+          <div class="bf-line">
+            <span class="bf-num">01</span>
+            <div class="bf-content">
+              <span class="bf-label">Resultado / Transformação</span>
+              <p class="bf-desc">O que muda na vida de quem compra aqui. Não liste o que vende, descreva o que o comprador vai sentir ou ganhar depois da compra.</p>
+              <p class="bf-example">"Todos os carros com revisão completa inclusa"</p>
+            </div>
+          </div>
+          <div class="bf-line">
+            <span class="bf-num">02</span>
+            <div class="bf-content">
+              <span class="bf-label">Diferencial único da loja</span>
+              <p class="bf-desc">O que a Cipriani tem que nenhuma outra revenda da região tem. Específico, não genérico. Nunca "ótimo atendimento" ou "qualidade garantida".</p>
+              <p class="bf-example">"Revisão completa inclusa · Compra financiados · Pix em 15 min"</p>
+              <p class="bf-example" style="margin-top:4px; opacity:0.5; font-size:11px;">ou separe em dois diferenciais se precisar de mais espaço</p>
+            </div>
+          </div>
+          <div class="bf-line">
+            <span class="bf-num">03</span>
+            <div class="bf-content">
+              <span class="bf-label">Endereço</span>
+              <p class="bf-desc">Referência de localização com 📍. Suficiente pra quem conhece a cidade encontrar fácil.</p>
+              <p class="bf-example">"📍 R. Raimundo Zwicker, 256 · Agrolândia, SC"</p>
+            </div>
+          </div>
+          <div class="bf-line">
+            <span class="bf-num">04</span>
+            <div class="bf-content">
+              <span class="bf-label">Chamada para ação</span>
+              <p class="bf-desc">Diga o que a pessoa deve fazer depois de ler. Direto, sem rodeio.</p>
+              <p class="bf-example">"Fale no WhatsApp 👇"</p>
+            </div>
+          </div>
+        </div>
+
+        <p>Use esse framework pra montar a bio da Cipriani. O rascunho abaixo serve de ponto de partida:</p>
+
+        <div class="bio-template">
+          <span class="bt-label">Rascunho — preencha com os dados da loja</span>
+          <div class="bt-line">
+            <span class="bt-tag">linha 01</span>
+            Todos os carros com revisão completa inclusa
+          </div>
+          <div class="bt-line">
+            <span class="bt-tag">linha 02</span>
+            Revisão completa inclusa · Compra financiados · Pix em 15 min
+          </div>
+          <div class="bt-line">
+            <span class="bt-tag">linha 03</span>
+            📍 R. Raimundo Zwicker, 256 · Agrolândia, SC
+          </div>
+          <div class="bt-line">
+            <span class="bt-tag">linha 04</span>
+            Fale no WhatsApp 👇
+          </div>
+        </div>
+
+        <p>Bio atual como referência do que mudar: <em>"REVENDA DE VEÍCULOS, COMPRA, VENDE, TROCA E FINANCIA. Rua Raimundo Zwicker, 256, Agrolândia 88420000"</em></p>
+
+      </div>
+    </div>
+
+    <!-- 02 LINK -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">02</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conversão</span>
+          <h3 class="diag-title">O link na bio leva para um site que não existe mais</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>O perfil tem um link, mas ele aponta para um site que saiu do ar. Quem clica cai numa página quebrada e volta pro Instagram sem entrar em contato. O link existe, mas está trabalhando contra a loja.</p>
+
+        <p><span class="hl">Duas opções para resolver:</span></p>
+
+        <p><span class="hl">Opção 1 — Link direto para o WhatsApp.</span> Mais simples. Um toque e a pessoa já está na conversa, com uma mensagem padrão já preenchida. Ideal se a loja não tem outros canais pra centralizar (site, catálogo, outros contatos).</p>
+
+        <div class="link-card">
+          <span class="link-label">Link de WhatsApp pronto para copiar e colar na bio</span>
+          <div class="link-row">
+            <span class="link-text" id="waLink">https://wa.me/5547996342625?text=Olá!+Vim+pelo+Instagram+e+quero+ver+os+veículos+disponíveis</span>
+            <button class="copy-btn" onclick="copyLink(event)">Copiar</button>
+          </div>
+        </div>
+
+        <p><span class="hl">Opção 2 — Linktree.</span> Se a loja quiser centralizar mais de um canal (WhatsApp + catálogo de veículos + Google Meu Negócio), o Linktree cria uma página simples com todos os links. É gratuito, leva menos de 5 minutos pra configurar e fica bem num perfil de loja de carro.</p>
+
+        <p>Para qualquer uma das opções: <em>Editar perfil → Links → substituir o link atual e salvar.</em></p>
+      </div>
+    </div>
+
+    <!-- 03 RATIO -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">03</span>
+        <div class="diag-content">
+          <span class="diag-tag">Credibilidade</span>
+          <h3 class="diag-title">Você segue quase tanta gente quanto te segue</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>Os números hoje são <span class="hl">1.785 seguindo · 1.833 seguidores</span>. A diferença é de 48 contas. Quase 1 pra 1.</p>
+
+        <p>Pra quem visita o perfil pela primeira vez, essa proporção passa uma mensagem silenciosa: que a conta cresceu seguindo todo mundo de volta, não por ter conteúdo que vale acompanhar. É o tipo de detalhe que um comprador mais atento vai notar antes de decidir se manda mensagem ou não.</p>
+
+        <p>O ideal não é fazer nada drástico. É, aos poucos, <span class="hl">parar de seguir contas sem relação com o negócio</span>, seja perfis genéricos, contas inativas ou gente que foi seguida só pra seguir de volta. Se a loja deixar de seguir 20 a 30 contas por semana, em dois meses a proporção já vai parecer mais natural.</p>
+      </div>
+    </div>
+
+    <!-- 04 DESTAQUES -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">04</span>
+        <div class="diag-content">
+          <span class="diag-tag">Organização</span>
+          <h3 class="diag-title">Os destaques não respondem o que o comprador precisa saber</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>Os destaques são a primeira coisa que o visitante vê depois da bio. Hoje o perfil tem 6 destaques, mas dois estão duplicados, um tem nome confuso e os mais importantes para conversão estão faltando.</p>
+
+        <p class="dest-section-label">Como estão hoje</p>
+        <div class="dest-grid">
+          <div class="dest-item problem">
+            <span class="dest-icon">📅</span>
+            <p class="dest-name">Mega Feirão</p>
+            <p class="dest-desc">Evento específico. Não é destaque permanente</p>
+          </div>
+          <div class="dest-item problem">
+            <span class="dest-icon">❓</span>
+            <p class="dest-name">Destaques</p>
+            <p class="dest-desc">Nome confuso. O que tem aqui dentro?</p>
+          </div>
+          <div class="dest-item problem">
+            <span class="dest-icon">🚗</span>
+            <p class="dest-name">VENDAS 2</p>
+            <p class="dest-desc">Duplicado de "VENDAS". Um só já basta</p>
+          </div>
+          <div class="dest-item">
+            <span class="dest-icon">🤝</span>
+            <p class="dest-name">Parcerias</p>
+            <p class="dest-desc">OK, mas prioridade média</p>
+          </div>
+          <div class="dest-item">
+            <span class="dest-icon">🚘</span>
+            <p class="dest-name">VENDAS</p>
+            <p class="dest-desc">Bom. Manter com estoque atualizado</p>
+          </div>
+          <div class="dest-item">
+            <span class="dest-icon">🏪</span>
+            <p class="dest-name">Nossa Revenda</p>
+            <p class="dest-desc">Bom. Mostra a loja e quem está por trás</p>
+          </div>
+        </div>
+
+        <p class="dest-section-label" style="margin-top:20px">O que está faltando e deve ser criado</p>
+        <div class="dest-grid">
+          <div class="dest-item missing">
+            <span class="dest-icon">⭐</span>
+            <p class="dest-name">Depoimentos</p>
+            <p class="dest-desc">Faltando. O maior gatilho de confiança pra quem ainda não conhece a loja</p>
+          </div>
+          <div class="dest-item missing">
+            <span class="dest-icon">💳</span>
+            <p class="dest-name">Financiamento</p>
+            <p class="dest-desc">Faltando. Condições, financeiras parceiras, como funciona. A principal dúvida do comprador</p>
+          </div>
+          <div class="dest-item missing">
+            <span class="dest-icon">📍</span>
+            <p class="dest-name">Como Chegar</p>
+            <p class="dest-desc">Faltando. Endereço, mapa e horários de funcionamento</p>
+          </div>
+        </div>
+
+        <p style="margin-top: 14px;">Quem abre o perfil pela primeira vez precisa encontrar em segundos onde a loja fica, como funciona o financiamento e o que outros clientes acharam. Esses três destaques respondem as perguntas que mais travam a decisão de entrar em contato.</p>
+      </div>
+    </div>
+
+    <!-- 05 PROVA SOCIAL -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">05</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conversão</span>
+          <h3 class="diag-title">Ninguém vê que outros compraram e ficaram satisfeitos</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>A Cipriani tem um diferencial que poucas revendas da região conseguem mostrar: 42 anos de oficina mecânica na cidade, revisão completa em cada carro antes de vender, clientes que conhecem o Rafael e a família há anos. Isso gera confiança de um jeito que nenhum anúncio consegue replicar. Só que nada disso aparece no perfil.</p>
+
+        <p>Uma pessoa que ainda não conhece a loja e chega no Instagram não encontra uma foto de entrega, não vê um depoimento de cliente satisfeito, não sabe que alguém de Agrolândia ou da região já comprou aqui e ficou feliz. O perfil parece uma vitrine de veículos, não uma loja com história.</p>
+
+        <ul class="task-list" style="margin-top: 10px;">
+          <li><span class="hl">Foto de entrega a cada venda.</span> O cliente ao lado do carro, sorrindo. Pode ser com o celular. Isso vira o melhor conteúdo do perfil.</li>
+          <li>Pedir pra clientes que já compraram mandarem uma foto ou vídeo curto de depoimento. Guardar tudo no destaque "Depoimentos".</li>
+          <li>Mostrar a revisão mecânica antes de vender. Um vídeo de 30 segundos com o carro na elevação comunica mais do que qualquer texto de bio.</li>
+          <li>Pedir avaliações no Google Meu Negócio a cada venda. Fixar print das avaliações num destaque. Prova social que aparece fora do Instagram também.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 06 REELS -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">06</span>
+        <div class="diag-content">
+          <span class="diag-tag">Alcance Orgânico</span>
+          <h3 class="diag-title">Fotos de carro alcançam só quem já te segue</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>Com 259 posts publicados, o feed da Cipriani é quase todo composto de fotos de carros. As fotos estão bem produzidas. Só que o Instagram distribui foto de carro quase só pra quem já segue o perfil. Quem não conhece a loja não vê.</p>
+
+        <p>Reels são diferentes. É o único formato que o Instagram mostra pra pessoas que ainda não te seguem. Uma conta com 1.800 seguidores pode alcançar 10 a 15 mil pessoas na região com um Reel que engaje, sem gastar um centavo em anúncio.</p>
+
+        <ul class="task-list" style="margin-top: 10px;">
+          <li><span class="hl">Apresentação de HB20 ou Onix</span> — os carros mais pesquisados na região em 2025 e 2026. "Esse HB20 chegou ontem. Deixa eu te mostrar por dentro e por fora." Rafael na frente da câmera, 30 a 60 segundos.</li>
+          <li><span class="hl">A revisão antes de vender</span> — câmera na oficina, carro na elevação. "Todo carro que sai daqui passa por isso antes." 20 segundos. Esse conteúdo diferencia a Cipriani de qualquer outra revenda na região.</li>
+          <li><span class="hl">Entrega de carro com cliente</span> — o momento em que as chaves mudam de mão. Emoção real, compartilhável. Esse tipo de vídeo costuma ter o maior alcance orgânico.</li>
+          <li><span class="hl">"Quanto fica o financiamento de um Onix 2020?"</span> — Rafael na câmera, passando os números de forma simples. Conteúdo educacional que resolve a dúvida de quem ainda não foi até a loja.</li>
+        </ul>
+
+        <p style="margin-top: 14px;">Não precisa de produção cara. Um bom celular, luz natural e o Rafael falando de frente pra câmera já é suficiente pra começar.</p>
+      </div>
+    </div>
+
+    <!-- 07 HUMANIZAÇÃO -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">07</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conexão</span>
+          <h3 class="diag-title">Em cidade de 12 mil habitantes, as pessoas compram de quem conhecem</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>Em Agrolândia, a compra de um carro raramente acontece de forma anônima. O comprador já ouviu falar da loja, conhece alguém que comprou, ou passou na rua e viu a fachada. A confiança é o ativo mais valioso que uma revenda local tem.</p>
+
+        <p>No Instagram da Cipriani, o Rafael quase não aparece. O feed tem 259 posts de carros e artes. Ele aparece de forma evidente em 1 arte promocional. A loja tem nome, mas não tem rosto.</p>
+
+        <p>A família Cipriani tem 42 anos de história em Agrolândia. Isso é algo que nenhuma revenda aberta nos últimos anos vai conseguir copiar. E esse diferencial precisa aparecer no perfil.</p>
+
+        <ul class="task-list" style="margin-top: 10px;">
+          <li>Quem não conhece o Rafael pessoalmente começa a criar familiaridade antes de ir até a loja.</li>
+          <li>Quem já comprou antes reconhece o rosto e compartilha com quem está pensando em trocar de carro.</li>
+          <li>A história dos 42 anos de mecânica contada pelo próprio Rafael vale mais do que qualquer legenda de post.</li>
+        </ul>
+
+        <p style="margin-top: 14px;">O suficiente pra começar: Rafael aparece pelo menos 1 vez por semana no conteúdo. Pode ser apresentando um carro, mostrando a loja, contando uma história de cliente. Em Stories, pode aparecer todo dia mostrando o estoque chegando ou o dia a dia.</p>
+      </div>
+    </div>
+
+    <!-- 08 MIX DE CONTEÚDO -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">08</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conteúdo</span>
+          <h3 class="diag-title">O feed é uma vitrine. Falta ser uma loja com vida</h3>
+        </div>
+      </div>
+      <div class="diag-body">
+        <p>As fotos dos carros estão bem produzidas. Cenário, luz, ângulo, tudo dentro do padrão de lojas que o Rafael admira. Só que quando o feed é 90% foto de carro sem informação de preço ou forma de pagamento, ele para de gerar conversa. Vira catálogo.</p>
+
+        <p>Um mix que funciona melhor na prática pra loja de carro:</p>
+
+        <ul class="task-list" style="margin-top: 10px;">
+          <li><span class="hl">40% veículos com informação real</span> — não só foto bonita. Preço ou faixa de preço, quilometragem, forma de pagamento, CTA no final. "Tem interesse? Chama no WhatsApp."</li>
+          <li><span class="hl">30% prova social</span> — fotos de entrega, depoimentos, avaliações. "Mais um HB20 entregue, agora pra família aqui de Agrolândia."</li>
+          <li><span class="hl">20% educacional</span> — conteúdo que responde as dúvidas de quem está pensando em comprar. "Como funciona o financiamento aqui?", "O que verificar num seminovo antes de fechar."</li>
+          <li><span class="hl">10% bastidores</span> — Rafael, o Giane, a oficina, estoque chegando. Mostra que tem gente de verdade por trás da loja.</li>
+        </ul>
+
+        <p style="margin-top: 14px;">Com esse mix, o perfil para de parecer catálogo e começa a parecer uma loja com história, equipe e clientes satisfeitos.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PLANO -->
+<section class="section reveal">
+  <p class="section-label">03 · Plano de Implementação</p>
+  <h2 class="section-title">Por onde<br><em>começar</em></h2>
+
+  <div class="roadmap">
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <p class="rm-week">Semana 1 · Sem câmera</p>
+      <h3 class="rm-title">Ajustes de perfil</h3>
+      <ul class="rm-tasks">
+        <li>Atualizar o campo nome para "Cipriani Multimarcas | Agrolândia SC"</li>
+        <li>Reescrever a bio com as 4 linhas do framework (transformação, diferencial, endereço, CTA)</li>
+        <li>Adicionar o link de WhatsApp na bio (link pronto no card 02)</li>
+        <li>Reorganizar os destaques: apagar Mega Feirão, fundir VENDAS e VENDAS 2, renomear "Destaques" com nome claro</li>
+        <li>Criar destaque "Financiamento" com stories explicando condições e financeiras parceiras</li>
+        <li>Criar destaque "Como Chegar" com localização, endereço e horários</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <p class="rm-week">Semana 2 · Prova social</p>
+      <h3 class="rm-title">Mostrar que outros compraram</h3>
+      <ul class="rm-tasks">
+        <li>Pedir fotos pra clientes recentes: foto ao lado do carro, de preferência na frente da loja</li>
+        <li>Publicar a primeira foto de entrega com legenda que conte um pouco da história do cliente</li>
+        <li>Criar destaque "Depoimentos" e adicionar essas fotos</li>
+        <li>Pedir avaliações no Google Meu Negócio pra clientes que compraram recentemente</li>
+        <li>Fixar print das melhores avaliações no destaque de depoimentos</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <p class="rm-week">Semana 3 · Câmera ligada</p>
+      <h3 class="rm-title">Rafael na frente da câmera</h3>
+      <ul class="rm-tasks">
+        <li>Primeiro Reel: Rafael apresentando o HB20 ou Onix mais em destaque do estoque. Câmera do celular, luz natural</li>
+        <li>Vídeo curto mostrando a revisão mecânica antes de entregar o carro</li>
+        <li>Stories diários: estoque chegando, carro saindo, bastidores da loja</li>
+        <li>Começar a mandar mensagem de boas-vindas pra novos seguidores</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <p class="rm-week">Mês 2+</p>
+      <h3 class="rm-title">Ritmo contínuo</h3>
+      <ul class="rm-tasks">
+        <li>3 posts por semana: 1 veículo com informação, 1 prova social, 1 conteúdo com o Rafael</li>
+        <li>1 Reel por semana: apresentação de veículo, conteúdo educacional ou entrega</li>
+        <li>Stories todo dia com o dia a dia da loja</li>
+        <li>Reduzir o número de contas seguidas gradualmente (20 a 30 por semana)</li>
+        <li>Pedir avaliação no Google a cada venda fechada</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="footer-brand">Assessoria Raiz</p>
+  <p class="footer-sub">Diagnóstico preparado para @ciprianimultimarcas · Cipriani Multimarcas · Agrolândia, SC</p>
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+    const btn = card.querySelector('.diag-toggle');
+    btn.textContent = card.classList.contains('open') ? '×' : '+';
+  }
+
+  function copyLink(e) {
+    e.stopPropagation();
+    const link = document.getElementById('waLink').textContent;
+    navigator.clipboard.writeText(link).then(() => {
+      const btn = e.target;
+      btn.textContent = 'Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

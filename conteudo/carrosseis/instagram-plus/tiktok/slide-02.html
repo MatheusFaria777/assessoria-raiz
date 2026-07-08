@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #F5F5F5;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: #CBA135;
+    }
+    .progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(30,61,52,0.12);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 25%;
+      background: #CBA135;
+    }
+    .tag {
+      position: absolute;
+      top: 120px;
+      left: 86px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(30,61,52,0.45);
+    }
+    .content {
+      position: absolute;
+      left: 86px; right: 80px;
+      top: 200px; bottom: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 48px;
+    }
+    .headline-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      font-weight: 900;
+      color: #1E3D34;
+      line-height: 0.95;
+      letter-spacing: -2px;
+    }
+    .headline em {
+      font-style: italic;
+      font-weight: 400;
+      color: #CBA135;
+    }
+    .subhead {
+      font-family: 'Inter', sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: #2C2C2C;
+      line-height: 1.55;
+      max-width: 750px;
+    }
+    .impact-phrase {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-style: italic;
+      color: rgba(44,44,44,0.5);
+      border-left: 3px solid #CBA135;
+      padding-left: 20px;
+      line-height: 1.4;
+    }
+    .recursos-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .recurso-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #fff;
+      border: 1px solid rgba(30,61,52,0.1);
+      border-left: 4px solid #1E3D34;
+      border-radius: 6px;
+      padding: 20px 24px;
+    }
+    .recurso-check {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #1E3D34;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .recurso-check svg { width: 14px; height: 14px; }
+    .recurso-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #2C2C2C;
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="progress"><div class="progress-fill"></div></div>
+  <div class="tag">O que vem no pacote</div>
+  <div class="content">
+    <div class="headline-section">
+      <div class="headline">11 recursos.<br><em>Alguns vaidade.</em></div>
+      <div class="subhead">O Instagram lançou o Plus por R$10/mês em junho de 2026.</div>
+    </div>
+    <div class="impact-phrase">
+      Dois ou três mudam completamente o jogo.<br>Mas só pra um tipo específico de usuário.
+    </div>
+    <div class="recursos-list">
+      <div class="recurso-item">
+        <div class="recurso-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="#CBA135" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="recurso-text">Stories de até 48 horas</div>
+      </div>
+      <div class="recurso-item">
+        <div class="recurso-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="#CBA135" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="recurso-text">Prioridade na fila de stories</div>
+      </div>
+      <div class="recurso-item">
+        <div class="recurso-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="#CBA135" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="recurso-text">Ver quem revisou seu story</div>
+      </div>
+      <div class="recurso-item">
+        <div class="recurso-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="#CBA135" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="recurso-text">Listas ilimitadas de público</div>
+      </div>
+      <div class="recurso-item">
+        <div class="recurso-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="#CBA135" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="recurso-text">Fixar 6 posts no perfil</div>
+      </div>
+      <div class="recurso-item">
+        <div class="recurso-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="#CBA135" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="recurso-text">Ícone e fonte personalizados</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

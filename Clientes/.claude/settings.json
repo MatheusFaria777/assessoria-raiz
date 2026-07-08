@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'git -C \"$(git -C . rev-parse --show-toplevel 2>/dev/null)\" rev-parse --git-dir >/dev/null 2>&1 || exit 0; git -C \"$(git -C . rev-parse --show-toplevel)\" remote get-url origin >/dev/null 2>&1 || exit 0; git -C \"$(git -C . rev-parse --show-toplevel)\" add -A >/dev/null 2>&1; git -C \"$(git -C . rev-parse --show-toplevel)\" diff --staged --quiet && exit 0; git -C \"$(git -C . rev-parse --show-toplevel)\" commit -m \"auto-sync: $(date +\"%Y-%m-%d %H:%M\")\" >/dev/null 2>&1; git -C \"$(git -C . rev-parse --show-toplevel)\" push --quiet >/dev/null 2>&1; true'"
+          }
+        ]
+      }
+    ]
+  }
+}

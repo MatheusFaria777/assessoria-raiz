@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Digital · @esteticathiara</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #c9a77c;
+    --rose-light: #e8d5be;
+    --rose-dark: #9e7d57;
+    --cream: #faf7f3;
+    --dark: #1a1714;
+    --mid: #2e2a26;
+    --text: #4a4540;
+    --muted: #9a9088;
+    --ok: #7aab8e;
+    --warn: #c9a77c;
+    --bad: #b07070;
+    --line: rgba(201,167,124,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    background: radial-gradient(ellipse at 60% 30%, rgba(201,167,124,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,167,124,0.06) 0%, transparent 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a77c' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 24px;
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-handle {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--rose);
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  /* ── SNAPSHOT ATUAL ── */
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 60px;
+    border: 1px solid var(--line);
+  }
+
+  .snap-card {
+    padding: 32px 24px;
+    background: var(--mid);
+    text-align: center;
+  }
+
+  .snap-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--rose);
+    display: block;
+  }
+
+  .snap-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── ALERT ── */
+  .alert {
+    border-left: 2px solid var(--bad);
+    padding: 20px 24px;
+    background: rgba(176,112,112,0.06);
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--bad);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .alert p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── DIAGNOSIS CARDS ── */
+  .diag-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .diag-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+
+  .diag-card:hover { border-color: var(--rose); }
+
+  .diag-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--rose);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .diag-card:hover::before { transform: scaleY(1); }
+
+  .diag-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 0;
+  }
+
+  .diag-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--rose);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .diag-content { flex: 1; }
+
+  .diag-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .diag-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .diag-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .diag-card.open .diag-body {
+    max-height: 800px;
+    opacity: 1;
+  }
+
+  .diag-body p { margin-bottom: 12px; }
+  .diag-body p:last-child { margin-bottom: 0; }
+
+  .diag-toggle {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--rose);
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .diag-card.open .diag-toggle { transform: rotate(45deg); background: rgba(201,167,124,0.1); }
+
+  .pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid var(--rose);
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--rose);
+    margin: 4px 4px 4px 0;
+    letter-spacing: 1px;
+  }
+
+  .pill.ok { border-color: var(--ok); color: var(--ok); }
+  .pill.bad { border-color: var(--bad); color: var(--bad); }
+
+  /* ── BIO COMPARAÇÃO ── */
+  .bio-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 24px 0;
+  }
+
+  .bio-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+
+  .bio-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .bio-box.antes .bio-box-label { color: var(--bad); }
+  .bio-box.depois .bio-box-label { color: var(--ok); }
+
+  .bio-box p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* ── WA LINK ── */
+  .wa-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 32px 40px;
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .wa-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+
+  .wa-content {}
+
+  .wa-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ok);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .wa-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--rose-light);
+    word-break: break-all;
+    line-height: 1.6;
+    background: rgba(201,167,124,0.06);
+    padding: 10px 16px;
+    border-radius: 4px;
+    display: block;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  /* ── DESTAQUES GRID ── */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin: 24px 0;
+  }
+
+  .dest-item {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .dest-icon { font-size: 24px; display: block; margin-bottom: 10px; }
+
+  .dest-name {
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .dest-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── MÉTRICA ALERTA ── */
+  .metric-warn {
+    background: rgba(176,112,112,0.08);
+    border: 1px solid rgba(176,112,112,0.3);
+    padding: 32px 40px;
+    margin: 24px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .metric-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--bad);
+    line-height: 1;
+  }
+
+  .metric-explain {}
+
+  .metric-explain strong {
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .metric-explain p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 48px;
+    margin-top: 24px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--rose), transparent);
+  }
+
+  .rm-item {
+    padding: 0 0 48px 24px;
+    position: relative;
+  }
+
+  .rm-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rose);
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 0 2px var(--rose);
+  }
+
+  .rm-week {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rm-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .rm-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rm-tasks li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .rm-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--rose);
+    font-size: 11px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--rose);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+    margin: 0 40px;
+    opacity: 0.3;
+  }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .snapshot-grid { grid-template-columns: 1fr; }
+    .bio-compare { grid-template-columns: 1fr; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .metric-warn { grid-template-columns: 1fr; text-align: center; }
+    .diag-card { padding: 28px 20px; }
+    .diag-toggle { top: 28px; right: 20px; }
+    .section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Assessoria Raiz · Diagnóstico Digital</p>
+  <h1>Sua <em>presença</em><br>digital, analisada.</h1>
+  <p class="hero-sub">Uma análise completa do perfil @esteticathiara com recomendações concretas para posicionamento, autoridade e crescimento orgânico.</p>
+  <div class="hero-divider"></div>
+  <p class="hero-handle">@esteticathiara · Thiara Rodrigues · Caxias do Sul</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SNAPSHOT ATUAL -->
+<section class="section reveal">
+  <p class="section-label">01 · Situação Atual</p>
+  <h2 class="section-title">O que o perfil<br><em>comunica hoje</em></h2>
+
+  <div class="snapshot-grid">
+    <div class="snap-card">
+      <span class="snap-num">242</span>
+      <span class="snap-label">Posts publicados</span>
+    </div>
+    <div class="snap-card">
+      <span class="snap-num">1.725</span>
+      <span class="snap-label">Seguidores</span>
+    </div>
+    <div class="snap-card" style="border-left: 1px solid rgba(176,112,112,0.4);">
+      <span class="snap-num" style="color: var(--bad);">2.646</span>
+      <span class="snap-label" style="color: var(--bad);">Seguindo ⚠</span>
+    </div>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">⚠ Sinal de alerta: seguindo mais do que tem de seguidores</p>
+    <p>Quando uma conta segue mais pessoas do que possui seguidores, isso passa a impressão de que o crescimento foi por "follow-back" — seguir para ser seguido de volta. Para uma especialista em tecnologias estéticas premium, esse detalhe corrói credibilidade silenciosamente. Vamos falar sobre isso mais adiante.</p>
+  </div>
+
+  <div class="alert" style="border-left-color: var(--warn);">
+    <p class="alert-title" style="color: var(--warn);">⚠ Bio genérica para uma especialista rara</p>
+    <p>Você é pioneira em Laser PISOM e HIPRO em Caxias do Sul. A bio atual não comunica isso com a força que merece. Uma pessoa que chega ao seu perfil em 3 segundos não entende por que você é diferente de qualquer outra esteticista.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIAGNÓSTICO - CARDS EXPANDÍVEIS -->
+<section class="section reveal">
+  <p class="section-label">02 · Recomendações</p>
+  <h2 class="section-title"><em>O que mudar</em><br>e como fazer</h2>
+
+  <div class="diag-grid">
+
+    <!-- 1 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">01</div>
+        <div class="diag-content">
+          <span class="diag-tag">Posicionamento</span>
+          <h3 class="diag-title">Assumir o papel de especialista — não de esteticista genérica</h3>
+          <div class="diag-body">
+            <p>Você tem uma vantagem competitiva rara: domina tecnologias que pouquíssimas profissionais oferecem na sua cidade. Laser PISOM e HIPRO não são apenas serviços — são o seu território de autoridade. Isso precisa aparecer já no título do perfil e reforçado na bio.</p>
+
+            <div class="bio-compare">
+              <div class="bio-box antes">
+                <span class="bio-box-label">❌ Como está hoje</span>
+                <p>Thiara Rodrigues<br><br>"Realço sua beleza com as melhores tecnologias e técnicas para rejuvenescimento. Pioneira em Laser PISOM e HIPRO..."</p>
+              </div>
+              <div class="bio-box depois">
+                <span class="bio-box-label">✓ Como deve ficar</span>
+                <p><strong>Especialista em Laser PISOM & HIPRO</strong><br><br>"Pioneira em PISOM e HIPRO em Caxias do Sul.<br>Rejuvenescimento com tecnologia de ponta.<br>Resultados reais. Sem filtro.<br>📍 Caxias do Sul, RS"</p>
+              </div>
+            </div>
+
+            <p>O nome no título também pode ser ajustado: em vez de apenas "Thiara Rodrigues", considere <strong>"Thiara Rodrigues · Laser PISOM & HIPRO"</strong> — isso aparece nos resultados de busca do Instagram e é o primeiro contato antes de alguém entrar no perfil.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">02</div>
+        <div class="diag-content">
+          <span class="diag-tag">Autoridade & Localização</span>
+          <h3 class="diag-title">Mostrar quem você é e onde você está — com clareza</h3>
+          <div class="diag-body">
+            <p>Autoridade não se declara — se demonstra. Na bio, inclua elementos que sinalizem expertise concreta: formação relevante, certificações, anos de experiência ou o fato de ser pioneira. Além disso, a localização precisa ser explícita para atrair quem está buscando por profissionais na sua cidade.</p>
+            <p>Sugestão de destaque fixo: crie um highlight chamado <strong>"Certificações"</strong> ou <strong>"Formações"</strong> com fotos dos diplomas e cursos. Isso funciona como um currículo visual — qualquer pessoa que visitar o perfil pode checar sua qualificação em segundos, sem precisar te perguntar.</p>
+            <p>Dica adicional: se você atende mais de uma cidade ou região, crie também um destaque chamado <strong>"Onde Atendo"</strong> com um mapa ou lista simples das cidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">03</div>
+        <div class="diag-content">
+          <span class="diag-tag">Conversão</span>
+          <h3 class="diag-title">Link direto para o WhatsApp com mensagem pronta</h3>
+          <div class="diag-body">
+            <p>O perfil hoje não tem uma ação clara de contato. Quem quiser te chamar precisa sair do Instagram, abrir o WhatsApp e digitar o número manualmente — atrito desnecessário que faz pessoas desistirem. A solução é um link que abre o WhatsApp com uma mensagem pré-preenchida.</p>
+
+            <div class="wa-card">
+              <div class="wa-icon">💬</div>
+              <div class="wa-content">
+                <span class="wa-label">Link pronto para colocar na bio</span>
+                <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">Substitua o número (com DDD, sem espaços ou símbolos):</p>
+                <code class="wa-link">https://wa.me/554799999999?text=Ol%C3%A1%2C+Thiara%21+Vim+pelo+Instagram+e+gostaria+de+saber+mais+sobre+os+tratamentos+%F0%9F%8C%BF</code>
+                <p style="font-size:12px;color:var(--muted);margin-top:10px;">A mensagem que aparece para o cliente:<br><em style="color:var(--rose-light);">"Olá, Thiara! Vim pelo Instagram e gostaria de saber mais sobre os tratamentos 🌿"</em></p>
+              </div>
+            </div>
+
+            <p>Use um encurtador como <strong>bio.link</strong> ou <strong>linktr.ee</strong> se quiser centralizar mais de um link (agendamento online, WhatsApp, portfólio de resultados).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">04</div>
+        <div class="diag-content">
+          <span class="diag-tag">Destaques</span>
+          <h3 class="diag-title">Estruturar os destaques como uma vitrine de prova social</h3>
+          <div class="diag-body">
+            <p>Os destaques são o segundo passo depois da bio — é o que uma pessoa olha quando quer saber se pode confiar em você. Atualmente há destaques por serviço (HIPRO, botox, etc), mas falta o componente mais poderoso: <strong>prova social</strong>. Estrutura ideal:</p>
+
+            <div class="dest-grid">
+              <div class="dest-item">
+                <span class="dest-icon">⭐</span>
+                <div class="dest-name">Depoimentos</div>
+                <div class="dest-desc">Prints e vídeos de clientes. O mais importante.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">📸</span>
+                <div class="dest-name">Antes & Depois</div>
+                <div class="dest-desc">Resultados reais dos tratamentos.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">🎓</span>
+                <div class="dest-name">Certificações</div>
+                <div class="dest-desc">Diplomas, cursos e especializações.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">❓</span>
+                <div class="dest-name">Perguntas Freq.</div>
+                <div class="dest-desc">Dores e dúvidas comuns respondidas.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">📅</span>
+                <div class="dest-name">Dia a Dia</div>
+                <div class="dest-desc">Bastidores da clínica e rotina.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">🏆</span>
+                <div class="dest-name">Eventos</div>
+                <div class="dest-desc">Congressos, cursos, lançamentos.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">📍</span>
+                <div class="dest-name">Onde Atendo</div>
+                <div class="dest-desc">Localização e cidades atendidas.</div>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">📋</span>
+                <div class="dest-name">Catálogo</div>
+                <div class="dest-desc">Serviços com descrição e valores.</div>
+              </div>
+            </div>
+
+            <p>Capas dos destaques: use um padrão visual consistente (mesma cor de fundo, mesma fonte). Isso transforma a linha de destaques em algo que comunica profissionalismo antes mesmo de a pessoa clicar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">05</div>
+        <div class="diag-content">
+          <span class="diag-tag">Conexão & Presença</span>
+          <h3 class="diag-title">Stories diários para criar presença real, não só publicações</h3>
+          <div class="diag-body">
+            <p>Stories são o principal canal de conexão humana no Instagram. Enquanto posts no feed ficam no perfil para sempre, stories criam intimidade e rotina — as pessoas começam a te esperar. Profissionais que somem dos stories por dias perdem posicionamento no algoritmo e relevância na mente do seguidor.</p>
+            <p><strong>O que mostrar:</strong></p>
+            <p>→ Chegada à clínica e preparação do ambiente<br>
+            → Bastidores de um atendimento (com autorização da cliente)<br>
+            → Curiosidade sobre Laser PISOM ou HIPRO (1 por semana)<br>
+            → Resultado de antes/depois recente<br>
+            → Momento pessoal: um café, uma frase, um pensamento<br>
+            → Enquetes: "Você já conhecia o HIPRO?", "Qual sua maior insegurança com a pele?"</p>
+            <p>A presença humana é o que diferencia uma profissional de um catálogo de serviços. As pessoas não contratam um laser — elas contratam <em>você</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">06</div>
+        <div class="diag-content">
+          <span class="diag-tag">Credibilidade</span>
+          <h3 class="diag-title">Corrigir a proporção seguindo/seguidores</h3>
+          <div class="diag-body">
+            <div class="metric-warn">
+              <div class="metric-big">+900</div>
+              <div class="metric-explain">
+                <strong>Contas seguidas a mais do que seguidores</strong>
+                <p>Você segue 2.646 contas e tem 1.725 seguidores. Essa diferença de ~900 é um sinal claro de que o crescimento foi por follow-back — estratégia que funciona a curto prazo, mas que corrói a percepção de autoridade de quem chega no perfil pela primeira vez.</p>
+              </div>
+            </div>
+            <p>A solução prática: ao longo de alguns meses, faça um "unfollow gradual" das contas que não são relevantes para o seu nicho (fornecedores, colegas de área, referências de conteúdo são ok). O objetivo é chegar em uma proporção saudável — idealmente, seguidores ≥ seguindo.</p>
+            <p>Isso não precisa ser feito de uma vez. Mas é um ajuste importante para que o perfil comunique autoridade orgânica.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">07</div>
+        <div class="diag-content">
+          <span class="diag-tag">Alcance Orgânico</span>
+          <h3 class="diag-title">Reels como principal motor de crescimento</h3>
+          <div class="diag-body">
+            <p>O Instagram prioriza Reels na distribuição orgânica. Uma conta com 1.725 seguidores pode facilmente alcançar 10.000, 30.000 ou mais pessoas com um Reel bem executado — sem pagar nada. Isso não acontece com fotos estáticas ou carrosséis na mesma proporção.</p>
+            <p><strong>Ideias de Reels com alto potencial:</strong></p>
+            <p>→ "O que é o Laser PISOM e por que ele é diferente de tudo que você já conheceu"<br>
+            → "Antes e depois: 3 sessões de HIPRO em 30 segundos"<br>
+            → "3 mitos sobre depilação a laser que todo mundo acredita"<br>
+            → "Como é uma sessão de PISOM na prática — bastidores reais"<br>
+            → "Por que eu me especializei em tecnologias que poucos oferecem"</p>
+            <p>A frequência ideal é de 3-4 Reels por mês, com qualidade, ao invés de muitos sem consistência visual ou narrativa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <div class="diag-num">08</div>
+        <div class="diag-content">
+          <span class="diag-tag">Métricas</span>
+          <h3 class="diag-title">Acompanhar os números certos — não apenas curtidas</h3>
+          <div class="diag-body">
+            <p>Curtida é o indicador mais fraco de uma conta saudável. O que realmente importa para um negócio é diferente. Métricas para acompanhar mensalmente:</p>
+
+            <p><span class="pill ok">Alcance de não-seguidores</span><span class="pill ok">Salvamentos nos posts</span><span class="pill ok">Cliques no link da bio</span><span class="pill ok">Mensagens recebidas pelo perfil</span><span class="pill">Visualizações de stories</span><span class="pill">Taxa de retenção nos Reels</span></p>
+
+            <p>O Instagram fornece todas essas métricas gratuitamente na aba "Insights" da conta profissional. A cada mês, é possível saber com clareza o que está funcionando e o que precisa ser ajustado — sem achismo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section class="section reveal">
+  <p class="section-label">03 · Próximos Passos</p>
+  <h2 class="section-title">Plano de<br><em>implementação</em></h2>
+
+  <div class="roadmap">
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 1 · Estrutura do Perfil</div>
+      <h3 class="rm-title">Ajustes imediatos — sem câmera, sem produção</h3>
+      <ul class="rm-tasks">
+        <li>Atualizar título: "Thiara Rodrigues · Laser PISOM & HIPRO"</li>
+        <li>Reescrever a bio com posicionamento de especialista + localização</li>
+        <li>Criar e adicionar o link de WhatsApp com mensagem pronta</li>
+        <li>Criar capas padronizadas para os destaques</li>
+        <li>Reorganizar ordem dos destaques (Depoimentos e Antes/Depois na frente)</li>
+      </ul>
+    </div>
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 2 · Prova Social</div>
+      <h3 class="rm-title">Construir os destaques que convertem</h3>
+      <ul class="rm-tasks">
+        <li>Levantar prints e vídeos de depoimentos de clientes já atendidas</li>
+        <li>Fotografar ou selecionar fotos de antes/depois com qualidade</li>
+        <li>Fotografar diplomas e certificações para o destaque de Formação</li>
+        <li>Criar o destaque de Perguntas Frequentes com as 5-7 dúvidas mais comuns</li>
+      </ul>
+    </div>
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 3 · Conteúdo</div>
+      <h3 class="rm-title">Primeira leva de conteúdo estratégico</h3>
+      <ul class="rm-tasks">
+        <li>Gravar o primeiro Reel explicativo sobre PISOM ou HIPRO</li>
+        <li>Estabelecer rotina de stories diários (5-10 min por dia)</li>
+        <li>Definir paleta de cores e preset de edição para o feed</li>
+        <li>Começar unfollow gradual das contas irrelevantes</li>
+      </ul>
+    </div>
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Mês 2 em diante · Consistência</div>
+      <h3 class="rm-title">Manutenção e crescimento</h3>
+      <ul class="rm-tasks">
+        <li>3-4 Reels por mês com temas de autoridade e resultado</li>
+        <li>Stories todos os dias (pode ser simples — 1 ou 2 telas)</li>
+        <li>Revisão mensal de métricas no Instagram Insights</li>
+        <li>Atualizar destaques de depoimentos e antes/depois constantemente</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+  <p class="footer-logo">Assessoria Raiz</p>
+  <p class="footer-sub">Diagnóstico preparado para @esteticathiara · Thiara Rodrigues · Caxias do Sul</p>
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

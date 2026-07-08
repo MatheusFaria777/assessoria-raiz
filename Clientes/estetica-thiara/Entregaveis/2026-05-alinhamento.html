@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alinhamento Maio 2026 — Estética Thiara</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .stage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide-wrapper {
+    width: 1920px;
+    height: 1080px;
+    transform-origin: center center;
+    position: relative;
+  }
+
+  /* ── SLIDE BASE ── */
+  .slide {
+    display: none;
+    width: 1920px;
+    height: 1080px;
+    background: #1E3D34;
+    color: #F5F5F5;
+    position: absolute;
+    top: 0; left: 0;
+    padding: 80px 120px 80px 120px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide.active { display: flex; }
+
+  /* ── TIPOGRAFIA ── */
+  .slide-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 58px;
+    color: #CBA135;
+    line-height: 1.18;
+    margin-bottom: 44px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* ── TARJA DOURADA ── */
+  .tarja {
+    border-left: 6px solid #CBA135;
+    background: rgba(203,161,53,0.11);
+    padding: 22px 36px;
+    margin-top: 44px;
+    font-size: 30px;
+    color: #F5F5F5;
+    font-style: italic;
+    line-height: 1.55;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── LOGO E CONTADOR ── */
+  .logo {
+    position: absolute;
+    bottom: 36px;
+    right: 56px;
+    height: 68px;
+    opacity: 0.92;
+  }
+  .counter {
+    position: absolute;
+    bottom: 44px;
+    left: 60px;
+    font-size: 22px;
+    color: #CBA135;
+    opacity: 0.55;
+    letter-spacing: 3px;
+    font-weight: 400;
+  }
+
+  /* ── CAPA ── */
+  .slide-capa {
+    justify-content: flex-end;
+    padding-bottom: 120px;
+  }
+  .capa-eyebrow {
+    font-size: 26px;
+    color: #CBA135;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-bottom: 28px;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+  .capa-title {
+    font-size: 100px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1.0;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .capa-divider {
+    width: 80px;
+    height: 4px;
+    background: #CBA135;
+    margin-bottom: 36px;
+    border-radius: 2px;
+  }
+  .capa-client {
+    font-size: 44px;
+    color: #F5F5F5;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .capa-sub {
+    font-size: 28px;
+    color: #F5F5F5;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  /* ── BULLETS ── */
+  .bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    font-size: 33px;
+    line-height: 1.55;
+    color: #F5F5F5;
+    font-weight: 400;
+  }
+  .bullets li::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    background: #CBA135;
+    border-radius: 50%;
+    margin-top: 14px;
+  }
+
+  /* ── MÉTRICAS ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 0;
+  }
+  .metric-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 40px 36px;
+    border-top: 3px solid #CBA135;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .metric-value {
+    font-size: 72px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1;
+  }
+  .metric-label {
+    font-size: 24px;
+    color: #F5F5F5;
+    opacity: 0.65;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+  }
+  .metric-context {
+    font-size: 26px;
+    color: #F5F5F5;
+    opacity: 0.7;
+    line-height: 1.45;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+  }
+  .tl-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+  }
+  .tl-circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #CBA135;
+    min-width: 18px;
+    flex-shrink: 0;
+  }
+  .tl-circle.dim { background: rgba(203,161,53,0.38); }
+  .tl-line {
+    width: 2px;
+    height: 40px;
+    background: rgba(203,161,53,0.25);
+    margin-top: 4px;
+  }
+  .tl-content {
+    padding-bottom: 36px;
+    flex: 1;
+  }
+  .tl-period {
+    font-size: 24px;
+    color: #CBA135;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .tl-text {
+    font-size: 32px;
+    color: #F5F5F5;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* ── AÇÕES ── */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .action-num {
+    font-size: 60px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1;
+    min-width: 72px;
+    opacity: 0.7;
+  }
+  .action-text {
+    font-size: 34px;
+    color: #F5F5F5;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+  .action-text strong {
+    color: #CBA135;
+    font-weight: 700;
+  }
+
+  /* ── HIGHLIGHTS (FECHAMENTO) ── */
+  .highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-bottom: 0;
+  }
+  .hl-item {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .hl-dot {
+    width: 12px;
+    height: 12px;
+    background: #CBA135;
+    border-radius: 50%;
+    min-width: 12px;
+  }
+  .hl-text {
+    font-size: 38px;
+    color: #F5F5F5;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+  .hl-text b {
+    color: #CBA135;
+    font-weight: 700;
+  }
+
+  /* ── HINT ── */
+  .hint {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    font-size: 15px;
+    color: rgba(203,161,53,0.35);
+    font-family: Georgia, 'Times New Roman', serif;
+    pointer-events: none;
+    letter-spacing: 1px;
+  }
+
+  /* ── NAV BUTTONS ── */
+  .nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+    z-index: 10;
+  }
+  body:hover .nav { opacity: 1; }
+  .nav-btn {
+    background: rgba(203,161,53,0.15);
+    border: 1px solid rgba(203,161,53,0.35);
+    color: #CBA135;
+    padding: 8px 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: rgba(203,161,53,0.32); }
+</style>
+</head>
+<body>
+
+<div class="hint">F = tela cheia &nbsp;|&nbsp; ← → ou espaço</div>
+
+<div class="stage" id="stage">
+  <div class="slide-wrapper" id="wrapper">
+
+    <!-- ══ SLIDE 1 — CAPA ══ -->
+    <div class="slide slide-capa active" id="slide-1">
+      <div class="capa-eyebrow">Assessoria Raiz</div>
+      <div class="capa-title">Alinhamento<br>de Maio</div>
+      <div class="capa-divider"></div>
+      <div class="capa-client">Estética Thiara</div>
+      <div class="capa-sub">Resultados de Maio/2026 + Direção Estratégica</div>
+      <img class="logo" src="../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">1 / 6</div>
+    </div>
+
+    <!-- ══ SLIDE 2 — ABERTURA ══ -->
+    <div class="slide" id="slide-2">
+      <div class="slide-title">Menos de 30 dias de projeto.<br>Resultado positivo.</div>
+      <ul class="bullets">
+        <li>O projeto começou dia 12. Foram 20 dias de campanha, não 30.</li>
+        <li>Mesmo assim: 2 vendas fechadas, 52 oportunidades geradas, R$ 4.380 em faturamento atribuído.</li>
+        <li>O ritmo aponta que a meta mínima de 4 vendas está ao alcance com o mês completo.</li>
+      </ul>
+      <div class="tarja">O projeto é novo. O resultado já é real.</div>
+      <img class="logo" src="../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">2 / 6</div>
+    </div>
+
+    <!-- ══ SLIDE 3 — OS 3 NÚMEROS ══ -->
+    <div class="slide" id="slide-3">
+      <div class="slide-title">O que os números de maio dizem</div>
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-value">R$ 4.380</div>
+          <div class="metric-label">Faturamento</div>
+          <div class="metric-context">2 vendas fechadas. Ticket médio de R$ 2.190, acima do HiPro padrão. Upsell funcionando desde o primeiro mês.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">5,23x</div>
+          <div class="metric-label">ROAS</div>
+          <div class="metric-context">R$ 837 investidos. Cada real colocado nas campanhas voltou R$ 5,23. Em fase de aprendizado, antes de qualquer otimização.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">52</div>
+          <div class="metric-label">Leads</div>
+          <div class="metric-context">CPL de R$ 11,70. 26 leads por venda. O custo de gerar interesse está baixo. A oportunidade de melhoria está na conversão.</div>
+        </div>
+      </div>
+      <div class="tarja">R$ 837 investidos. R$ 4.380 em faturamento. Cada real colocado voltou R$ 5.</div>
+      <img class="logo" src="../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">3 / 6</div>
+    </div>
+
+    <!-- ══ SLIDE 4 — EVOLUÇÃO ══ -->
+    <div class="slide" id="slide-4">
+      <div class="slide-title">De onde a gente veio e para onde vai</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-circle dim"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-period">Abril/2026 — antes da parceria</div>
+            <div class="tl-text">R$ 42.000 em faturamento orgânico. Sem tráfego pago estruturado.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-circle"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-period">Maio/2026 — Mês 1</div>
+            <div class="tl-text">Configuração e primeiras campanhas. 20 dias. 2 vendas. R$ 4.380 atribuído ao tráfego.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-col">
+            <div class="tl-circle dim"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-period">Junho em diante</div>
+            <div class="tl-text">Primeiro mês completo. Base de dados para otimizar e acelerar.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tarja">Quem entra no tráfego pago no mês 1 está plantando. A colheita acelera do mês 2 em diante.</div>
+      <img class="logo" src="../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">4 / 6</div>
+    </div>
+
+    <!-- ══ SLIDE 5 — PRÓXIMO MÊS ══ -->
+    <div class="slide" id="slide-5">
+      <div class="slide-title">O que a gente faz agora</div>
+      <div class="actions">
+        <div class="action-item">
+          <div class="action-num">01</div>
+          <div class="action-text">
+            <strong>Escalar o que já funciona.</strong> Pegar os criativos com melhor desempenho e criar novas versões a partir deles, mantendo o que já converte e aumentando o volume.
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">02</div>
+          <div class="action-text">
+            <strong>Olhar para o atendimento.</strong> Com 26 leads por venda, a gente vai analisar o que acontece nas conversas para identificar onde a venda está travando e como melhorar a conversão.
+          </div>
+        </div>
+      </div>
+      <div class="tarja">Com o mês completo e mais criativos rodando, o ritmo de vendas tende a dobrar.</div>
+      <img class="logo" src="../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">5 / 6</div>
+    </div>
+
+    <!-- ══ SLIDE 6 — FECHAMENTO ══ -->
+    <div class="slide" id="slide-6">
+      <div class="slide-title">Maio fechado.<br>Junho começa com o motor aquecido.</div>
+      <div class="highlights">
+        <div class="hl-item">
+          <div class="hl-dot"></div>
+          <div class="hl-text"><b>52 leads</b> gerados a R$ 11,70 cada</div>
+        </div>
+        <div class="hl-item">
+          <div class="hl-dot"></div>
+          <div class="hl-text">ROAS de <b>5,23x</b>: R$ 5 de volta para cada R$ 1 investido</div>
+        </div>
+        <div class="hl-item">
+          <div class="hl-dot"></div>
+          <div class="hl-text"><b>+81 seguidores</b> qualificados no perfil</div>
+        </div>
+      </div>
+      <div class="tarja">Mês 1 feito. Agora a gente acelera.</div>
+      <img class="logo" src="../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">6 / 6</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn" onclick="prev()">← Anterior</button>
+  <button class="nav-btn" onclick="next()">Próximo →</button>
+</div>
+
+<script>
+  let current = 1;
+  const total = 6;
+
+  function scale() {
+    const wrapper = document.getElementById('wrapper');
+    const sx = window.innerWidth / 1920;
+    const sy = window.innerHeight / 1080;
+    const s = Math.min(sx, sy);
+    wrapper.style.transform = `scale(${s})`;
+    wrapper.style.marginLeft = ((window.innerWidth - 1920 * s) / 2) + 'px';
+    wrapper.style.marginTop  = ((window.innerHeight - 1080 * s) / 2) + 'px';
+  }
+
+  function show(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.getElementById('slide-' + n).classList.add('active');
+    current = n;
+  }
+
+  function next() { if (current < total) show(current + 1); }
+  function prev() { if (current > 1)    show(current - 1); }
+
+  document.getElementById('stage').addEventListener('click', function(e) {
+    if (!e.target.classList.contains('nav-btn')) next();
+  });
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft')                   { e.preventDefault(); prev(); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  window.addEventListener('resize', scale);
+  scale();
+</script>
+</body>
+</html>

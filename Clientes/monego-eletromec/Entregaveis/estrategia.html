@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estratégia — Mônego Eletromec</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde: #1E3D34;
+      --branco: #F5F5F5;
+      --dourado: #CBA135;
+      --card: #254337;
+      --borda: #356050;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--verde);
+      color: var(--branco);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 56px 16px 96px;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .header .tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 14px;
+    }
+    .header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .header .sub {
+      font-size: 14px;
+      opacity: 0.55;
+    }
+
+    /* Section */
+    section { margin-bottom: 56px; }
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 23px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    p { opacity: 0.8; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 12px;
+    }
+    .card:last-child { margin-bottom: 0; }
+
+    /* PCZ */
+    .pcz-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 14px;
+    }
+    .pcz-row:last-child { border-bottom: none; }
+    .pcz-row.total {
+      font-weight: 600;
+      font-size: 15px;
+      padding-top: 14px;
+      margin-top: 6px;
+      border-top: 1px solid var(--borda);
+      border-bottom: none;
+    }
+    .pcz-row .label { opacity: 0.65; }
+    .pcz-row .value { font-family: 'Fraunces', serif; }
+    .pcz-highlight {
+      background: rgba(203,161,53,0.10);
+      border: 1px solid rgba(203,161,53,0.25);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .pcz-highlight strong { color: var(--dourado); }
+
+    /* Canais */
+    .canais-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .canal-card {
+      background: var(--card);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .canal-icon { font-size: 22px; margin-bottom: 10px; }
+    .canal-name {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .canal-desc { font-size: 13px; opacity: 0.6; line-height: 1.5; }
+    .canal-tag {
+      display: inline-block;
+      background: rgba(203,161,53,0.15);
+      color: var(--dourado);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* Expectativa */
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .exp-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 8px;
+    }
+    .exp-text { font-size: 14px; opacity: 0.75; line-height: 1.6; }
+
+    /* Métricas */
+    .metrica-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .metrica-item:first-child { padding-top: 0; }
+    .metrica-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .metrica-num {
+      background: var(--dourado);
+      color: var(--verde);
+      font-weight: 700;
+      font-size: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .metrica-title { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+    .metrica-desc { font-size: 13px; opacity: 0.6; }
+
+    /* LP Checklist */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .checklist li:first-child { padding-top: 0; }
+    .checklist li:last-child { border-bottom: none; padding-bottom: 0; }
+    .check-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--dourado);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .item-label { font-weight: 500; font-size: 14px; margin-bottom: 3px; }
+    .item-desc { font-size: 12px; opacity: 0.55; line-height: 1.5; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 4px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--borda);
+    }
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding-bottom: 28px;
+      position: relative;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--borda);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .tl-dot.active {
+      border-color: var(--dourado);
+      background: rgba(203,161,53,0.15);
+    }
+    .tl-title { font-weight: 600; font-size: 14px; margin-bottom: 3px; margin-top: 6px; }
+    .tl-desc { font-size: 13px; opacity: 0.55; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.3;
+      margin-top: 72px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 500px) {
+      .canais-grid { grid-template-columns: 1fr; }
+      .header h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="tag">Assessoria Raiz · Estratégia de Tráfego</div>
+    <h1>Mônego Eletromec</h1>
+    <div class="sub">Cristian Mônego · Caxias do Sul, RS · Julho de 2026</div>
+  </div>
+
+  <!-- PCZ -->
+  <section>
+    <div class="section-label">Publicidade a Custo Zero</div>
+    <h2>13 horas de serviço cobrem o investimento inteiro</h2>
+    <p>Com R$200/hora e margem de 90%, cada hora trabalhada gera R$180 líquido. Para cobrir o investimento mensal, são necessárias 13 horas faturadas.</p>
+
+    <div class="card">
+      <div class="pcz-row">
+        <span class="label">Tráfego pago</span>
+        <span class="value">R$ 500</span>
+      </div>
+      <div class="pcz-row">
+        <span class="label">Gestão</span>
+        <span class="value">R$ 1.797</span>
+      </div>
+      <div class="pcz-row total">
+        <span class="label">Total mensal</span>
+        <span class="value">R$ 2.297</span>
+      </div>
+    </div>
+
+    <div class="pcz-highlight">
+      13h × R$200 = R$2.600 bruto · com 90% de margem: <strong>R$2.340 líquido</strong>. O investimento está coberto. Tudo que vier além disso é lucro direto.
+    </div>
+  </section>
+
+  <!-- Canais -->
+  <section>
+    <div class="section-label">Canais</div>
+    <h2>Como o investimento vai trabalhar</h2>
+
+    <div class="canais-grid">
+      <div class="canal-card">
+        <div class="canal-tag">100% da verba</div>
+        <div class="canal-icon">🔍</div>
+        <div class="canal-name">Google Ads Search</div>
+        <div class="canal-desc">Captura quem já está buscando manutenção industrial. Alta intenção de compra. Aparece no momento exato em que a indústria tem um problema.</div>
+      </div>
+      <div class="canal-card">
+        <div class="canal-tag">Sem custo por clique</div>
+        <div class="canal-icon">📍</div>
+        <div class="canal-name">Google Meu Negócio</div>
+        <div class="canal-desc">Canal paralelo. Aparece no Maps pra buscas locais. Avaliações de clientes atuais amplificam o alcance sem custo adicional.</div>
+      </div>
+    </div>
+
+    <p style="font-size: 13px; opacity: 0.55;">Diferente do Instagram, o Google Ads não cria demanda. Ele captura demanda que já existe. Quando um gerente de produção tem uma máquina parada, ele abre o Google, não o feed.</p>
+  </section>
+
+  <!-- Expectativa -->
+  <section>
+    <div class="section-label">Expectativa</div>
+    <h2>Volume baixo. Qualidade alta.</h2>
+    <p>Manutenção industrial não tem o mesmo volume de buscas que um produto de consumo. Isso é esperado para o nicho.</p>
+
+    <div class="exp-card">
+      <div class="exp-label">O que esperar no início</div>
+      <div class="exp-text">Menos leads do que em campanhas B2C. Mas cada lead é uma empresa com uma máquina parada e uma decisão que precisa ser tomada hoje. A taxa de conversão e o ticket justificam com folga o custo de aquisição. 1 cliente fechado pode valer semanas de faturamento.</div>
+    </div>
+  </section>
+
+  <!-- Métricas -->
+  <section>
+    <div class="section-label">Métricas</div>
+    <h2>O que acompanhar</h2>
+
+    <div class="card">
+      <div class="metrica-item">
+        <div class="metrica-num">1</div>
+        <div>
+          <div class="metrica-title">Leads que chegaram</div>
+          <div class="metrica-desc">Quantas empresas entraram em contato via tráfego pago no mês.</div>
+        </div>
+      </div>
+      <div class="metrica-item">
+        <div class="metrica-num">2</div>
+        <div>
+          <div class="metrica-title">Vendas vindas do tráfego</div>
+          <div class="metrica-desc">Quantos desses contatos viraram projeto fechado. Esse número alimenta o relatório mensal.</div>
+        </div>
+      </div>
+      <div class="metrica-item">
+        <div class="metrica-num">3</div>
+        <div>
+          <div class="metrica-title">Faturamento gerado</div>
+          <div class="metrica-desc">Quanto em R$ veio dos clientes que chegaram pelo tráfego. É o número que responde se o investimento valeu.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landing Page -->
+  <section>
+    <div class="section-label">Landing Page</div>
+    <h2>O que precisamos para montar a página</h2>
+    <p>Antes de subir as campanhas, a landing page precisa estar pronta e aprovada. Para que fique boa de verdade, precisamos dos materiais abaixo.</p>
+
+    <div class="card">
+      <ul class="checklist">
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <div class="item-label">Logo</div>
+            <div class="item-desc">Arquivo vetorial (.ai, .svg) ou PNG com fundo transparente, em alta resolução.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <div class="item-label">Identidade visual</div>
+            <div class="item-desc">Paleta de cores e fontes, se já existirem. Se não tiver ainda, a gente define junto antes de começar.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <div class="item-label">Foto do Cristian</div>
+            <div class="item-desc">Uma boa foto transmite confiança em serviços técnicos. Não precisa ser estúdio, mas precisa ter boa iluminação e qualidade.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <div class="item-label">Fotos das máquinas em serviço</div>
+            <div class="item-desc">Laser, dobradeira, plasma. Reparo em andamento, equipamento aberto, antes e depois. Quanto mais material, melhor o resultado visual da página.</div>
+          </div>
+        </li>
+        <li>
+          <div class="check-box"></div>
+          <div>
+            <div class="item-label">WhatsApp de contato</div>
+            <div class="item-desc">Número que vai receber os leads. Confirmar se é o mesmo já usado no negócio.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Próximos Passos -->
+  <section>
+    <div class="section-label">Próximos Passos</div>
+    <h2>O que acontece a partir de agora</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot active">📋</div>
+        <div>
+          <div class="tl-title">Reunião estratégica</div>
+          <div class="tl-desc">01/07/2026 · hoje</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">📦</div>
+        <div>
+          <div class="tl-title">Você nos envia os materiais da LP</div>
+          <div class="tl-desc">Logo, fotos e identidade visual. Quanto antes chegar, mais rápido a gente avança.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">🖥️</div>
+        <div>
+          <div class="tl-title">Desenvolvimento da landing page</div>
+          <div class="tl-desc">7 a 14 dias após receber os materiais. Você revisa e aprova antes de publicar.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">⚙️</div>
+        <div>
+          <div class="tl-title">Configuração do Google Ads e GMB</div>
+          <div class="tl-desc">Conta, rastreamento de conversões e otimização do perfil no Maps em paralelo.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">🏁</div>
+        <div>
+          <div class="tl-title">Campanhas no ar</div>
+          <div class="tl-desc">Em até 3 dias úteis após a aprovação da landing page.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">📊</div>
+        <div>
+          <div class="tl-title">Relatório de 7 dias</div>
+          <div class="tl-desc">Primeiros dados. A gente começa a ajustar com base no que aparecer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Assessoria Raiz · Julho 2026</div>
+
+</div>
+</body>
+</html>

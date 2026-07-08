@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Alinhamento Podium Racing — Maio 2026</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; background: #0a0a0a; font-family: Georgia, 'Times New Roman', serif; overflow: hidden; }
+
+/* ── Deck ── */
+.deck { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.slide { display: none; width: 1920px; height: 1080px; background: #1E3D34; color: #F5F5F5; position: relative; flex-shrink: 0; }
+.slide.active { display: flex; }
+
+/* ── Escala responsiva ── */
+.deck-inner { transform-origin: top left; }
+
+/* ── Elementos comuns ── */
+.logo { position: absolute; bottom: 40px; right: 60px; width: 120px; opacity: .9; }
+.num  { position: absolute; bottom: 44px; left: 60px; font-size: 22px; color: #CBA135; font-weight: bold; letter-spacing: 2px; }
+.tarja { border-left: 6px solid #CBA135; padding: 20px 28px; background: rgba(203,161,53,.12); font-size: 30px; color: #CBA135; font-style: italic; line-height: 1.4; }
+
+/* ── Navegação ── */
+.nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 100; opacity: 0; transition: opacity .3s; }
+body:hover .nav { opacity: 1; }
+.nav button { background: rgba(203,161,53,.2); border: 1px solid #CBA135; color: #CBA135; padding: 10px 24px; font-size: 18px; cursor: pointer; font-family: Georgia, serif; border-radius: 2px; transition: background .2s; }
+.nav button:hover { background: rgba(203,161,53,.4); }
+.nav .counter { color: rgba(245,245,245,.5); font-size: 16px; display: flex; align-items: center; padding: 0 8px; }
+
+/* ─────────── SLIDE 1 — CAPA ─────────── */
+#s1 { flex-direction: column; align-items: center; justify-content: center; }
+#s1 .eyebrow { font-size: 28px; letter-spacing: 6px; color: #CBA135; font-weight: bold; text-transform: uppercase; }
+#s1 .linha   { width: 120px; height: 3px; background: #CBA135; margin: 24px auto; }
+#s1 .titulo  { font-size: 96px; font-weight: bold; text-align: center; line-height: 1.1; }
+#s1 .sub     { font-size: 36px; color: #CBA135; text-align: center; margin-top: 16px; font-weight: normal; }
+#s1 .logo    { width: 140px; }
+
+/* ─────────── SLIDE 2 — ABERTURA ─────────── */
+#s2 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s2 .titulo  { font-size: 58px; font-weight: bold; color: #CBA135; line-height: 1.15; max-width: 1500px; }
+#s2 .bullets { display: flex; flex-direction: column; gap: 28px; margin-top: 28px; }
+#s2 .bullet  { display: flex; align-items: flex-start; gap: 20px; font-size: 34px; line-height: 1.3; }
+#s2 .dot     { width: 12px; height: 12px; background: #CBA135; border-radius: 50%; flex-shrink: 0; margin-top: 12px; }
+
+/* ─────────── SLIDE 3 — EVOLUÇÃO ─────────── */
+#s3 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s3 .titulo   { font-size: 62px; font-weight: bold; color: #CBA135; }
+#s3 table     { width: 100%; border-collapse: collapse; margin-top: 36px; }
+#s3 th        { font-size: 28px; color: #CBA135; font-weight: bold; text-align: left; padding: 14px 24px; border-bottom: 2px solid #CBA135; }
+#s3 th:not(:first-child) { text-align: center; }
+#s3 td        { font-size: 34px; padding: 18px 24px; border-bottom: 1px solid rgba(245,245,245,.15); }
+#s3 td:not(:first-child) { text-align: center; }
+#s3 td:first-child { color: #CBA135; font-weight: bold; }
+#s3 .dest     { color: #CBA135; font-weight: bold; }
+
+/* ─────────── SLIDE 4 — ROAS ─────────── */
+#s4 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s4 .titulo   { font-size: 62px; font-weight: bold; color: #CBA135; }
+#s4 .meses    { display: flex; gap: 48px; margin-top: 40px; align-items: flex-end; }
+#s4 .mes      { display: flex; flex-direction: column; align-items: center; flex: 1; }
+#s4 .mes-nome { font-size: 26px; color: #F5F5F5; margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
+#s4 .rn       { font-size: 96px; font-weight: bold; color: #CBA135; line-height: 1; }
+#s4 .rl       { font-size: 24px; color: rgba(245,245,245,.6); margin-top: 8px; }
+#s4 .seta     { font-size: 48px; color: #CBA135; align-self: center; margin-bottom: 40px; }
+#s4 .dest .rn { font-size: 120px; color: #F5F5F5; }
+#s4 .dest .mes-nome { color: #CBA135; }
+
+/* ─────────── SLIDE 5 — CONVERSÃO ─────────── */
+#s5 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s5 .titulo   { font-size: 58px; font-weight: bold; color: #CBA135; }
+#s5 .metricas { display: flex; gap: 60px; margin-top: 40px; }
+#s5 .metrica  { flex: 1; display: flex; flex-direction: column; }
+#s5 .mn       { font-size: 24px; color: rgba(245,245,245,.65); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+#s5 .ml       { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+#s5 .ant      { font-size: 38px; color: rgba(245,245,245,.4); text-decoration: line-through; }
+#s5 .arr      { font-size: 26px; color: #CBA135; }
+#s5 .atual    { font-size: 68px; font-weight: bold; color: #CBA135; }
+
+/* ─────────── SLIDE 6 — EXPLICA ─────────── */
+#s6 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s6 .titulo   { font-size: 62px; font-weight: bold; color: #CBA135; }
+#s6 .corpo    { font-size: 36px; line-height: 1.6; max-width: 1500px; margin-top: 36px; }
+#s6 .analogia { border-left: 6px solid #CBA135; padding: 28px 36px; background: rgba(203,161,53,.12); font-size: 34px; font-style: italic; line-height: 1.5; margin-top: 36px; }
+
+/* ─────────── SLIDE 7 — PAUSAR ─────────── */
+#s7 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s7 .titulo   { font-size: 60px; font-weight: bold; color: #CBA135; }
+#s7 .items    { display: flex; flex-direction: column; gap: 30px; margin-top: 36px; }
+#s7 .item     { display: flex; align-items: flex-start; gap: 24px; font-size: 34px; line-height: 1.35; }
+#s7 .icon     { font-size: 30px; flex-shrink: 0; margin-top: 2px; }
+
+/* ─────────── SLIDE 8 — PROPOSTA ─────────── */
+#s8 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s8 .titulo   { font-size: 62px; font-weight: bold; color: #CBA135; }
+#s8 .sub      { font-size: 32px; color: rgba(245,245,245,.7); margin-top: 10px; }
+#s8 .items    { display: flex; flex-direction: column; gap: 36px; margin-top: 40px; }
+#s8 .item     { display: flex; align-items: flex-start; gap: 24px; font-size: 36px; line-height: 1.35; }
+#s8 .check    { font-size: 34px; color: #CBA135; flex-shrink: 0; }
+
+/* ─────────── SLIDE 9 — FECHAMENTO ─────────── */
+#s9 { flex-direction: column; justify-content: space-between; padding: 70px 120px; }
+#s9 .titulo   { font-size: 62px; font-weight: bold; color: #CBA135; }
+#s9 .grid     { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
+#s9 .dest     { display: flex; align-items: flex-start; gap: 20px; font-size: 32px; line-height: 1.35; }
+#s9 .check    { color: #CBA135; font-size: 30px; flex-shrink: 0; margin-top: 2px; }
+#s9 .linha    { width: 100%; height: 2px; background: rgba(203,161,53,.3); }
+#s9 .frase    { font-size: 38px; color: #CBA135; font-style: italic; text-align: center; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<div class="deck">
+<div class="deck-inner" id="deckInner">
+
+<!-- SLIDE 1 -->
+<div class="slide active" id="s1">
+  <span class="eyebrow">Assessoria Raiz</span>
+  <div class="linha"></div>
+  <div class="titulo">Alinhamento<br>Podium Racing</div>
+  <div class="sub">3 Meses de Projeto — Resultados + Próximos Passos</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">01</span>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide" id="s2">
+  <div>
+    <div class="titulo">Em 3 meses, cada cliente ficou 37% mais barato.</div>
+    <div class="bullets">
+      <div class="bullet"><span class="dot"></span><span>O custo de aquisição caiu de R$456 para R$287 — sem mudar o produto, sem aumentar a equipe</span></div>
+      <div class="bullet"><span class="dot"></span><span>Precisamos da metade dos leads para fechar uma venda — o público está mais qualificado</span></div>
+      <div class="bullet"><span class="dot"></span><span>O faturamento se manteve mesmo com a gente reduzindo o investimento mês a mês</span></div>
+    </div>
+  </div>
+  <div class="tarja">A operação ficou mais eficiente a cada mês. Esse é o sinal de uma máquina que aprendeu.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">02</span>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide" id="s3">
+  <div class="titulo">Mais resultado. Menos verba.</div>
+  <table>
+    <tr><th>Mês</th><th>Investimento</th><th>Leads</th><th>Faturamento</th><th>ROAS</th></tr>
+    <tr><td>Fevereiro</td><td>R$1.368</td><td>280</td><td>R$41.000</td><td>29,97x</td></tr>
+    <tr><td>Março</td><td>R$1.151</td><td>201</td><td>R$42.500</td><td class="dest">36,93x ↑</td></tr>
+    <tr><td>Abril</td><td>R$1.015</td><td>112</td><td>R$28.980+</td><td>28,5x+</td></tr>
+  </table>
+  <div class="tarja">Em 3 meses, investimos 26% menos e mantivemos o retorno.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">03</span>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide" id="s4">
+  <div class="titulo">O que cada R$1 investido gerou.</div>
+  <div class="meses">
+    <div class="mes"><div class="mes-nome">Fevereiro</div><div class="rn">29,97x</div><div class="rl">R$1 → R$29,97</div></div>
+    <div class="seta">→</div>
+    <div class="mes dest"><div class="mes-nome">Março</div><div class="rn">36,93x</div><div class="rl">R$1 → R$36,93</div></div>
+    <div class="seta">→</div>
+    <div class="mes"><div class="mes-nome">Abril</div><div class="rn">28,5x+</div><div class="rl">dados parciais</div></div>
+  </div>
+  <div class="tarja">Em 3 meses, R$3.534 investidos geraram mais de R$112.000 em faturamento confirmado.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">04</span>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide" id="s5">
+  <div class="titulo">A Podium não precisa de mais leads. Precisa dos leads certos.</div>
+  <div class="metricas">
+    <div class="metrica"><div class="mn">Leads por Venda</div><div class="ml"><span class="ant">93</span><span class="arr">→</span><span class="atual">50</span></div></div>
+    <div class="metrica"><div class="mn">Taxa de Conversão</div><div class="ml"><span class="ant">1,07%</span><span class="arr">→</span><span class="atual">1,99%</span></div></div>
+    <div class="metrica"><div class="mn">CAC</div><div class="ml"><span class="ant">R$456</span><span class="arr">→</span><span class="atual">R$287</span></div></div>
+  </div>
+  <div class="tarja">Como uma loja que parou de atender todo mundo e passou a receber só quem veio comprar.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">05</span>
+</div>
+
+<!-- SLIDE 6 -->
+<div class="slide" id="s6">
+  <div class="titulo">O algoritmo aprende. E o que ele aprende, fica.</div>
+  <div class="corpo">Cada mês de campanha ensinou o Meta Ads quem compra moto na Podium Racing — o perfil, a faixa de renda, o comportamento, o momento certo de aparecer. Esse conhecimento não se compra. Ele se constrói com tempo.</div>
+  <div class="analogia">"É como ter um vendedor que passou 3 meses aprendendo exatamente quem compra moto na Podium — o perfil, o jeito de abordar, o momento certo. Demitir agora significa contratar um vendedor novo que vai começar do zero."</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">06</span>
+</div>
+
+<!-- SLIDE 7 -->
+<div class="slide" id="s7">
+  <div class="titulo">Pausar não é parar no tempo. É voltar para o início.</div>
+  <div class="items">
+    <div class="item"><span class="icon">⚠</span><span>O algoritmo perde o histórico de otimização — volta ao estágio de aprendizado</span></div>
+    <div class="item"><span class="icon">⚠</span><span>Os leads param no primeiro dia de pausa</span></div>
+    <div class="item"><span class="icon">⚠</span><span>Reiniciar custa de 60 a 90 dias para voltar à performance atual</span></div>
+    <div class="item"><span class="icon">⚠</span><span>O concorrente que continuar anunciando ocupa o espaço que a Podium deixar vago</span></div>
+  </div>
+  <div class="tarja">O mercado não pausa enquanto a gente descansa.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">07</span>
+</div>
+
+<!-- SLIDE 8 -->
+<div class="slide" id="s8">
+  <div>
+    <div class="titulo">Manter a máquina aquecida.</div>
+    <div class="sub">A Assessoria Raiz entende que o momento da Podium é de expansão. Por isso, a proposta é simples:</div>
+  </div>
+  <div class="items">
+    <div class="item"><span class="check">✔</span><span>Manter as campanhas rodando, mesmo com investimento reduzido se necessário</span></div>
+    <div class="item"><span class="check">✔</span><span>A gente ajusta a operação ao ritmo de vocês — sem pressão</span></div>
+    <div class="item"><span class="check">✔</span><span>Os leads continuam chegando — vocês atendem no tempo que conseguem</span></div>
+  </div>
+  <div class="tarja">Uma moto parada enferruja. Uma campanha parada esquece.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">08</span>
+</div>
+
+<!-- SLIDE 9 -->
+<div class="slide" id="s9">
+  <div class="titulo">O que a gente construiu em 3 meses:</div>
+  <div class="grid">
+    <div class="dest"><span class="check">✔</span><span>R$112.000+ em faturamento gerado pelos anúncios</span></div>
+    <div class="dest"><span class="check">✔</span><span>ROAS médio de 31x — cada R$1 virou R$31</span></div>
+    <div class="dest"><span class="check">✔</span><span>CAC 37% menor do que no primeiro mês</span></div>
+    <div class="dest"><span class="check">✔</span><span>Um algoritmo calibrado para o comprador de moto da Podium</span></div>
+  </div>
+  <div class="linha"></div>
+  <div class="frase">Esses 3 meses foram a fase de aprendizado.<br>A fase que vem agora é a colheita.</div>
+  <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png">
+  <span class="num">09</span>
+</div>
+
+</div><!-- deck-inner -->
+</div><!-- deck -->
+
+<!-- Navegação -->
+<div class="nav">
+  <button onclick="prev()">← Anterior</button>
+  <span class="counter" id="counter">1 / 9</span>
+  <button onclick="next()">Próximo →</button>
+  <button onclick="toggleFullscreen()" style="margin-left:12px;">⛶ Tela cheia</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+
+function show(n) {
+  slides[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+}
+
+function next() { show(cur + 1); }
+function prev() { show(cur - 1); }
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+  else document.exitFullscreen();
+}
+
+function scale() {
+  const inner = document.getElementById('deckInner');
+  const sw = window.innerWidth, sh = window.innerHeight;
+  const fw = 1920, fh = 1080;
+  const s = Math.min(sw / fw, sh / fh);
+  inner.style.transform = 'scale(' + s + ')';
+  inner.style.marginLeft = ((sw - fw * s) / 2) + 'px';
+  inner.style.marginTop  = ((sh - fh * s) / 2) + 'px';
+}
+
+window.addEventListener('resize', scale);
+scale();
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')  { e.preventDefault(); prev(); }
+  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+});
+
+document.querySelector('.deck').addEventListener('click', next);
+</script>
+</body>
+</html>

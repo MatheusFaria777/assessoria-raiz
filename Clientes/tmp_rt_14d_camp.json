@@ -1,0 +1,243 @@
+{
+  "data": [
+    {
+      "campaign_name": "[ENGAJ] [MENSAGEM] [ABO] [F] - Venda carros",
+      "campaign_id": "120239235407540002",
+      "impressions": "38274",
+      "reach": "17088",
+      "spend": "687.15",
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "532"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "92"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_conversation_replied_7d",
+          "value": "6"
+        },
+        {
+          "action_type": "onsite_conversion.total_messaging_connection",
+          "value": "45"
+        },
+        {
+          "action_type": "onsite_conversion.post_unlike",
+          "value": "2"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "3391"
+        },
+        {
+          "action_type": "like",
+          "value": "2"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "104"
+        },
+        {
+          "action_type": "comment",
+          "value": "2"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "3393"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "106"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_2_message_send",
+          "value": "28"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_first_reply",
+          "value": "31"
+        },
+        {
+          "action_type": "post",
+          "value": "4"
+        },
+        {
+          "action_type": "onsite_conversion.post_save",
+          "value": "6"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_comment",
+          "value": "2"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_3_message_send",
+          "value": "24"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_save",
+          "value": "6"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "90"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_5_message_send",
+          "value": "73"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_conversation_started_7d",
+          "value": "38"
+        },
+        {
+          "action_type": "video_view",
+          "value": "2755"
+        }
+      ],
+      "ctr": "2.646705",
+      "clicks": "1013",
+      "cpm": "17.953441",
+      "frequency": "2.239817",
+      "date_start": "2026-06-15",
+      "date_stop": "2026-06-28"
+    },
+    {
+      "campaign_name": "[ENGAJAMENTO] [MENSAGEM] [CBO] [F] - Consignação (WhatsApp certo)",
+      "campaign_id": "120242914790750002",
+      "impressions": "4739",
+      "reach": "2932",
+      "spend": "142.16",
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "12"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "11"
+        },
+        {
+          "action_type": "onsite_conversion.total_messaging_connection",
+          "value": "4"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "1063"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "11"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "1063"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "11"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_2_message_send",
+          "value": "3"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_first_reply",
+          "value": "3"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_3_message_send",
+          "value": "3"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "11"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_5_message_send",
+          "value": "5"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_conversation_started_7d",
+          "value": "3"
+        },
+        {
+          "action_type": "video_view",
+          "value": "1040"
+        }
+      ],
+      "ctr": "1.4138",
+      "clicks": "67",
+      "cpm": "29.99789",
+      "frequency": "1.616303",
+      "date_start": "2026-06-15",
+      "date_stop": "2026-06-28"
+    },
+    {
+      "campaign_name": "[TRÁFEGO] [VISITAS] [ABO] [F] - Seguidores",
+      "campaign_id": "120254142567080002",
+      "impressions": "11296",
+      "reach": "9548",
+      "spend": "67.95",
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "209"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "16"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_block",
+          "value": "3"
+        },
+        {
+          "action_type": "onsite_conversion.post_unlike",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "1643"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "17"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "1643"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "18"
+        },
+        {
+          "action_type": "post",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "15"
+        },
+        {
+          "action_type": "video_view",
+          "value": "1417"
+        }
+      ],
+      "ctr": "1.761686",
+      "clicks": "199",
+      "cpm": "6.015404",
+      "frequency": "1.183075",
+      "date_start": "2026-06-15",
+      "date_stop": "2026-06-28"
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "before": "MAZDZD",
+      "after": "MgZDZD"
+    }
+  }
+}

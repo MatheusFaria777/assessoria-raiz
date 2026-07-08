@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estratégia · AutoCerto Multimarcas · Junho 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fundo: #1E3D34;
+    --texto: #F5F5F5;
+    --destaque: #CBA135;
+    --card: #254337;
+    --borda: #356050;
+    --muted: rgba(245,245,245,0.45);
+    --muted-strong: rgba(245,245,245,0.7);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: var(--fundo);
+    color: var(--texto);
+    line-height: 1.6;
+  }
+  .page { max-width: 860px; margin: 0 auto; padding: 64px 40px 80px; }
+
+  /* Header */
+  .header { border-bottom: 1px solid var(--borda); padding-bottom: 36px; margin-bottom: 64px; }
+  .kicker { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--destaque); font-weight: 500; margin-bottom: 14px; display: block; }
+  .header h1 { font-family: 'Fraunces', serif; font-size: 44px; font-weight: 500; line-height: 1.1; }
+
+  /* Sections */
+  section { margin-bottom: 72px; }
+  section h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500; margin-bottom: 24px; line-height: 1.2; }
+
+  /* PCZ */
+  .pcz-box {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .pcz-col label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 14px; font-weight: 500; }
+  .pcz-line { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 7px; color: var(--muted-strong); }
+  .pcz-line .v { color: var(--texto); font-weight: 500; }
+  .pcz-total { border-top: 1px solid var(--borda); margin-top: 12px; padding-top: 12px; display: flex; justify-content: space-between; font-size: 15px; font-weight: 500; }
+  .pcz-arrow { text-align: center; font-size: 28px; color: var(--destaque); }
+  .pcz-retorno .num { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; color: var(--destaque); line-height: 1; margin-bottom: 6px; }
+  .pcz-retorno .detalhe { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .pcz-nota { background: rgba(203,161,53,0.1); border: 1px solid rgba(203,161,53,0.25); border-radius: 10px; padding: 14px 20px; font-size: 14px; text-align: center; line-height: 1.5; }
+  .pcz-nota strong { color: var(--destaque); }
+
+  /* Verba */
+  .verba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .verba-card { background: var(--card); border: 1px solid var(--borda); border-radius: 14px; padding: 26px 22px; }
+  .verba-card .pct { font-family: 'Fraunces', serif; font-size: 50px; font-weight: 300; color: var(--destaque); line-height: 1; margin-bottom: 2px; }
+  .verba-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .verba-card .valor { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+  .verba-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Funil visual */
+  .funil-visual {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .funil-row { width: var(--w); max-width: 100%; }
+  .funil-bar {
+    height: 56px;
+    width: 100%;
+    background: rgba(245,245,245,0.07);
+    border: 1px solid rgba(245,245,245,0.1);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 13px;
+  }
+  .funil-bar--hl { background: rgba(203,161,53,0.12); border-color: rgba(203,161,53,0.35); }
+  .fbar-icon {
+    width: 34px; height: 34px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .fbar-icon--hl { background: rgba(203,161,53,0.18); }
+  .fbar-num { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; line-height: 1; white-space: nowrap; flex-shrink: 0; }
+  .fbar-num--hl { color: var(--destaque); }
+  .fbar-lbl { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .fbar-connector { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 4px 0; text-align: center; }
+  .funil-nota { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* Criativos */
+  .criativo-list { background: var(--card); border: 1px solid var(--borda); border-radius: 14px; overflow: hidden; }
+  .criativo-item { display: flex; gap: 18px; align-items: flex-start; padding: 22px 28px; border-bottom: 1px solid var(--borda); }
+  .criativo-item:last-child { border-bottom: none; }
+  .criativo-item .ic { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .criativo-item h4 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .criativo-item p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .tag { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; color: var(--destaque); background: rgba(203,161,53,0.1); border: 1px solid rgba(203,161,53,0.2); border-radius: 4px; padding: 2px 7px; margin-bottom: 6px; }
+  .tag.cinza { color: var(--muted-strong); background: rgba(245,245,245,0.05); border-color: rgba(245,245,245,0.12); }
+
+  /* Mockup de criativo */
+  .criativo-mockup { display: flex; gap: 14px; margin-top: 14px; align-items: flex-start; }
+  .mockup-carrossel { flex: 1; min-width: 0; }
+  .mockup-carrossel .mc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3px;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    width: 100%;
+  }
+  .mc-foto { overflow: hidden; min-height: 0; min-width: 0; background: rgba(245,245,245,0.05); }
+  .mc-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mc-foto.principal { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+  .mockup-label { font-size: 11px; color: var(--muted); margin-top: 8px; text-align: center; letter-spacing: 0.5px; }
+  .mockup-vertical { width: 120px; flex-shrink: 0; }
+  .mockup-vertical img { width: 100%; border-radius: 8px; display: block; }
+  .mockup-vertical .mockup-label { margin-top: 8px; }
+
+  /* Rastreamento */
+  .rastreamento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .rastreamento-card { background: var(--card); border: 1px solid var(--borda); border-radius: 14px; padding: 24px 22px; }
+  .rastreamento-card .ic { font-size: 22px; margin-bottom: 12px; display: block; }
+  .rastreamento-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .rastreamento-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .rastreamento-nota { background: rgba(245,245,245,0.04); border: 1px solid var(--borda); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .rastreamento-nota strong { color: var(--muted-strong); }
+
+  /* Proximos passos */
+  .passos { display: flex; flex-direction: column; }
+  .passo { display: flex; gap: 20px; align-items: flex-start; position: relative; }
+  .passo:not(:last-child)::before { content: ''; position: absolute; left: 18px; top: 38px; bottom: -4px; width: 1px; background: var(--borda); }
+  .passo-circulo { width: 36px; height: 36px; border-radius: 50%; background: var(--card); border: 1px solid var(--borda); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; color: var(--destaque); }
+  .passo-circulo.feito { background: rgba(203,161,53,0.15); border-color: rgba(203,161,53,0.4); }
+  .passo-body { padding: 6px 0 28px; }
+  .passo-body .data { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--destaque); margin-bottom: 4px; display: block; }
+  .passo-body h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .passo-body p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* Footer */
+  .footer { border-top: 1px solid var(--borda); padding-top: 28px; text-align: center; font-size: 12px; color: var(--muted); }
+  .footer strong { color: var(--muted-strong); }
+
+  @media (max-width: 640px) {
+    .page { padding: 40px 24px 60px; }
+    .header h1 { font-size: 32px; }
+    .pcz-box { grid-template-columns: 1fr; }
+    .verba-grid { grid-template-columns: 1fr; }
+    .rastreamento-grid { grid-template-columns: 1fr; }
+    .criativo-mockup { flex-direction: column; }
+    .mockup-vertical { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <span class="kicker">Reunião Estratégica · Junho 2026</span>
+    <h1>Estratégia de tráfego<br>para a AutoCerto Multimarcas</h1>
+  </header>
+
+  <!-- 1. PCZ -->
+  <section>
+    <span class="kicker">Publicidade a custo zero</span>
+    <h2>Uma venda já cobre tudo</h2>
+    <div class="pcz-box">
+      <div class="pcz-col">
+        <label>Investimentos do mês</label>
+        <div class="pcz-line"><span>Tráfego pago</span><span class="v">R$ 900</span></div>
+        <div class="pcz-line"><span>Gestão Raiz</span><span class="v">R$ 1.050</span></div>
+        <div class="pcz-total"><span>Total</span><span>R$ 1.950</span></div>
+      </div>
+      <div class="pcz-arrow">→</div>
+      <div class="pcz-col pcz-retorno">
+        <label>Retorno de 1 venda</label>
+        <div class="num">R$ 5.000</div>
+        <div class="detalhe">R$ 50.000 ticket médio<br>margem 10% = R$ 5.000 por venda</div>
+      </div>
+    </div>
+    <div class="pcz-nota">
+      <strong>1 venda via tráfego já cobre todos os investimentos do mês.</strong><br>
+      A segunda venda em diante é lucro sobre lucro. Sobram R$ 3.050 de margem livre na primeira.
+    </div>
+  </section>
+
+  <!-- 2. Verba -->
+  <section>
+    <span class="kicker">Distribuição da verba</span>
+    <h2>R$ 900/mês em tráfego</h2>
+    <div class="verba-card" style="padding: 32px;">
+      <div class="pct">100%</div>
+      <h3>Mensagem</h3>
+      <div class="valor">R$ 900</div>
+      <p>Com essa verba, concentrar tudo em campanha de mensagem gera mais volume de contato direto do que dividir o orçamento. Cada carro do estoque vai ter seu próprio conjunto de anúncios, com criativo e segmentação direcionados para o público daquele modelo específico. Toyota e Honda puxam um perfil, utilitário puxa outro.</p>
+    </div>
+  </section>
+
+  <!-- 3. Funil -->
+  <section>
+    <span class="kicker">Expectativa de resultado</span>
+    <h2>O que o investimento<br>deve trazer de volta?</h2>
+    <div class="funil-visual">
+
+      <div class="funil-row" style="--w: 100%">
+        <div class="funil-bar">
+          <div class="fbar-icon">💰</div>
+          <div class="fbar-num">R$ 900</div>
+          <div class="fbar-lbl">100% investidos em campanha de mensagem</div>
+        </div>
+      </div>
+
+      <div class="funil-row" style="--w: 87%">
+        <div class="funil-bar">
+          <div class="fbar-icon">🪙</div>
+          <div class="fbar-num">R$ 10</div>
+          <div class="fbar-lbl">custo por lead · média dos primeiros meses em campanha de mensagem</div>
+        </div>
+      </div>
+
+      <div class="funil-row" style="--w: 72%">
+        <div class="funil-bar">
+          <div class="fbar-icon">👤</div>
+          <div class="fbar-num">~90</div>
+          <div class="fbar-lbl">contatos por mês</div>
+        </div>
+      </div>
+
+      <div class="fbar-connector">15% dos contatos</div>
+
+      <div class="funil-row" style="--w: 55%">
+        <div class="funil-bar">
+          <div class="fbar-icon">📋</div>
+          <div class="fbar-num">~14</div>
+          <div class="fbar-lbl">visitas na loja</div>
+        </div>
+      </div>
+
+      <div class="fbar-connector">2% dos contatos</div>
+
+      <div class="funil-row" style="--w: 38%">
+        <div class="funil-bar funil-bar--hl">
+          <div class="fbar-icon fbar-icon--hl">🤝</div>
+          <div class="fbar-num fbar-num--hl">~2</div>
+          <div class="fbar-lbl">vendas estimadas via tráfego</div>
+        </div>
+      </div>
+
+    </div>
+    <p class="funil-nota">CPL baseado na média de campanha de mensagem para automotivo. Conversão calibrada semana a semana com os dados reais da conta. O processo de atendimento do Douglas, velocidade de resposta e qualidade do contato, é o que transforma contato em visita e visita em venda.</p>
+  </section>
+
+  <!-- 4. Criativos -->
+  <section>
+    <span class="kicker">O que precisamos de você</span>
+    <h2>Criativos e operação</h2>
+    <div class="criativo-list">
+
+      <div class="criativo-item" style="flex-direction: column; align-items: stretch;">
+        <div style="display: flex; gap: 18px; align-items: flex-start;">
+          <span class="ic">📸</span>
+          <div>
+            <div class="tag">Por veículo</div>
+            <h4>Fotos do carro</h4>
+            <p>Mínimo 6 fotos: frente, traseira, laterais, painel, banco e detalhe. Servem pro carrossel de anúncio. Vocês já estão postando no Instagram, então os links dos posts já adiantam bastante.</p>
+          </div>
+        </div>
+        <div class="criativo-mockup">
+          <div class="mockup-carrossel">
+            <div class="mc-grid">
+              <div class="mc-foto principal"><img src="../../../dados/Onboarding%20Vanesmar/Carrossel/IMG_8892.PNG" alt=""></div>
+              <div class="mc-foto"><img src="../../../dados/Onboarding%20Vanesmar/Carrossel/SnapInsta.to_717338223_17971308918051414_7529603333096660245_n.jpg" alt=""></div>
+              <div class="mc-foto"><img src="../../../dados/Onboarding%20Vanesmar/Carrossel/SnapInsta.to_718435120_17971308939051414_8734666702852478299_n.jpg" alt=""></div>
+              <div class="mc-foto"><img src="../../../dados/Onboarding%20Vanesmar/Carrossel/snapinsta.com.br-6a288e95677fd.jpg" alt=""></div>
+              <div class="mc-foto"><img src="../../../dados/Onboarding%20Vanesmar/Carrossel/SnapInsta.to_717582459_17971308930051414_5848655883085531015_n.jpg" alt=""></div>
+              <div class="mc-foto"><img src="../../../dados/Onboarding%20Vanesmar/Carrossel/SnapInsta.to_717076628_17971308948051414_7795536112682462361_n.jpg" alt=""></div>
+            </div>
+            <div class="mockup-label">Formato carrossel · 6-9 fotos</div>
+          </div>
+          <div class="mockup-vertical">
+            <img src="../../../dados/Onboarding%20Vanesmar/Carrossel/ref-story.png" alt="Formato stories">
+            <div class="mockup-label">Formato stories</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="criativo-item">
+        <span class="ic">🎥</span>
+        <div>
+          <div class="tag">Por veículo</div>
+          <h4>Vídeo curto do carro (até 45s)</h4>
+          <p>Exterior e interior com narração: preço, km, benefícios e convite pro contato. Feito no celular. Formatos diferentes entre os anúncios aumentam o alcance e a performance.</p>
+        </div>
+      </div>
+
+      <div class="criativo-item">
+        <span class="ic">📋</span>
+        <div>
+          <div class="tag cinza">Antes de começar</div>
+          <h4>Links dos carros no Instagram</h4>
+          <p>Link do post de cada carro que está em estoque agora. Já pedimos na reunião de onboarding, pode mandar no grupo. É com esses links que a gente monta os primeiros anúncios.</p>
+        </div>
+      </div>
+
+      <div class="criativo-item">
+        <span class="ic">🔔</span>
+        <div>
+          <div class="tag cinza">Rotina</div>
+          <h4>Avisar quando entrar ou sair carro do estoque</h4>
+          <p>Quando um carro vende ou chega novo, manda mensagem no grupo. Evita gastar verba em anúncio de carro que já foi embora, e garante que novidade entra rápido nas campanhas.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Rastreamento -->
+  <section>
+    <span class="kicker">O que vamos medir juntos</span>
+    <h2>Dados que precisamos de você</h2>
+    <div class="rastreamento-grid">
+      <div class="rastreamento-card">
+        <span class="ic">🤝</span>
+        <h3>Vendas via tráfego</h3>
+        <p>Quantas vendas vieram de leads do Meta. Douglas pergunta ao cliente como chegou e avisa no grupo. Sem esse dado, não dá pra calcular o retorno real.</p>
+      </div>
+      <div class="rastreamento-card">
+        <span class="ic">💬</span>
+        <h3>Qualidade dos leads</h3>
+        <p>Feedback semanal: lead tinha perfil ou não? Veio de onde? Isso calibra segmentação e criativo semana a semana.</p>
+      </div>
+    </div>
+    <div class="rastreamento-nota">
+      Esses dois dados alimentam o <strong>relatório mensal</strong>. Com eles, calculamos o ROAS real, o custo por venda e mostramos exatamente o retorno do investimento em números.
+    </div>
+  </section>
+
+  <!-- 6. Proximos passos -->
+  <section>
+    <span class="kicker">Proximos passos</span>
+    <h2>O caminho daqui pra frente</h2>
+    <div class="passos">
+      <div class="passo">
+        <div class="passo-circulo feito">✓</div>
+        <div class="passo-body">
+          <span class="data">Qua 17/06 · Hoje</span>
+          <h4>Reunião estratégica</h4>
+          <p>Alinhamento do plano, aprovação da estratégia e configuração dos acessos ao Meta Ads.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-circulo">2</div>
+        <div class="passo-body">
+          <span class="data">A definir com Lucas</span>
+          <h4>Treinamento comercial</h4>
+          <p>Lucas alinha o processo de pré-venda com o Douglas: como conduzir o lead do WhatsApp até a visita na loja.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-circulo">3</div>
+        <div class="passo-body">
+          <span class="data">Sex 19/06</span>
+          <h4>Campanhas no ar</h4>
+          <p>Primeira rodada de anúncios ativa. Para isso: links dos carros em estoque mandados no grupo antes de sexta.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-circulo">4</div>
+        <div class="passo-body">
+          <span class="data">7 dias após a largada</span>
+          <h4>Primeiro relatório semanal</h4>
+          <p>CPL real, volume de contatos, qualidade dos leads e primeiros ajustes de criativo e segmentação.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-circulo">5</div>
+        <div class="passo-body">
+          <span class="data">15 dias após a largada</span>
+          <h4>Diagnóstico do Instagram</h4>
+          <p>Análise completa do perfil: bio, destaques, botão WhatsApp e posicionamento. Plano de ação com o que ajustar semana a semana.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>Assessoria Raiz</strong> · Estratégia Junho 2026
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #0d0d0d;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-bg {
+      position: absolute;
+      inset: 0;
+      background: url('../imagens/instagram-phone.png') center top / cover no-repeat;
+    }
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(13,13,13,0.08) 0%,
+        rgba(13,13,13,0.15) 15%,
+        rgba(13,13,13,0.55) 35%,
+        rgba(13,13,13,0.92) 52%,
+        rgba(13,13,13,1) 65%
+      );
+    }
+    .ig-glow {
+      position: absolute;
+      top: -180px;
+      right: -180px;
+      width: 720px;
+      height: 720px;
+      background: conic-gradient(
+        from 200deg,
+        #833AB4 0%, #C13584 20%, #E1306C 35%,
+        #FD1D1D 50%, #F77737 65%, #FCAF45 80%,
+        #FFDC80 90%, #833AB4 100%
+      );
+      opacity: 0.18;
+      border-radius: 50%;
+      filter: blur(55px);
+      mix-blend-mode: screen;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: #CBA135;
+      z-index: 10;
+    }
+    .progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      z-index: 10;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 12.5%;
+      background: #CBA135;
+    }
+    .content {
+      position: absolute;
+      left: 86px; right: 80px;
+      bottom: 280px;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 128px;
+      font-weight: 900;
+      color: #F5F5F5;
+      line-height: 0.92;
+      letter-spacing: -3px;
+    }
+    .plus-badge {
+      display: inline-block;
+      background: #CBA135;
+      color: #0d0d0d;
+      padding: 2px 12px;
+      font-size: 112px;
+      letter-spacing: -2px;
+      vertical-align: baseline;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(203,161,53,0.25);
+    }
+    .divider-diamond {
+      width: 7px;
+      height: 7px;
+      background: #CBA135;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="photo-bg"></div>
+  <div class="photo-overlay"></div>
+  <div class="ig-glow"></div>
+  <div class="accent-bar"></div>
+  <div class="progress"><div class="progress-fill"></div></div>
+  <div class="content">
+    <div class="headline">
+      O Instagram<br><span class="plus-badge">Plus</span> vale a pena?
+    </div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+</body>
+</html>

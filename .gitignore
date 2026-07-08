@@ -3,33 +3,11 @@
 .env.local
 .env.*
 
-# Arquivo gerado pelo /setup com MCPs específicos do usuário
-_configurar-mcps.md
+# Vídeo bruto de campanha (arquivos grandes demais pro GitHub)
+**/[Cc]riativos/
 
-# Outputs de renderização (binários pesados)
-*.png
-
-# Arquivos de dados do usuário (CSVs, planilhas, etc)
-dados/*.csv
-dados/*.xlsx
-dados/*.xls
-dados/*.txt
-dados/*.pdf
-dados/*.json
-!dados/README.md
-
-# Pastas de trabalho do usuário (geradas pelo /setup, conteúdo pessoal)
-clientes/
-propostas/
-conteudo/
-projetos/
-briefings/
-trabalho/
-estudos/
-publicacoes/
-anotacoes/
-curriculo/
-tarefas.md
+# Repositório git aninhado (clonado direto, quebra em clone da pasta externa)
+Clientes/.claude/skills/google-ads-ratos/
 
 # Sistema
 .DS_Store

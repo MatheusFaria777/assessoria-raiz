@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  position: relative;
+  background: #060B17;
+  font-family: 'Inter', sans-serif;
+}
+.bg-number {
+  position: absolute;
+  bottom: -40px;
+  right: -30px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 400px;
+  color: #003DA5;
+  opacity: 0.045;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: #003DA5;
+  z-index: 5;
+}
+.image-wrap {
+  width: 100%;
+  height: 530px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #060B17);
+}
+.content {
+  position: relative;
+  z-index: 10;
+  height: calc(1350px - 530px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 80px 80px 108px;
+}
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: #3a6ab0;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #D8D8D8;
+}
+.body-text p + p {
+  margin-top: 18px;
+}
+.question {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 84px;
+  line-height: 1;
+  color: #CBA135;
+  text-transform: uppercase;
+  margin-top: 44px;
+  letter-spacing: 1px;
+}
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 309px;
+  background: #ffffff;
+}
+</style>
+</head>
+<body>
+  <div class="bg-number">1975</div>
+  <div class="accent-bar"></div>
+  <div class="image-wrap">
+    <img src="../imagens/urso%20escolhendo%20pepsi.jpg" alt="O teste cego">
+  </div>
+  <div class="content">
+    <div class="tag">O teste cego</div>
+    <div class="body-text">
+      <p>Em 1975, a Pepsi fez algo ousado.</p>
+      <p>Colocou copos sem identificação na frente de consumidores e pediu pra eles escolherem.</p>
+      <p>A maioria preferiu a Pepsi.</p>
+      <p>A Coca-Cola perdeu no seu próprio produto.</p>
+      <p>Mas continuou dominando o mercado.</p>
+    </div>
+    <div class="question">Como?</div>
+  </div>
+  <div class="progress"></div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  position: relative;
+  background: #080808;
+  font-family: 'Inter', sans-serif;
+}
+.bg {
+  position: absolute;
+  inset: 0;
+  background: url('../imagens/slide-06.png') center center / cover no-repeat;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.72) 0%,
+    rgba(0,0,0,0.72) 30%,
+    rgba(0,0,0,0.88) 55%,
+    rgba(0,0,0,0.97) 100%
+  );
+}
+.accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: #CBA135;
+  z-index: 5;
+}
+.content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 140px 80px 120px 108px;
+}
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: rgba(203,161,53,0.75);
+  text-transform: uppercase;
+}
+.body-section {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+.body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #C8C8C8;
+}
+.body-text strong {
+  color: #F5F5F5;
+  font-weight: 600;
+}
+.separator {
+  width: 56px;
+  height: 1px;
+  background: rgba(203,161,53,0.35);
+}
+.hero-quote {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 74px;
+  line-height: 1.06;
+  color: #F5F5F5;
+  text-transform: uppercase;
+  border-top: 2px solid rgba(203,161,53,0.5);
+  padding-top: 44px;
+}
+.hero-quote .gold {
+  color: #CBA135;
+}
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 771px;
+  background: #ffffff;
+}
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="accent-bar"></div>
+  <div class="content">
+    <div class="tag">Memória</div>
+    <div class="body-section">
+      <div class="body-text">
+        Não é sobre enganar ninguém. É sobre como a memória funciona.
+      </div>
+      <div class="separator"></div>
+      <div class="body-text">
+        Toda vez que você vê uma máquina de Coca-Cola num filme, não é acidente. <strong>São milhões investidos pra aparecer num momento que você está emocionado com a história.</strong>
+      </div>
+    </div>
+    <div class="hero-quote">Repetição não é insistência.<br><span class="gold">É construção de memória.</span></div>
+  </div>
+  <div class="progress"></div>
+</body>
+</html>

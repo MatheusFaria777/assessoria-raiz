@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Digital · @mediaricobrancas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #3ab8b0;
+    --accent-light: #68d1ca;
+    --cream: #e6f4f3;
+    --dark: #0d2826;
+    --mid: #163a36;
+    --muted: #6aa5a1;
+    --ok: #5fa882;
+    --bad: #b84e4e;
+    --line: rgba(58, 184, 176, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 65% 25%, rgba(58,184,176,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 75%, rgba(58,184,176,0.05) 0%, transparent 50%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233ab8b0' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 24px;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-handle {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0 40px;
+    opacity: 0.2;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* SNAPSHOT */
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 48px;
+    border: 1px solid var(--line);
+  }
+
+  .snap-card {
+    padding: 32px 24px;
+    background: var(--mid);
+    text-align: center;
+  }
+
+  .snap-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    display: block;
+  }
+
+  .snap-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ALERT */
+  .alert {
+    border-left: 2px solid var(--bad);
+    padding: 20px 24px;
+    background: rgba(184,78,78,0.06);
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bad);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .alert p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* DIAG CARDS */
+  .diag-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .diag-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+
+  .diag-card:hover { border-color: var(--accent); }
+
+  .diag-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .diag-card:hover::before { transform: scaleY(1); }
+
+  .diag-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .diag-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .diag-content { flex: 1; }
+
+  .diag-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .diag-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .diag-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .diag-card.open .diag-body {
+    max-height: 2800px;
+    opacity: 1;
+    margin-top: 28px;
+  }
+
+  .diag-body p { margin-bottom: 14px; }
+  .diag-body p:last-child { margin-bottom: 0; }
+
+  .diag-toggle {
+    position: absolute;
+    top: 40px; right: 40px;
+    width: 28px; height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--accent);
+    transition: transform 0.3s, background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .diag-card.open .diag-toggle {
+    transform: rotate(45deg);
+    background: rgba(58,184,176,0.1);
+  }
+
+  /* TITLE COMPARE */
+  .title-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .title-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 18px 22px;
+  }
+
+  .title-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .title-box.antes .title-box-label { color: var(--bad); }
+  .title-box.depois .title-box-label { color: var(--ok); }
+
+  .title-box p {
+    font-size: 13px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* BIO FRAMEWORK */
+  .bio-framework {
+    margin: 22px 0;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .bf-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 22px;
+    background: var(--dark);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bf-line:last-child { border-bottom: none; }
+
+  .bf-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 30px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .bf-content { flex: 1; }
+
+  .bf-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .bf-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .bf-example {
+    font-size: 12px;
+    color: var(--cream);
+    font-style: italic;
+    margin-top: 6px;
+    opacity: 0.6;
+  }
+
+  /* BIO TEMPLATE */
+  .bio-template {
+    background: var(--dark);
+    border: 1px dashed rgba(58,184,176,0.25);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .bt-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .bt-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .bt-line:last-child { border-bottom: none; }
+
+  .bt-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.5;
+    white-space: nowrap;
+    min-width: 68px;
+    flex-shrink: 0;
+    font-style: normal;
+  }
+
+  /* BIO BOX */
+  .bio-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  .bio-box-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .bio-box.antes .bio-box-label { color: var(--bad); }
+
+  .bio-box p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* LINK CARD */
+  .link-card {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 22px 26px;
+    margin: 18px 0;
+    border-radius: 2px;
+  }
+
+  .link-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ok);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .link-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--accent-light);
+    word-break: break-all;
+    line-height: 1.6;
+    background: rgba(58,184,176,0.07);
+    padding: 10px 14px;
+    border-radius: 3px;
+    flex: 1;
+    font-weight: 400;
+  }
+
+  .copy-btn {
+    background: rgba(58,184,176,0.12);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { background: var(--accent); color: var(--dark); }
+  .copy-btn.copied { background: var(--ok); border-color: var(--ok); color: white; }
+
+  /* DESTAQUES GRID */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 24px 0;
+  }
+
+  .dest-item {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .dest-item.missing {
+    border-style: dashed;
+    opacity: 0.65;
+  }
+
+  .dest-icon { font-size: 22px; display: block; margin-bottom: 10px; }
+
+  .dest-name {
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .dest-item.missing .dest-name { color: var(--bad); }
+
+  .dest-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* HL */
+  .hl { color: var(--cream); font-weight: 400; }
+
+  /* ROADMAP */
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 48px;
+    margin-top: 24px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .rm-item {
+    padding: 0 0 52px 24px;
+    position: relative;
+  }
+
+  .rm-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .rm-week {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .rm-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .rm-tasks li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .rm-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .section { padding: 60px 24px; }
+    .snapshot-grid { grid-template-columns: 1fr; }
+    .title-compare { grid-template-columns: 1fr; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .diag-card { padding: 28px 24px; }
+    .diag-toggle { top: 28px; right: 24px; }
+    .hero { padding: 60px 24px; }
+    .link-row { flex-direction: column; align-items: stretch; }
+    .roadmap { padding-left: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Assessoria Raiz · Diagnóstico Digital</p>
+  <h1>Sua presença digital,<br><em>analisada.</em></h1>
+  <p class="hero-sub">Uma análise completa do @mediaricobrancas com recomendações concretas para transmitir autoridade e gerar oportunidades com administradoras de condomínio.</p>
+  <div class="hero-divider"></div>
+  <p class="hero-handle">@mediaricobrancas · Caxias do Sul, RS</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- 01 SITUAÇÃO ATUAL -->
+<section class="section reveal">
+  <p class="section-label">01 · Situação Atual</p>
+  <h2 class="section-title">O que o perfil<br><em>comunica hoje</em></h2>
+
+  <div class="snapshot-grid">
+    <div class="snap-card">
+      <span class="snap-num">332</span>
+      <span class="snap-label">Posts publicados</span>
+    </div>
+    <div class="snap-card">
+      <span class="snap-num">326</span>
+      <span class="snap-label">Seguidores</span>
+    </div>
+    <div class="snap-card" style="border-left: 1px solid rgba(184,78,78,0.35);">
+      <span class="snap-num" style="color: var(--bad);">775</span>
+      <span class="snap-label" style="color: var(--bad);">Seguindo ⚠</span>
+    </div>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">Vocês Seguem Mais do que Têm de Seguidores</p>
+    <p>A Mediari tem 326 seguidores e segue 775 contas. Quase o dobro. Para um gestor de administradora que entra no perfil pela primeira vez, esse número comunica algo antes mesmo de qualquer palavra da bio.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">A Bio Não Fala com o Decisor</p>
+    <p>"A solução mais inteligente e inovadora" poderia estar no perfil de qualquer empresa. E "assessoria e consultoria em finanças empresariais" soa mais como contador do que como empresa especializada em cobrança para condomínios. O gestor que chega aqui não entende que é exatamente para ele que a Mediari foi feita.</p>
+  </div>
+
+  <div class="alert">
+    <p class="alert-title">O Argumento Mais Forte Não Aparece em Lugar Nenhum</p>
+    <p>A Mediari reduziu a inadimplência de uma administradora de 54% para 4% em quatro meses. Sem custo para a administradora. Esse é o argumento que fecha contratos, mas não está na bio, não tem destaque, não tem post dedicado. Está acontecendo em conversas, quando deveria estar no perfil.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 02 RECOMENDAÇÕES -->
+<section class="section reveal">
+  <p class="section-label">02 · Recomendações</p>
+  <h2 class="section-title"><em>O que mudar</em><br>e como fazer</h2>
+
+  <div class="diag-grid">
+
+    <!-- 01 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">01</span>
+        <div class="diag-content">
+          <span class="diag-tag">Posicionamento</span>
+          <h3 class="diag-title">A bio não fala com quem decide contratar</h3>
+          <div class="diag-body">
+            <p>Tem dois lugares no perfil que funcionam de formas diferentes: o título e a bio. O título é o nome em negrito abaixo da foto. A bio são as linhas abaixo do título. Cada um tem uma função.</p>
+
+            <p><span class="hl">O título</span> é indexado pelo Instagram. Quando um gestor de administradora pesquisa "cobrança condomínio" ou "empresa de cobrança Serra Gaúcha", o Instagram usa esse campo pra decidir quais perfis mostrar. Com "Mediari Inovação Cobranças", as chances de aparecer nessa busca são menores do que com um nome que inclua o termo que o prospect está usando.</p>
+
+            <div class="title-compare">
+              <div class="title-box antes">
+                <span class="title-box-label">❌ Como está</span>
+                <p>Mediari Inovação Cobranças</p>
+              </div>
+              <div class="title-box depois">
+                <span class="title-box-label">✓ Como deve ficar</span>
+                <p>Mediari · Cobrança para Condomínios</p>
+              </div>
+            </div>
+
+            <p><span class="hl">A bio</span> é o espaço pra convencer o gestor de administradora a entrar em contato antes mesmo de ler qualquer post. A estrutura que funciona pra um serviço B2B como o da Mediari é essa:</p>
+
+            <div class="bio-framework">
+              <div class="bf-line">
+                <span class="bf-num">01</span>
+                <div class="bf-content">
+                  <span class="bf-label">Resultado · Transformação</span>
+                  <p class="bf-desc">O que para de acontecer na administradora depois que a Mediari entra. Não descreve o serviço — descreve o resultado que o gestor vai ter. O que ele vai poder parar de se preocupar?</p>
+                  <p class="bf-example">"Sua inadimplência vai embora. Sua equipe foca no que importa."</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">02</span>
+                <div class="bf-content">
+                  <span class="bf-label">Diferencial único</span>
+                  <p class="bf-desc">O que só a Mediari oferece. Tem que ser específico. "Cobrança humanizada" qualquer um pode escrever. "Sem custo para a administradora" é o argumento que mais abre conversa, e ainda não está visível no perfil.</p>
+                  <p class="bf-example">"Cobrança diária · Abordagem humanizada · Sem custo pra você"</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">03</span>
+                <div class="bf-content">
+                  <span class="bf-label">Para quem atendem</span>
+                  <p class="bf-desc">Deixar claro que é para administradoras de condomínio na Serra Gaúcha. O gestor precisa se reconhecer em uma linha antes de qualquer outra coisa.</p>
+                  <p class="bf-example">"Administradoras na Serra Gaúcha e Região 📍"</p>
+                </div>
+              </div>
+              <div class="bf-line">
+                <span class="bf-num">04</span>
+                <div class="bf-content">
+                  <span class="bf-label">Chamada para ação</span>
+                  <p class="bf-desc">Direcionamento direto. O gestor leu tudo e está convencido, agora precisa saber o que fazer. Um nome deixa o contato mais humano do que um genérico "fale com a gente".</p>
+                  <p class="bf-example">"Fale com a Vivi 👇"</p>
+                </div>
+              </div>
+            </div>
+
+            <p>Pense nessas quatro linhas da perspectiva do gestor que chega no perfil pela primeira vez. O que ele precisa entender logo de cara pra ter segurança de entrar em contato?</p>
+
+            <div class="bio-template">
+              <span class="bt-label">Rascunho · preencha com o que é da Mediari</span>
+              <div class="bt-line">
+                <span class="bt-tag">linha 01</span>
+                [O que a administradora para de perder ao contratar vocês]
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 02</span>
+                [Diferencial 1] · [Diferencial 2] · [Sem custo pra você]
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 03</span>
+                Administradoras na Serra Gaúcha e Região 📍
+              </div>
+              <div class="bt-line">
+                <span class="bt-tag">linha 04</span>
+                Fale com a Vivi 👇
+              </div>
+            </div>
+
+            <div class="bio-box antes">
+              <span class="bio-box-label">❌ Como está hoje</span>
+              <p>A solução mais inteligente e inovadora para realizar as suas cobranças! ▪ Assessoria e consultoria em finanças empresariais. Fale com a gente: 👇</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">02</span>
+        <div class="diag-content">
+          <span class="diag-tag">Credibilidade</span>
+          <h3 class="diag-title">Vocês seguem mais pessoas do que têm de seguidores</h3>
+          <div class="diag-body">
+            <p>Em algum momento a Mediari foi seguindo contas para tentar ganhar seguidores. O resultado de hoje: <span class="hl">775 seguindo · 326 seguidores</span>. Quase o dobro.</p>
+            <p>Pra um serviço B2B como o da Mediari, isso importa mais do que pra uma loja de varejo. O gestor de administradora que está avaliando se vai contratar vai entrar no perfil, e antes de ler uma palavra, ele vê esse número. É como chegar numa reunião de negócios distribuindo seu cartão pra todo mundo, pedindo que te sigam de volta. Passa a impressão de quem está buscando atenção, não de quem tem autoridade.</p>
+            <p><span class="hl">Como resolver:</span> começar a deixar de seguir contas que não têm relação com o negócio. Perfis pessoais sem conexão, contas inativas, estabelecimentos de outros setores. Ir aos poucos, 20 a 30 por dia. O número de seguidores não cai com isso. A meta é chegar a no máximo 100 a 150 seguindo: clientes, parceiros, veículos do setor de condomínios e administradoras.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">03</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conversão</span>
+          <h3 class="diag-title">O link pode trabalhar melhor pra vocês</h3>
+          <div class="diag-body">
+            <p>O linklist.bio já existe, o que é ótimo. O problema é que quando o gestor clica no WhatsApp e abre a conversa, ele encontra uma tela em branco. Boa parte das pessoas fecha sem mandar nada, porque não sabe exatamente o que escrever.</p>
+            <p>A solução é simples: usar um link de WhatsApp que já abre com uma mensagem pré-preenchida. O gestor clica, o texto aparece pronto, ele só aperta enviar. Menos atrito, mais conversa iniciada.</p>
+
+            <div class="link-card">
+              <span class="link-label">Link sugerido · WhatsApp com mensagem pré-preenchida</span>
+              <div class="link-row">
+                <span class="link-text" id="link-whatsapp">https://wa.me/55[NÚMERO]?text=Olá%2C+Viviane!+Vi+o+perfil+da+Mediari+Inovação+no+Instagram+e+gostaria+de+saber+mais+sobre+o+serviço+de+cobrança+para+a+nossa+administradora.</span>
+                <button class="copy-btn" onclick="copyLink(event, 'link-whatsapp')">Copiar</button>
+              </div>
+            </div>
+
+            <p>Substitua <span class="hl">[NÚMERO]</span> pelo DDD e número de WhatsApp da Vivi, sem espaços ou sinais. Exemplo: se o número for (54) 99999-0000, ficaria <span class="hl">5554999990000</span>.</p>
+            <p>Ordem ideal dos botões no linklist: <span class="hl">WhatsApp da Vivi em primeiro lugar.</span> O gestor que se interessou não deve precisar procurar o botão certo para entrar em contato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">04</span>
+        <div class="diag-content">
+          <span class="diag-tag">Estrutura</span>
+          <h3 class="diag-title">Os destaques não mostram o argumento que fecha negócio</h3>
+          <div class="diag-body">
+            <p>Os destaques existem e têm títulos relevantes: SERVIÇOS, Eventos, QUEM SOMOS, FEEDBACK e DIFERENCIAIS. A estrutura está razoável. Mas falta o que é mais importante pra um gestor que está em dúvida se vai contratar.</p>
+            <p>Outro detalhe: todas as capas mostram o mesmo logo "Mi". Quando o gestor entra no perfil, ele precisa de três segundos pra entender o que cada destaque contém, sem precisar clicar em nenhum. Com capas idênticas, ele não sabe o que vai encontrar antes de abrir.</p>
+
+            <div class="dest-grid">
+              <div class="dest-item">
+                <span class="dest-icon">✅</span>
+                <p class="dest-name">SERVIÇOS</p>
+                <p class="dest-desc">Existe — o que a Mediari faz</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">✅</span>
+                <p class="dest-name">QUEM SOMOS</p>
+                <p class="dest-desc">Existe — a Vivi e o Júnior por trás da empresa</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">✅</span>
+                <p class="dest-name">FEEDBACK</p>
+                <p class="dest-desc">Existe — o que os clientes falam</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">✅</span>
+                <p class="dest-name">DIFERENCIAIS</p>
+                <p class="dest-desc">Existe — o que diferencia a Mediari</p>
+              </div>
+              <div class="dest-item missing">
+                <span class="dest-icon">❌</span>
+                <p class="dest-name">CASES / RESULTADOS</p>
+                <p class="dest-desc">Faltando — os números reais que provam que funciona</p>
+              </div>
+              <div class="dest-item">
+                <span class="dest-icon">⚠️</span>
+                <p class="dest-name">Eventos</p>
+                <p class="dest-desc">Existe — mas é o menos relevante para um prospect avaliando contratar</p>
+              </div>
+            </div>
+
+            <p>O destaque que falta é <span class="hl">CASES</span> ou <span class="hl">RESULTADOS</span>. Quando um gestor está pesando se vai contratar, ele quer ver prova de que funciona. O case de 54% para 4% de inadimplência em quatro meses entra aqui. O argumento de vendas mais poderoso da Mediari precisa estar em um lugar que o prospect veja antes de qualquer conversa.</p>
+            <p>Ordem ideal dos destaques: <span class="hl">SERVIÇOS → CASES → DIFERENCIAIS → QUEM SOMOS → FEEDBACK.</span> É a jornada natural de quem está avaliando contratar: o que vocês fazem, prova de que funciona, por que vocês, quem está por trás e o que os clientes falam.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">05</span>
+        <div class="diag-content">
+          <span class="diag-tag">Conteúdo</span>
+          <h3 class="diag-title">A Viviane falando pra câmera converte mais do que qualquer carrossel</h3>
+          <div class="diag-body">
+            <p>Tem uma informação no histórico da Mediari que vale mais do que qualquer estratégia: uma das administradoras que está na carteira até hoje fechou contrato depois de ver um vídeo da Vivi no Instagram num sábado de manhã. Sem ligação. Sem indicação. Só o conteúdo.</p>
+            <p>Isso prova o que o perfil ainda não está aproveitando direito. Quando a Viviane fala para câmera sobre as dores reais das administradoras, o gestor certo para e assiste. E quando ele assiste, a Mediari já começou a vender antes de qualquer contato direto.</p>
+            <p>O feed tem carrosséis institucionais bem feitos. Mas carrossel aparece só pra quem já te segue. Reel aparece pra quem nunca ouviu falar da Mediari. É o único formato que expande o alcance sem precisar de anúncio.</p>
+            <p><span class="hl">Três ideias de Reel pra começar agora:</span></p>
+            <p>
+              1. "Por que a sua administradora perde dinheiro com inadimplência todo mês" — a Viviane fala direto sobre a dor do gestor que está adiando a cobrança.<br><br>
+              2. "Como a gente reduziu a inadimplência de uma administradora de 54% pra 4% em quatro meses" — o case real, contado com os números reais. Esse Reel sozinho pode gerar mais contratos do que um mês inteiro de anúncio.<br><br>
+              3. "O que acontece quando a sua administradora terceiriza a cobrança" — responder as objeções mais comuns antes que elas apareçam na conversa.
+            </p>
+            <p>Não precisa de produção elaborada. Celular, luz natural e a Vivi falando como fala no onboarding. O que converte aqui é a autenticidade, não o acabamento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">06</span>
+        <div class="diag-content">
+          <span class="diag-tag">Estratégia</span>
+          <h3 class="diag-title">Conteúdo de data comemorativa dilui a autoridade do perfil</h3>
+          <div class="diag-body">
+            <p>O feed da Mediari tem posts como Dia das Mães e mensagens motivacionais (#mensagemdomês) que não têm nenhuma relação com cobrança de inadimplência ou gestão de condomínios.</p>
+            <p>Pra uma loja ou restaurante, esse tipo de conteúdo funciona porque o público segue por entretenimento e conexão emocional. Pra uma empresa de serviços financeiros B2B, o gestor de administradora segue porque quer informação relevante e credibilidade. Ele não está no Instagram atrás de frases motivacionais — está avaliando em quem confiar pra cuidar da inadimplência dos condomínios que ele administra.</p>
+            <p>Cada post que não serve ao gestor é uma oportunidade perdida de reforçar a autoridade da Mediari. E pior: dilui o que foi construído com os Reels e os carrosséis técnicos.</p>
+            <p><span class="hl">A pergunta que precisa guiar cada publicação:</span> "Se o gestor de uma administradora ver isso, ele vai ter mais ou menos vontade de entrar em contato?" Se a resposta for "nem mais, nem menos" ou "menos", o post não deveria estar no feed.</p>
+            <p>Datas comemorativas que fazem sentido pra Mediari publicar: aquelas com ligação direta com o público, como o Dia do Síndico. Isso reforça o posicionamento e ainda chega pra quem importa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="diag-card" onclick="toggle(this)">
+      <div class="diag-toggle">+</div>
+      <div class="diag-header">
+        <span class="diag-num">07</span>
+        <div class="diag-content">
+          <span class="diag-tag">Prova Social</span>
+          <h3 class="diag-title">O case mais poderoso da Mediari ainda não virou conteúdo</h3>
+          <div class="diag-body">
+            <p>A Mediari reduziu a inadimplência de uma administradora de 54% para 4% em quatro meses. Sem custo para a administradora.</p>
+            <p>Esse número provavelmente fechou mais de um contrato quando contado pessoalmente. Mas quantos gestores de administradora que nunca cruzaram com a Vivi já sabem disso? Nenhum — porque ainda não está publicado.</p>
+            <p><span class="hl">Esse case merece três formatos:</span></p>
+            <p>
+              1. Um Reel com a Viviane contando a história. Sem revelar o nome da administradora — pode manter anônimo. Começa com o problema: "Uma administradora chegou até a gente com 54% de inadimplência." Daí conta o que foi feito e termina com o número: 4% em quatro meses.<br><br>
+              2. Um carrossel com os dados e o processo. Cada slide mostra uma etapa: situação inicial, diagnóstico, abordagem da Mediari, resultado. Com os números em destaque visual.<br><br>
+              3. Um destaque "CASES" criado a partir desse post e de outros resultados que puderem ser compartilhados — mesmo que sem nome, só com os números.
+            </p>
+            <p>Esse conteúdo sozinho é mais poderoso do que a maioria do que está no perfil hoje. O gestor que está em dúvida vê esse número e entende que a Mediari entrega resultado de verdade. Não é promessa — é histórico.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 03 PLANO -->
+<section class="section reveal">
+  <p class="section-label">03 · Próximos Passos</p>
+  <h2 class="section-title">Plano de<br><em>implementação</em></h2>
+
+  <div class="roadmap">
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 1 · Estrutura do Perfil</div>
+      <h3 class="rm-title">Ajustes sem câmera e sem produção</h3>
+      <ul class="rm-tasks">
+        <li>Atualizar o título para "Mediari · Cobrança para Condomínios"</li>
+        <li>Reescrever a bio com a estrutura de quatro linhas: resultado, diferencial, para quem e CTA com o nome da Vivi</li>
+        <li>Trocar o link do WhatsApp no linklist por uma versão com mensagem pré-preenchida</li>
+        <li>Reorganizar a ordem dos destaques: SERVIÇOS primeiro, CASES quando criado, depois DIFERENCIAIS, QUEM SOMOS, FEEDBACK</li>
+        <li>Criar capas distintas para cada destaque, com visual que deixe claro o conteúdo antes de clicar</li>
+        <li>Começar a deixar de seguir contas sem relação com o negócio, 20 a 30 por dia</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 2 · Primeiro Conteúdo que Converte</div>
+      <h3 class="rm-title">O case de 54% pra 4% em formato público</h3>
+      <ul class="rm-tasks">
+        <li>Viviane grava o Reel contando o case da inadimplência de 54% pra 4% em quatro meses</li>
+        <li>Montar o carrossel com os dados do case para publicar no mesmo período</li>
+        <li>Criar o destaque CASES a partir desse conteúdo</li>
+        <li>Publicar sem edição elaborada — celular e luz natural funcionam</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Semana 3 · Conteúdo que Educa o Prospect</div>
+      <h3 class="rm-title">Responder as dúvidas antes de chegarem pelo WhatsApp</h3>
+      <ul class="rm-tasks">
+        <li>Reel: "Por que a sua administradora perde dinheiro com inadimplência todo mês" — Viviane fala direto sobre a dor do gestor</li>
+        <li>Reel: "O que acontece quando você terceiriza a cobrança" — responder a objeção de "vai concorrer com a nossa administradora?"</li>
+        <li>Stories ao menos três vezes por semana: bastidores do trabalho, novidades do setor, pergunta pro público</li>
+      </ul>
+    </div>
+
+    <div class="rm-item">
+      <div class="rm-dot"></div>
+      <div class="rm-week">Mês 2 em Diante · Consistência</div>
+      <h3 class="rm-title">Manutenção e crescimento real</h3>
+      <ul class="rm-tasks">
+        <li>Ao menos dois Reels por mês com a Viviane falando sobre as dores das administradoras</li>
+        <li>Todo fechamento novo vira conteúdo — mesmo que sem nome, com os números reais de resultado</li>
+        <li>Revisão mensal: alcance de contas novas, cliques no link, mensagens iniciadas pelo perfil</li>
+        <li>Parar de publicar conteúdo de data comemorativa sem relação direta com o público-alvo</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+  <p class="footer-brand">Assessoria Raiz</p>
+  <p class="footer-sub">Diagnóstico preparado para @mediaricobrancas · Mediari Inovação Cobranças · Caxias do Sul, RS</p>
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+
+  function copyLink(event, id) {
+    event.stopPropagation();
+    const text = document.getElementById(id).textContent.trim();
+    const btn = event.currentTarget;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

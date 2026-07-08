@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alinhamento de Abril — Robert Eddlei Ink</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d211a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+  }
+
+  .scaler {
+    width: 1280px;
+    height: 720px;
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .slide {
+    width: 1280px;
+    height: 720px;
+    background: #1E3D34;
+    display: none;
+    flex-direction: column;
+    padding: 56px 80px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide.active { display: flex; }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: #CBA135;
+  }
+
+  .logo {
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    height: 80px;
+    opacity: 0.9;
+  }
+
+  .counter {
+    position: absolute;
+    bottom: 24px;
+    left: 32px;
+    color: #CBA135;
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+
+  .slide-title {
+    color: #CBA135;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.18;
+    margin-bottom: 36px;
+  }
+
+  .tarja {
+    border-left: 6px solid #CBA135;
+    background: rgba(203, 161, 53, 0.11);
+    padding: 16px 26px;
+    color: #F5F5F5;
+    font-size: 25px;
+    line-height: 1.45;
+    font-style: italic;
+    margin-top: auto;
+    margin-bottom: 44px;
+  }
+
+  /* SLIDE 1 - CAPA */
+  .capa-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+
+  .capa-label {
+    color: rgba(203, 161, 53, 0.55);
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  .capa-title {
+    color: #CBA135;
+    font-size: 82px;
+    font-weight: bold;
+    line-height: 1.08;
+  }
+
+  .capa-divider {
+    width: 72px;
+    height: 3px;
+    background: #CBA135;
+  }
+
+  .capa-client {
+    color: #F5F5F5;
+    font-size: 34px;
+  }
+
+  .capa-subtitle {
+    color: rgba(245, 245, 245, 0.5);
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* SLIDE 2 - ABERTURA */
+  .bullets {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bullets li {
+    color: #F5F5F5;
+    font-size: 26px;
+    line-height: 1.45;
+    padding-left: 26px;
+    position: relative;
+  }
+
+  .bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 9px;
+    height: 9px;
+    background: #CBA135;
+    border-radius: 50%;
+  }
+
+  /* SLIDE 3 - MÉTRICAS */
+  .metrics-row {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+  }
+
+  .metric-card {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.18);
+    border-top: 4px solid #CBA135;
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .metric-label {
+    color: #CBA135;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+  }
+
+  .metric-value {
+    color: #F5F5F5;
+    font-size: 74px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .metric-value.sm { font-size: 54px; }
+
+  .metric-compare {
+    color: rgba(245, 245, 245, 0.55);
+    font-size: 18px;
+  }
+
+  .metric-context {
+    color: rgba(245, 245, 245, 0.82);
+    font-size: 20px;
+    line-height: 1.4;
+    margin-top: auto;
+  }
+
+  /* SLIDE 4 - HISTÓRICO */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .tl-item {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  .tl-period {
+    color: #CBA135;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+    min-width: 170px;
+    padding-top: 3px;
+  }
+
+  .tl-desc {
+    color: #F5F5F5;
+    font-size: 23px;
+    line-height: 1.4;
+  }
+
+  .tl-desc.dim { color: rgba(245, 245, 245, 0.65); }
+
+  .tl-period.dim { color: rgba(245, 245, 245, 0.65); }
+
+  /* SLIDE 5 - AÇÕES */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+  }
+
+  .action-item {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+  }
+
+  .action-num {
+    color: #CBA135;
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 1;
+    min-width: 44px;
+    padding-top: 2px;
+  }
+
+  .action-title {
+    color: #CBA135;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .action-text {
+    color: #F5F5F5;
+    font-size: 21px;
+    line-height: 1.42;
+  }
+
+  /* SLIDE 6 - FECHAMENTO */
+  .summary {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+  }
+
+  .summary-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .summary-dot {
+    width: 11px;
+    height: 11px;
+    background: #CBA135;
+    border-radius: 50%;
+    margin-top: 12px;
+    flex-shrink: 0;
+  }
+
+  .summary-text {
+    color: #F5F5F5;
+    font-size: 29px;
+    line-height: 1.45;
+  }
+
+  /* Nav hint */
+  .nav-hint {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 12px;
+    font-family: sans-serif;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <div class="scaler" id="scaler">
+
+    <!-- SLIDE 1 - CAPA -->
+    <div class="slide active" id="slide-1">
+      <div class="capa-wrap">
+        <div class="capa-label">Assessoria Raiz</div>
+        <div class="capa-title">Alinhamento de Abril</div>
+        <div class="capa-divider"></div>
+        <div class="capa-client">Robert Eddlei Ink</div>
+        <div class="capa-subtitle">Resultados de Abril/2026 + Direção Estratégica</div>
+      </div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">1 / 6</div>
+    </div>
+
+    <!-- SLIDE 2 - ABERTURA -->
+    <div class="slide" id="slide-2">
+      <div class="slide-title">Abril revelou dois problemas: quem chega e o que acontece depois que chega.</div>
+      <ul class="bullets">
+        <li>A taxa de conversão ficou em 1,49%, a mais baixa dos 14 meses de projeto, mas há dois fatores puxando pra baixo ao mesmo tempo</li>
+        <li>O primeiro: a qualidade dos leads. O público que chega via anúncio tem perfil de renda mais baixo que o cliente ideal, o que dificulta o fechamento antes mesmo da conversa começar</li>
+        <li>O segundo: o fechamento em si. Mesmo leads com potencial não estão sendo convertidos na mesma taxa dos meses bons</li>
+      </ul>
+      <div class="tarja">Quando o problema é duplo, a solução também precisa ser dupla. E os dois lados já estão sendo trabalhados.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">2 / 6</div>
+    </div>
+
+    <!-- SLIDE 3 - 3 NÚMEROS -->
+    <div class="slide" id="slide-3">
+      <div class="slide-title" style="font-size: 42px; margin-bottom: 24px;">O que os números de abril revelam</div>
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">Leads</div>
+          <div class="metric-value">134</div>
+          <div class="metric-compare">eram 211 em março</div>
+          <div class="metric-context">Investimos menos em abril e geramos menos leads. A redução acompanhou o orçamento.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">ROAS</div>
+          <div class="metric-value">1,35</div>
+          <div class="metric-compare">era 1,83 em março</div>
+          <div class="metric-context">Para cada R$1 investido, voltaram R$1,35. O projeto já entregou 2,46 no seu melhor mês.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">CAC</div>
+          <div class="metric-value sm">R$628</div>
+          <div class="metric-compare">era R$362 em março</div>
+          <div class="metric-context">Foram necessários 67 leads para fechar 1 venda. Em julho de 2025, bastavam 14.</div>
+        </div>
+      </div>
+      <div class="tarja" style="margin-top: 20px;">O ticket médio por venda subiu para R$845. Os clientes que fecharam em abril tinham projetos maiores. O desafio foi o volume de fechamentos.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">3 / 6</div>
+    </div>
+
+    <!-- SLIDE 4 - HISTÓRICO -->
+    <div class="slide" id="slide-4">
+      <div class="slide-title" style="font-size: 40px; margin-bottom: 24px;">14 meses de projeto: onde a conversão estava e onde está</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-period">Abr a Jul/2025</div>
+          <div class="tl-desc">Taxa de 4% a 7% de conversão. 1 venda a cada 14 a 23 leads. Fase de alta performance.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">Ago a Nov/2025</div>
+          <div class="tl-desc">Oscilação, mas meses fortes. Projeto consolidando resultado.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">Janeiro/2026</div>
+          <div class="tl-desc">Melhor mês do projeto. 6 vendas, ROAS 2,46, conversão em 4,48%.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period dim">Fev a Abr/2026</div>
+          <div class="tl-desc dim">3 meses consecutivos abaixo de 2% de conversão. Os 3 piores do projeto.</div>
+        </div>
+      </div>
+      <div class="tarja">A média dos 10 primeiros meses foi de 4,3% de conversão. Os últimos 3 ficaram em 1,8%. Algo mudou entre janeiro e fevereiro, e é isso que estamos corrigindo.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">4 / 6</div>
+    </div>
+
+    <!-- SLIDE 5 - PRÓXIMO MÊS -->
+    <div class="slide" id="slide-5">
+      <div class="slide-title" style="font-size: 42px; margin-bottom: 24px;">O que já estamos fazendo e o que vem a seguir</div>
+      <div class="actions">
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div>
+            <div class="action-title">Teste de geolocalização</div>
+            <div class="action-text">Em vez de segmentar toda a Grande São Paulo, os anúncios estão indo só para bairros com perfil de renda mais alto. O público já começa a ser filtrado antes do clique.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div>
+            <div class="action-title">Interesses premium e campanha de seguidores</div>
+            <div class="action-text">Testando públicos ligados a consumo de alto padrão. A campanha de seguidores traz uma audiência com maior poder de compra que já conhece o trabalho antes de entrar em contato.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">3</div>
+          <div>
+            <div class="action-title">Processo de fechamento e indicação</div>
+            <div class="action-text">Além de melhorar o atendimento de novos leads, estamos desenvolvendo um processo de indicação para clientes que já tatuaram. Quem saiu satisfeito é a melhor fonte de novos clientes.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tarja">A campanha de seguidores não é vaidade: cada seguidor com o perfil certo é um cliente em potencial que já chega aquecido.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">5 / 6</div>
+    </div>
+
+    <!-- SLIDE 6 - FECHAMENTO -->
+    <div class="slide" id="slide-6">
+      <div class="slide-title" style="font-size: 52px; margin-bottom: 28px;">Abril em resumo</div>
+      <div class="summary">
+        <div class="summary-item">
+          <div class="summary-dot"></div>
+          <div class="summary-text">134 leads gerados: volume menor que março, mas o perfil de quem chega está sendo ajustado</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-dot"></div>
+          <div class="summary-text">ROAS 1,35 e conversão de 1,49%: abaixo do potencial do projeto, com duas causas identificadas</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-dot"></div>
+          <div class="summary-text">Desde sexta-feira os testes de público premium e geolocalização já estão no ar</div>
+        </div>
+      </div>
+      <div class="tarja">O diagnóstico está feito. A estratégia está no ar. O objetivo agora é ver os primeiros resultados dos ajustes.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">6 / 6</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="nav-hint">Seta direita / Clique: avançar &nbsp;|&nbsp; Seta esquerda: voltar &nbsp;|&nbsp; F: tela cheia</div>
+
+<script>
+  let current = 1;
+  const total = 6;
+
+  function show(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    current = Math.max(1, Math.min(total, n));
+    document.getElementById('slide-' + current).classList.add('active');
+  }
+
+  function scale() {
+    const scaler = document.getElementById('scaler');
+    const stage = document.getElementById('stage');
+    const sw = 1280, sh = 720;
+    const ratio = Math.min(window.innerWidth / sw, window.innerHeight / sh);
+    scaler.style.transform = 'scale(' + ratio + ')';
+    stage.style.width  = (sw * ratio) + 'px';
+    stage.style.height = (sh * ratio) + 'px';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); show(current - 1); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  document.getElementById('stage').addEventListener('click', () => show(current + 1));
+
+  window.addEventListener('resize', scale);
+  scale();
+</script>
+</body>
+</html>

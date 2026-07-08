@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alinhamento de Abril — Casa Valério</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d211a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow: hidden;
+  }
+
+  .stage { position: relative; }
+
+  .scaler {
+    width: 1280px;
+    height: 720px;
+    transform-origin: top left;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .slide {
+    width: 1280px;
+    height: 720px;
+    background: #1E3D34;
+    display: none;
+    flex-direction: column;
+    padding: 56px 80px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide.active { display: flex; }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: #CBA135;
+  }
+
+  .logo {
+    position: absolute;
+    bottom: 20px; right: 28px;
+    height: 80px;
+    opacity: 0.9;
+  }
+
+  .counter {
+    position: absolute;
+    bottom: 24px; left: 32px;
+    color: #CBA135;
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+
+  .slide-title {
+    color: #CBA135;
+    font-size: 46px;
+    font-weight: bold;
+    line-height: 1.18;
+    margin-bottom: 32px;
+  }
+
+  .tarja {
+    border-left: 6px solid #CBA135;
+    background: rgba(203, 161, 53, 0.11);
+    padding: 16px 26px;
+    color: #F5F5F5;
+    font-size: 24px;
+    line-height: 1.45;
+    font-style: italic;
+    margin-top: auto;
+    margin-bottom: 44px;
+  }
+
+  /* SLIDE 1 - CAPA */
+  .capa-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+  .capa-label {
+    color: rgba(203, 161, 53, 0.55);
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+  .capa-title {
+    color: #CBA135;
+    font-size: 82px;
+    font-weight: bold;
+    line-height: 1.08;
+  }
+  .capa-divider {
+    width: 72px; height: 3px;
+    background: #CBA135;
+  }
+  .capa-client {
+    color: #F5F5F5;
+    font-size: 34px;
+  }
+  .capa-subtitle {
+    color: rgba(245, 245, 245, 0.5);
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* SLIDE 2 - ABERTURA */
+  .bullets {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .bullets li {
+    color: #F5F5F5;
+    font-size: 26px;
+    line-height: 1.45;
+    padding-left: 26px;
+    position: relative;
+  }
+  .bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 13px;
+    width: 9px; height: 9px;
+    background: #CBA135;
+    border-radius: 50%;
+  }
+
+  /* SLIDE 3 - MÉTRICAS */
+  .metrics-row {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+  }
+  .metric-card {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.18);
+    border-top: 4px solid #CBA135;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .metric-label {
+    color: #CBA135;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+  }
+  .metric-arrow {
+    color: rgba(245, 245, 245, 0.4);
+    font-size: 18px;
+    margin: 0 2px;
+  }
+  .metric-value {
+    color: #F5F5F5;
+    font-size: 70px;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .metric-value.sm { font-size: 50px; }
+  .metric-compare {
+    color: rgba(245, 245, 245, 0.55);
+    font-size: 18px;
+  }
+  .metric-delta {
+    color: #a8d8a8;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .metric-context {
+    color: rgba(245, 245, 245, 0.82);
+    font-size: 19px;
+    line-height: 1.4;
+    margin-top: auto;
+  }
+
+  /* SLIDE 4 - HISTÓRICO */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+  }
+  .tl-item {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+  .tl-period {
+    color: #CBA135;
+    font-size: 19px;
+    font-weight: bold;
+    white-space: nowrap;
+    min-width: 180px;
+    padding-top: 3px;
+  }
+  .tl-desc {
+    color: #F5F5F5;
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  .tl-period.dim { color: rgba(203, 161, 53, 0.5); }
+  .tl-desc.dim { color: rgba(245, 245, 245, 0.55); }
+
+  /* SLIDE 5 - AÇÕES */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
+  }
+  .action-item {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+  }
+  .action-num {
+    color: #CBA135;
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 1;
+    min-width: 44px;
+    padding-top: 2px;
+  }
+  .action-title {
+    color: #CBA135;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .action-text {
+    color: #F5F5F5;
+    font-size: 22px;
+    line-height: 1.42;
+  }
+
+  /* SLIDE 6 - FECHAMENTO */
+  .summary {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    flex: 1;
+    justify-content: center;
+  }
+  .summary-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .summary-dot {
+    width: 11px; height: 11px;
+    background: #CBA135;
+    border-radius: 50%;
+    margin-top: 12px;
+    flex-shrink: 0;
+  }
+  .summary-text {
+    color: #F5F5F5;
+    font-size: 28px;
+    line-height: 1.45;
+  }
+
+  .nav-hint {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 12px;
+    font-family: sans-serif;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <div class="scaler" id="scaler">
+
+    <!-- SLIDE 1 - CAPA -->
+    <div class="slide active" id="slide-1">
+      <div class="capa-wrap">
+        <div class="capa-label">Assessoria Raiz</div>
+        <div class="capa-title">Alinhamento de Abril</div>
+        <div class="capa-divider"></div>
+        <div class="capa-client">Casa Valério</div>
+        <div class="capa-subtitle">Resultados de Abril/2026 + Direção Estratégica</div>
+      </div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">1 / 6</div>
+    </div>
+
+    <!-- SLIDE 2 - ABERTURA -->
+    <div class="slide" id="slide-2">
+      <div class="slide-title">Abril foi o melhor mês desde dezembro. Agora precisamos entender o que fica no caixa.</div>
+      <ul class="bullets">
+        <li>132 vendas: maior volume em 4 meses</li>
+        <li>Taxa de conversão de 30%: a mais alta desde o início do projeto</li>
+        <li>Recuperação consistente após a queda de janeiro e fevereiro</li>
+      </ul>
+      <div class="tarja">O tráfego funciona. A pergunta do mês é se o resultado que chega tá ficando no bolso.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">2 / 6</div>
+    </div>
+
+    <!-- SLIDE 3 - 3 NÚMEROS -->
+    <div class="slide" id="slide-3">
+      <div class="slide-title" style="font-size: 40px; margin-bottom: 20px;">O que abril disse em números</div>
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">Faturamento</div>
+          <div class="metric-value sm">R$4.989</div>
+          <div class="metric-compare">era R$3.138 em março</div>
+          <div class="metric-delta">+59%</div>
+          <div class="metric-context">59% a mais de receita com 39% a mais de investimento. O retorno cresceu mais rápido que o gasto.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">ROAS</div>
+          <div class="metric-value">3,92</div>
+          <div class="metric-compare">era 3,43 em março</div>
+          <div class="metric-context">Cada R$1 investido voltou R$3,92. Acima do mínimo de 3x que cobre custo e anúncio.</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Conversão</div>
+          <div class="metric-value sm">30,6%</div>
+          <div class="metric-compare">era 24% em março</div>
+          <div class="metric-context">A cada 10 pessoas que chegaram no cardápio, 3 compraram. Em março eram 2.</div>
+        </div>
+      </div>
+      <div class="tarja" style="margin-top: 18px;">R$9,64 foi o custo pra trazer cada novo cliente em abril. Em fevereiro custava R$14,30.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">3 / 6</div>
+    </div>
+
+    <!-- SLIDE 4 - HISTÓRICO -->
+    <div class="slide" id="slide-4">
+      <div class="slide-title" style="font-size: 40px; margin-bottom: 24px;">7 meses de projeto: onde a gente esteve e onde está</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-period">Out/2025</div>
+          <div class="tl-desc">Início. 84 vendas, ROAS 5,95. Motor aquecendo.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">Nov e Dez/2025</div>
+          <div class="tl-desc">Pico. 154 vendas, ROAS 7,48. Melhor fase do projeto.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period dim">Jan e Fev/2026</div>
+          <div class="tl-desc dim">Queda. ROAS foi pra 2,85, CAC dobrou. Sazonalidade e ajustes de campanha.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">Mar e Abr/2026</div>
+          <div class="tl-desc">Recuperação. ROAS voltando, conversão no maior nível histórico.</div>
+        </div>
+      </div>
+      <div class="tarja">Estamos em recuperação real. O pico foi dezembro. Esse é o teto que a gente quer bater de novo.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">4 / 6</div>
+    </div>
+
+    <!-- SLIDE 5 - PRÓXIMO MÊS -->
+    <div class="slide" id="slide-5">
+      <div class="slide-title" style="font-size: 42px; margin-bottom: 28px;">O que fazemos agora</div>
+      <div class="actions">
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div>
+            <div class="action-title">Conversa franca sobre os custos reais</div>
+            <div class="action-text">Entender o que sobra no caixa por mês, se a precificação está certa e se tem algum custo comendo a margem sem aparecer.</div>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div>
+            <div class="action-title">Aumentar o investimento se o caixa permitir</div>
+            <div class="action-text">A conversão está em 30%, o melhor momento técnico do projeto. Crescer o investimento faz sentido, mas só se o negócio aguenta.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tarja">Antes de escalar, a gente precisa entender o que fica no bolso. Essa conversa define o próximo passo.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">5 / 6</div>
+    </div>
+
+    <!-- SLIDE 6 - FECHAMENTO -->
+    <div class="slide" id="slide-6">
+      <div class="slide-title" style="font-size: 52px; margin-bottom: 28px;">Abril em três linhas</div>
+      <div class="summary">
+        <div class="summary-item">
+          <div class="summary-dot"></div>
+          <div class="summary-text">R$4.989 faturados: +59% sobre março</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-dot"></div>
+          <div class="summary-text">30,63% de conversão: maior taxa do projeto</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-dot"></div>
+          <div class="summary-text">ROAS 3,92: acima do patamar mínimo pelo 5º mês seguido</div>
+        </div>
+      </div>
+      <div class="tarja">O tráfego entrega. O próximo passo é garantir que o resultado chegue até você.</div>
+      <img src="../../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+      <div class="counter">6 / 6</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="nav-hint">Seta direita / Clique: avançar &nbsp;|&nbsp; Seta esquerda: voltar &nbsp;|&nbsp; F: tela cheia</div>
+
+<script>
+  let current = 1;
+  const total = 6;
+
+  function show(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    current = Math.max(1, Math.min(total, n));
+    document.getElementById('slide-' + current).classList.add('active');
+  }
+
+  function scale() {
+    const scaler = document.getElementById('scaler');
+    const stage  = document.getElementById('stage');
+    const sw = 1280, sh = 720;
+    const ratio = Math.min(window.innerWidth / sw, window.innerHeight / sh);
+    scaler.style.transform = 'scale(' + ratio + ')';
+    stage.style.width  = (sw * ratio) + 'px';
+    stage.style.height = (sh * ratio) + 'px';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  document.getElementById('stage').addEventListener('click', () => show(current + 1));
+  window.addEventListener('resize', scale);
+  scale();
+</script>
+</body>
+</html>

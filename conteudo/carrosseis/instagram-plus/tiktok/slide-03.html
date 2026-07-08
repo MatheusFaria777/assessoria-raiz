@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #F5F5F5;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .side-block {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 420px;
+      background: #2C2C2C;
+    }
+    .side-block::after {
+      content: '';
+      position: absolute;
+      right: -1px; top: 0; bottom: 0;
+      width: 6px;
+      background: #CBA135;
+    }
+    .bg-number {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 500px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      user-select: none;
+    }
+    .progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(30,61,52,0.12);
+      z-index: 10;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 37.5%;
+      background: #CBA135;
+    }
+    .left-content {
+      position: absolute;
+      left: 56px;
+      top: 0; bottom: 260px;
+      width: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 36px;
+    }
+    .perfil-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #CBA135;
+    }
+    .perfil-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 900;
+      color: #F5F5F5;
+      line-height: 0.92;
+      letter-spacing: -1px;
+    }
+    .perfil-title em {
+      font-style: italic;
+      font-weight: 400;
+      font-size: 60px;
+    }
+    .veredicto {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(203,161,53,0.15);
+      border: 1px solid rgba(203,161,53,0.4);
+      border-radius: 4px;
+      padding: 12px 18px;
+    }
+    .veredicto-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e53935;
+      flex-shrink: 0;
+    }
+    .veredicto-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #F5F5F5;
+    }
+    .right-content {
+      position: absolute;
+      left: 460px;
+      right: 64px;
+      top: 0; bottom: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 48px;
+    }
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #2C2C2C;
+      line-height: 1.6;
+    }
+    .body-text strong {
+      color: #1E3D34;
+      font-weight: 700;
+    }
+    .separator {
+      width: 48px;
+      height: 2px;
+      background: #CBA135;
+    }
+    .closing {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-style: italic;
+      color: rgba(44,44,44,0.55);
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-block">
+    <div class="bg-number">1</div>
+  </div>
+  <div class="progress"><div class="progress-fill"></div></div>
+  <div class="left-content">
+    <div class="perfil-tag">Perfil 1</div>
+    <div class="perfil-title">Usuário<br><em>comum</em></div>
+    <div class="veredicto">
+      <div class="veredicto-dot"></div>
+      <div class="veredicto-text">Não vale</div>
+    </div>
+  </div>
+  <div class="right-content">
+    <div class="body-text">
+      Se você usa o Instagram pra acompanhar amigos, ver memes e curtir foto, o Plus <strong>não muda nada que importa.</strong>
+    </div>
+    <div class="separator"></div>
+    <div class="body-text">
+      Fonte na bio e ícone personalizado do app são só mudanças visuais. Stories de 48 horas é algo que você nunca vai precisar.
+    </div>
+    <div class="closing">O Instagram grátis continua atendendo 100% do uso.</div>
+  </div>
+</body>
+</html>

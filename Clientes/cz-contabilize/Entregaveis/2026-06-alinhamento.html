@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alinhamento Junho 2026 — CZ Contabilize</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1E3D34;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .slide {
+    display: none;
+    width: 1280px;
+    height: 720px;
+    background: #1E3D34;
+    padding: 80px 108px;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    transform-origin: center center;
+  }
+
+  .slide.active { display: flex; }
+
+  .label {
+    font-size: 14px;
+    color: #CBA135;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0.8;
+  }
+
+  .title {
+    font-size: 58px;
+    font-weight: bold;
+    color: #CBA135;
+    line-height: 1.1;
+    margin-bottom: 52px;
+  }
+
+  /* ── SLIDE 1: MÉTRICAS ── */
+  .metrics {
+    display: flex;
+    gap: 64px;
+    align-items: flex-start;
+    margin-bottom: 48px;
+  }
+
+  .metric { flex: 1; }
+
+  .metric-value {
+    font-size: 100px;
+    font-weight: bold;
+    color: #CBA135;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 22px;
+    color: rgba(245,245,245,0.6);
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+
+  .divider-v {
+    width: 1px;
+    height: 120px;
+    background: rgba(203,161,53,0.2);
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  .note {
+    font-size: 26px;
+    color: #F5F5F5;
+    border-left: 4px solid #CBA135;
+    padding-left: 20px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  /* ── SLIDE 2: CAMINHOS ── */
+  .itens {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+
+  .item-num {
+    font-size: 18px;
+    color: #CBA135;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    min-width: 76px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .item-text {
+    font-size: 34px;
+    color: #F5F5F5;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(245,245,245,0.08);
+    padding-bottom: 20px;
+    flex: 1;
+  }
+
+  .item:last-child .item-text {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .item-text em {
+    font-style: normal;
+    color: rgba(245,245,245,0.5);
+    font-size: 26px;
+  }
+
+  /* ── FIXOS ── */
+  .logo {
+    position: absolute;
+    bottom: 28px;
+    right: 36px;
+    height: 44px;
+    opacity: 0.85;
+  }
+
+  .nav {
+    position: absolute;
+    bottom: 30px;
+    left: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .counter { font-size: 14px; color: #CBA135; letter-spacing: 2px; }
+  .hint { font-size: 12px; color: rgba(245,245,245,0.25); }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide active" id="s1">
+  <div class="label">Junho 2026</div>
+  <div class="title">O que os números dizem</div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-value">24</div>
+      <div class="metric-label">contatos via WhatsApp</div>
+    </div>
+    <div class="divider-v"></div>
+    <div class="metric">
+      <div class="metric-value">R$916</div>
+      <div class="metric-label">investidos no mês</div>
+    </div>
+    <div class="divider-v"></div>
+    <div class="metric">
+      <div class="metric-value">R$38</div>
+      <div class="metric-label">por contato</div>
+    </div>
+  </div>
+
+  <div class="note">Desses 24, quais fecharam?</div>
+
+  <img src="../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+  <div class="nav">
+    <span class="counter">1 / 2</span>
+    <span class="hint">→ avançar &nbsp;|&nbsp; ← voltar &nbsp;|&nbsp; F tela cheia</span>
+  </div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide" id="s2">
+  <div class="label">Direção</div>
+  <div class="title" style="margin-bottom:40px;">O que fazemos agora</div>
+
+  <div class="itens">
+    <div class="item">
+      <div class="item-num">Urgente</div>
+      <div class="item-text">Feedback dos leads <em>— quais fecharam?</em></div>
+    </div>
+    <div class="item">
+      <div class="item-num">Opção A</div>
+      <div class="item-text">Meta Ads <em>— alinhar com quem já roda</em></div>
+    </div>
+    <div class="item">
+      <div class="item-num">Opção B</div>
+      <div class="item-text">Expandir o Google para o Brasil <em>— mais volume de busca</em></div>
+    </div>
+  </div>
+
+  <img src="../../../marca/logo-bege-fundo-verde.png" class="logo" alt="Raiz">
+  <div class="nav">
+    <span class="counter">2 / 2</span>
+  </div>
+</div>
+
+<script>
+  var cur = 1, total = 2;
+
+  function show(n) {
+    if (n < 1 || n > total) return;
+    document.querySelector('.slide.active').classList.remove('active');
+    document.getElementById('s' + n).classList.add('active');
+    cur = n;
+  }
+
+  function scale() {
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.98;
+    document.querySelectorAll('.slide').forEach(function(sl) {
+      sl.style.transform = 'scale(' + s + ')';
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen(); }
+  });
+
+  document.body.addEventListener('click', function() { show(cur + 1); });
+  window.addEventListener('resize', scale);
+  scale();
+</script>
+</body>
+</html>

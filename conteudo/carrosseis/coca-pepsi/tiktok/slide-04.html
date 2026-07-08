@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  position: relative;
+  background: #0a0a10;
+  font-family: 'Inter', sans-serif;
+}
+.bg {
+  position: absolute;
+  inset: 0;
+  background: url('../imagens/slide-04.png') center 38% / cover no-repeat;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(8,8,14,0.30) 0%,
+    rgba(8,8,14,0.30) 20%,
+    rgba(8,8,14,0.60) 45%,
+    rgba(8,8,14,0.97) 100%
+  );
+}
+.content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 80px 110px;
+}
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: #CBA135;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.stats-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 0;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+.stat-num-wrap {
+  display: flex;
+  align-items: flex-start;
+}
+.big-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 192px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 96px;
+  line-height: 1;
+  margin-top: 12px;
+}
+.stat.dim .big-num,
+.stat.dim .pct { color: #666666; }
+.stat.gold .big-num,
+.stat.gold .pct { color: #CBA135; }
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.stat.dim .stat-label { color: #555555; }
+.stat.gold .stat-label { color: #CBA135; }
+.divider-v {
+  width: 1px;
+  height: 130px;
+  background: rgba(255,255,255,0.12);
+  align-self: center;
+  margin-bottom: 22px;
+}
+.caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 33px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #999999;
+  max-width: 940px;
+  margin-bottom: 44px;
+}
+.caption strong {
+  color: #E0E0E0;
+  font-weight: 700;
+}
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 617px;
+  background: #ffffff;
+}
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="tag">Mas por que isso acontece?</div>
+    <div class="caption">
+      Em 2004, <strong>pesquisadores colocaram pessoas num exame de imagem do cérebro</strong> e repetiram o teste, desta vez com as marcas reveladas. Quando o cliente sabia que estava bebendo Coca-Cola, outra parte do cérebro acendia. A parte ligada a memória e emoção.
+    </div>
+    <div class="stats-row">
+      <div class="stat dim">
+        <div class="stat-num-wrap">
+          <span class="big-num">30</span><span class="pct">%</span>
+        </div>
+        <div class="stat-label">O produto</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="stat gold">
+        <div class="stat-num-wrap">
+          <span class="big-num">70</span><span class="pct">%</span>
+        </div>
+        <div class="stat-label">A marca</div>
+      </div>
+    </div>
+  </div>
+  <div class="progress"></div>
+</body>
+</html>

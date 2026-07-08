@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      background: #3e636f;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 140px;
+      color: rgba(10, 12, 16, 0.2);
+      line-height: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .main-statement {
+      font-family: 'Playfair Display', serif;
+      font-size: 84px;
+      font-weight: 700;
+      color: #EDF0F7;
+      line-height: 1.0;
+      margin-bottom: 48px;
+    }
+    .divider {
+      width: 64px;
+      height: 2px;
+      background: rgba(237, 240, 247, 0.35);
+      margin-bottom: 36px;
+    }
+    .context {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      color: rgba(237, 240, 247, 0.8);
+      line-height: 1.6;
+      margin-bottom: 44px;
+    }
+    .question-before {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(237, 240, 247, 0.5);
+      margin-bottom: 10px;
+    }
+    .question {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 700;
+      font-style: italic;
+      color: #EDF0F7;
+      line-height: 1.15;
+      background: rgba(10, 12, 16, 0.2);
+      padding: 24px 28px;
+    }
+    .question.after {
+      margin-top: 16px;
+      background: rgba(10, 12, 16, 0.35);
+    }
+    .slide-num {
+      position: absolute;
+      top: 52px;
+      right: 72px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(237, 240, 247, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-num">06</div>
+  <span class="quote-mark">"</span>
+  <div class="main-statement">
+    Seus dons<br>
+    não existem<br>
+    pra você.
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="context">
+    Existem pra servir os outros.<br>
+    A pergunta mudou:
+  </div>
+
+  <div class="question-before">Não mais</div>
+  <div class="question">"O que eu sou bom?"</div>
+
+  <div class="question-before" style="margin-top:20px">Mas sim</div>
+  <div class="question after">"Pra quem esse talento existe?"</div>
+</body>
+</html>

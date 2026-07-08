@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estratégia Digital · @esteticathiara</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #c9a77c;
+    --rose-light: #e8d5be;
+    --rose-dark: #9e7d57;
+    --cream: #faf7f3;
+    --dark: #1a1714;
+    --mid: #2e2a26;
+    --mid2: #242019;
+    --text: #4a4540;
+    --muted: #9a9088;
+    --ok: #7aab8e;
+    --warn: #c9a77c;
+    --bad: #b07070;
+    --line: rgba(201,167,124,0.18);
+    --blue: #7a9ab0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(201,167,124,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 85%, rgba(201,167,124,0.05) 0%, transparent 50%);
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a77c' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--rose); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 500px;
+    margin-top: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-line {
+    width: 1px;
+    height: 70px;
+    background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+    margin: 48px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-tag {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--rose);
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  .section-title em { font-style: italic; color: var(--rose); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+    margin: 0 40px;
+    opacity: 0.25;
+  }
+
+  /* ── PERFIL CARDS ── */
+  .perfil-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .perfil-card {
+    background: var(--mid);
+    padding: 32px;
+    border: 1px solid var(--line);
+  }
+
+  .perfil-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .perfil-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .perfil-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* ── HIGHLIGHT QUOTE ── */
+  .quote-block {
+    border-left: 2px solid var(--rose);
+    padding: 24px 32px;
+    background: rgba(201,167,124,0.05);
+    margin: 32px 0;
+  }
+
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--rose-light);
+    line-height: 1.5;
+  }
+
+  .quote-block .quote-attr {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  /* ── PCZ BLOCK ── */
+  .pcz-block {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 48px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pcz-block::before {
+    content: 'PCZ';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    font-weight: 300;
+    color: rgba(201,167,124,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pcz-title {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+
+  .pcz-h {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .pcz-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .pcz-box {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px 24px;
+  }
+
+  .pcz-box-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .pcz-box-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--cream);
+  }
+
+  .pcz-box-val.green { color: var(--ok); }
+  .pcz-box-val.rose { color: var(--rose); }
+
+  .pcz-arrow {
+    font-size: 20px;
+    color: var(--rose);
+    text-align: center;
+  }
+
+  .pcz-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 24px;
+    line-height: 1.7;
+  }
+
+  .pcz-proof {
+    margin-top: 28px;
+    background: rgba(122,171,142,0.08);
+    border: 1px solid rgba(122,171,142,0.2);
+    padding: 20px 24px;
+  }
+
+  .pcz-proof-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--ok);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .pcz-proof p {
+    font-size: 14px;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  /* ── CAMPANHAS ── */
+  .camp-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 16px;
+  }
+
+  .camp-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    align-items: stretch;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .camp-card:hover { border-color: var(--rose); }
+
+  .camp-num-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,167,124,0.05);
+    border-right: 1px solid var(--line);
+    padding: 24px 0;
+  }
+
+  .camp-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--rose);
+    opacity: 0.5;
+  }
+
+  .camp-body {
+    padding: 28px 32px;
+  }
+
+  .camp-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .camp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0;
+  }
+
+  .camp-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s;
+    opacity: 0;
+    padding: 0 32px;
+  }
+
+  .camp-card.open .camp-detail {
+    max-height: 600px;
+    opacity: 1;
+    padding: 0 32px 28px;
+  }
+
+  .camp-detail-inner {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .camp-detail-block {}
+
+  .camp-detail-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .camp-detail-block p, .camp-detail-block li {
+    font-size: 13px;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .camp-detail-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .camp-detail-block li::before {
+    content: '→ ';
+    color: var(--rose);
+    font-size: 11px;
+  }
+
+  .camp-verba {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--line);
+    background: rgba(201,167,124,0.03);
+    min-width: 90px;
+  }
+
+  .camp-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    color: var(--rose);
+    line-height: 1;
+  }
+
+  .camp-pct-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .camp-toggle {
+    padding: 0 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 28px;
+  }
+
+  .toggle-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--rose);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .camp-card.open .toggle-btn { transform: rotate(45deg); }
+
+  /* ── VERBA TOTAL ── */
+  .verba-total {
+    background: rgba(201,167,124,0.05);
+    border: 1px solid var(--line);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+  }
+
+  .verba-total-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .verba-total-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--rose-light);
+  }
+
+  /* ── FUNIL ORGÂNICO ── */
+  .funil-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 16px;
+  }
+
+  .funil-card {
+    padding: 36px 28px;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .funil-card.topo { background: rgba(201,167,124,0.04); }
+  .funil-card.meio { background: rgba(201,167,124,0.07); }
+  .funil-card.fundo { background: rgba(201,167,124,0.11); }
+
+  .funil-stage {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .funil-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .funil-obj {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .funil-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .funil-list li {
+    font-size: 13px;
+    color: var(--cream);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .funil-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--rose);
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .funil-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* ── STORIES HIGHLIGHT ── */
+  .stories-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 40px;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .stories-icon {
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .stories-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .stories-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .stories-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .stag {
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    color: var(--rose);
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* ── PRÓXIMOS PASSOS ── */
+  .steps-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 16px;
+  }
+
+  .step-card {
+    background: var(--mid);
+    border: 1px solid var(--line);
+    padding: 32px;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    color: var(--rose);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .step-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  /* ── COMPROMISSO ── */
+  .compromisso {
+    background: var(--mid2);
+    border: 1px solid rgba(201,167,124,0.3);
+    padding: 60px 48px;
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .compromisso-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .compromisso-title em { font-style: italic; color: var(--rose); }
+
+  .compromisso-body {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.8;
+  }
+
+  .compromisso-items {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .comp-item {}
+
+  .comp-icon { font-size: 24px; margin-bottom: 8px; }
+
+  .comp-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--rose);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .perfil-grid { grid-template-columns: 1fr; }
+    .funil-wrap { grid-template-columns: 1fr; }
+    .steps-wrap { grid-template-columns: 1fr; }
+    .camp-card { grid-template-columns: 56px 1fr; }
+    .camp-verba { display: none; }
+    .camp-detail-inner { grid-template-columns: 1fr; }
+    .stories-card { grid-template-columns: 1fr; }
+    .pcz-row { grid-template-columns: 1fr; }
+    .pcz-arrow { transform: rotate(90deg); }
+    .section { padding: 60px 24px; }
+    .compromisso { padding: 40px 24px; }
+    .compromisso-items { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <p class="hero-eyebrow">Assessoria Raiz · Reunião Estratégica</p>
+  <h1>O plano<br>que vamos <em>executar</em></h1>
+  <p class="hero-sub">Estratégia completa de tráfego pago e presença orgânica para a Clínica Estética Thiara — Caxias do Sul, RS.</p>
+  <div class="hero-line"></div>
+  <p class="hero-tag">@esteticathiara · Thiara Rodrigues</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── O QUE APRENDEMOS ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">01 · O Negócio</p>
+  <h2 class="section-title">O que aprendemos<br><em>sobre você</em></h2>
+
+  <div class="perfil-grid">
+    <div class="perfil-card">
+      <span class="perfil-label">Serviços Foco</span>
+      <div class="perfil-val">HIPRO & Laser</div>
+      <p class="perfil-desc">Ultrassom microfocado (lifting facial) e laser para pele — procedimentos de alto ticket e resultado visual impactante.</p>
+    </div>
+    <div class="perfil-card">
+      <span class="perfil-label">Ticket Médio</span>
+      <div class="perfil-val">R$ 1.890 · R$ 780</div>
+      <p class="perfil-desc">HIPRO a R$1.890 e Laser a R$780 em média. Margem de ~50% por procedimento.</p>
+    </div>
+    <div class="perfil-card">
+      <span class="perfil-label">Faturamento Atual</span>
+      <div class="perfil-val">~R$ 37.000/mês</div>
+      <p class="perfil-desc">Conquistado com volume atual de atendimentos. Meta: R$ 50–60k com a escala do HIPRO.</p>
+    </div>
+    <div class="perfil-card">
+      <span class="perfil-label">Público-Alvo</span>
+      <div class="perfil-val">Mulheres 30–55</div>
+      <p class="perfil-desc">Poder aquisitivo médio-alto. Região de Caxias do Sul + cidades ao redor: Farroupilha, São Marcos, Nova Petrópolis.</p>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Eu não crio expectativa grande. Trabalho dentro da verdade, com foco no resultado — e por isso tenho clientes de anos aqui comigo."</p>
+    <span class="quote-attr">— Thiara Rodrigues, onboarding 05/05</span>
+  </div>
+
+  <div class="perfil-grid" style="margin-bottom:0">
+    <div class="perfil-card">
+      <span class="perfil-label">Ponto de Entrada</span>
+      <div class="perfil-val">Papada & Contorno</div>
+      <p class="perfil-desc">Maior volume de interesse vindo de anúncios anteriores. Resultado visual gera compartilhamento e indicações espontâneas.</p>
+    </div>
+    <div class="perfil-card">
+      <span class="perfil-label">Prova de Conceito</span>
+      <div class="perfil-val">R$ 600 → R$ 20k</div>
+      <p class="perfil-desc">Com impulsionamento simples de R$600, Thiara vendeu 12 sessões de HIPRO. ROAS implícito de 33x — base sólida para escalar.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PCZ ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">02 · Lógica do Investimento</p>
+  <h2 class="section-title">Publicidade a<br><em>Custo Zero</em></h2>
+
+  <div class="pcz-block">
+    <p class="pcz-title">Conceito PCZ</p>
+
+    <div class="pcz-row">
+      <div class="pcz-box">
+        <span class="pcz-box-label">Investimento Total</span>
+        <div class="pcz-box-val">R$ 2.997/mês</div>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">Tráfego R$1.500 + Gestão R$1.497</p>
+      </div>
+      <div class="pcz-arrow">→</div>
+      <div class="pcz-box">
+        <span class="pcz-box-label">Lucro líquido por HIPRO</span>
+        <div class="pcz-box-val rose">R$ 945</div>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">R$1.890 × margem 50%</p>
+      </div>
+      <div class="pcz-arrow">→</div>
+      <div class="pcz-box">
+        <span class="pcz-box-label">Vendas para cobrir tudo</span>
+        <div class="pcz-box-val green">4 vendas</div>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">4 × R$945 = R$3.780 líquido</p>
+      </div>
+    </div>
+
+    <p style="font-size:14px;color:var(--muted);margin-top:28px;line-height:1.7;">Com <strong style="color:var(--cream)">4 procedimentos HIPRO vindos do tráfego</strong>, todo o investimento do mês já está coberto — e as demais vendas são lucro puro.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CAMPANHAS ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">03 · Tráfego Pago</p>
+  <h2 class="section-title">As <em>3 campanhas</em><br>que vamos rodar</h2>
+
+  <div class="camp-wrap">
+
+    <!-- C1 -->
+    <div class="camp-card" onclick="toggleCamp(this)">
+      <div class="camp-num-col"><div class="camp-num">01</div></div>
+      <div class="camp-body">
+        <span class="camp-tag">Presença & Autoridade</span>
+        <h3 class="camp-title">Distribuição de Conteúdo</h3>
+      </div>
+      <div class="camp-verba">
+        <div class="camp-pct">30%</div>
+        <div class="camp-pct-label">verba<br>R$450/mês</div>
+      </div>
+      <div class="camp-toggle"><div class="toggle-btn">+</div></div>
+      <div class="camp-detail">
+        <div class="camp-detail-inner">
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">O que faz</span>
+            <ul>
+              <li>Espalha o conteúdo da Thiara para pessoas que ainda não a conhecem</li>
+              <li>Constrói seguidores qualificados — não só número, mas audiência real</li>
+              <li>Familiariza o público com o nome antes de qualquer oferta</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Por que funciona</span>
+            <ul>
+              <li>Em estética, a compra é emocional — baseada em confiança e reconhecimento</li>
+              <li>Quem já conhece a Thiara compra com muito mais facilidade</li>
+              <li>Leads chegam dizendo "eu sempre quis fazer com você"</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Criativos</span>
+            <ul>
+              <li>Bastidores autênticos da clínica</li>
+              <li>A Thiara explicando o HIPRO em vídeo curto</li>
+              <li>Resultado visual antes e depois</li>
+              <li>Stories reproveitados — natural converte mais</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Resultado esperado</span>
+            <ul>
+              <li>Crescimento de seguidores qualificados</li>
+              <li>Mais visualizações e visitas ao perfil</li>
+              <li>Audiência "aquecida" antes mesmo de entrar em contato</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C2 -->
+    <div class="camp-card" onclick="toggleCamp(this)">
+      <div class="camp-num-col"><div class="camp-num">02</div></div>
+      <div class="camp-body">
+        <span class="camp-tag">Conversão Principal</span>
+        <h3 class="camp-title">Mensagens Diretas</h3>
+      </div>
+      <div class="camp-verba">
+        <div class="camp-pct">55%</div>
+        <div class="camp-pct-label">verba<br>R$825/mês</div>
+      </div>
+      <div class="camp-toggle"><div class="toggle-btn">+</div></div>
+      <div class="camp-detail">
+        <div class="camp-detail-inner">
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">O que faz</span>
+            <ul>
+              <li>Leva pessoas interessadas direto ao WhatsApp ou Direct</li>
+              <li>É onde o retorno financeiro de fato acontece</li>
+              <li>Maior fatia da verba — porque é a campanha que gera vendas</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Estrutura do vídeo</span>
+            <ul>
+              <li><strong style="color:var(--cream)">Gancho:</strong> primeiros 3 segundos decidem tudo</li>
+              <li><strong style="color:var(--cream)">Benefício:</strong> o que a pessoa vai conquistar</li>
+              <li><strong style="color:var(--cream)">Prova:</strong> resultado real, depoimento, antes/depois</li>
+              <li><strong style="color:var(--cream)">CTA:</strong> chamada direta para entrar em contato</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Pautas iniciais</span>
+            <ul>
+              <li>Antes e depois de papada — vídeo real</li>
+              <li>"Redução de papada sem cirurgia existe?"</li>
+              <li>Depoimento de cliente satisfeita</li>
+              <li>Resultado HIPRO em 1 sessão</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Por que funciona</span>
+            <ul>
+              <li>O anúncio certo, para a pessoa certa, no momento certo</li>
+              <li>1 clique direto para o WhatsApp — sem fricção</li>
+              <li>Quanto menos barreiras, mais mensagens chegam</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C3 -->
+    <div class="camp-card" onclick="toggleCamp(this)">
+      <div class="camp-num-col"><div class="camp-num">03</div></div>
+      <div class="camp-body">
+        <span class="camp-tag">Recuperação de Leads</span>
+        <h3 class="camp-title">Remarketing</h3>
+      </div>
+      <div class="camp-verba">
+        <div class="camp-pct">15%</div>
+        <div class="camp-pct-label">verba<br>R$225/mês</div>
+      </div>
+      <div class="camp-toggle"><div class="toggle-btn">+</div></div>
+      <div class="camp-detail">
+        <div class="camp-detail-inner">
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">O que faz</span>
+            <ul>
+              <li>Reencontra quem visitou o perfil ou assistiu a um vídeo mas não entrou em contato</li>
+              <li>Esses leads já demonstraram interesse — precisam de um empurrão</li>
+              <li>Aproveita melhor cada real investido nas outras campanhas</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Por que funciona</span>
+            <ul>
+              <li>A maioria das vendas não acontece no primeiro contato</li>
+              <li>O lead já conhece a Thiara — só precisa do momento certo</li>
+              <li>Custo mais baixo por lead — público já qualificado</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Criativos</span>
+            <ul>
+              <li>Depoimentos curtos e diretos</li>
+              <li>Resultados concretos com CTA claro</li>
+              <li>Tom mais pessoal — quem já conhece não precisa de apresentação</li>
+            </ul>
+          </div>
+          <div class="camp-detail-block">
+            <span class="camp-detail-label">Resultado esperado</span>
+            <ul>
+              <li>Recuperação de leads que "esfriaram"</li>
+              <li>Aumento do aproveitamento geral das campanhas</li>
+              <li>Mais conversões com menos investimento adicional</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="verba-total">
+    <span class="verba-total-label">Total investido por mês</span>
+    <span class="verba-total-val">R$ 1.500 · R$ 50/dia</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── ORGÂNICO ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">04 · Presença Orgânica</p>
+  <h2 class="section-title">Funil de conteúdo<br><em>no Instagram</em></h2>
+
+  <div class="funil-wrap">
+    <div class="funil-card topo">
+      <span class="funil-badge">TOPO</span>
+      <span class="funil-stage">Consciência</span>
+      <div class="funil-name">Atrair</div>
+      <p class="funil-obj">Educar e gerar interesse. O foco não é vender — é aparecer para novas pessoas e criar relacionamento.</p>
+      <ul class="funil-list">
+        <li>Curiosidades sobre HIPRO e Laser</li>
+        <li>"O que causa flacidez facial?"</li>
+        <li>Dicas de cuidados com a pele</li>
+        <li>Tendências em estética</li>
+        <li>Novidades do setor</li>
+      </ul>
+    </div>
+    <div class="funil-card meio">
+      <span class="funil-badge">MEIO</span>
+      <span class="funil-stage">Consideração</span>
+      <div class="funil-name">Convencer</div>
+      <p class="funil-obj">Quebrar objeções e mostrar autoridade. A pessoa está avaliando — precisa ver diferencial e prova.</p>
+      <ul class="funil-list">
+        <li>Antes e depois de procedimentos</li>
+        <li>Bastidores da clínica</li>
+        <li>Estudo de caso de pacientes</li>
+        <li>"Por que eu me especializei em HIPRO"</li>
+        <li>Perguntas frequentes respondidas</li>
+      </ul>
+    </div>
+    <div class="funil-card fundo">
+      <span class="funil-badge">FUNDO</span>
+      <span class="funil-stage">Decisão</span>
+      <div class="funil-name">Converter</div>
+      <p class="funil-obj">Incentivar a ação. O lead já conhece e confia — agora precisa de um motivo para entrar em contato hoje.</p>
+      <ul class="funil-list">
+        <li>Depoimentos em vídeo de clientes</li>
+        <li>Oferta ou condição especial</li>
+        <li>"Últimas vagas de laser na sexta"</li>
+        <li>CTA direto para WhatsApp</li>
+        <li>Enquetes que direcionam para atendimento</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stories-card">
+    <div class="stories-icon">📱</div>
+    <div>
+      <h3 class="stories-title">Stories: o diferencial que você já tem</h3>
+      <p class="stories-body">No onboarding, o Lucas mencionou que você já posta stories com frequência — e isso é raro entre clientes. Isso precisa continuar, porque os stories são o principal canal de conexão humana no Instagram. A meta é <strong style="color:var(--cream)">mínimo 3 stories por dia</strong>, e a boa notícia é que não precisam ser elaborados.</p>
+      <div class="stories-tags">
+        <span class="stag">Chegada na clínica</span>
+        <span class="stag">Bastidores de atendimento</span>
+        <span class="stag">Resultado do dia</span>
+        <span class="stag">Curiosidade da semana</span>
+        <span class="stag">Enquete sobre procedimento</span>
+        <span class="stag">Momento pessoal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── O QUE PRECISAMOS ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">05 · Nossa Parceria</p>
+  <h2 class="section-title">O que cada lado<br><em>precisa entregar</em></h2>
+
+  <div class="steps-wrap">
+    <div class="step-card">
+      <span class="step-tag">Da Thiara</span>
+      <div class="step-num">01</div>
+      <h3 class="step-title">Materiais e criativos</h3>
+      <p class="step-body">Fotos e vídeos para as campanhas — especialmente antes e depois, bastidores e depoimentos. Não precisam ser produzidos por agência: autêntico converte mais.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-tag">Da Thiara</span>
+      <div class="step-num">02</div>
+      <h3 class="step-title">Atendimento rápido no WhatsApp</h3>
+      <p class="step-body">O lead vai até o WhatsApp — e aqui é onde a venda acontece. Resposta rápida e condução certa da conversa valem mais do que qualquer campanha.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-tag">Da Thiara</span>
+      <div class="step-num">03</div>
+      <h3 class="step-title">Feedback de vendas</h3>
+      <p class="step-body">Nos avisar quando fechar uma venda — qual procedimento, de qual anúncio. Esses dados guiam a otimização das campanhas e elevam o resultado mês a mês.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-tag">Da Assessoria Raiz</span>
+      <div class="step-num">04</div>
+      <h3 class="step-title">Gestão, relatórios e direção</h3>
+      <p class="step-body">Relatório semanal resumido + relatório mensal completo com reunião. Gestão das campanhas, testes, ajustes e direção de conteúdo orgânico — tudo documentado.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── RELATÓRIOS ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">06 · Acompanhamento</p>
+  <h2 class="section-title">Como você vai<br><em>acompanhar tudo</em></h2>
+
+  <div class="perfil-grid" style="margin-bottom:0">
+    <div class="perfil-card" style="border-top:2px solid var(--rose);">
+      <span class="perfil-label">📋 Relatório Semanal</span>
+      <div class="perfil-val" style="font-size:20px;margin-bottom:16px;">Toda semana · No grupo</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> Leads gerados no período</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> Investimento utilizado</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> Custo por lead</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> Melhores criativos da semana</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> Observações e próximos ajustes</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6;">Formato simples — para você olhar na correria e entender o rumo em menos de 2 minutos.</p>
+    </div>
+    <div class="perfil-card" style="border-top:2px solid var(--ok);">
+      <span class="perfil-label" style="color:var(--ok);">📊 Relatório Mensal + Reunião</span>
+      <div class="perfil-val" style="font-size:20px;margin-bottom:16px;">Todo mês · Com reunião</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--ok);">→</span> Leads totais e vendas geradas</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--ok);">→</span> Faturamento vindo do tráfego</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--ok);">→</span> ROAS (retorno sobre o investimento)</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--ok);">→</span> CAC (custo por cliente adquirido)</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--ok);">→</span> O que funcionou e o que ajustar</li>
+        <li style="font-size:13px;color:var(--cream);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--ok);">→</span> Decisões e prioridades do próximo mês</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6;">Prestação de contas completa — apresentado ao vivo, com espaço para perguntas e alinhamentos.</p>
+    </div>
+  </div>
+
+  <div class="wa-card" style="margin-top:2px;">
+    <div style="font-size:36px;flex-shrink:0;">📌</div>
+    <div>
+      <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;display:block;">O que precisamos de você para os relatórios</span>
+      <p style="font-size:14px;color:var(--cream);margin-bottom:8px;">Para que os números façam sentido, precisamos de um retorno simples sempre que fechar uma venda vinda do tráfego:</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+        <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> <strong style="color:var(--cream)">Número de vendas</strong> realizadas no período</li>
+        <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> <strong style="color:var(--cream)">Faturamento</strong> gerado pelas vendas do tráfego</li>
+        <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> <strong style="color:var(--cream)">Qual procedimento</strong> foi vendido</li>
+        <li style="font-size:13px;color:var(--muted);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--rose);">→</span> <strong style="color:var(--cream)">Qualidade dos leads</strong> — estão chegando bem qualificados?</li>
+      </ul>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6;">Esses dados são o que transformam um relatório de números em um relatório de decisão. Sem eles, otimizamos no escuro.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PRÓXIMOS PASSOS ── -->
+<section class="section reveal">
+  <p class="section-eyebrow">07 · Linha do Tempo</p>
+  <h2 class="section-title">O que acontece<br><em>a partir de agora</em></h2>
+
+  <div class="steps-wrap">
+    <div class="step-card" style="border-top: 2px solid var(--rose);">
+      <span class="step-tag">Hoje · Reunião Estratégica</span>
+      <div class="step-num">01</div>
+      <h3 class="step-title">Onde estamos agora</h3>
+      <p class="step-body">Estratégia alinhada, estrutura do projeto montada, forma de pagamento configurada. Saímos daqui com o plano definido e as responsabilidades claras dos dois lados.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-tag">2 a 3 dias úteis</span>
+      <div class="step-num">02</div>
+      <h3 class="step-title">Primeiros anúncios no ar</h3>
+      <p class="step-body">Campanhas ativas, primeiros leads chegando no WhatsApp. A partir daí, o atendimento entra em cena — aqui mora a venda.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-tag">Semana 1 a 2</span>
+      <div class="step-num">03</div>
+      <h3 class="step-title">Testes e ajustes</h3>
+      <p class="step-body">Acompanhamento dos primeiros resultados: quais anúncios estão gerando mais interesse, quais pautas estão funcionando melhor. Ajustes rápidos para otimizar o retorno.</p>
+    </div>
+    <div class="step-card">
+      <span class="step-tag">Mês 2 em diante</span>
+      <div class="step-num">04</div>
+      <h3 class="step-title">Escala do que funciona</h3>
+      <p class="step-body">Com dados em mãos, dobramos a aposta no que está trazendo resultado. A máquina começa a rodar de forma previsível — mais leads, mais vendas, mais controle.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── COMPROMISSO ── -->
+<section class="section reveal">
+  <div class="compromisso">
+    <h2 class="compromisso-title">Tráfego pago é<br><em>acelerador</em> — não milagre</h2>
+    <p class="compromisso-body">Se o negócio funciona bem, o tráfego acelera isso. O seu negócio funciona bem: você tem resultado, tem recorrência, tem indicação. Agora a gente coloca o motor pra girar de verdade.</p>
+    <div class="compromisso-items">
+      <div class="comp-item">
+        <div class="comp-icon">📊</div>
+        <div class="comp-label">Relatório semanal</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-icon">📅</div>
+        <div class="comp-label">Reunião mensal</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-icon">💬</div>
+        <div class="comp-label">Suporte no grupo</div>
+      </div>
+      <div class="comp-item">
+        <div class="comp-icon">📈</div>
+        <div class="comp-label">Melhoria contínua</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin-top:60px;"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-logo">Assessoria Raiz</p>
+  <p class="footer-sub">Estratégia preparada para @esteticathiara · Thiara Rodrigues · Caxias do Sul, RS</p>
+</footer>
+
+<script>
+  function toggleCamp(card) {
+    card.classList.toggle('open');
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
