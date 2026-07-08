@@ -29,15 +29,38 @@ Carro dando sinal de que precisa de revisão? Não espera virar problema grande.
 
 ---
 
-### Criativo 2 — [aguardando a segunda peça]
+### Criativo 2 — Carrossel "Óleo vencido detona o motor" (educativo + agendamento)
 
-Manda a imagem ou o tema do segundo criativo (ex: gancho de preço, depoimento, antes/depois, sazonal) que eu já monto os títulos, texto principal e descrições no mesmo padrão.
+4 slides: gancho (óleo vencido detona o motor aos poucos) → educativo (pra que serve o óleo: lubrificar, reduzir atrito, evitar superaquecimento, proteger o motor) → prova visual (troca de óleo na oficina) → CTA (agenda teu horário, endereço + contato)
+
+**Títulos:**
+1. Óleo vencido detona o motor aos poucos
+2. Teu óleo já venceu e você nem percebeu
+3. O que o óleo do motor evita (e o que custa não trocar)
+
+**Texto principal (opção A — foco educativo):**
+Você pode até não perceber, mas rodar com óleo vencido detona o motor aos poucos. Ele é responsável por lubrificar, reduzir atrito, evitar superaquecimento e proteger o motor inteiro. Sem ele em dia, o prejuízo é certo. Chama no WhatsApp e agenda a troca na Mecânica Podium Racing.
+
+**Texto principal (opção B — foco em pergunta direta):**
+A semana começou, já agendou a revisão do teu carro? Óleo vencido é um dos maiores causadores de dano de motor, e o conserto sai bem mais caro que a prevenção. Manda mensagem agora e garante teu horário na Mecânica Podium Racing.
+
+**Descrições do link:**
+1. Agende sua troca de óleo
+2. Proteja o motor do teu carro
+3. Mecânica Podium Racing, Encantado/RS
+
+---
 
 ---
 
 ## Observações pra subida manual
 
-- Testar as duas opções de texto principal do Criativo 1 em anúncios separados dentro do mesmo conjunto, deixa o algoritmo decidir qual ângulo (prevenção vs urgência) converte mais barato.
+- Testar as duas opções de texto principal de cada criativo em anúncios separados dentro do mesmo conjunto, deixa o algoritmo decidir qual ângulo converte mais barato.
 - No Ads Manager, cole os 3 títulos e as 3 descrições nos campos de variação ("+ Adicionar título" / "+ Adicionar descrição"). O texto principal fica fixo, 1 por anúncio.
-- Destino: mensagem direta pro WhatsApp 51 99651.0092. Confirmar se o número está conectado à conta Meta Business antes de subir.
+- Destino: mensagem direta pro WhatsApp. Confirmar se o número está conectado à conta Meta Business antes de subir.
 - Como o escopo da oficina inclui moto e carro, mas essa campanha é focada em carro, evitar termos genéricos demais no texto (tipo só "veículo") pra não confundir o público certo.
+
+**Atenção — inconsistência de contato entre os criativos, confirmar antes de subir:**
+- Criativo 1 mostra WhatsApp "51 99651.0092" e Instagram "@podiumracing"
+- Criativo 2 mostra WhatsApp "(51) 9651-0092" (sem o 9º dígito) e Instagram "@racingpodium"
+- Confirmar qual número e qual @ estão corretos e ativos antes de vincular o botão de mensagem, pra não direcionar lead pro contato errado.
