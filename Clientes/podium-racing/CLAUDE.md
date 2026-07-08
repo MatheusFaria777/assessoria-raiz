@@ -1,13 +1,15 @@
 # Podium Racing
 
 ## O que é
-Loja de revenda de motos com mecânica. A Assessoria Raiz atua exclusivamente no segmento de revenda de motos — não na parte de mecânica.
+Loja de revenda de motos com oficina (moto e carro). Até jun/2026 a Assessoria Raiz atuava só no segmento de revenda de motos. Desde jul/2026 o escopo inclui também o tráfego pago da oficina (mecânica moto e carro).
 
 ## Tipo
-Cliente — concessionária de motos
+Cliente — concessionária de motos + oficina
 
 ## Escopo
-Gestão de tráfego pago (Meta Ads e/ou Google Ads) para geração de leads e vendas de motos.
+Gestão de tráfego pago (Meta Ads e/ou Google Ads) para:
+- Geração de leads e vendas de motos (revenda)
+- Geração de mensagens/agendamentos pra oficina (manutenção moto e carro) — desde jul/2026
 
 ## Arquivos importantes
 - `briefing.md` — informações do negócio e do cliente
@@ -15,5 +17,5 @@ Gestão de tráfego pago (Meta Ads e/ou Google Ads) para geração de leads e ve
 - `relatorios/` — apresentações mensais geradas
 
 ## Regras específicas
-- Foco exclusivo em revenda de motos (não mencionar mecânica nos anúncios/relatórios)
-- Produto: motos (variados modelos e marcas)
+- Revenda: produto são motos (variados modelos e marcas)
+- Oficina: atende moto e carro, serviços de revisão e manutenção preventiva
