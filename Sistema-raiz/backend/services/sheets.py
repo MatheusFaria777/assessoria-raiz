@@ -36,6 +36,8 @@ HEADER_ALIASES: dict[str, list[str]] = {
 
 
 def is_configured() -> bool:
+    if os.environ.get("SHEETS_CREDENTIALS_JSON"):
+        return True
     return os.path.exists(os.path.abspath(CREDS_FILE))
 
 
