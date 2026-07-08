@@ -57,6 +57,7 @@ A semana começou, já agendou a revisão do teu carro? Óleo vencido é um dos 
 
 - Testar as duas opções de texto principal de cada criativo em anúncios separados dentro do mesmo conjunto, deixa o algoritmo decidir qual ângulo converte mais barato.
 - No Ads Manager, cole os 3 títulos e as 3 descrições nos campos de variação ("+ Adicionar título" / "+ Adicionar descrição"). O texto principal fica fixo, 1 por anúncio.
+  - **Exceção — Criativo 2 (carrossel):** o Meta não permite variação automática de título/descrição em anúncio de carrossel (erro `UnsupportedDofAssetFeedSpecFieldInCarouselAd`), só de texto principal. Usar 1 título fixo no campo de variação (ou distribuir os 3 títulos manualmente entre os cards do carrossel) e deixar só as opções A/B de texto principal na variação automática.
 - Destino: mensagem direta pro WhatsApp. Confirmar se o número está conectado à conta Meta Business antes de subir.
 - Como o escopo da oficina inclui moto e carro, mas essa campanha é focada em carro, evitar termos genéricos demais no texto (tipo só "veículo") pra não confundir o público certo.
 
