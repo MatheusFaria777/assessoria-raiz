@@ -30,6 +30,7 @@ _TYPE_TO_CONTAGEM = {
     "live":        "cliques",
     "consignacao": "mensagem",
     "vagas":       "mensagem",
+    "manutencao":  "mensagem",
 }
 
 _PRIMARY_CONTAGEM = {"mensagem", "lead"}
