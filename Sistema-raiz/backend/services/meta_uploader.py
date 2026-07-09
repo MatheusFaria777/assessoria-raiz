@@ -158,8 +158,9 @@ def create_carousel_ad(
                 "video_highlight", "video_highlights", "video_to_image",
                 "video_uncrop", "wa_mm_image_filtering",
             ]},
-            "audio":        {"enroll_status": "OPT_IN"},
-            "profile_card": {"enroll_status": "OPT_IN"},
+            "audio":             {"enroll_status": "OPT_IN"},
+            "profile_card":      {"enroll_status": "OPT_IN"},
+            "multi_destination": {"enroll_status": "OPT_IN"},
         }
     }
 
