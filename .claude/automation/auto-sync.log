@@ -1221,3 +1221,11 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [10/07/2026  9:58:33,69] Mudancas sincronizadas 
 [10/07/2026 10:28:33,03] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[main 18a713c] auto-sync: 10/07/2026 10:28:33,77
+ 1 file changed, 8 insertions(+)
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   ccf36af..18a713c  main -> main
+[10/07/2026 10:28:33,77] Mudancas sincronizadas 
+[10/07/2026 10:58:33,23] Iniciando auto-sync 
+fatal: unable to access 'https://github.com/MatheusFaria777/assessoria-raiz.git/': Failed to connect to github.com port 443 after 21078 ms: Could not connect to server
