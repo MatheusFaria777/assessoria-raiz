@@ -160,7 +160,6 @@ def create_carousel_ad(
             ]},
             "audio":             {"enroll_status": "OPT_IN"},
             "profile_card":      {"enroll_status": "OPT_IN"},
-            "multi_destination": {"enroll_status": "OPT_IN"},
         }
     }
 
