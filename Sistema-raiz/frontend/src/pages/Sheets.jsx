@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
 import { useClients } from '../contexts/ClientsContext'
@@ -42,7 +42,7 @@ function SyncStatusBadge({ clientId }) {
 
 export default function Sheets() {
   const { clients: allClients } = useClients()
-  const clients = allClients.filter(c => c.sheets_id)
+  const clients = useMemo(() => allClients.filter(c => c.sheets_id), [allClients])
   const [syncType, setSyncType] = useState('weekly')
   const [since, setSince]   = useState(() => lastWeekRange().since)
   const [until, setUntil]   = useState(() => lastWeekRange().until)

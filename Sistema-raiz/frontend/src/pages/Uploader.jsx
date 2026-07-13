@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
 import { useClients } from '../contexts/ClientsContext'
@@ -204,7 +204,7 @@ function QueueItem({ item, clientName, clientQueue, onRetry, onCancel, onReset, 
 
 export default function Uploader() {
   const { clients: allClients } = useClients()
-  const clients = allClients.filter(c => c.has_meta)
+  const clients = useMemo(() => allClients.filter(c => c.has_meta), [allClients])
   const [clientId, setClientId] = useState('')
   const [adsets, setAdsets]     = useState([])
   const [adsetId, setAdsetId]   = useState('')
