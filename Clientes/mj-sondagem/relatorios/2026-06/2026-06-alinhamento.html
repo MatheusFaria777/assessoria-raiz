@@ -2,361 +2,568 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>MJ Sondagens — Alinhamento Junho 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alinhamento Junho 2026 — MJ Sondagens</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-  width: 100vw; height: 100vh;
-  overflow: hidden;
-  background: #0B1E18;
-  font-family: Georgia, 'Times New Roman', serif;
-  color: #F5F5F5;
-}
+  body {
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
 
-#stage {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-}
+  .stage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.deck {
-  width: 1920px; height: 1080px;
-  position: relative;
-  transform-origin: center center;
-}
+  .slide-wrapper {
+    width: 1920px;
+    height: 1080px;
+    transform-origin: center center;
+    position: relative;
+  }
 
-.slide {
-  position: absolute; inset: 0;
-  background: #1E3D34;
-  display: none;
-  flex-direction: column;
-  padding: 80px 120px 100px;
-}
-.slide.active { display: flex; }
+  /* ── SLIDE BASE ── */
+  .slide {
+    display: none;
+    width: 1920px;
+    height: 1080px;
+    background: #1E3D34;
+    color: #F5F5F5;
+    position: absolute;
+    top: 0; left: 0;
+    padding: 80px 120px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide.active { display: flex; }
 
-.logo { position: absolute; bottom: 34px; right: 54px; height: 78px; }
-.counter {
-  position: absolute; bottom: 42px; left: 60px;
-  color: #CBA135; font-size: 23px; letter-spacing: 2px;
-}
+  /* ── TIPOGRAFIA ── */
+  .slide-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 58px;
+    color: #CBA135;
+    line-height: 1.18;
+    margin-bottom: 44px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
 
-h1 { color: #CBA135; }
+  /* ── TARJA ── */
+  .tarja {
+    border-left: 6px solid #CBA135;
+    background: rgba(203,161,53,0.11);
+    padding: 22px 36px;
+    margin-top: 44px;
+    font-size: 30px;
+    color: #F5F5F5;
+    font-style: italic;
+    line-height: 1.55;
+    border-radius: 0 4px 4px 0;
+  }
 
-.tarja {
-  border-left: 6px solid #CBA135;
-  background: rgba(203,161,53,.12);
-  padding: 26px 38px;
-  font-size: 29px; line-height: 1.5;
-  color: #F5F5F5;
-}
+  /* ── LOGO E CONTADOR ── */
+  .logo {
+    position: absolute;
+    bottom: 36px;
+    right: 56px;
+    height: 68px;
+    opacity: 0.92;
+  }
+  .counter {
+    position: absolute;
+    bottom: 44px;
+    left: 60px;
+    font-size: 22px;
+    color: #CBA135;
+    opacity: 0.55;
+    letter-spacing: 3px;
+  }
 
-/* ── SLIDE 1 CAPA ── */
-.slide-capa {
-  align-items: center; justify-content: center; text-align: center;
-}
-.capa-eyebrow {
-  color: rgba(203,161,53,.6);
-  font-size: 27px; letter-spacing: 5px;
-  text-transform: uppercase; margin-bottom: 26px;
-}
-.capa-title {
-  font-size: 118px; line-height: 1.05;
-  color: #CBA135;
-}
-.capa-divider {
-  width: 72px; height: 3px;
-  background: #CBA135; margin: 38px auto;
-}
-.capa-client {
-  font-size: 42px; color: #F5F5F5; opacity: .85; margin-bottom: 14px;
-}
-.capa-sub {
-  font-size: 27px; color: rgba(245,245,245,.42); letter-spacing: 1px;
-}
+  /* ── CAPA ── */
+  .slide-capa {
+    justify-content: flex-end;
+    padding-bottom: 120px;
+  }
+  .capa-eyebrow {
+    font-size: 26px;
+    color: #CBA135;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-bottom: 28px;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+  .capa-title {
+    font-size: 100px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1.0;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .capa-divider {
+    width: 80px;
+    height: 4px;
+    background: #CBA135;
+    margin-bottom: 36px;
+    border-radius: 2px;
+  }
+  .capa-client {
+    font-size: 44px;
+    color: #F5F5F5;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .capa-sub {
+    font-size: 28px;
+    color: #F5F5F5;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
 
-/* ── SLIDE 2 ABERTURA ── */
-.slide-abertura { justify-content: space-between; }
-.slide-abertura h1 { font-size: 55px; line-height: 1.22; margin-bottom: 42px; }
-.bullets { list-style: none; display: flex; flex-direction: column; gap: 24px; flex: 1; }
-.bullets li {
-  font-size: 30px; line-height: 1.6;
-  padding-left: 34px; position: relative; color: #F5F5F5;
-}
-.bullets li::before {
-  content: ''; position: absolute; left: 0; top: 13px;
-  width: 13px; height: 13px; background: #CBA135;
-}
+  /* ── BULLETS ── */
+  .bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    font-size: 33px;
+    line-height: 1.55;
+    color: #F5F5F5;
+    font-weight: 400;
+  }
+  .bullets li::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    background: #CBA135;
+    border-radius: 50%;
+    margin-top: 14px;
+  }
 
-/* ── SLIDE 3 NÚMEROS ── */
-.slide-numeros h1 { font-size: 54px; margin-bottom: 44px; }
-.metrics-row {
-  display: flex; gap: 36px; flex: 1; margin-bottom: 40px;
-}
-.metric-card {
-  flex: 1;
-  background: rgba(0,0,0,.28);
-  border: 1px solid rgba(203,161,53,.22);
-  border-radius: 10px;
-  padding: 52px 44px;
-  display: flex; flex-direction: column; gap: 20px;
-}
-.m-label {
-  color: rgba(203,161,53,.8); font-size: 24px;
-  letter-spacing: 3px; text-transform: uppercase;
-}
-.m-compare { display: flex; align-items: baseline; gap: 22px; }
-.m-old { color: rgba(245,245,245,.32); font-size: 40px; text-decoration: line-through; }
-.m-arrow { color: rgba(203,161,53,.6); font-size: 28px; }
-.m-new { color: #CBA135; font-size: 100px; font-weight: bold; line-height: 1; }
-.m-new.roas { font-size: 74px; }
-.m-context { color: rgba(245,245,245,.55); font-size: 24px; line-height: 1.4; margin-top: auto; }
+  /* ── MÉTRICAS ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 0;
+  }
+  .metric-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 40px 36px;
+    border-top: 3px solid #CBA135;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .metric-label {
+    font-size: 22px;
+    color: #F5F5F5;
+    opacity: 0.55;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+  }
+  .metric-compare {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .metric-old {
+    font-size: 38px;
+    color: #F5F5F5;
+    opacity: 0.28;
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+  .metric-arrow {
+    font-size: 26px;
+    color: rgba(203,161,53,0.5);
+  }
+  .metric-value {
+    font-size: 80px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1;
+  }
+  .metric-context {
+    font-size: 25px;
+    color: #F5F5F5;
+    opacity: 0.65;
+    line-height: 1.45;
+    font-style: italic;
+  }
 
-/* ── SLIDE 4 PRÓXIMO MÊS ── */
-.slide-proximo { justify-content: space-between; }
-.slide-proximo h1 { font-size: 58px; margin-bottom: 44px; }
-.actions { flex: 1; display: flex; flex-direction: column; gap: 32px; margin-bottom: 40px; }
-.action { display: flex; gap: 32px; align-items: flex-start; }
-.a-num { color: #CBA135; font-size: 54px; font-weight: bold; line-height: 1; min-width: 58px; }
-.a-text { font-size: 30px; line-height: 1.58; color: #F5F5F5; padding-top: 6px; }
+  /* ── AÇÕES ── */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+  }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .action-num {
+    font-size: 58px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1;
+    min-width: 72px;
+    opacity: 0.65;
+  }
+  .action-text {
+    font-size: 33px;
+    color: #F5F5F5;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+  .action-text strong { color: #CBA135; font-weight: 700; }
 
-/* ── SLIDE 5 PARCERIA ── */
-.slide-parceria { justify-content: space-between; }
-.slide-parceria h1 { font-size: 72px; margin-bottom: 32px; }
+  /* ── SLIDE PARCERIA (último) ── */
+  .slide-parceria { justify-content: space-between; }
 
-.parceria-body {
-  flex: 1;
-  display: flex; gap: 44px; align-items: stretch;
-  margin-bottom: 32px;
-}
+  .parceria-row {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+    flex: 1;
+    margin-bottom: 40px;
+  }
 
-.p-invest {
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(203,161,53,.22);
-  border-radius: 14px;
-  padding: 52px 52px;
-  display: flex; flex-direction: column; justify-content: center; gap: 18px;
-  width: 380px; flex-shrink: 0;
-}
-.p-invest .p-label {
-  color: rgba(245,245,245,.4);
-  font-size: 22px; letter-spacing: 4px; text-transform: uppercase;
-}
-.p-invest .p-value {
-  color: rgba(245,245,245,.62); font-size: 58px; font-weight: bold;
-}
-.p-invest .p-sub {
-  color: rgba(245,245,245,.3); font-size: 22px;
-}
+  .p-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    border-top: 3px solid rgba(203,161,53,0.35);
+    padding: 44px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+  }
+  .p-card.destaque {
+    flex: 1;
+    border-top: 3px solid #CBA135;
+    background: rgba(203,161,53,0.07);
+  }
+  .p-card.lateral { width: 370px; flex-shrink: 0; }
 
-.p-middle {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 10px;
-  flex-shrink: 0; width: 130px;
-}
-.p-multiplier {
-  color: #CBA135; font-size: 76px; font-weight: bold; line-height: 1;
-}
-.p-arrow { color: rgba(203,161,53,.38); font-size: 44px; }
+  .p-label {
+    font-size: 20px;
+    color: #F5F5F5;
+    opacity: 0.45;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 400;
+  }
+  .p-label.gold { opacity: 1; color: rgba(203,161,53,0.7); }
 
-.p-return {
-  flex: 1;
-  background: rgba(203,161,53,.08);
-  border: 2px solid #CBA135;
-  border-radius: 14px;
-  padding: 52px 60px;
-  display: flex; flex-direction: column; justify-content: center; gap: 20px;
-  position: relative; overflow: hidden;
-  box-shadow: 0 0 90px rgba(203,161,53,.2), inset 0 0 60px rgba(203,161,53,.06);
-}
-.p-return::before {
-  content: '';
-  position: absolute; top: -100px; right: -100px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(203,161,53,.18) 0%, transparent 68%);
-  pointer-events: none;
-}
-.p-return::after {
-  content: '';
-  position: absolute; bottom: -60px; left: -60px;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(203,161,53,.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.p-return .p-label {
-  color: rgba(203,161,53,.65);
-  font-size: 26px; letter-spacing: 4px; text-transform: uppercase;
-  position: relative; z-index: 1;
-}
-.p-return .p-value {
-  color: #CBA135; font-size: 132px; font-weight: bold; line-height: 1;
-  position: relative; z-index: 1;
-}
-.p-return .p-sub {
-  color: rgba(203,161,53,.5); font-size: 26px;
-  position: relative; z-index: 1;
-}
+  .p-value {
+    font-size: 60px;
+    font-weight: 700;
+    color: #F5F5F5;
+    opacity: 0.55;
+    line-height: 1;
+  }
+  .p-value.gold {
+    color: #CBA135;
+    opacity: 1;
+    font-size: 110px;
+  }
 
-.parceria-stats {
-  display: flex; gap: 32px; margin-bottom: 28px;
-}
-.p-stat {
-  background: rgba(0,0,0,.25);
-  border: 1px solid rgba(203,161,53,.18);
-  border-radius: 10px;
-  padding: 20px 44px;
-  display: flex; align-items: baseline; gap: 18px;
-}
-.p-stat-num { color: #CBA135; font-size: 52px; font-weight: bold; }
-.p-stat-label { color: rgba(245,245,245,.6); font-size: 24px; }
+  .p-sub {
+    font-size: 22px;
+    color: #F5F5F5;
+    opacity: 0.35;
+    font-style: italic;
+  }
+  .p-sub.gold { opacity: 0.6; color: #CBA135; }
+
+  .p-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    width: 120px;
+  }
+  .p-multiplier {
+    font-size: 72px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1;
+  }
+  .p-arrow-icon {
+    font-size: 36px;
+    color: rgba(203,161,53,0.4);
+  }
+
+  .parceria-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 0;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    border-top: 3px solid rgba(203,161,53,0.35);
+    padding: 28px 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .stat-num {
+    font-size: 54px;
+    font-weight: 700;
+    color: #CBA135;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 24px;
+    color: #F5F5F5;
+    opacity: 0.6;
+  }
+
+  /* ── HINT ── */
+  .hint {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    font-size: 15px;
+    color: rgba(203,161,53,0.35);
+    font-family: Georgia, 'Times New Roman', serif;
+    pointer-events: none;
+    letter-spacing: 1px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+    z-index: 10;
+  }
+  body:hover .nav { opacity: 1; }
+  .nav-btn {
+    background: rgba(203,161,53,0.15);
+    border: 1px solid rgba(203,161,53,0.35);
+    color: #CBA135;
+    padding: 8px 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: rgba(203,161,53,0.32); }
 </style>
 </head>
 <body>
 
-<div id="stage">
-<div class="deck" id="deck">
+<div class="hint">F = tela cheia &nbsp;|&nbsp; ← → ou espaço</div>
 
-  <!-- SLIDE 1 — CAPA -->
-  <div class="slide slide-capa active" id="s1">
-    <p class="capa-eyebrow">Assessoria Raiz</p>
-    <h1 class="capa-title">Alinhamento<br>de Junho</h1>
-    <div class="capa-divider"></div>
-    <p class="capa-client">MJ Sondagens</p>
-    <p class="capa-sub">Resultados de Junho/2026 + Direção Estratégica</p>
-    <span class="counter">1 / 5</span>
-    <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png" alt="Raiz">
-  </div>
+<div class="stage" id="stage">
+  <div class="slide-wrapper" id="wrapper">
 
-  <!-- SLIDE 2 — ABERTURA -->
-  <div class="slide slide-abertura" id="s2">
-    <h1>Junho: campanha segurada, resultado sólido.<br>Julho muda o ritmo.</h1>
-    <ul class="bullets">
-      <li>Em maio e junho, vocês reduziram o investimento para focar na obra da Sanepar. A campanha rodou em modo contido, com R$538 aplicados no mês</li>
-      <li>Mesmo assim, o ROAS foi de 23x e o custo por cliente caiu para R$134, menos da metade do mês anterior</li>
-      <li>Em julho, com a agenda aberta, ativamos campanhas específicas para Joinville e Blumenau, as duas cidades com maior retorno histórico</li>
-    </ul>
-    <div class="tarja">A campanha estava saudável, só segurada. Agora soltamos.</div>
-    <span class="counter">2 / 5</span>
-    <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png" alt="Raiz">
-  </div>
+    <!-- ══ SLIDE 1 — CAPA ══ -->
+    <div class="slide slide-capa active" id="slide-1">
+      <div class="capa-eyebrow">Assessoria Raiz</div>
+      <div class="capa-title">Alinhamento<br>de Junho</div>
+      <div class="capa-divider"></div>
+      <div class="capa-client">MJ Sondagens</div>
+      <div class="capa-sub">Resultados de Junho/2026 + Direção Estratégica</div>
+      <img class="logo" src="../../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">1 / 5</div>
+    </div>
 
-  <!-- SLIDE 3 — 3 NÚMEROS -->
-  <div class="slide slide-numeros" id="s3">
-    <h1>Junho em três números</h1>
-    <div class="metrics-row">
-      <div class="metric-card">
-        <span class="m-label">Leads</span>
-        <div class="m-compare">
-          <span class="m-old">28</span>
-          <span class="m-arrow">→</span>
-          <span class="m-new">38</span>
+    <!-- ══ SLIDE 2 — ABERTURA ══ -->
+    <div class="slide" id="slide-2">
+      <div class="slide-title">Junho segurado por estratégia.<br>Julho abre o acelerador.</div>
+      <ul class="bullets">
+        <li>Em maio e junho, vocês reduziram o investimento para focar na obra da Sanepar. A campanha rodou em modo contido, com R$538 aplicados no mês</li>
+        <li>Mesmo assim, o ROAS foi de 23x e o custo por cliente caiu para R$134, menos da metade do mês anterior</li>
+        <li>Em julho, com a agenda aberta, ativamos campanhas específicas para Joinville e Blumenau, as duas cidades com maior retorno histórico</li>
+      </ul>
+      <div class="tarja">A campanha estava saudável, só segurada. Agora soltamos.</div>
+      <img class="logo" src="../../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">2 / 5</div>
+    </div>
+
+    <!-- ══ SLIDE 3 — 3 NÚMEROS ══ -->
+    <div class="slide" id="slide-3">
+      <div class="slide-title">Junho em três números</div>
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-label">Leads</div>
+          <div class="metric-compare">
+            <span class="metric-old">28</span>
+            <span class="metric-arrow">→</span>
+            <span class="metric-value">38</span>
+          </div>
+          <div class="metric-context">+36% em relação a maio, com R$86 a menos investidos</div>
         </div>
-        <span class="m-context">+36% em relação a maio, com R$86 a menos investidos</span>
-      </div>
-      <div class="metric-card">
-        <span class="m-label">Vendas</span>
-        <div class="m-compare">
-          <span class="m-old">2</span>
-          <span class="m-arrow">→</span>
-          <span class="m-new">4</span>
+        <div class="metric-card">
+          <div class="metric-label">Vendas</div>
+          <div class="metric-compare">
+            <span class="metric-old">2</span>
+            <span class="metric-arrow">→</span>
+            <span class="metric-value">4</span>
+          </div>
+          <div class="metric-context">Dobro de fechamentos, ticket médio de R$3.119 por serviço</div>
         </div>
-        <span class="m-context">Dobro de fechamentos, ticket médio de R$3.119 por serviço</span>
-      </div>
-      <div class="metric-card">
-        <span class="m-label">ROAS</span>
-        <div class="m-compare">
-          <span class="m-old">4x</span>
-          <span class="m-arrow">→</span>
-          <span class="m-new roas">23x</span>
+        <div class="metric-card">
+          <div class="metric-label">ROAS</div>
+          <div class="metric-compare">
+            <span class="metric-old">4x</span>
+            <span class="metric-arrow">→</span>
+            <span class="metric-value" style="font-size:68px;">23x</span>
+          </div>
+          <div class="metric-context">Cada real investido gerou R$23 em faturamento no mês</div>
         </div>
-        <span class="m-context">Cada real investido gerou R$23 em faturamento no mês</span>
       </div>
+      <div class="tarja">38 leads, 4 vendas, 23x de ROAS. Com R$86 a menos investido do que em maio.</div>
+      <img class="logo" src="../../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">3 / 5</div>
     </div>
-    <div class="tarja">38 leads, 4 vendas, 23x de ROAS. Com R$86 a menos investido do que em maio.</div>
-    <span class="counter">3 / 5</span>
-    <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png" alt="Raiz">
-  </div>
 
-  <!-- SLIDE 4 — PRÓXIMO MÊS -->
-  <div class="slide slide-proximo" id="s4">
-    <h1>O que fazemos em julho</h1>
-    <div class="actions">
-      <div class="action">
-        <span class="a-num">1</span>
-        <span class="a-text">Campanhas de Joinville e Blumenau ativas com orçamento próprio de R$500 por mês. Anúncios com o nome da cidade e palavras-chave específicas por localidade</span>
+    <!-- ══ SLIDE 4 — PRÓXIMO MÊS ══ -->
+    <div class="slide" id="slide-4">
+      <div class="slide-title">O que fazemos em julho</div>
+      <div class="actions">
+        <div class="action-item">
+          <div class="action-num">01</div>
+          <div class="action-text">
+            <strong>Campanhas de Joinville e Blumenau ativas</strong> com orçamento próprio de R$500 por mês. Anúncios com o nome da cidade e palavras-chave específicas por localidade.
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">02</div>
+          <div class="action-text">
+            <strong>Joinville e Blumenau saíram da campanha geral de SC.</strong> Cada lead que vier dessas cidades agora tem rastreamento próprio, sem mistura de dados.
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">03</div>
+          <div class="action-text">
+            Nos últimos dias apareceram cliques de cidades fora do raio de atendimento. <strong>Quais cidades vocês querem excluir?</strong> A gente bloqueia antes que virem leads sem potencial.
+          </div>
+        </div>
       </div>
-      <div class="action">
-        <span class="a-num">2</span>
-        <span class="a-text">Joinville e Blumenau saíram da campanha geral de SC. Cada lead que vier dessas cidades agora tem rastreamento próprio, sem mistura de dados</span>
-      </div>
-      <div class="action">
-        <span class="a-num">3</span>
-        <span class="a-text">Nos últimos dias apareceram cliques de cidades fora do raio de atendimento. Quais cidades vocês querem excluir? A gente bloqueia antes que virem leads sem potencial</span>
-      </div>
+      <div class="tarja">Com histórico mostrando que essas cidades convertem bem, faz sentido dar estrutura dedicada pra elas.</div>
+      <img class="logo" src="../../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">4 / 5</div>
     </div>
-    <div class="tarja">Com histórico mostrando que essas cidades convertem bem, faz sentido dar estrutura dedicada pra elas.</div>
-    <span class="counter">4 / 5</span>
-    <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png" alt="Raiz">
-  </div>
 
-  <!-- SLIDE 5 — 14 MESES DE PARCERIA -->
-  <div class="slide slide-parceria" id="s5">
-    <h1>14 meses. R$292 mil gerados.</h1>
-    <div class="parceria-body">
-      <div class="p-invest">
-        <span class="p-label">Investido</span>
-        <span class="p-value">R$14.300</span>
-        <span class="p-sub">ao longo de 14 meses</span>
+    <!-- ══ SLIDE 5 — 14 MESES ══ -->
+    <div class="slide slide-parceria" id="slide-5">
+      <div class="slide-title">14 meses. R$292 mil gerados.</div>
+      <div class="parceria-row">
+        <div class="p-card lateral">
+          <div class="p-label">Investido</div>
+          <div class="p-value">R$14.300</div>
+          <div class="p-sub">ao longo de 14 meses</div>
+        </div>
+        <div class="p-middle">
+          <div class="p-multiplier">20×</div>
+          <div class="p-arrow-icon">→</div>
+        </div>
+        <div class="p-card destaque">
+          <div class="p-label gold">Gerado</div>
+          <div class="p-value gold">R$292.000</div>
+          <div class="p-sub gold">em faturamento atribuído às campanhas</div>
+        </div>
       </div>
-      <div class="p-middle">
-        <span class="p-multiplier">20×</span>
-        <span class="p-arrow">→</span>
+      <div class="parceria-stats">
+        <div class="stat-card">
+          <div class="stat-num">109</div>
+          <div class="stat-label">clientes fechados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">20x</div>
+          <div class="stat-label">ROAS médio no período</div>
+        </div>
       </div>
-      <div class="p-return">
-        <span class="p-label">Gerado</span>
-        <span class="p-value">R$292.000</span>
-        <span class="p-sub">em faturamento atribuído às campanhas</span>
-      </div>
+      <div class="tarja">Para cada R$1 investido ao longo de 14 meses, voltaram R$20.</div>
+      <img class="logo" src="../../../../marca/raiz com fundo transparente.png" alt="Raiz">
+      <div class="counter">5 / 5</div>
     </div>
-    <div class="parceria-stats">
-      <div class="p-stat">
-        <span class="p-stat-num">109</span>
-        <span class="p-stat-label">clientes fechados</span>
-      </div>
-      <div class="p-stat">
-        <span class="p-stat-num">20x</span>
-        <span class="p-stat-label">ROAS médio no período</span>
-      </div>
-    </div>
-    <div class="tarja">Para cada R$1 investido ao longo de 14 meses, voltaram R$20.</div>
-    <span class="counter">5 / 5</span>
-    <img class="logo" src="../../../../marca/logo-bege-fundo-verde.png" alt="Raiz">
-  </div>
 
+  </div>
 </div>
+
+<div class="nav">
+  <button class="nav-btn" onclick="prev()">← Anterior</button>
+  <button class="nav-btn" onclick="next()">Próximo →</button>
 </div>
 
 <script>
-var cur = 1, tot = 5;
-function show(n) {
-  document.querySelectorAll('.slide').forEach(function(s){ s.classList.remove('active'); });
-  document.getElementById('s' + n).classList.add('active');
-  cur = n;
-}
-document.addEventListener('keydown', function(e){
-  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); if (cur < tot) show(cur + 1); }
-  if (e.key === 'ArrowLeft') { e.preventDefault(); if (cur > 1) show(cur - 1); }
-  if (e.key === 'f' || e.key === 'F') {
-    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-    else document.exitFullscreen();
+  let current = 1;
+  const total = 5;
+
+  function scale() {
+    const wrapper = document.getElementById('wrapper');
+    const sx = window.innerWidth / 1920;
+    const sy = window.innerHeight / 1080;
+    const s = Math.min(sx, sy);
+    wrapper.style.transform = `scale(${s})`;
+    wrapper.style.marginLeft = ((window.innerWidth  - 1920 * s) / 2) + 'px';
+    wrapper.style.marginTop  = ((window.innerHeight - 1080 * s) / 2) + 'px';
   }
-});
-document.getElementById('deck').addEventListener('click', function(){ if (cur < tot) show(cur + 1); });
-function scale() {
-  var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-  document.getElementById('deck').style.transform = 'scale(' + s + ')';
-}
-window.addEventListener('resize', scale);
-scale();
+
+  function show(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.getElementById('slide-' + n).classList.add('active');
+    current = n;
+  }
+
+  function next() { if (current < total) show(current + 1); }
+  function prev() { if (current > 1)    show(current - 1); }
+
+  document.getElementById('stage').addEventListener('click', function(e) {
+    if (!e.target.classList.contains('nav-btn')) next();
+  });
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft')                   { e.preventDefault(); prev(); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  window.addEventListener('resize', scale);
+  scale();
 </script>
 </body>
 </html>
