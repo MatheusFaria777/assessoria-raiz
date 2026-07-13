@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
+import { useClients } from '../contexts/ClientsContext'
 
 const STATUS_LABELS = {
   pending:    { label: 'Pendente',     color: '#CBA135' },
@@ -202,7 +203,8 @@ function QueueItem({ item, clientName, clientQueue, onRetry, onCancel, onReset, 
 }
 
 export default function Uploader() {
-  const [clients, setClients]   = useState([])
+  const { clients: allClients } = useClients()
+  const clients = allClients.filter(c => c.has_meta)
   const [clientId, setClientId] = useState('')
   const [adsets, setAdsets]     = useState([])
   const [adsetId, setAdsetId]   = useState('')
@@ -243,9 +245,6 @@ export default function Uploader() {
     }
   }, [])
 
-  useEffect(() => {
-    api.get('/api/clients/').then(cs => setClients(cs.filter(c => c.has_meta))).catch(() => {})
-  }, [])
 
   useEffect(() => {
     if (!clientId) { setAdsets([]); setAdsetId(''); return }

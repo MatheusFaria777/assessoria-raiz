@@ -1,4 +1,5 @@
 import { useState, Component, lazy, Suspense } from 'react'
+import { ClientsProvider } from './contexts/ClientsContext'
 
 class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null } }
@@ -93,17 +94,19 @@ export default function App() {
   const PageComponent = PAGES[page]
 
   return (
-    <div style={{ display: 'flex', width: '100%', height: '100vh', overflow: 'hidden', background: '#162d26' }}>
-      <Sidebar current={page} onNavigate={setPage} open={sidebarOpen} />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0 }}>
-        <Header page={page} onToggleSidebar={() => setSidebarOpen(o => !o)} user={user} onLogout={handleLogout} />
-        <main style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
-          <Suspense fallback={<PageLoader />}>
-            <PageComponent />
-          </Suspense>
-        </main>
+    <ClientsProvider>
+      <div style={{ display: 'flex', width: '100%', height: '100vh', overflow: 'hidden', background: '#162d26' }}>
+        <Sidebar current={page} onNavigate={setPage} open={sidebarOpen} />
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0 }}>
+          <Header page={page} onToggleSidebar={() => setSidebarOpen(o => !o)} user={user} onLogout={handleLogout} />
+          <main style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
+            <Suspense fallback={<PageLoader />}>
+              <PageComponent />
+            </Suspense>
+          </main>
+        </div>
+        <Toast />
       </div>
-      <Toast />
-    </div>
+    </ClientsProvider>
   )
 }

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
 import ClientModal from '../components/clients/ClientModal'
+import { useClients } from '../contexts/ClientsContext'
 
 function ActiveAdsModal({ client, onClose }) {
   const [ads, setAds] = useState(null)
@@ -136,31 +137,17 @@ function ClientCard({ client, onEdit, onDelete, onViewAds }) {
 }
 
 export default function Clients() {
-  const [clients, setClients] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [modal, setModal] = useState(null)         // null | 'new' | client object
-  const [adsModal, setAdsModal] = useState(null)   // null | client object
+  const { clients, loading, reload } = useClients()
+  const [modal, setModal] = useState(null)
+  const [adsModal, setAdsModal] = useState(null)
   const [search, setSearch] = useState('')
-
-  const load = async () => {
-    try {
-      const data = await api.get('/api/clients/')
-      setClients(data)
-    } catch (e) {
-      toast('Erro ao carregar clientes', 'error')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => { load() }, [])
 
   const handleDelete = async (client) => {
     if (!confirm(`Remover "${client.name}"?`)) return
     try {
       await api.delete(`/api/clients/${client.id}`)
       toast('Cliente removido')
-      load()
+      reload()
     } catch (e) {
       toast(e.message, 'error')
     }
@@ -219,7 +206,7 @@ export default function Clients() {
         <ClientModal
           client={modal === 'new' ? null : modal}
           onClose={() => setModal(null)}
-          onSaved={() => { setModal(null); load() }}
+          onSaved={() => { setModal(null); reload() }}
         />
       )}
 

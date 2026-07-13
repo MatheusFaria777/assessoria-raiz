@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
+import { useClients } from '../contexts/ClientsContext'
 
 function dateRange(type) {
   const today = new Date()
@@ -19,7 +20,7 @@ function dateRange(type) {
 }
 
 export default function Reports() {
-  const [clients, setClients]         = useState([])
+  const { clients } = useClients()
   const [clientId, setClientId]       = useState('')
   const [periodType, setPeriodType]   = useState('week')
   const [since, setSince]             = useState('')
@@ -38,7 +39,6 @@ export default function Reports() {
   const loadPending = () => api.get('/api/reports/pending').then(setPending).catch(() => {})
 
   useEffect(() => {
-    api.get('/api/clients/').then(setClients).catch(() => {})
     loadPending()
   }, [])
 

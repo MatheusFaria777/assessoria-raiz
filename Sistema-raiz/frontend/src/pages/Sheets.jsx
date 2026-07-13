@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
+import { useClients } from '../contexts/ClientsContext'
 
 function lastMonthRange() {
   const now = new Date()
@@ -40,7 +41,8 @@ function SyncStatusBadge({ clientId }) {
 }
 
 export default function Sheets() {
-  const [clients, setClients] = useState([])
+  const { clients: allClients } = useClients()
+  const clients = allClients.filter(c => c.sheets_id)
   const [syncType, setSyncType] = useState('weekly')
   const [since, setSince]   = useState(() => lastWeekRange().since)
   const [until, setUntil]   = useState(() => lastWeekRange().until)
@@ -48,9 +50,6 @@ export default function Sheets() {
   const [batchLoading, setBatchLoading] = useState(false)
   const [results, setResults] = useState({})
 
-  useEffect(() => {
-    api.get('/api/clients/').then(cs => setClients(cs.filter(c => c.sheets_id))).catch(() => {})
-  }, [])
 
   useEffect(() => {
     const r = syncType === 'weekly' ? lastWeekRange() : lastMonthRange()

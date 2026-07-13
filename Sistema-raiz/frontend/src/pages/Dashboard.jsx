@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
+import { getDayInfo, readCadenciaCache, writeCadenciaCache } from '../lib/utils'
+import CadenciaClientCard from '../components/CadenciaClientCard'
 
 function getGreeting() {
   const h = new Date().getHours()
@@ -11,11 +13,6 @@ function getGreeting() {
 
 function getUser() {
   try { return JSON.parse(localStorage.getItem('raiz_user')) } catch { return null }
-}
-
-function getDayInfo() {
-  const d = new Date().getDay()
-  return { isSegunda: d === 1, isQuarta: d === 3 }
 }
 
 function PlanilhamentoCard({ item, onDismiss }) {
@@ -53,63 +50,6 @@ function PlanilhamentoCard({ item, onDismiss }) {
   )
 }
 
-function CadenciaCard({ item }) {
-  const [copied, setCopied] = useState(false)
-  const [expanded, setExpanded] = useState(false)
-
-  if (!item.ok) return (
-    <div style={{
-      padding: '.625rem .875rem', borderRadius: 8,
-      background: 'rgba(239,68,68,.06)', border: '1px solid rgba(239,68,68,.2)',
-      fontSize: '.8rem', color: '#f87171',
-    }}>
-      <strong>{item.name}</strong> — {item.error}
-    </div>
-  )
-
-  const copy = () => {
-    navigator.clipboard.writeText(item.message)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-    toast(`Copiado — ${item.name}`)
-  }
-
-  return (
-    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '.625rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-        <div style={{
-          width: 36, height: 36, borderRadius: 8, flexShrink: 0,
-          background: 'rgba(203,161,53,.15)', display: 'flex', alignItems: 'center',
-          justifyContent: 'center', fontSize: 15, fontWeight: 700, color: '#CBA135',
-        }}>
-          {item.name.charAt(0)}
-        </div>
-        <span style={{ flex: 1, fontWeight: 600, fontSize: '.9rem' }}>{item.name}</span>
-        <button onClick={() => setExpanded(e => !e)}
-          style={{ background: 'transparent', border: 'none', color: 'rgba(245,245,245,.4)',
-            cursor: 'pointer', fontSize: '.75rem', padding: '.25rem .5rem' }}>
-          {expanded ? 'Fechar' : 'Ver'}
-        </button>
-        <button className="btn-primary" onClick={copy}
-          style={{ fontSize: '.8rem', padding: '.35rem .875rem' }}>
-          {copied ? '✓ Copiado' : '📋 Copiar'}
-        </button>
-      </div>
-
-      {expanded && (
-        <pre style={{
-          whiteSpace: 'pre-wrap', fontFamily: 'inherit', fontSize: '.75rem',
-          lineHeight: 1.65, color: 'rgba(245,245,245,.75)',
-          background: 'rgba(245,245,245,.03)', padding: '.75rem', borderRadius: 6,
-          margin: 0, maxHeight: 260, overflowY: 'auto',
-          border: '1px solid rgba(245,245,245,.07)',
-        }}>
-          {item.message}
-        </pre>
-      )}
-    </div>
-  )
-}
 
 export default function Dashboard() {
   const [data, setData]             = useState(null)
@@ -137,18 +77,12 @@ export default function Dashboard() {
   useEffect(() => {
     if (!isSegunda && !isQuarta) return
     const tab = isSegunda ? 'segunda' : 'quarta'
-    const cacheKey = `cadencia_${tab}_${today}`
-    try {
-      const raw = localStorage.getItem(cacheKey)
-      if (raw) {
-        const { ts, data } = JSON.parse(raw)
-        if (Date.now() - ts < 4 * 60 * 60 * 1000) { setCadencia(data); return }
-      }
-    } catch {}
+    const cached = readCadenciaCache(tab)
+    if (cached) { setCadencia(cached); return }
     setCadLoading(true)
     api.get(`/api/cadencia/${tab}`)
       .then(data => {
-        try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data })) } catch {}
+        writeCadenciaCache(tab, data)
         setCadencia(data)
       })
       .catch(() => toast('Erro ao carregar cadência', 'error'))
@@ -267,7 +201,7 @@ export default function Dashboard() {
           {cadencia && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
               {cadencia.map(item => (
-                <CadenciaCard key={item.client_id} item={item} />
+                <CadenciaClientCard key={item.client_id} item={item} />
               ))}
             </div>
           )}
