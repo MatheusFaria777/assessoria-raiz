@@ -136,13 +136,24 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!isSegunda && !isQuarta) return
+    const tab = isSegunda ? 'segunda' : 'quarta'
+    const cacheKey = `cadencia_${tab}_${today}`
+    try {
+      const raw = localStorage.getItem(cacheKey)
+      if (raw) {
+        const { ts, data } = JSON.parse(raw)
+        if (Date.now() - ts < 4 * 60 * 60 * 1000) { setCadencia(data); return }
+      }
+    } catch {}
     setCadLoading(true)
-    const endpoint = isSegunda ? '/api/cadencia/segunda' : '/api/cadencia/quarta'
-    api.get(endpoint)
-      .then(setCadencia)
+    api.get(`/api/cadencia/${tab}`)
+      .then(data => {
+        try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data })) } catch {}
+        setCadencia(data)
+      })
       .catch(() => toast('Erro ao carregar cadência', 'error'))
       .finally(() => setCadLoading(false))
-  }, [isSegunda, isQuarta])
+  }, [isSegunda, isQuarta, today])
 
   const dismiss = (clientId) => {
     const next = [...dismissed, clientId]

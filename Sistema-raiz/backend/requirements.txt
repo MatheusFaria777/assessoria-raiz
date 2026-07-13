@@ -22,5 +22,4 @@ google-api-python-client==2.140.0
 google-auth-oauthlib==1.2.1
 instaloader==4.13.1
 anthropic==0.34.2
-openai==1.51.0
 apscheduler==3.10.4

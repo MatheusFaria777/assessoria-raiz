@@ -179,14 +179,8 @@ async def run_token_renewal():
 
 def create_scheduler() -> AsyncIOScheduler:
     scheduler = AsyncIOScheduler(timezone="America/Sao_Paulo")
-    scheduler.add_job(
-        run_scheduled_reports,
-        trigger="cron",
-        hour=10, minute=0,
-        id="daily_reports",
-        replace_existing=True,
-    )
-    # Verifica renovação do token todo dia às 9h (antes dos relatórios)
+    # Relatórios automáticos desativados — geração manual via UI
+    # Verifica renovação do token todo dia às 9h
     scheduler.add_job(
         run_token_renewal,
         trigger="cron",

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from datetime import date, timedelta
-import json
+import json, time
 
 from database import get_db
 from models.client import Client
@@ -10,6 +10,9 @@ from services.token_manager import get_meta_token
 from services.meta import get_account_balance
 
 router = APIRouter()
+
+_budget_cache: dict = {"ts": 0, "data": None}
+_BUDGET_TTL = 3600  # 1 hora
 
 DAY_NAMES_PT = {
     "monday": "Segunda-feira", "tuesday": "Terça-feira",
@@ -98,7 +101,10 @@ def get_dashboard(db: Session = Depends(get_db)):
 
 @router.get("/budget-alerts")
 def get_budget_alerts(db: Session = Depends(get_db)):
-    """Retorna saldo atual de todos os clientes Meta ativos."""
+    """Retorna saldo atual de todos os clientes Meta ativos. Cache de 1h."""
+    if _budget_cache["data"] is not None and (time.time() - _budget_cache["ts"]) < _BUDGET_TTL:
+        return {"balances": _budget_cache["data"], "cached": True}
+
     clients = db.query(Client).filter(Client.active == True, Client.has_meta == True).all()
     balances = []
     for client in clients:
@@ -126,4 +132,6 @@ def get_budget_alerts(db: Session = Depends(get_db)):
         except Exception:
             pass
     balances.sort(key=lambda x: ({"ok": 2, "warning": 1, "error": 0}[x["level"]], x["client_name"]))
-    return {"balances": balances}
+    _budget_cache["data"] = balances
+    _budget_cache["ts"] = time.time()
+    return {"balances": balances, "cached": False}
