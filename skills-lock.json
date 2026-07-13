@@ -7,6 +7,12 @@
       "skillPath": "skills/caveman-review/SKILL.md",
       "computedHash": "b9091dbc51de0f3710ea818fd4d638539f8c1784f8fda931eb159c44861e702e"
     },
+    "fastapi-python": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "skillPath": "fastapi-python/SKILL.md",
+      "computedHash": "4521c6090735152b7b8df670cefe5c1c6d1dcaa115de67bb96e74ebf802d4f24"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
@@ -19,11 +25,29 @@
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "569299a60c8e93880f3b3c1eca55578f58f7e1a4155876edb4cb814da3d6b3ea"
     },
+    "react-router": {
+      "source": "remix-run/react-router",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/react-router/SKILL.md",
+      "computedHash": "38cfa0037d15717ebcaa412b9cb950941564b5f658b40344652ef6634a28dd28"
+    },
     "request-refactor-plan": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/deprecated/request-refactor-plan/SKILL.md",
       "computedHash": "366568020d6c6a5638d2c70d50ad25459bcdb5fd09187c6724448bf36757635a"
+    },
+    "sqlalchemy-postgres": {
+      "source": "cfircoo/claude-code-toolkit",
+      "sourceType": "github",
+      "skillPath": "skills/sqlalchemy-postgres/SKILL.md",
+      "computedHash": "6917c10f1ad78f5f1d097eed214f824b458ee2ec917308e98b0d0bb4e4dff961"
+    },
+    "ui-design-system": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "skillPath": "cli-tool/components/skills/creative-design/ui-design-system/SKILL.md",
+      "computedHash": "df7ee532a89043b7964152ea84a9794d0faefadad255bfb354d9a6997fdd1846"
     },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
