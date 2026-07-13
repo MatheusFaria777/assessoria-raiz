@@ -261,6 +261,38 @@ class TokenExchangeIn(BaseModel):
     token: str  # token curto ou longo a converter
 
 
+@router.post("/meta-token/debug-exchange")
+def debug_exchange_meta_token(data: TokenExchangeIn, db: Session = Depends(get_db)):
+    """Debug: mostra exatamente o que é enviado pra Meta e o que ela responde."""
+    import requests as _req
+
+    app_id_s  = db.query(GlobalSetting).filter(GlobalSetting.key == "meta_app_id").first()
+    app_sec_s = db.query(GlobalSetting).filter(GlobalSetting.key == "meta_app_secret").first()
+
+    if not app_id_s or not app_sec_s:
+        return {"error": "App ID ou App Secret não configurado no sistema"}
+
+    app_id     = decrypt(app_id_s.value)
+    app_secret = decrypt(app_sec_s.value)
+
+    params = {
+        "grant_type":        "fb_exchange_token",
+        "client_id":         app_id,
+        "client_secret":     app_secret,
+        "fb_exchange_token": data.token,
+    }
+
+    resp = _req.get("https://graph.facebook.com/oauth/access_token", params=params, timeout=15)
+
+    return {
+        "app_id_used":        app_id,
+        "app_secret_preview": app_secret[:6] + "..." + app_secret[-4:] if len(app_secret) > 10 else "muito curto",
+        "token_preview":      data.token[:20] + "...",
+        "meta_status":        resp.status_code,
+        "meta_response":      resp.json(),
+    }
+
+
 @router.post("/meta-token/exchange")
 def exchange_meta_token(data: TokenExchangeIn, db: Session = Depends(get_db)):
     """Converte token curto em token de 60 dias e salva no banco."""
