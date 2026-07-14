@@ -9,9 +9,18 @@ Operação solo do Cristian Mônego. Prestador de serviços para indústrias —
 
 ## Produto / serviço principal
 
-- Principal: manutenção mecânica, elétrica e eletrônica (corretiva e preventiva) de máquinas industriais (laser, dobradeira, cortadoras a plasma)
-- Secundário: manutenção de periféricos (chillers, exaustores), laudos de inspeção de máquinas usadas (corte térmico), intermediação de vendas
-- Projetos variam de 1–2 horas (troca de peça) a vários dias (reparo de cabeçote)
+Lista completa de serviços prestados (enviada pelo Cristian em 14/07/2026):
+
+- Instalação e manutenção elétrica, eletrônica e mecânica em máquinas de corte laser e plasma
+- Instalação e manutenção elétrica, eletrônica e mecânica em dobradeiras hidráulicas
+- Retrofit de máquinas de corte laser e plasma
+- Treinamento em operação e processo de corte
+- Descontaminação e troca de lentes em cabeçotes de corte laser
+- Laudos para compras de máquinas usadas
+- Serviços com SLA
+
+Secundário: manutenção de periféricos (chillers, exaustores), intermediação de vendas.
+Projetos variam de 1–2 horas (troca de peça) a vários dias (reparo de cabeçote).
 
 ## Público-alvo
 
