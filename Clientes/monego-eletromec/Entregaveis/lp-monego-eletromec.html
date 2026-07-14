@@ -12,7 +12,8 @@
 <title>Mônego Eletromec — Manutenção de Máquinas Industriais em Caxias do Sul</title>
 <meta name="description" content="Manutenção elétrica, eletrônica e mecânica de máquinas de corte laser, plasma e dobradeiras hidráulicas. Mais de 20 anos de experiência. Atendimento em todo o RS e litoral de SC, com SLA garantido.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Meta Pixel — substituir SEU_PIXEL_ID quando a conta Meta Ads estiver pronta -->
 <script>
@@ -41,724 +42,650 @@ fbq('track', 'PageView');
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --grafite:    #17171A;
-    --grafite-m:  #232327;
-    --vermelho:   #D0242D;
-    --vermelho-2: #FF5A52;
-    --vermelho-e: #8F1A20;
-    --texto:      #F2F2F3;
-    --cinza:      #9CA3AC;
-    --borda:      #313136;
-    --branco:     #FFFFFF;
-    --fundo:      #F6F6F7;
-    --fundo-2:    #EFEFF1;
-    --texto-esc:  #16161A;
-    --verde-wp:   #25D366;
+    --ink-900: #15181C;
+    --ink-700: #33383F;
+    --ink-600: #5B6472;
+    --slate-300: #C7CDD6;
+    --slate-400: #8A93A0;
+    --brand: #D0242D;
+    --brand-hover: #B01E26;
+    --verde-wp: #25D366;
+    --paper: #FAFAFA;
+    --card: #F1F2F4;
+    --branco: #FFFFFF;
   }
-
-  html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    background: var(--fundo);
-    color: var(--texto-esc);
-    line-height: 1.6;
-    overflow-x: hidden;
+    background: var(--paper);
+    color: var(--ink-700);
+    line-height: 1.65;
   }
+  .container { max-width: 1152px; margin: 0 auto; padding: 0 20px; }
+  a { text-decoration: none; }
+  img { display: block; max-width: 100%; }
 
-  /* ── REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-  /* ── DUOTONE ── */
-  .duo { position: relative; overflow: hidden; background: var(--grafite); }
-  .duo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(1) contrast(1.25) brightness(0.95);
-  }
-  .duo::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(140deg, rgba(208,36,45,0.62), rgba(15,15,18,0.88));
-    mix-blend-mode: multiply;
-  }
-  .duo::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.35), transparent 55%);
-    z-index: 1;
-  }
-
-  /* ── FAIXA ── */
-  .faixa { height: 4px; background: linear-gradient(90deg, var(--vermelho-e), var(--vermelho), var(--vermelho-2)); }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    background:
-      radial-gradient(circle at 12% 18%, rgba(208,36,45,0.30), transparent 42%),
-      radial-gradient(circle at 88% 78%, rgba(208,36,45,0.18), transparent 40%),
-      var(--grafite);
-    color: var(--texto);
-    padding: 52px 24px 130px;
-    text-align: center;
-    overflow: hidden;
-  }
-  .hero-logo-chip {
-    display: inline-flex;
+  .eyebrow {
+    display: flex;
     align-items: center;
-    background: #fff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    margin-bottom: 32px;
+    gap: 12px;
+    margin-bottom: 16px;
   }
-  .hero-logo-chip img { height: 26px; display: block; }
-  .hero-tag {
-    display: inline-block;
+  .eyebrow .line { height: 1px; width: 42px; background: var(--brand); }
+  .eyebrow span {
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: var(--vermelho-2);
-    margin-bottom: 20px;
+    letter-spacing: 3px;
+    color: var(--brand);
   }
-  .hero h1 {
-    font-size: clamp(30px, 5.4vw, 56px);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    max-width: 760px;
-    margin: 0 auto 22px;
-  }
-  .hero h1 .grad {
-    background: linear-gradient(135deg, var(--vermelho-2), var(--vermelho));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .hero p {
-    font-size: clamp(16px, 2vw, 19px);
-    color: var(--cinza);
-    max-width: 560px;
-    margin: 0 auto 36px;
-  }
-  .btn-wp {
+  .eyebrow.center { justify-content: center; }
+
+  h1, h2, h3 { font-weight: 800; color: var(--ink-900); letter-spacing: -0.01em; }
+
+  .btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: var(--verde-wp);
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 15px 30px;
     color: #fff;
-    font-size: 14px;
+    transition: filter 0.2s;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn-brand { background: var(--brand); }
+  .btn-wp { background: var(--verde-wp); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 13px 28px;
+    border: 2px solid var(--ink-900);
+    color: var(--ink-900);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--ink-900); color: #fff; }
+  .btn svg { width: 18px; height: 18px; fill: #fff; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    max-width: 1152px;
+    margin: 0 auto;
+  }
+  .logo-chip {
+    display: inline-flex;
+    background: #fff;
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+  .logo-chip img { height: 40px; }
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 17px 34px;
-    border-radius: 6px;
-    text-decoration: none;
-    box-shadow: 0 12px 30px rgba(37,211,102,0.28);
-    transition: filter 0.2s, transform 0.2s;
   }
-  .btn-wp:hover { filter: brightness(1.08); transform: translateY(-2px); }
-  .btn-wp svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+  nav a { color: #fff; transition: color 0.2s; }
+  nav a:hover { color: var(--brand); }
+  .header-bar { height: 4px; background: var(--brand); }
+  @media (max-width: 700px) { nav { display: none; } }
 
-  .hero-sub {
-    margin-top: 20px;
-    font-size: 13px;
-    color: var(--cinza);
+  /* ── HERO ── */
+  .hero { position: relative; background: var(--ink-900); color: #fff; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--ink-900) 32%, rgba(21,24,28,0.75) 65%, rgba(21,24,28,0.35));
   }
-
-  /* ── STATS FLUTUANTE ── */
-  .stats-float {
-    max-width: 920px;
-    margin: -78px auto 0;
+  .hero-inner {
     position: relative;
-    z-index: 5;
-    background: var(--branco);
-    border-radius: 18px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.20);
-    padding: 34px 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
-    text-align: center;
-  }
-  .stats-float > div + div { border-left: 1px solid #ECECEE; }
-  .stat-num {
-    font-size: clamp(24px, 4vw, 32px);
-    font-weight: 900;
-    color: var(--vermelho);
-    letter-spacing: -0.01em;
-  }
-  .stat-label {
-    font-size: 12.5px;
-    color: #5A6169;
-    margin-top: 4px;
-  }
-  @media (max-width: 640px) {
-    .stats-float { grid-template-columns: repeat(2, 1fr); }
-    .stats-float > div:nth-child(odd) { border-left: none; }
-    .stats-float > div:nth-child(n+3) { border-top: 1px solid #ECECEE; padding-top: 16px; }
-  }
-
-  /* ── SEÇÃO GENÉRICA ── */
-  .section-tag {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--vermelho);
-    margin-bottom: 10px;
-  }
-  .section-title {
-    font-size: clamp(24px, 3.6vw, 36px);
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    color: var(--texto-esc);
-    margin-bottom: 10px;
-  }
-  .section-sub {
-    font-size: 15px;
-    color: #5A6169;
-    max-width: 520px;
-    margin: 0 auto 44px;
-  }
-
-  /* ── QUEM ATENDE (editorial full-bleed) ── */
-  .quem { background: var(--fundo); padding: 96px 24px 80px; }
-  .quem-wrap {
-    max-width: 1080px;
+    max-width: 1152px;
     margin: 0 auto;
-    display: flex;
-    align-items: stretch;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 30px 70px rgba(20,20,24,0.14);
-    background: var(--branco);
+    padding: 88px 20px 96px;
   }
-  .quem-foto {
-    flex: 0 0 42%;
-    position: relative;
-    min-height: 380px;
+  .hero-inner h1 {
+    font-size: clamp(30px, 5vw, 54px);
+    line-height: 1.12;
+    max-width: 680px;
+    margin-bottom: 22px;
+    color: #fff;
   }
-  .quem-foto .duo { position: absolute; inset: 0; }
-  .quem-texto {
-    flex: 1;
-    padding: 48px 46px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .hero-inner h1 .red { color: var(--brand); }
+  .hero-inner p.lead {
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--slate-300);
+    max-width: 560px;
+    margin-bottom: 40px;
   }
-  .quem-texto blockquote {
-    font-size: clamp(18px, 2.3vw, 23px);
-    font-weight: 600;
-    color: var(--texto-esc);
-    line-height: 1.5;
-    margin: 8px 0 18px;
-    letter-spacing: -0.01em;
-  }
-  .quem-texto cite {
-    display: block;
-    font-style: normal;
-    font-size: 14px;
-    color: #5A6169;
-  }
-  .quem-texto cite strong { color: var(--texto-esc); }
-  @media (max-width: 720px) {
-    .quem-wrap { flex-direction: column; }
-    .quem-foto { flex: 0 0 auto; min-height: 240px; }
-    .quem-texto { padding: 32px 28px; text-align: center; align-items: center; }
-    .quem-texto .section-tag { text-align: center; }
-  }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 16px; }
 
-  /* ── SERVIÇOS (bento) ── */
-  .servicos { background: var(--branco); padding: 88px 24px 64px; text-align: center; }
-
-  .bento {
+  /* ── STATS ── */
+  .stats { background: var(--ink-900); border-top: 1px solid rgba(255,255,255,0.1); }
+  .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 210px 210px;
-    grid-template-areas:
-      "feat feat a b"
-      "feat feat c c";
-    gap: 18px;
-    max-width: 980px;
-    margin: 0 auto;
   }
-  .bento-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    text-align: left;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
-  }
-  .bento-card:hover { transform: translateY(-5px); }
-  .bento-card .duo { position: absolute; inset: 0; }
-  .bento-card-corpo { position: relative; z-index: 2; padding: 18px 20px; }
-  .bento-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-  .bento-card p { font-size: 12.5px; color: #E3E3E5; line-height: 1.5; display: none; }
-  .bento-feat { grid-area: feat; }
-  .bento-feat p { display: block; }
-  .bento-feat h3 { font-size: 19px; }
-  .bento-a { grid-area: a; }
-  .bento-b { grid-area: b; }
-  .bento-c { grid-area: c; }
-  .bento-c p { display: block; }
-
-  @media (max-width: 760px) {
-    .bento {
-      grid-template-columns: 1fr;
-      grid-template-rows: none;
-      grid-template-areas: "feat" "a" "b" "c";
-    }
-    .bento-card { min-height: 200px; }
-    .bento-card p { display: block; }
-  }
-
-  .servico-secundarios-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #A0ADB9;
-    margin: 44px 0 16px;
+  .stats-grid > div {
+    padding: 32px 16px;
     text-align: center;
+    border-left: 1px solid rgba(255,255,255,0.1);
   }
-  .servicos-grid-sec {
+  .stats-grid > div:first-child { border-left: none; }
+  .stat-num { font-size: clamp(26px, 4vw, 40px); font-weight: 800; color: var(--brand); }
+  .stat-label { font-size: 11.5px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--slate-400); margin-top: 6px; }
+  @media (max-width: 640px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid > div:nth-child(2n+1) { border-left: none; }
+    .stats-grid > div:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,0.1); }
+  }
+
+  /* ── SERVIÇOS ── */
+  .servicos { padding: 96px 0; background: var(--paper); }
+  .servicos-head { max-width: 640px; margin-bottom: 56px; }
+  .servicos-head h2 { font-size: clamp(24px, 3.2vw, 34px); margin-bottom: 16px; }
+  .servicos-head p { font-size: 16px; color: var(--ink-600); }
+
+  .servicos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    max-width: 980px;
-    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
-  .servico-card-sec {
-    background: var(--fundo);
-    border: 1px solid #EEF1F5;
-    border-radius: 12px;
-    padding: 24px 20px;
-    text-align: left;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .servico-card-sec:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0,0,0,0.06); }
-  .servico-card-sec .servico-icone { font-size: 22px; margin-bottom: 10px; }
-  .servico-card-sec h3 { font-size: 14px; font-weight: 700; color: var(--texto-esc); margin-bottom: 6px; }
-  .servico-card-sec p { font-size: 13px; color: #5A6169; line-height: 1.5; }
-
-  /* ── DIAGONAIS ── */
-  .diag {
-    height: 64px;
-    margin-bottom: -1px;
-  }
-  .diag--to-dark { background: var(--grafite); clip-path: polygon(0 100%, 100% 0, 100% 100%); }
-  .diag--to-light { background: var(--fundo); clip-path: polygon(0 0, 100% 100%, 0 100%); margin-top: -1px; margin-bottom: 0; }
-
-  /* ── DIFERENCIAIS ── */
-  .diferenciais {
-    background: var(--grafite);
-    color: var(--texto);
-    padding: 70px 24px 90px;
-    text-align: center;
-  }
-  .diferenciais .section-title { color: var(--texto); }
-  .diferenciais .section-sub { color: var(--cinza); }
-  .dif-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 920px;
-    margin: 0 auto;
-  }
-  .dif-card {
-    position: relative;
-    background: var(--grafite-m);
-    border: 1px solid var(--borda);
-    border-radius: 14px;
-    padding: 32px 24px;
-    text-align: left;
-    overflow: hidden;
-  }
-  .dif-ghost {
-    position: absolute;
-    top: -22px; right: -6px;
-    font-size: 108px;
-    font-weight: 900;
-    color: rgba(255,255,255,0.045);
-    line-height: 1;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .dif-card > * { position: relative; z-index: 1; }
-  .dif-num {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--vermelho-2);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .dif-card h3 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--texto);
-    margin-bottom: 8px;
-  }
-  .dif-card p {
-    font-size: 14px;
-    color: var(--cinza);
-    line-height: 1.55;
-  }
-
-  /* ── COMO FUNCIONA ── */
-  .como { background: var(--branco); padding: 80px 24px 70px; text-align: center; }
-  .como-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 32px;
-    max-width: 920px;
-    margin: 44px auto 0;
-    text-align: left;
-    position: relative;
-  }
-  .como-item { position: relative; padding-left: 50px; }
-  .como-num {
-    position: absolute;
-    left: 0; top: 0;
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--vermelho-2), var(--vermelho));
-    color: #fff;
-    font-weight: 800;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 18px rgba(208,36,45,0.3);
-  }
-  .como-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--texto-esc); }
-  .como-item p { font-size: 13px; color: #5A6169; line-height: 1.55; }
-
-  /* ── ÁREA ── */
-  .area { background: var(--fundo-2); padding: 60px 24px; text-align: center; }
-  .area-box {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 8px;
-  }
-  .area-tag {
-    background: var(--branco);
-    border: 1px solid #DDD;
-    border-radius: 100px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--texto-esc);
-  }
-
-  /* ── CTA FINAL ── */
-  .cta-final {
-    position: relative;
-    background:
-      radial-gradient(circle at 85% 20%, rgba(255,255,255,0.14), transparent 45%),
-      linear-gradient(135deg, var(--vermelho-2), var(--vermelho) 60%, var(--vermelho-e));
-    color: #fff;
-    padding: 78px 24px;
-    text-align: center;
-    overflow: hidden;
-  }
-  .cta-final h2 {
-    font-size: clamp(24px, 4vw, 42px);
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    max-width: 620px;
-    margin: 0 auto 12px;
-  }
-  .cta-final p {
-    font-size: 16px;
-    opacity: 0.92;
-    margin-bottom: 36px;
-  }
-  .btn-wp-dark {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+  .servico-card {
     background: #fff;
-    color: var(--texto-esc);
-    font-size: 14px;
+    border: 1px solid #E3E5E9;
+    transition: border-color 0.2s;
+  }
+  .servico-card:hover { border-color: var(--brand); }
+  .servico-card .foto { aspect-ratio: 4/3; overflow: hidden; background: var(--card); }
+  .servico-card .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .servico-card:hover .foto img { transform: scale(1.06); }
+  .servico-corpo { padding: 22px; }
+  .servico-corpo h3 { font-size: 17px; margin-bottom: 8px; transition: color 0.2s; }
+  .servico-card:hover h3 { color: var(--brand); }
+  .servico-corpo p { font-size: 13.5px; color: var(--ink-600); margin-bottom: 14px; }
+  .servico-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 17px 34px;
-    border-radius: 6px;
-    text-decoration: none;
-    box-shadow: 0 16px 34px rgba(0,0,0,0.18);
-    transition: filter 0.2s, transform 0.2s;
+    color: var(--brand);
   }
-  .btn-wp-dark:hover { filter: brightness(0.96); transform: translateY(-2px); }
-  .btn-wp-dark svg { width: 22px; height: 22px; fill: var(--verde-wp); flex-shrink: 0; }
+  .servico-link .arrow { transition: transform 0.2s; }
+  .servico-card:hover .servico-link .arrow { transform: translateX(3px); }
+
+  @media (max-width: 900px) { .servicos-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .servicos-grid { grid-template-columns: 1fr; } }
+
+  /* ── SOBRE ── */
+  .sobre { padding: 96px 0; background: #fff; }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .sobre-foto { position: relative; }
+  .sobre-foto img { width: 100%; height: auto; }
+  .badge-flutuante {
+    position: absolute;
+    bottom: -22px; right: -22px;
+    background: var(--brand);
+    color: #fff;
+    padding: 20px 24px;
+    max-width: 220px;
+  }
+  .badge-flutuante .num { font-size: 28px; font-weight: 800; }
+  .badge-flutuante .cap { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .sobre-texto h2 { font-size: clamp(24px, 3.2vw, 34px); margin-bottom: 22px; line-height: 1.25; }
+  .sobre-texto .quote {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ink-900);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    padding-left: 18px;
+    border-left: 3px solid var(--brand);
+  }
+  .sobre-texto p.corpo { font-size: 15.5px; color: var(--ink-600); margin-bottom: 28px; }
+  .sobre-lista { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  .sobre-lista li { display: flex; gap: 16px; }
+  .sobre-lista .barra { flex: 0 0 4px; width: 4px; background: var(--brand); }
+  .sobre-lista .titulo { font-weight: 700; color: var(--ink-900); font-size: 15px; }
+  .sobre-lista .desc { font-size: 13.5px; color: var(--ink-600); margin-top: 2px; }
+
+  @media (max-width: 800px) {
+    .sobre-grid { grid-template-columns: 1fr; }
+    .badge-flutuante { position: static; margin-top: -6px; display: inline-block; }
+  }
+
+  /* ── SEGMENTOS ── */
+  .segmentos { padding: 80px 0; background: var(--card); text-align: center; }
+  .segmentos-head { max-width: 620px; margin: 0 auto 48px; }
+  .segmentos-head h2 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 12px; }
+  .segmentos-head p { font-size: 15px; color: var(--ink-600); }
+  .seg-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: #DCDFE3;
+  }
+  .seg-item { background: #fff; padding: 26px 12px; }
+  .seg-icon { font-size: 34px; margin-bottom: 10px; }
+  .seg-label { font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink-900); }
+  @media (max-width: 800px) { .seg-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 460px) { .seg-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ── CTA FINAL ── */
+  .cta-final { position: relative; background: var(--ink-900); color: #fff; overflow: hidden; }
+  .cta-bg { position: absolute; inset: 0; }
+  .cta-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.22; }
+  .cta-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-900), rgba(21,24,28,0.6)); }
+  .cta-inner { position: relative; max-width: 760px; margin: 0 auto; padding: 96px 20px; text-align: center; }
+  .cta-inner h2 { font-size: clamp(26px, 4vw, 42px); color: #fff; margin-bottom: 18px; line-height: 1.2; }
+  .cta-inner p { font-size: 16px; color: var(--slate-300); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-inner .btn-row { justify-content: center; }
 
   /* ── FOOTER ── */
-  footer {
-    background: var(--grafite);
-    color: var(--cinza);
-    padding: 32px 24px;
-    text-align: center;
-    font-size: 13px;
+  footer { background: var(--ink-900); color: var(--slate-300); }
+  .footer-bar { height: 4px; background: var(--brand); }
+  .footer-grid {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 48px 20px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 36px;
   }
-  footer a { color: var(--cinza); text-decoration: none; }
-  footer .footer-logo {
-    height: 30px;
-    background: #fff;
-    border-radius: 6px;
-    padding: 6px 10px;
-    margin-bottom: 14px;
+  .footer-grid .logo-chip { margin-bottom: 14px; }
+  .footer-grid p { font-size: 13.5px; line-height: 1.6; }
+  .footer-grid h3 { color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; font-weight: 700; }
+  .footer-grid ul { list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 13.5px; }
+  .footer-grid a { color: var(--slate-300); }
+  .footer-grid a:hover { color: var(--brand); }
+  @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; } }
+  .footer-copy {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--slate-400);
   }
 
-  /* ── WHATSAPP FIXO ── */
+  /* ── WHATSAPP FLUTUANTE ── */
   .wp-fixo {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 20px; right: 20px;
     z-index: 999;
     background: var(--verde-wp);
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    transition: filter 0.2s;
+  }
+  .wp-fixo:hover { filter: brightness(1.08); }
+  .wp-fixo svg { width: 20px; height: 20px; fill: #fff; }
+
+  /* ── MODAL WHATSAPP ── */
+  #wa-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+  #wa-modal.open { display: flex; }
+  #wa-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .wa-box { position: relative; background: #fff; max-width: 420px; width: 100%; max-height: 90vh; overflow-y: auto; }
+  .wa-box-head {
+    background: var(--verde-wp);
+    color: #fff;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wa-box-head h2 { color: #fff; font-size: 17px; }
+  .wa-box-head svg { width: 24px; height: 24px; fill: #fff; }
+  .wa-close { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
+  .wa-form { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .wa-form p { font-size: 13.5px; color: var(--ink-600); }
+  .wa-form label { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-900); margin-bottom: 6px; display: block; }
+  .wa-form input {
+    width: 100%;
+    border: 1px solid #D6D9DE;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+  }
+  .wa-form input:focus { border-color: var(--brand); }
+  .wa-submit {
+    background: var(--verde-wp);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13.5px;
+    padding: 14px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 26px rgba(37,211,102,0.45);
-    text-decoration: none;
-    transition: transform 0.2s;
+    gap: 8px;
   }
-  .wp-fixo:hover { transform: scale(1.08); }
-  .wp-fixo svg { width: 28px; height: 28px; fill: #fff; }
-
-  @media (max-width: 600px) {
-    .hero { padding: 44px 20px 150px; }
-    .servicos, .diferenciais, .area, .cta-final, .como { padding: 56px 20px; }
-  }
+  .wa-submit svg { width: 18px; height: 18px; fill: #fff; }
 </style>
 </head>
 <body>
 
-<!-- FAIXA DE ASSINATURA -->
-<div class="faixa"></div>
+<!-- HEADER -->
+<header>
+  <div class="header-row">
+    <a href="#" class="logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec"></a>
+    <nav>
+      <ul>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Diferenciais</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="header-bar"></div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec"></div><br>
-  <p class="hero-tag">Caxias do Sul e região · RS e SC</p>
-  <h1>Máquina parada é<br><span class="grad">prejuízo na hora.</span></h1>
-  <p>Manutenção técnica especializada em laser, plasma e dobradeiras hidráulicas. Atendimento com SLA garantido e disponibilidade para 2º e 3º turno.</p>
-  <a href="https://wa.me/5554816188616?text=Ol%C3%A1!%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn-wp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-    Falar no WhatsApp
-  </a>
-  <p class="hero-sub">Resposta em até 8 horas · Mais de 20 anos de experiência</p>
+  <div class="hero-bg"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma"></div>
+  <div class="hero-inner">
+    <div class="eyebrow"><div class="line"></div><span>Manutenção Industrial · Caxias do Sul e Região</span></div>
+    <h1>Máquina parada é<br><span class="red">prejuízo na hora.</span></h1>
+    <p class="lead">Manutenção elétrica, eletrônica e mecânica em máquinas de corte laser, plasma e dobradeiras hidráulicas. Mais de 20 anos de experiência, com SLA garantido e atendimento para 2º e 3º turno.</p>
+    <div class="btn-row">
+      <a href="#servicos" class="btn btn-brand">Ver Serviços</a>
+      <a href="#" class="btn btn-wp" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- STATS FLUTUANTE -->
-<div class="stats-float reveal">
-  <div>
-    <div class="stat-num">20+</div>
-    <div class="stat-label">anos de experiência</div>
-  </div>
-  <div>
-    <div class="stat-num">~40</div>
-    <div class="stat-label">serviços por mês</div>
-  </div>
-  <div>
-    <div class="stat-num">RS · SC</div>
-    <div class="stat-label">área de atendimento</div>
-  </div>
-  <div>
-    <div class="stat-num">8h</div>
-    <div class="stat-label">resposta garantida</div>
-  </div>
-</div>
-
-<!-- QUEM ATENDE -->
-<section class="quem">
-  <div class="quem-wrap reveal">
-    <div class="quem-foto duo">
-      <img src="assets/cristian.jpg" alt="Cristian Mônego">
-    </div>
-    <div class="quem-texto">
-      <p class="section-tag">Quem atende</p>
-      <blockquote>"Sou eu quem atende, do começo ao fim. Trabalho com laser, plasma e dobradeira há mais de 20 anos e não empurro serviço pela metade: se comecei, termino, custe o que custar."</blockquote>
-      <cite><strong>Cristian Mônego</strong> · CNPJ próprio há 5 anos · atendimento direto, sem intermediários</cite>
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">20+</div><div class="stat-label">Anos de experiência</div></div>
+      <div><div class="stat-num">~40</div><div class="stat-label">Serviços por mês</div></div>
+      <div><div class="stat-num">RS·SC</div><div class="stat-label">Área de atendimento</div></div>
+      <div><div class="stat-num">8h</div><div class="stat-label">Resposta garantida</div></div>
     </div>
   </div>
 </section>
 
 <!-- SERVIÇOS -->
-<section class="servicos">
-  <p class="section-tag reveal">O que fazemos</p>
-  <h2 class="section-title reveal">Manutenção especializada</h2>
-  <p class="section-sub reveal">Atendemos qualquer marca e modelo, corretiva ou preventiva.</p>
+<section class="servicos" id="servicos">
+  <div class="container">
+    <div class="servicos-head">
+      <div class="eyebrow"><div class="line"></div><span>Nossos Serviços</span></div>
+      <h2>Manutenção industrial mais procurada na região</h2>
+      <p>Atendemos qualquer marca e modelo, corretiva ou preventiva, com diagnóstico técnico especializado.</p>
+    </div>
 
-  <div class="bento reveal">
-    <div class="bento-card bento-feat">
-      <div class="duo"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma"></div>
-      <div class="bento-card-corpo">
-        <h3>Manutenção Elétrica, Eletrônica e Mecânica</h3>
-        <p>Máquinas de corte a laser, plasma e dobradeiras hidráulicas. Diagnóstico, reparo e ajuste completo, qualquer marca.</p>
+    <div class="servicos-grid">
+      <div class="servico-card">
+        <div class="foto"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma"></div>
+        <div class="servico-corpo">
+          <h3>Manutenção Elétrica, Eletrônica e Mecânica</h3>
+          <p>Máquinas de corte a laser, plasma e dobradeiras hidráulicas. Diagnóstico, reparo e ajuste completo, qualquer marca.</p>
+          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Preciso de manutenção elétrica/eletrônica/mecânica na minha máquina.">Falar sobre isso <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="foto"><img src="assets/servico-eletrica.jpg" alt="Retrofit de painel elétrico industrial"></div>
+        <div class="servico-corpo">
+          <h3>Retrofit de Máquinas</h3>
+          <p>Atualização de comando e automação em equipamentos de corte a laser e plasma, estendendo a vida útil da máquina.</p>
+          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Quero saber mais sobre retrofit de máquinas.">Falar sobre isso <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="foto"><img src="assets/servico-lente.jpg" alt="Lente de cabeçote de corte a laser"></div>
+        <div class="servico-corpo">
+          <h3>Descontaminação e Troca de Lentes</h3>
+          <p>Manutenção do cabeçote de corte a laser: limpeza, descontaminação e substituição de lentes ópticas.</p>
+          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Preciso de descontaminação/troca de lentes no cabeçote de laser.">Falar sobre isso <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="foto"><img src="assets/servico-calibracao.jpg" alt="Calibração de máquina de corte a laser"></div>
+        <div class="servico-corpo">
+          <h3>Laudo de Inspeção</h3>
+          <p>Avaliação técnica antes de comprar máquina usada de corte térmico. Saiba o estado real do equipamento.</p>
+          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Preciso de um laudo de inspeção para compra de máquina usada.">Falar sobre isso <span class="arrow">→</span></a>
+        </div>
       </div>
     </div>
-    <div class="bento-card bento-a">
-      <div class="duo"><img src="assets/servico-eletrica.jpg" alt="Retrofit de painel elétrico industrial"></div>
-      <div class="bento-card-corpo"><h3>Retrofit de Máquinas</h3></div>
-    </div>
-    <div class="bento-card bento-b">
-      <div class="duo"><img src="assets/servico-lente.jpg" alt="Lente de cabeçote de corte a laser"></div>
-      <div class="bento-card-corpo"><h3>Descontaminação e Troca de Lentes</h3></div>
-    </div>
-    <div class="bento-card bento-c">
-      <div class="duo"><img src="assets/servico-calibracao.jpg" alt="Calibração de máquina de corte a laser"></div>
-      <div class="bento-card-corpo">
-        <h3>Laudo de Inspeção</h3>
-        <p>Avaliação técnica antes de comprar máquina usada de corte térmico.</p>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-foto">
+        <img src="assets/cristian.jpg" alt="Cristian Mônego">
+        <div class="badge-flutuante">
+          <div class="num">20+</div>
+          <div class="cap">Anos de experiência</div>
+        </div>
+      </div>
+      <div class="sobre-texto">
+        <div class="eyebrow"><div class="line"></div><span>Quem Atende</span></div>
+        <h2>Mais de 20 anos cuidando de máquina industrial</h2>
+        <p class="quote">"Sou eu quem atende, do começo ao fim. Não empurro serviço pela metade: se comecei, termino, custe o que custar."</p>
+        <p class="corpo">Cristian Mônego atua há mais de 20 anos com laser, plasma e dobradeira, com CNPJ próprio há 5 anos. Atendimento direto, sem intermediários, para indústrias de todos os portes em Caxias do Sul, interior do RS e litoral de SC.</p>
+        <ul class="sobre-lista">
+          <li>
+            <span class="barra"></span>
+            <div>
+              <div class="titulo">Resposta em até 8 horas</div>
+              <div class="desc">Abertura de chamado com retorno garantido. Em contratos de manutenção preventiva, disponibilidade de máquina em até 12 horas.</div>
+            </div>
+          </li>
+          <li>
+            <span class="barra"></span>
+            <div>
+              <div class="titulo">Serviço concluído, sem exceção</div>
+              <div class="desc">Compromisso de finalizar o que começamos, mesmo que o processo seja mais longo que o previsto.</div>
+            </div>
+          </li>
+          <li>
+            <span class="barra"></span>
+            <div>
+              <div class="titulo">Atende 2º e 3º turno</div>
+              <div class="desc">Sua produção não para só no horário comercial. Atendimento em qualquer horário, inclusive madrugada.</div>
+            </div>
+          </li>
+          <li>
+            <span class="barra"></span>
+            <div>
+              <div class="titulo">Especialista, não generalista</div>
+              <div class="desc">Foco em laser, plasma e dobradeira. Conhece cada detalhe dessas máquinas.</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-
-  <p class="servico-secundarios-label reveal">Também atendemos</p>
-  <div class="servicos-grid-sec reveal">
-    <div class="servico-card-sec">
-      <div class="servico-icone">🎓</div>
-      <h3>Treinamento em Operação</h3>
-      <p>Capacitação da equipe no processo de corte, pra reduzir erro operacional e prolongar a vida da máquina.</p>
-    </div>
-    <div class="servico-card-sec">
-      <div class="servico-icone">📋</div>
-      <h3>Contrato com SLA</h3>
-      <p>Resposta garantida em até 8h e disponibilidade de máquina em até 12h. Vira previsibilidade pra sua produção.</p>
-    </div>
-    <div class="servico-card-sec">
-      <div class="servico-icone">❄️</div>
-      <h3>Chillers e Exaustores</h3>
-      <p>Manutenção de periféricos que sustentam o funcionamento das máquinas de corte.</p>
-    </div>
-  </div>
 </section>
 
-<div class="diag diag--to-dark"></div>
-
-<!-- DIFERENCIAIS -->
-<section class="diferenciais">
-  <p class="section-tag reveal">Por que a Mônego</p>
-  <h2 class="section-title reveal">Atendimento que não te deixa na mão</h2>
-  <p class="section-sub reveal" style="margin-bottom:44px;">Em 20 anos, a regra é uma só: o serviço termina, não importa o que aconteça.</p>
-
-  <div class="dif-grid reveal">
-    <div class="dif-card">
-      <span class="dif-ghost">01</span>
-      <p class="dif-num">01 · SLA</p>
-      <h3>Resposta em até 8 horas</h3>
-      <p>Abertura de chamado com retorno garantido. Em contratos de manutenção preventiva, disponibilidade de máquina em até 12 horas.</p>
+<!-- SEGMENTOS -->
+<section class="segmentos">
+  <div class="container">
+    <div class="segmentos-head">
+      <div class="eyebrow center"><div class="line"></div><span>Atendimento Completo</span><div class="line"></div></div>
+      <h2>Equipamentos e serviços atendidos</h2>
+      <p>Do corte à manutenção recorrente, cobrindo toda a operação da sua indústria.</p>
     </div>
-    <div class="dif-card">
-      <span class="dif-ghost">02</span>
-      <p class="dif-num">02 · Garantia</p>
-      <h3>Serviço concluído, sem exceção</h3>
-      <p>Compromisso de finalizar o que começamos, mesmo que o processo seja mais longo que o previsto.</p>
+    <div class="seg-grid">
+      <div class="seg-item"><div class="seg-icon">⚡</div><div class="seg-label">Laser</div></div>
+      <div class="seg-item"><div class="seg-icon">🔥</div><div class="seg-label">Plasma CNC</div></div>
+      <div class="seg-item"><div class="seg-icon">🔩</div><div class="seg-label">Dobradeira</div></div>
+      <div class="seg-item"><div class="seg-icon">🎓</div><div class="seg-label">Treinamento</div></div>
+      <div class="seg-item"><div class="seg-icon">📋</div><div class="seg-label">Contrato SLA</div></div>
+      <div class="seg-item"><div class="seg-icon">❄️</div><div class="seg-label">Chillers</div></div>
     </div>
-    <div class="dif-card">
-      <span class="dif-ghost">03</span>
-      <p class="dif-num">03 · Disponibilidade</p>
-      <h3>Atende 2º e 3º turno</h3>
-      <p>Sua produção não para só no horário comercial. A gente também não. Atendimento em qualquer horário, inclusive madrugada.</p>
-    </div>
-    <div class="dif-card">
-      <span class="dif-ghost">04</span>
-      <p class="dif-num">04 · Experiência</p>
-      <h3>Mais de 20 anos no setor</h3>
-      <p>Especialista em laser, plasma e dobradeira. Não é generalista: conhece cada detalhe dessas máquinas.</p>
-    </div>
-  </div>
-</section>
-
-<div class="diag diag--to-light"></div>
-
-<!-- COMO FUNCIONA -->
-<section class="como">
-  <p class="section-tag reveal">Como funciona</p>
-  <h2 class="section-title reveal">Do chamado à máquina rodando de novo</h2>
-  <div class="como-grid reveal">
-    <div class="como-item">
-      <div class="como-num">1</div>
-      <h3>Chama no WhatsApp</h3>
-      <p>Explica o problema ou o tipo de manutenção que precisa. Retorno em até 8 horas.</p>
-    </div>
-    <div class="como-item">
-      <div class="como-num">2</div>
-      <h3>Avaliação e orçamento</h3>
-      <p>Cristian avalia o caso e agenda a visita ou passa o orçamento, sem enrolação.</p>
-    </div>
-    <div class="como-item">
-      <div class="como-num">3</div>
-      <h3>Serviço com prazo combinado</h3>
-      <p>Execução com prazo e SLA acordados. Se o serviço for mais longo que o previsto, ele não para no meio.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ÁREA DE ATUAÇÃO -->
-<section class="area">
-  <p class="section-tag reveal">Onde atendemos</p>
-  <h2 class="section-title reveal">Caxias do Sul e região</h2>
-  <p class="section-sub reveal">Atendemos indústrias em todo o RS e no litoral de SC.</p>
-  <div class="area-box reveal">
-    <span class="area-tag">Caxias do Sul e Serra Gaúcha</span>
-    <span class="area-tag">Interior do RS</span>
-    <span class="area-tag">Litoral de SC (Tubarão a Joinville)</span>
   </div>
 </section>
 
 <!-- CTA FINAL -->
-<section class="cta-final">
-  <h2 class="reveal">Máquina parada? Chama agora.</h2>
-  <p class="reveal">Sem enrolação. Retorno em até 8 horas.</p>
-  <a href="https://wa.me/5554816188616?text=Ol%C3%A1!%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn-wp-dark reveal" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-    Falar no WhatsApp
-  </a>
+<section class="cta-final" id="contato">
+  <div class="cta-bg"><img src="assets/servico-calibracao.jpg" alt=""></div>
+  <div class="cta-inner">
+    <h2>Máquina parada? Chama agora.</h2>
+    <p>Sem enrolação. Retorno em até 8 horas para indústrias em Caxias do Sul, interior do RS e litoral de SC.</p>
+    <div class="btn-row">
+      <a href="#" class="btn btn-wp" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <img src="assets/logo.jpg" alt="Mônego Eletromec" class="footer-logo">
-  <p>Mônego Eletromec · Caxias do Sul/RS · <a href="https://wa.me/5554816188616">+55 54 8161-8616</a></p>
+  <div class="footer-grid">
+    <div>
+      <div class="logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec" style="height:36px;"></div>
+      <p>Manutenção de máquinas industriais de corte a laser, plasma e dobradeiras hidráulicas. Mais de 20 anos de experiência, atendimento direto em toda a região.</p>
+    </div>
+    <div>
+      <h3>Serviços</h3>
+      <ul>
+        <li><a href="#servicos">Manutenção elétrica e eletrônica</a></li>
+        <li><a href="#servicos">Retrofit de máquinas</a></li>
+        <li><a href="#servicos">Descontaminação de lentes</a></li>
+        <li><a href="#servicos">Laudo de inspeção</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Atendimento</h3>
+      <ul>
+        <li>WhatsApp: <a href="https://wa.me/5554816188616">(54) 8161-8616</a></li>
+        <li>Sede: Caxias do Sul / RS</li>
+        <li>Cobertura: RS e litoral de SC</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar"></div>
+  <div class="footer-copy">© 2026 Mônego Eletromec — Todos os direitos reservados</div>
 </footer>
 
 <!-- BOTÃO FLUTUANTE -->
-<a href="https://wa.me/5554816188616?text=Ol%C3%A1!%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="wp-fixo" title="WhatsApp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
+<a href="#" class="wp-fixo" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+  WhatsApp
 </a>
 
+<!-- MODAL WHATSAPP -->
+<div id="wa-modal">
+  <div id="wa-backdrop"></div>
+  <div class="wa-box">
+    <div class="wa-box-head">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <h2>Falar no WhatsApp</h2>
+      </div>
+      <button type="button" class="wa-close" id="wa-close" aria-label="Fechar">✕</button>
+    </div>
+    <form class="wa-form" id="wa-form">
+      <p>Informa teu nome e celular. Na sequência, o WhatsApp abre com a mensagem já preenchida direto pro Cristian.</p>
+      <label>Nome completo
+        <input type="text" name="nome" required placeholder="Como podemos te chamar">
+      </label>
+      <label>Celular com DDD
+        <input type="tel" name="telefone" required placeholder="(54) 99999-9999">
+      </label>
+      <button type="submit" class="wa-submit">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Falar no WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var els = document.querySelectorAll('.reveal');
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  els.forEach(function (el) { obs.observe(el); });
-});
+(function () {
+  var NUMERO = '5554816188616';
+  var DEFAULT_CTX = 'Olá! Preciso de manutenção para minha máquina.';
+  var modal = document.getElementById('wa-modal');
+  var backdrop = document.getElementById('wa-backdrop');
+  var closeBtn = document.getElementById('wa-close');
+  var form = document.getElementById('wa-form');
+  var currentCtx = DEFAULT_CTX;
+
+  function openModal(ctx) {
+    currentCtx = ctx || DEFAULT_CTX;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var input = form.querySelector('input[name="nome"]');
+    if (input) setTimeout(function () { input.focus(); }, 50);
+    if (typeof fbq === 'function') fbq('track', 'Lead');
+    if (typeof gtag === 'function') gtag('event', 'conversion', {'send_to': 'AW-SEU_CONVERSION_ID/LABEL'});
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-wa-trigger]');
+    if (t) {
+      e.preventDefault();
+      openModal(t.getAttribute('data-wa-context'));
+    }
+  });
+  backdrop.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fd = new FormData(form);
+    var nome = String(fd.get('nome') || '').trim();
+    var tel = String(fd.get('telefone') || '').trim();
+    if (!nome || !tel) return;
+    var msg = currentCtx + '\n\nMeu nome: ' + nome + '\nMeu celular: ' + tel;
+    window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    form.reset();
+    closeModal();
+  });
+})();
 </script>
 
 </body>
