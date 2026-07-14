@@ -7,6 +7,12 @@
       "skillPath": "skills/caveman-review/SKILL.md",
       "computedHash": "b9091dbc51de0f3710ea818fd4d638539f8c1784f8fda931eb159c44861e702e"
     },
+    "copywriting": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/copywriting/SKILL.md",
+      "computedHash": "cb9761b92e140cd68c1de6397c51dd9952da198382abfdbf26589ef26f6572b4"
+    },
     "fastapi-python": {
       "source": "mindrally/skills",
       "sourceType": "github",
@@ -24,6 +30,12 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "569299a60c8e93880f3b3c1eca55578f58f7e1a4155876edb4cb814da3d6b3ea"
+    },
+    "landing-page-design": {
+      "source": "inference-sh/skills",
+      "sourceType": "github",
+      "skillPath": "guides/design/landing-page-design/SKILL.md",
+      "computedHash": "03240c924aac601d09fa583dffcbfa7e90e4aeb4881c0ca7739cb110e45e2244"
     },
     "react-router": {
       "source": "remix-run/react-router",

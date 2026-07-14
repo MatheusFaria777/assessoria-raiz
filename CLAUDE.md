@@ -73,6 +73,11 @@ Direto, prático e que transmita confiança. Estilo narrativo — parece pessoa 
 - Google Ads — skill `/google-ads-ratos` com SDK oficial (`google-ads-api`), token em `.claude/skills/google-ads-ratos/.env`
 
 ## Skills instaladas
+
+Duas origens diferentes, cada uma na sua pasta (não precisa organizar manualmente):
+- **`.claude/skills/`** — skills criadas por nós, específicas da Raiz (listadas abaixo)
+- **`.agents/skills/`** — skills baixadas via `npx skills` (comando `/find-skills`), formato universal usado por várias ferramentas de agente. Instaladas até agora: `landing-page-design` (inference-sh/skills) e `copywriting` (coreyhaines31/marketingskills)
+
 - `/meta-ads-ratos` — gestão completa de Meta Ads via SDK (campanhas, insights, targeting, criativos)
 - `/onboarding` — lê transcrições do Fathom, gera roteiro + slides e cria pasta no Drive
 - `/alinhamento-mensal` — gera apresentação mensal de alinhamento para o cliente em HTML
