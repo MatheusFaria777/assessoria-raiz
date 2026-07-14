@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<!--
+  ANTES DE RODAR TRÁFEGO:
+  1. Substituir SEU_PIXEL_ID pelo ID do Meta Pixel (criar conta Meta Ads primeiro, se for usar Meta também)
+  2. Substituir AW-SEU_CONVERSION_ID/LABEL pela tag de conversão do Google Ads (conta a ser criada)
+  3. Confirmar se o número de WhatsApp +55 54 8161-8616 está correto
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mônego Eletromec — Manutenção de Máquinas Industriais em Caxias do Sul</title>
+<meta name="description" content="Manutenção elétrica, eletrônica e mecânica de máquinas de corte laser, plasma e dobradeiras hidráulicas. Mais de 20 anos de experiência. Atendimento em todo o RS e litoral de SC, com SLA garantido.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel — substituir SEU_PIXEL_ID quando a conta Meta Ads estiver pronta -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'SEU_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+
+<!-- Google Ads Tag — substituir AW-SEU_CONVERSION_ID quando a conta Google Ads estiver pronta -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-SEU_CONVERSION_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-SEU_CONVERSION_ID');
+</script>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --grafite:    #1C1C1F;
+    --grafite-m:  #29292E;
+    --vermelho:   #D0242D;
+    --vermelho-e: #9C1A21;
+    --texto:      #F2F2F3;
+    --cinza:      #9CA3AC;
+    --borda:      #35353B;
+    --branco:     #FFFFFF;
+    --fundo:      #F6F6F7;
+    --texto-esc:  #1A1A1E;
+    --verde-wp:   #25D366;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    background: var(--fundo);
+    color: var(--texto-esc);
+    line-height: 1.6;
+  }
+
+  /* ── TOPO / LOGO ── */
+  .faixa { height: 4px; background: var(--vermelho); }
+  .topo {
+    background: var(--branco);
+    padding: 16px 24px;
+    text-align: center;
+    border-bottom: 1px solid #E7E7E9;
+  }
+  .topo img { height: 44px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--grafite);
+    color: var(--texto);
+    padding: 56px 24px 72px;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--vermelho);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+  .hero h1 span { color: var(--vermelho); }
+  .hero p {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--cinza);
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+  .btn-wp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--verde-wp);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 17px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+  .btn-wp:hover { filter: brightness(1.1); opacity: 1; }
+  .btn-wp:hover { opacity: 0.88; }
+  .btn-wp svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--cinza);
+  }
+
+  /* ── ESTATÍSTICAS ── */
+  .stats {
+    background: var(--branco);
+    padding: 40px 24px;
+    border-bottom: 1px solid #ECECEE;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 800;
+    color: var(--vermelho);
+  }
+  .stat-label {
+    font-size: 13px;
+    color: #5A6169;
+    margin-top: 4px;
+  }
+
+  /* ── SEÇÃO GENÉRICA ── */
+  .section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--vermelho);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 800;
+    color: var(--texto-esc);
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: #5A6169;
+    max-width: 520px;
+    margin: 0 auto 44px;
+  }
+
+  /* ── QUEM ATENDE ── */
+  .quem {
+    background: var(--fundo);
+    padding: 64px 24px;
+  }
+  .quem-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+  }
+  .quem-foto {
+    flex: 0 0 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .quem-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .quem-texto .section-tag { text-align: left; }
+  .quem-texto blockquote {
+    font-size: clamp(17px, 2.2vw, 21px);
+    font-weight: 500;
+    color: var(--texto-esc);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .quem-texto cite {
+    display: block;
+    font-style: normal;
+    font-size: 14px;
+    color: #5A6169;
+  }
+  .quem-texto cite strong { color: var(--texto-esc); }
+  @media (max-width: 640px) {
+    .quem-wrap { flex-direction: column; text-align: center; }
+    .quem-texto .section-tag { text-align: center; }
+    .quem-foto { flex: 0 0 auto; }
+  }
+
+  /* ── SERVIÇOS ── */
+  .servicos {
+    background: var(--branco);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .servico-card {
+    background: var(--fundo);
+    border: 1px solid #E7E7E9;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+  }
+  .servico-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+  }
+  .servico-card-corpo { padding: 20px; }
+  .servico-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--texto-esc);
+    margin-bottom: 6px;
+  }
+  .servico-card p {
+    font-size: 13px;
+    color: #5A6169;
+    line-height: 1.55;
+  }
+
+  .servico-secundarios-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #A0ADB9;
+    margin: 40px 0 14px;
+    text-align: center;
+  }
+  .servicos-grid-sec {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .servico-card-sec {
+    background: var(--fundo);
+    border: 1px solid #EEF1F5;
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: left;
+  }
+  .servico-card-sec .servico-icone { font-size: 22px; margin-bottom: 10px; }
+  .servico-card-sec h3 { font-size: 14px; font-weight: 600; color: var(--texto-esc); margin-bottom: 6px; }
+  .servico-card-sec p { font-size: 13px; color: #5A6169; line-height: 1.5; }
+
+  /* ── DIFERENCIAIS ── */
+  .diferenciais {
+    background: var(--grafite);
+    color: var(--texto);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .diferenciais .section-title { color: var(--texto); }
+  .diferenciais .section-sub { color: var(--cinza); }
+  .dif-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .dif-card {
+    background: var(--grafite-m);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 32px 24px;
+    text-align: left;
+  }
+  .dif-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--vermelho);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .dif-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--texto);
+    margin-bottom: 8px;
+  }
+  .dif-card p {
+    font-size: 14px;
+    color: var(--cinza);
+    line-height: 1.55;
+  }
+
+  /* ── COMO FUNCIONA ── */
+  .como {
+    background: var(--branco);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .como-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 40px auto 0;
+    text-align: left;
+  }
+  .como-item { position: relative; padding-left: 46px; }
+  .como-num {
+    position: absolute;
+    left: 0; top: 0;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--vermelho);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .como-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--texto-esc); }
+  .como-item p { font-size: 13px; color: #5A6169; line-height: 1.55; }
+
+  /* ── ÁREA ── */
+  .area {
+    background: var(--fundo);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .area-box {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .area-tag {
+    background: var(--branco);
+    border: 1px solid #DDD;
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto-esc);
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--vermelho);
+    color: #fff;
+    padding: 72px 24px;
+    text-align: center;
+  }
+  .cta-final h2 {
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    max-width: 600px;
+    margin: 0 auto 12px;
+  }
+  .cta-final p {
+    font-size: 16px;
+    opacity: 0.92;
+    margin-bottom: 36px;
+  }
+  .btn-wp-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: var(--texto-esc);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 17px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+  .btn-wp-dark:hover { filter: brightness(0.95); }
+  .btn-wp-dark svg { width: 22px; height: 22px; fill: var(--verde-wp); flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--grafite);
+    color: var(--cinza);
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 13px;
+  }
+  footer a { color: var(--cinza); text-decoration: none; }
+  footer .footer-logo {
+    height: 32px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 14px;
+  }
+
+  /* ── WHATSAPP FIXO ── */
+  .wp-fixo {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background: var(--verde-wp);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .wp-fixo:hover { transform: scale(1.08); }
+  .wp-fixo svg { width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 60px; }
+    .servicos, .diferenciais, .area, .cta-final, .quem, .como { padding: 48px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FAIXA DE ASSINATURA -->
+<div class="faixa"></div>
+
+<!-- LOGO -->
+<div class="topo">
+  <img src="assets/logo.jpg" alt="Mônego Eletromec">
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-tag">Caxias do Sul e região · RS e SC</p>
+  <h1>Máquina parada é<br><span>prejuízo na hora.</span></h1>
+  <p>Manutenção técnica especializada em laser, plasma e dobradeiras hidráulicas. Atendimento com SLA garantido e disponibilidade para 2º e 3º turno.</p>
+  <a href="https://wa.me/5554816188616?text=Ol%C3%A1!%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn-wp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    Falar no WhatsApp
+  </a>
+  <p class="hero-sub">Resposta em até 8 horas · Mais de 20 anos de experiência</p>
+</section>
+
+<!-- ESTATÍSTICAS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">20+</div>
+      <div class="stat-label">anos de experiência</div>
+    </div>
+    <div>
+      <div class="stat-num">~40</div>
+      <div class="stat-label">serviços por mês</div>
+    </div>
+    <div>
+      <div class="stat-num">RS · SC</div>
+      <div class="stat-label">área de atendimento</div>
+    </div>
+    <div>
+      <div class="stat-num">8h</div>
+      <div class="stat-label">resposta garantida</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM ATENDE -->
+<section class="quem">
+  <div class="quem-wrap">
+    <div class="quem-foto">
+      <img src="assets/cristian.jpg" alt="Cristian Mônego">
+    </div>
+    <div class="quem-texto">
+      <p class="section-tag">Quem atende</p>
+      <blockquote>"Sou eu quem atende, do começo ao fim. Trabalho com laser, plasma e dobradeira há mais de 20 anos e não empurro serviço pela metade: se comecei, termino, custe o que custar."</blockquote>
+      <cite><strong>Cristian Mônego</strong> · CNPJ próprio há 5 anos · atendimento direto, sem intermediários</cite>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos">
+  <p class="section-tag">O que fazemos</p>
+  <h2 class="section-title">Manutenção especializada</h2>
+  <p class="section-sub">Atendemos qualquer marca e modelo, corretiva ou preventiva.</p>
+
+  <div class="servicos-grid">
+    <div class="servico-card">
+      <img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma">
+      <div class="servico-card-corpo">
+        <h3>Manutenção Elétrica, Eletrônica e Mecânica</h3>
+        <p>Máquinas de corte a laser, plasma e dobradeiras hidráulicas. Diagnóstico, reparo e ajuste completo, qualquer marca.</p>
+      </div>
+    </div>
+    <div class="servico-card">
+      <img src="assets/servico-eletrica.jpg" alt="Retrofit de painel elétrico industrial">
+      <div class="servico-card-corpo">
+        <h3>Retrofit de Máquinas</h3>
+        <p>Atualização de comando e automação em equipamentos de corte a laser e plasma, estendendo a vida útil da máquina.</p>
+      </div>
+    </div>
+    <div class="servico-card">
+      <img src="assets/servico-lente.jpg" alt="Lente de cabeçote de corte a laser">
+      <div class="servico-card-corpo">
+        <h3>Descontaminação e Troca de Lentes</h3>
+        <p>Manutenção do cabeçote de corte a laser: limpeza, descontaminação e substituição de lentes ópticas.</p>
+      </div>
+    </div>
+    <div class="servico-card">
+      <img src="assets/servico-calibracao.jpg" alt="Calibração de máquina de corte a laser">
+      <div class="servico-card-corpo">
+        <h3>Laudo de Inspeção</h3>
+        <p>Avaliação técnica antes de comprar máquina usada de corte térmico. Saiba o estado real do equipamento antes de fechar negócio.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="servico-secundarios-label">Também atendemos</p>
+  <div class="servicos-grid-sec">
+    <div class="servico-card-sec">
+      <div class="servico-icone">🎓</div>
+      <h3>Treinamento em Operação</h3>
+      <p>Capacitação da equipe no processo de corte, pra reduzir erro operacional e prolongar a vida da máquina.</p>
+    </div>
+    <div class="servico-card-sec">
+      <div class="servico-icone">📋</div>
+      <h3>Contrato com SLA</h3>
+      <p>Resposta garantida em até 8h e disponibilidade de máquina em até 12h. Vira previsibilidade pra sua produção.</p>
+    </div>
+    <div class="servico-card-sec">
+      <div class="servico-icone">❄️</div>
+      <h3>Chillers e Exaustores</h3>
+      <p>Manutenção de periféricos que sustentam o funcionamento das máquinas de corte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais">
+  <p class="section-tag">Por que a Mônego</p>
+  <h2 class="section-title">Atendimento que não te deixa na mão</h2>
+  <p class="section-sub" style="margin-bottom:44px;">Em 20 anos, a regra é uma só: o serviço termina, não importa o que aconteça.</p>
+
+  <div class="dif-grid">
+    <div class="dif-card">
+      <p class="dif-num">01 · SLA</p>
+      <h3>Resposta em até 8 horas</h3>
+      <p>Abertura de chamado com retorno garantido. Em contratos de manutenção preventiva, disponibilidade de máquina em até 12 horas.</p>
+    </div>
+    <div class="dif-card">
+      <p class="dif-num">02 · Garantia</p>
+      <h3>Serviço concluído, sem exceção</h3>
+      <p>Compromisso de finalizar o que começamos, mesmo que o processo seja mais longo que o previsto.</p>
+    </div>
+    <div class="dif-card">
+      <p class="dif-num">03 · Disponibilidade</p>
+      <h3>Atende 2º e 3º turno</h3>
+      <p>Sua produção não para só no horário comercial. A gente também não. Atendimento em qualquer horário, inclusive madrugada.</p>
+    </div>
+    <div class="dif-card">
+      <p class="dif-num">04 · Experiência</p>
+      <h3>Mais de 20 anos no setor</h3>
+      <p>Especialista em laser, plasma e dobradeira. Não é generalista: conhece cada detalhe dessas máquinas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como">
+  <p class="section-tag">Como funciona</p>
+  <h2 class="section-title">Do chamado à máquina rodando de novo</h2>
+  <div class="como-grid">
+    <div class="como-item">
+      <div class="como-num">1</div>
+      <h3>Chama no WhatsApp</h3>
+      <p>Explica o problema ou o tipo de manutenção que precisa. Retorno em até 8 horas.</p>
+    </div>
+    <div class="como-item">
+      <div class="como-num">2</div>
+      <h3>Avaliação e orçamento</h3>
+      <p>Cristian avalia o caso e agenda a visita ou passa o orçamento, sem enrolação.</p>
+    </div>
+    <div class="como-item">
+      <div class="como-num">3</div>
+      <h3>Serviço com prazo combinado</h3>
+      <p>Execução com prazo e SLA acordados. Se o serviço for mais longo que o previsto, ele não para no meio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREA DE ATUAÇÃO -->
+<section class="area">
+  <p class="section-tag">Onde atendemos</p>
+  <h2 class="section-title">Caxias do Sul e região</h2>
+  <p class="section-sub">Atendemos indústrias em todo o RS e no litoral de SC.</p>
+  <div class="area-box">
+    <span class="area-tag">Caxias do Sul e Serra Gaúcha</span>
+    <span class="area-tag">Interior do RS</span>
+    <span class="area-tag">Litoral de SC (Tubarão a Joinville)</span>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Máquina parada? Chama agora.</h2>
+  <p>Sem enrolação. Retorno em até 8 horas.</p>
+  <a href="https://wa.me/5554816188616?text=Ol%C3%A1!%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn-wp-dark" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    Falar no WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/logo.jpg" alt="Mônego Eletromec" class="footer-logo">
+  <p>Mônego Eletromec · Caxias do Sul/RS · <a href="https://wa.me/5554816188616">+55 54 8161-8616</a></p>
+</footer>
+
+<!-- BOTÃO FLUTUANTE -->
+<a href="https://wa.me/5554816188616?text=Ol%C3%A1!%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="wp-fixo" title="WhatsApp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+</a>
+
+</body>
+</html>
