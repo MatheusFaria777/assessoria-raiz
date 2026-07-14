@@ -410,6 +410,40 @@ fbq('track', 'PageView');
     gap: 8px;
   }
   .wa-submit svg { width: 18px; height: 18px; fill: #fff; }
+
+  /* ── FAQ ── */
+  .faq { padding: 90px 0; background: #fff; }
+  .faq-head { max-width: 620px; margin: 0 auto 48px; text-align: center; }
+  .faq-head h2 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 12px; }
+  .faq-head p { font-size: 15px; color: var(--ink-600); }
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid #E3E5E9; }
+  .faq-item:first-child { border-top: 1px solid #E3E5E9; }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 22px 4px;
+    font-family: inherit;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ink-900);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .faq-q .plus { color: var(--brand); font-size: 20px; font-weight: 400; flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item.open .faq-q .plus { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .faq-a p { font-size: 14.5px; color: var(--ink-600); padding: 0 4px 22px; line-height: 1.6; }
+  .faq-item.open .faq-a { max-height: 200px; }
 </style>
 </head>
 <body>
@@ -573,6 +607,38 @@ fbq('track', 'PageView');
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-head">
+      <div class="eyebrow center"><div class="line"></div><span>Dúvidas Frequentes</span><div class="line"></div></div>
+      <h2>Antes de chamar, tira essa dúvida</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button type="button" class="faq-q">Atendem qualquer marca de máquina? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Sim. Atendemos qualquer marca e modelo de máquina de corte a laser, plasma e dobradeira hidráulica, independente de quem instalou.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Qual a área de atendimento? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Caxias do Sul, Serra Gaúcha e interior do RS, além do litoral de SC (de Tubarão a Joinville).</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Como funciona o orçamento? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Manda a descrição do problema pelo WhatsApp, com foto se tiver. O Cristian avalia e retorna com prazo e valor em até 8 horas.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Atendem fora do horário comercial? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Sim, atendimento também no 2º e 3º turno, inclusive madrugada, porque máquina parada não espera horário comercial.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">O serviço tem garantia? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Sim. O compromisso é finalizar o que foi combinado, mesmo que o processo seja mais longo que o previsto.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section class="cta-final" id="contato">
   <div class="cta-bg"><img src="assets/servico-calibracao.jpg" alt=""></div>
@@ -697,6 +763,12 @@ fbq('track', 'PageView');
     window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     form.reset();
     closeModal();
+  });
+
+  document.querySelectorAll('.faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.closest('.faq-item').classList.toggle('open');
+    });
   });
 })();
 </script>
