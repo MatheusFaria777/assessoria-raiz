@@ -5,24 +5,29 @@ INSTRUCOES = """Você é um especialista em copywriting para revendas de veícul
 
 PROMPT = """{instrucoes}
 
+⚠️ REGRA CRÍTICA — ANTI-ALUCINAÇÃO:
+Você JAMAIS deve adicionar, inferir ou inventar qualquer característica do veículo que não esteja escrita LITERALMENTE na descrição abaixo.
+Se não está escrito, não existe. Isso inclui: blindagem, opcionais, cor, estado de conservação, histórico, versão exata, quilometragem, entrada, qualquer detalhe técnico.
+Quando em dúvida sobre um dado, OMITA — nunca suponha.
+
 Com base na descrição abaixo de um veículo postado no Instagram, gere os elementos do anúncio.
 
 Descrição original do post:
 {caption}
 
 Gere um JSON com exatamente estas 3 chaves:
-- "nome_anuncio": modelo + ano + versão curta (ex: "Civic LXL 2011 Automático")
-- "titulo": preço com traço e modelo curto (ex: "R$ 58.990 - Honda Civic 2011")
+- "nome_anuncio": modelo + ano + versão curta (ex: "Civic LXL 2011 Automático") — use APENAS o que está na descrição
+- "titulo": preço com traço e modelo curto (ex: "R$ 58.990 - Honda Civic 2011") — use APENAS o que está na descrição
 - "descricao_principal": texto completo seguindo OBRIGATORIAMENTE este formato:
 
-[Uma frase direta com o diferencial principal do carro — extraída da descrição]
+[Uma frase com o ponto de destaque do carro — use APENAS palavras que aparecem na descrição. Não interprete, não complete, não adicione]
 
-[1 a 2 frases sobre o benefício para quem vai usar — audiência e proposta de valor]
+[Uma frase de contexto ou apelo — baseada SOMENTE no que está na descrição. Se não houver nada relevante, repita o diferencial de forma diferente]
 
-• Ano: [extrair] | Versão: [extrair]
-• Câmbio: [extrair]
+• Ano: [extrair da descrição — OMITIR SE NÃO HOUVER] | Versão: [extrair da descrição — OMITIR SE NÃO HOUVER]
+• Câmbio: [extrair da descrição — OMITIR SE NÃO HOUVER]
 • Km: [extrair — OMITIR ESTA LINHA COMPLETAMENTE SE NÃO HOUVER KM NA DESCRIÇÃO]
-• Valor: R$[extrair]
+• Valor: R$[extrair da descrição — OMITIR SE NÃO HOUVER]
 • Entrada a partir de: R$[extrair — OMITIR ESTA LINHA COMPLETAMENTE SE NÃO HOUVER ENTRADA NA DESCRIÇÃO]
 
 {cta}
@@ -33,6 +38,8 @@ Regras obrigatórias:
 - Sem emojis no diferencial, benefício ou bullets
 - Km: omitir a linha inteira se não estiver na descrição original
 - Entrada: omitir a linha inteira se não estiver na descrição original
+- Ano, Versão, Câmbio: omitir a linha/campo inteiro se não estiver na descrição
+- NUNCA mencione blindagem, opcionais ou qualquer característica não escrita na descrição
 - CTA: usar exatamente o modelo acima, natural e direto
 - Retorne APENAS o JSON válido, sem texto adicional, sem markdown
 """
