@@ -34,6 +34,7 @@ Usar como base pra qualquer resposta. Não confirmar a leitura — só usar o co
 ## Skills disponíveis nesse workspace
 
 - `/diagnostico-instagram [cliente]` — diagnóstico visual do Instagram em HTML
+- `/lp-cliente [cliente]` — cria landing page de conversão (HTML, pixel de tracking, identidade do cliente)
 - `/onboarding [cliente]` — lê transcrições e gera roteiro + slides de onboarding
 - `/alinhamento-mensal [cliente]` — apresentação mensal de alinhamento em HTML
 - `/meta-ads-ratos` — gestão de campanhas Meta Ads via SDK

@@ -81,6 +81,7 @@ Direto, prático e que transmita confiança. Estilo narrativo — parece pessoa 
 - `/pesquisar-tema` — pesquisa temas e ângulos para conteúdo
 - `/roteiro-post` — transforma ideia, texto ou link em roteiro de post/vídeo/newsletter
 - `/diagnostico-instagram` — gera diagnóstico visual do Instagram do cliente em HTML (bio, métricas, destaques, conteúdo), com checklist por nicho (automotivo, estética) e identidade visual adaptada ao cliente
+- `/lp-cliente` — cria landing page de conversão para cliente novo ou existente (HTML puro, pixel Meta Ads + tag Google Ads, identidade visual do cliente). Referência de Astro guardada em `.claude/skills/lp-cliente/referencia-astro.md` pra sites maiores com várias páginas/blog
 - `/google-ads-ratos` — gestão completa de Google Ads via SDK oficial (campanhas, keywords, quality score, GAQL)
 - `/falar-bem` — prepara uma fala, áudio ou roteiro antes de comunicar, aplicando os princípios de `comunicacao/`
 - `/planejar-semana` — planejamento semanal de tarefas e prioridades
