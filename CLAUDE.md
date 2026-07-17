@@ -76,7 +76,7 @@ Direto, prático e que transmita confiança. Estilo narrativo — parece pessoa 
 
 Duas origens diferentes, cada uma na sua pasta (não precisa organizar manualmente):
 - **`.claude/skills/`** — skills criadas por nós, específicas da Raiz (listadas abaixo)
-- **`.agents/skills/`** — skills baixadas via `npx skills` (comando `/find-skills`), formato universal usado por várias ferramentas de agente. Instaladas até agora: `landing-page-design` (inference-sh/skills) e `copywriting` (coreyhaines31/marketingskills)
+- **`.agents/skills/`** — skills baixadas via `npx skills` (comando `/find-skills`), formato universal usado por várias ferramentas de agente. Instaladas até agora: `landing-page-design` (inference-sh/skills), `copywriting`, `seo-audit` e `ai-seo` (coreyhaines31/marketingskills), e `seo` (addyosmani/web-quality-skills, foco em performance/Core Web Vitals)
 
 - `/meta-ads-ratos` — gestão completa de Meta Ads via SDK (campanhas, insights, targeting, criativos)
 - `/onboarding` — lê transcrições do Fathom, gera roteiro + slides e cria pasta no Drive

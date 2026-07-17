@@ -2449,3 +2449,18 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [17/07/2026 17:28:33,29] Mudancas sincronizadas 
 [17/07/2026 17:58:32,50] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'skills-lock.json', LF will be replaced by CRLF the next time Git touches it
+[main 10e9a04] auto-sync: 17/07/2026 17:58:33,29
+ 10 files changed, 2134 insertions(+)
+ create mode 100644 .agents/skills/seo-audit/SKILL.md
+ create mode 100644 .agents/skills/seo-audit/evals/evals.json
+ create mode 100644 .agents/skills/seo-audit/references/ai-writing-detection.md
+ create mode 100644 .agents/skills/seo-audit/references/international-seo.md
+ create mode 100644 .claude/skills/seo-audit/SKILL.md
+ create mode 100644 .claude/skills/seo-audit/evals/evals.json
+ create mode 100644 .claude/skills/seo-audit/references/ai-writing-detection.md
+ create mode 100644 .claude/skills/seo-audit/references/international-seo.md
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   6ce4e02..10e9a04  main -> main
+[17/07/2026 17:58:33,29] Mudancas sincronizadas 
