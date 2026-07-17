@@ -2440,3 +2440,10 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [17/07/2026 16:58:33,86] Mudancas sincronizadas 
 [17/07/2026 17:28:32,48] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Clientes/monego-eletromec/Entregaveis/lp-monego-eletromec.html', LF will be replaced by CRLF the next time Git touches it
+[main 59cc431] auto-sync: 17/07/2026 17:28:33,29
+ 4 files changed, 7 insertions(+), 5 deletions(-)
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   5332518..59cc431  main -> main
+[17/07/2026 17:28:33,29] Mudancas sincronizadas 
