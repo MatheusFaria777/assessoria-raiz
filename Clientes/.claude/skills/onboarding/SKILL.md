@@ -149,7 +149,7 @@ O script template está em `dados/gerar_slides_onboarding_html.js`. Para cada no
 
 **Output:** `clientes/[slug]/Entregaveis/onboard-slides.html` — deck autocontido (HTML+CSS+JS num arquivo só), 17 slides em formato 16:9, navegação por setas do teclado ou botões prev/next, identidade Raiz. Abre em qualquer navegador, inclusive em apresentação de tela cheia (F11).
 
-**Upload para Drive:** subir o `.html` pra pasta `Onboarding` do cliente via `mcp__claude_ai_Google_Drive__create_file` com `contentMimeType: text/html` e `disableConversionToGoogleType: true` (não converter — o Drive não tem equivalente nativo pra apresentação HTML, então mantém o arquivo navegável como está).
+**Não subir os slides pro Drive.** Ficam só locais em `Entregaveis/`. O Matheus abre direto no navegador pra apresentar, não precisa da cópia no Drive.
 
 **Nota sobre tipografia:** o guia de marca recomenda a fonte Agatho, mas os arquivos `.otf` são pesados (~1.5MB cada) pra embutir num deliverable HTML portátil. O deck usa Fraunces (títulos) + Inter (corpo) via Google Fonts — combinação editorial que mantém o tom sóbrio da marca sem inflar o arquivo.
 
@@ -410,7 +410,7 @@ Após alinhar a estratégia, gerar `estrategia.html` no mesmo estilo de `D:\DOWN
 clientes/[slug]/
   Entregaveis/
     onboard.md              ← cópia local do roteiro
-    onboard-slides.html     ← deck de slides
+    onboard-slides.html     ← deck de slides (só local, não sobe pro Drive)
 
 Google Drive — [Nome Empresa]/
   Comprovantes/
@@ -421,7 +421,6 @@ Google Drive — [Nome Empresa]/
   Notas Fiscais/
   Onboarding/
     Roteiro de Onboarding — [Nome Empresa]  ← Google Docs (formatado, upload automático)
-    onboard-slides.html                     ← deck HTML (upload mantendo formato, sem conversão)
   Plano de Ação/
   Banco de Referências/
   Treinamento Comercial/
@@ -445,4 +444,4 @@ Google Drive — [Nome Empresa]/
 - Não inventar dados que não estão no briefing — se falta informação, perguntar
 - Slides de onboarding usam sempre identidade Raiz — nunca cores do cliente
 - Script de geração fica em `dados/gerar_slides_onboarding_html.js` — adaptar nome/cidade/responsável por cliente e gerar `clientes/[slug]/Entregaveis/onboard-slides.html`
-- Após gerar o HTML: fazer upload pra subpasta Onboarding do Drive com `contentMimeType: text/html` e `disableConversionToGoogleType: true`
+- **Os slides (`onboard-slides.html`) não sobem pro Drive.** Ficam só locais em `Entregaveis/`, o Matheus abre direto no navegador pra apresentar
