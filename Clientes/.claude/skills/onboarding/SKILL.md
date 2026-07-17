@@ -42,9 +42,16 @@ Extrair os dados necessários dos transcritos combinados. Se a informação não
 
 Buscar no Gmail (`mkt.matheusfaria@gmail.com`, conectado ao MCP) por e-mails do Fathom contendo o nome do cliente. Os e-mails de transcrição chegam encaminhados automaticamente de `assessoriaraizz@gmail.com` (conta da agência onde o Lucas grava as reuniões). O encaminhamento automático está configurado no Gmail da agência para todos os e-mails do domínio Fathom.
 
-### Fallback 2: briefing manual
+### Fallback 2: transcrição manual ou correção do acesso
 
-Se nem Fathom nem Gmail encontrarem, pedir ao usuário um link do Google Drive com o briefing criado pelo Lucas e ler via `mcp__claude_ai_Google_Drive__read_file_content`.
+Se nem Fathom nem Gmail encontrarem (incluindo os casos em que o MCP não está instalado ou o token expirou), **não pedir um link de briefing do Drive**. Em vez disso:
+
+1. Avisar ao Matheus qual é o problema exato (ex: "Fathom MCP não está instalado" ou "Gmail MCP com token expirado, precisa reautorizar em claude.ai > Conectores").
+2. Pedir pra ele enviar a transcrição das reuniões manualmente (colar o texto, mandar arquivo, ou copiar de onde tiver salvo).
+3. Se ele mandar a transcrição bruta, criar `Clientes/[slug]/Transcricoes/triagem.md` e `Clientes/[slug]/Transcricoes/comercial.md` (estrutura padrão de transcrição, ver seção "Organização de pasta por cliente" no CLAUDE.md) pra ele colar o conteúdo, ou colar direto se ele já mandar o texto na conversa.
+4. Seguir o fluxo normalmente a partir dos dados extraídos dessas transcrições.
+
+O objetivo de longo prazo é deixar Fathom e Gmail funcionando de forma confiável pra esse fallback manual virar exceção, não regra.
 
 ### Dados a extrair (de qualquer fonte):
 
