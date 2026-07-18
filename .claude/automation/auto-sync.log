@@ -2615,3 +2615,11 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [18/07/2026 14:28:33,70] Mudancas sincronizadas 
 [18/07/2026 14:58:33,00] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[main 65d2b03] auto-sync: 18/07/2026 14:58:33,77
+ 1 file changed, 8 insertions(+)
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   9b34bef..65d2b03  main -> main
+[18/07/2026 14:58:33,77] Mudancas sincronizadas 
+[18/07/2026 15:29:08,87] Iniciando auto-sync 
+fatal: unable to access 'https://github.com/MatheusFaria777/assessoria-raiz.git/': Could not resolve host: github.com
