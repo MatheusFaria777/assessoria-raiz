@@ -2623,3 +2623,18 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [18/07/2026 14:58:33,77] Mudancas sincronizadas 
 [18/07/2026 15:29:08,87] Iniciando auto-sync 
 fatal: unable to access 'https://github.com/MatheusFaria777/assessoria-raiz.git/': Could not resolve host: github.com
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[main b41ace2] auto-sync: 18/07/2026 15:29:09,62
+ 1 file changed, 8 insertions(+)
+fatal: unable to access 'https://github.com/MatheusFaria777/assessoria-raiz.git/': Could not resolve host: github.com
+[18/07/2026 15:29:09,62] Mudancas sincronizadas 
+[18/07/2026 16:28:32,94] Iniciando auto-sync 
+fatal: It seems that there is already a rebase-merge directory, and
+I wonder if you are in the middle of another rebase.  If that is the
+case, please try
+	git rebase (--continue | --abort | --skip)
+If that is not the case, please
+	rm -fr ".git/rebase-merge"
+and run me again.  I am stopping in case you still have something
+valuable there.
+
