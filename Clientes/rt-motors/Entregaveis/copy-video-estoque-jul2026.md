@@ -1,7 +1,7 @@
-# Copy — Vídeo Tour do Estoque (tema Copa) | Jul/2026
+# Copy — Vídeo Tour do Estoque | Jul/2026
 
 **Arquivo de origem:** rt - final.mp4 (2min24, formato vertical 9:16)
-**Conteúdo do vídeo:** tour pela loja mostrando vários perfis de carro em sequência (picape 4x4, SUV moderno, SUV de família, sedan premium, sedan confiável, hatch esportivo, hatch econômico), decoração tema Brasil/Copa, fecha com convite pra visitar a R/T.
+**Conteúdo do vídeo:** tour pela loja mostrando vários perfis de carro em sequência (picape 4x4, SUV moderno, SUV de família, sedan premium, sedan confiável, hatch esportivo, hatch econômico), fecha com convite pra visitar a R/T.
 **Formato indicado:** Reels + Stories. Também serve fixado no feed durante a semana.
 
 ---
@@ -12,7 +12,7 @@ Tem carro pra todo perfil aqui na R/T Motors.
 
 Picape pra quem gosta de estrada, SUV pra família, sedan confiável pro dia a dia, esportivo pra quem gosta de dirigir e opção econômica também. Você escolhe o carro, a gente cuida do resto.
 
-Clima de Copa por aqui e o estoque também tá em festa. Vem conhecer de perto.
+Estoque completo e sempre renovando. Vem conhecer de perto.
 
 📍 Caxias do Sul/RS
 💬 Chama no WhatsApp e agenda sua visita
