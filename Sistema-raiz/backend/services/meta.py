@@ -35,7 +35,7 @@ _TYPE_TO_CONTAGEM = {
 
 _PRIMARY_CONTAGEM = {"mensagem", "lead"}
 
-CAMPAIGN_FIELDS = ["campaign_name", "spend", "actions", "action_values", "reach", "impressions", "inline_link_clicks"]
+CAMPAIGN_FIELDS = ["campaign_id", "campaign_name", "spend", "actions", "action_values", "reach", "impressions", "inline_link_clicks"]
 AD_FIELDS = ["ad_id", "ad_name", "campaign_name", "actions", "spend"]
 
 
@@ -110,10 +110,59 @@ def _config_for(tipo: str, tipos: list) -> dict | None:
     return next((t for t in tipos if t["tipo"] == tipo), None)
 
 
-def get_account_data(account_id: str, token: str, since: str, until: str, tipos_cfg: list) -> dict:
+def get_campaigns_for_account(account_id: str, token: str) -> list[dict]:
+    """Retorna todas as campanhas ativas da conta, para exibir na UI de mapeamento."""
     _init(token)
     account = AdAccount(_ensure_act(account_id))
-    primary_list = [t["tipo"] for t in tipos_cfg if t.get("tipo_contagem") in _PRIMARY_CONTAGEM]
+    rows = list(account.get_campaigns(
+        fields=["id", "name", "status", "objective"],
+        params={"limit": 500},
+    ))
+    return [
+        {
+            "id": r.get("id", ""),
+            "name": r.get("name", ""),
+            "status": r.get("status", ""),
+            "objective": r.get("objective", ""),
+        }
+        for r in rows
+    ]
+
+
+def _build_campaign_map_from_db(campaign_map: list) -> dict:
+    """
+    Converte lista de ClientCampaign em dict de busca rápida:
+    {meta_campaign_id: {"type": ..., "label": ..., "sheet_tab": ...}}
+    """
+    result = {}
+    for c in campaign_map:
+        tipo_contagem = _TYPE_TO_CONTAGEM.get(c.campaign_type, "mensagem")
+        mapping = _CONTAGEM_MAP.get(tipo_contagem, {"acao": None, "campo": None})
+        result[str(c.meta_campaign_id)] = {
+            "type": c.campaign_type,
+            "label": c.name or c.campaign_type.capitalize(),
+            "sheet_tab": c.sheet_tab,
+            "tipo_contagem": tipo_contagem,
+            "metrica": _metrica_label(tipo_contagem),
+            "acao": mapping["acao"],
+            "campo": mapping["campo"],
+        }
+    return result
+
+
+def get_account_data(account_id: str, token: str, since: str, until: str, tipos_cfg: list, campaign_map: list | None = None) -> dict:
+    _init(token)
+    account = AdAccount(_ensure_act(account_id))
+
+    # Mapeamento explícito por ID tem prioridade sobre keyword detection
+    explicit: dict = _build_campaign_map_from_db(campaign_map) if campaign_map else {}
+    use_explicit = bool(explicit)
+
+    primary_list = (
+        [cid for cid, cfg in explicit.items() if cfg["tipo_contagem"] in _PRIMARY_CONTAGEM]
+        if use_explicit
+        else [t["tipo"] for t in tipos_cfg if t.get("tipo_contagem") in _PRIMARY_CONTAGEM]
+    )
 
     rows = list(account.get_insights(
         fields=CAMPAIGN_FIELDS,
@@ -127,56 +176,92 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     agregado: dict[str, dict] = {}
 
     for row in rows:
-        nome = row.get("campaign_name", "")
-        tipo = _detect_tipo(nome, tipos_cfg)
         spend = float(row.get("spend", 0))
 
-        if tipo == "outro":
-            agregado.setdefault("outro", {"results": 0.0, "spend": 0.0})
-            agregado["outro"]["spend"] += spend
-            continue
+        if use_explicit:
+            # Mapeamento explícito: usa campaign_id para identificar o tipo
+            campaign_id = str(row.get("campaign_id", ""))
+            config = explicit.get(campaign_id)
+            if not config:
+                # Campanha não mapeada → ignora (não vai para "outro")
+                continue
+            tipo = config["type"]
+            # Agrupa por "tipo|campaign_id" para suportar dois campanhas do mesmo tipo
+            chave = f"{tipo}|{campaign_id}"
+        else:
+            # Fallback: keyword detection por nome
+            nome = row.get("campaign_name", "")
+            tipo = _detect_tipo(nome, tipos_cfg)
+            chave = tipo
+            config = _config_for(tipo, tipos_cfg)
 
-        config = _config_for(tipo, tipos_cfg)
-        if not config:
-            continue
+            if tipo == "outro":
+                agregado.setdefault("outro", {"results": 0.0, "spend": 0.0})
+                agregado["outro"]["spend"] += spend
+                continue
 
-        if tipo not in agregado:
-            agregado[tipo] = {
+            if not config:
+                continue
+
+        if chave not in agregado:
+            agregado[chave] = {
                 "results": 0.0, "spend": 0.0, "impressions": 0,
                 "link_clicks": 0, "purchase_value": 0.0,
                 "label": config["label"], "metrica": config["metrica"],
+                "tipo": tipo,
             }
 
-        agregado[tipo]["spend"] += spend
-        agregado[tipo]["impressions"] += int(row.get("impressions", 0) or 0)
-        agregado[tipo]["link_clicks"] += int(row.get("inline_link_clicks", 0) or 0)
+        agregado[chave]["spend"] += spend
+        agregado[chave]["impressions"] += int(row.get("impressions", 0) or 0)
+        agregado[chave]["link_clicks"] += int(row.get("inline_link_clicks", 0) or 0)
 
         if config.get("campo"):
-            agregado[tipo]["results"] += float(row.get(config["campo"], 0))
+            agregado[chave]["results"] += float(row.get(config["campo"], 0))
         elif config.get("acao"):
-            agregado[tipo]["results"] += _sum_action(row.get("actions", []), config["acao"])
+            agregado[chave]["results"] += _sum_action(row.get("actions", []), config["acao"])
 
         if config.get("tipo_contagem") == "compras":
-            agregado[tipo]["purchase_value"] += _sum_action(row.get("action_values", []), "purchase")
+            agregado[chave]["purchase_value"] += _sum_action(row.get("action_values", []), "purchase")
 
     total_spend = 0.0
-    for tipo, dados in agregado.items():
+    for chave, dados in agregado.items():
         total_spend += dados["spend"]
-        if tipo == "outro":
+        if chave == "outro":
             continue
         r = dados["results"]
         dados["results"] = int(round(r))
         dados["cost_per_result"] = dados["spend"] / r if r > 0 else 0.0
 
+    # primary_type: tipo com mais resultados entre os tipos primários
     primary_type = None
     best_results = 0
-    for pt in primary_list:
-        if pt in agregado and agregado[pt]["results"] > best_results:
-            best_results = agregado[pt]["results"]
-            primary_type = pt
+    if use_explicit:
+        # No modo explícito, primary_type é o tipo (não a chave composta)
+        tipo_results: dict[str, int] = {}
+        for chave, dados in agregado.items():
+            tipo = dados.get("tipo", chave)
+            tipo_contagem = explicit.get(chave.split("|")[1] if "|" in chave else "", {}).get("tipo_contagem", "")
+            if tipo_contagem in _PRIMARY_CONTAGEM:
+                tipo_results[tipo] = tipo_results.get(tipo, 0) + dados["results"]
+        for tipo, results in tipo_results.items():
+            if results > best_results:
+                best_results = results
+                primary_type = tipo
+    else:
+        for pt in primary_list:
+            if pt in agregado and agregado[pt]["results"] > best_results:
+                best_results = agregado[pt]["results"]
+                primary_type = pt
+
+    # Para o modo explícito, exportar com chave = label da campanha (para o relatório)
+    tipos_out = {}
+    for chave, dados in agregado.items():
+        if chave == "outro":
+            continue
+        tipos_out[chave] = dados
 
     return {
-        "tipos": {k: v for k, v in agregado.items() if k != "outro"},
+        "tipos": tipos_out,
         "total_spend": total_spend,
         "primary_type": primary_type,
         "platform": "meta",

@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from database import create_tables
-from routers import clients, campaign_groups, reports, sheets, uploader, settings as settings_router, dashboard, auth as auth_router, feedback as feedback_router, gmb_form as gmb_router, cadencia as cadencia_router
+from routers import clients, campaign_groups, reports, sheets, uploader, settings as settings_router, dashboard, auth as auth_router, feedback as feedback_router, gmb_form as gmb_router, cadencia as cadencia_router, campaign_mapping as campaign_mapping_router
 from routers.settings import google_oauth_router
 from services.auth import get_current_user
 from services.scheduler import create_scheduler
@@ -30,6 +30,15 @@ def _run_migrations():
     from sqlalchemy import text
     migrations = [
         "ALTER TABLE adsets ADD COLUMN IF NOT EXISTS lead_gen_form_id VARCHAR",
+        """CREATE TABLE IF NOT EXISTS client_campaigns (
+            id SERIAL PRIMARY KEY,
+            client_id INTEGER NOT NULL REFERENCES clients(id),
+            meta_campaign_id VARCHAR NOT NULL,
+            name VARCHAR,
+            campaign_type VARCHAR NOT NULL,
+            sheet_tab VARCHAR,
+            active BOOLEAN DEFAULT TRUE
+        )""",
     ]
     with engine.connect() as conn:
         for sql in migrations:
@@ -106,7 +115,8 @@ app.include_router(sheets.router,          prefix="/api/sheets",          tags=[
 app.include_router(uploader.router,        prefix="/api/uploader",        tags=["uploader"],         dependencies=_auth)
 app.include_router(settings_router.router, prefix="/api/settings",        tags=["settings"],         dependencies=_auth)
 app.include_router(dashboard.router,       prefix="/api/dashboard",       tags=["dashboard"],        dependencies=_auth)
-app.include_router(cadencia_router.router, prefix="/api/cadencia",        tags=["cadencia"],         dependencies=_auth)
+app.include_router(cadencia_router.router,         prefix="/api/cadencia",          tags=["cadencia"],          dependencies=_auth)
+app.include_router(campaign_mapping_router.router, prefix="/api/clients",          tags=["campaign-mapping"],  dependencies=_auth)
 
 # Serve frontend em produção
 frontend_dist = os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")

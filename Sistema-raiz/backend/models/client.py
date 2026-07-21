@@ -45,6 +45,7 @@ class Client(Base):
     # Relacionamentos
     adsets = relationship("Adset", back_populates="client", cascade="all, delete-orphan")
     campaign_groups = relationship("CampaignGroup", secondary=client_campaign_groups, back_populates="clients")
+    campaigns = relationship("ClientCampaign", back_populates="client", cascade="all, delete-orphan")
     reports = relationship("Report", back_populates="client", cascade="all, delete-orphan")
     sync_logs = relationship("SyncLog", back_populates="client", cascade="all, delete-orphan")
     upload_queue = relationship("UploadQueueItem", back_populates="client", cascade="all, delete-orphan")
