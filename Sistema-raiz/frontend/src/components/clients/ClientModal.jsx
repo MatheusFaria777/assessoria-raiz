@@ -2,13 +2,6 @@ import { useState, useEffect } from 'react'
 import { api } from '../../lib/api'
 import { toast } from '../../lib/toast'
 
-const DAYS = [
-  { key: 'monday', label: 'Seg' }, { key: 'tuesday', label: 'Ter' },
-  { key: 'wednesday', label: 'Qua' }, { key: 'thursday', label: 'Qui' },
-  { key: 'friday', label: 'Sex' }, { key: 'saturday', label: 'Sáb' },
-  { key: 'sunday', label: 'Dom' },
-]
-
 const PRIMARY_TYPES = new Set(['mensagem', 'lead', 'formulario'])
 
 const EMPTY_ADSET = {
@@ -16,11 +9,6 @@ const EMPTY_ADSET = {
   instagram_actor_id: '', store_name: '', store_description: '',
   store_address: '', store_phone: '', store_whatsapp_display: '',
   store_website: '', template_ad_id: '', lead_gen_form_id: '', active: true,
-}
-
-function parseDays(raw) {
-  if (!raw) return []
-  try { return JSON.parse(raw) } catch { return [] }
 }
 
 function parseGroupTabs(raw) {
@@ -49,9 +37,9 @@ function detectGroup(name, groups) {
 
 export default function ClientModal({ client, onClose, onSaved }) {
   const [form, setForm] = useState({
-    name: '', has_meta: false, meta_account_id: '', meta_access_token: '',
+    name: '', has_meta: false, meta_account_id: '',
     has_google: false, google_customer_id: '',
-    sheets_id: '', group_tabs: {}, report_days: [], campaign_group_ids: [],
+    sheets_id: '', group_tabs: {}, campaign_group_ids: [],
     cadencia_ativa: true, cadencia_contexto: '',
   })
   const [adsets, setAdsets] = useState([])
@@ -67,12 +55,10 @@ export default function ClientModal({ client, onClose, onSaved }) {
         name: client.name || '',
         has_meta: client.has_meta || false,
         meta_account_id: client.meta_account_id || '',
-        meta_access_token: '',
         has_google: client.has_google || false,
         google_customer_id: client.google_customer_id || '',
         sheets_id: client.sheets_id || '',
         group_tabs: parseGroupTabs(client.sheets_tabs),
-        report_days: parseDays(client.report_days),
         campaign_group_ids: client.campaign_groups?.map(g => g.id) || [],
         cadencia_ativa: client.cadencia_ativa ?? true,
         cadencia_contexto: client.cadencia_contexto || '',
@@ -91,15 +77,6 @@ export default function ClientModal({ client, onClose, onSaved }) {
       group_tabs: active
         ? Object.fromEntries(Object.entries(f.group_tabs).filter(([k]) => k !== g.type))
         : f.group_tabs,
-    }))
-  }
-
-  const toggleDay = (key) => {
-    setForm(f => ({
-      ...f,
-      report_days: f.report_days.includes(key)
-        ? f.report_days.filter(d => d !== key)
-        : [...f.report_days, key],
     }))
   }
 
@@ -124,12 +101,10 @@ export default function ClientModal({ client, onClose, onSaved }) {
         name: form.name,
         has_meta: form.has_meta,
         meta_account_id: form.meta_account_id,
-        meta_access_token: form.meta_access_token || '',
         has_google: form.has_google,
         google_customer_id: form.google_customer_id,
         sheets_id: form.sheets_id,
         sheets_tabs: Object.keys(sheetsTabsObj).length ? JSON.stringify(sheetsTabsObj) : null,
-        report_days: form.report_days.length ? JSON.stringify(form.report_days) : null,
         cadencia_ativa: form.cadencia_ativa,
         cadencia_contexto: form.cadencia_contexto || null,
         campaign_group_ids: form.campaign_group_ids,
@@ -187,15 +162,10 @@ export default function ClientModal({ client, onClose, onSaved }) {
             <Section title="Meta Ads">
               <Toggle label="Ativo" checked={form.has_meta} onChange={v => set('has_meta', v)} />
               {form.has_meta && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem', marginTop: '.75rem' }}>
+                <div style={{ marginTop: '.75rem' }}>
                   <Field label="Conta Meta (act_...)" hint="ID da conta de anúncios. Ex: act_123456789">
                     <input className="input" value={form.meta_account_id}
                       onChange={e => set('meta_account_id', e.target.value)} placeholder="act_123456789" />
-                  </Field>
-                  <Field label="Token de Acesso" hint="Deixe vazio para manter o token atual">
-                    <input className="input" type="password" value={form.meta_access_token}
-                      onChange={e => set('meta_access_token', e.target.value)}
-                      placeholder="Deixe vazio para manter o atual" />
                   </Field>
                 </div>
               )}
@@ -212,29 +182,6 @@ export default function ClientModal({ client, onClose, onSaved }) {
                 </div>
               )}
             </Section>
-
-            <div>
-              <label className="label" style={{ marginBottom: '.5rem' }}>Dias de Relatório Automático</label>
-              <div style={{ display: 'flex', gap: '.375rem', flexWrap: 'wrap' }}>
-                {DAYS.map(d => {
-                  const active = form.report_days.includes(d.key)
-                  return (
-                    <button key={d.key} type="button" onClick={() => toggleDay(d.key)} style={{
-                      padding: '.3rem .75rem', borderRadius: 999, border: '1px solid',
-                      borderColor: active ? '#CBA135' : 'rgba(245,245,245,.2)',
-                      background: active ? 'rgba(203,161,53,.2)' : 'transparent',
-                      color: active ? '#CBA135' : 'rgba(245,245,245,.45)',
-                      cursor: 'pointer', fontSize: '.8rem', fontWeight: active ? 600 : 400,
-                    }}>
-                      {d.label}
-                    </button>
-                  )
-                })}
-              </div>
-              <div style={{ fontSize: '.72rem', color: 'rgba(245,245,245,.3)', marginTop: '.375rem' }}>
-                Relatório gerado às 10h nos dias selecionados.
-              </div>
-            </div>
 
             <Section title="Cadência Semanal">
               <Toggle label="Ativo na cadência" checked={form.cadencia_ativa} onChange={v => set('cadencia_ativa', v)} />

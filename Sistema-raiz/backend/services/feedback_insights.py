@@ -1,5 +1,4 @@
 import json
-import os
 import re
 from datetime import datetime, timezone
 
@@ -91,68 +90,6 @@ Se não há pontos fortes ou dores claros, deixe a lista vazia. Seja direto nos 
     feedback.insights_generated_at = datetime.now(timezone.utc)
     db.commit()
 
-    _sync_feedback_md(feedback, insights)
     return insights
 
 
-def _sync_feedback_md(feedback: ClientFeedback, insights: dict):
-    """Atualiza Clientes/[slug]/feedback.md se a pasta existir."""
-    slug = feedback.client.feedback_slug
-    if not slug:
-        return
-
-    clientes_dir = os.path.normpath(
-        os.path.join(os.path.dirname(__file__), "..", "..", "..", "Clientes")
-    )
-    client_dir = os.path.join(clientes_dir, slug)
-    if not os.path.isdir(client_dir):
-        return
-
-    nps = feedback.nps_score
-    nps_label = "Promotor" if nps and nps >= 9 else ("Neutro" if nps and nps >= 7 else "Detrator")
-    pontos_fortes = "\n".join(f"- {p}" for p in insights.get("pontos_fortes", [])) or "- (não mencionado)"
-    pontos_dor = "\n".join(f"- {p}" for p in insights.get("pontos_de_dor", [])) or "- (não mencionado)"
-    acoes = "\n".join(
-        f"- [ ] {a['acao']} ({a.get('prioridade', '')})"
-        for a in insights.get("itens_de_acao", [])
-    ) or "- [ ] (nenhuma ação identificada)"
-    followup = insights.get("followup_whatsapp", "")
-
-    path = os.path.join(client_dir, "feedback.md")
-
-    historico_existente = ""
-    if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
-            content = f.read()
-        match = re.search(r"## Histórico\n\|.*?\n\|.*?\n(.*?)$", content, re.DOTALL)
-        if match:
-            historico_existente = match.group(1).strip()
-
-    nps_val = nps if nps is not None else "?"
-    historico_nova_linha = f"| {feedback.period} | {nps_val} | {(str(insights.get('pontos_de_dor', ['']))[:60])} |"
-    novo_historico = (historico_existente + "\n" + historico_nova_linha).strip() if historico_existente else historico_nova_linha
-
-    md = f"""# Feedback — {feedback.client.name}
-
-## Última pesquisa
-Período: {feedback.period} | NPS: {nps_val}/10 ({nps_label}) | Respondente: {feedback.respondent_name or 'não informado'}
-
-## Pontos positivos
-{pontos_fortes}
-
-## Pontos de atenção
-{pontos_dor}
-
-## Itens de ação
-{acoes}
-
-## Rascunho de follow-up (WhatsApp)
-{followup}
-
-## Histórico
-| Período | NPS | Pontos de atenção |
-|---------|-----|-------------------|
-{novo_historico}
-"""
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(md)

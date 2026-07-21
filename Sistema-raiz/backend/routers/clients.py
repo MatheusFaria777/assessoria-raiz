@@ -50,7 +50,6 @@ def create_client(data: ClientCreate, db: Session = Depends(get_db)):
         google_credentials=encrypt(data.google_credentials or ""),
         sheets_id=data.sheets_id,
         sheets_tabs=data.sheets_tabs,
-        report_days=data.report_days,
         cadencia_ativa=data.cadencia_ativa,
         cadencia_contexto=data.cadencia_contexto,
     )
@@ -90,7 +89,6 @@ def update_client(client_id: int, data: ClientUpdate, db: Session = Depends(get_
         client.google_credentials = encrypt(data.google_credentials)
     client.sheets_id        = data.sheets_id
     client.sheets_tabs      = data.sheets_tabs
-    client.report_days      = data.report_days
     client.cadencia_ativa   = data.cadencia_ativa
     client.cadencia_contexto = data.cadencia_contexto
 

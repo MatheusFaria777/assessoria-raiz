@@ -343,12 +343,6 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
     return {"ok": True, "sync": sync_result}
 
 
-@router.post("/run-scheduler")
-async def run_scheduler_now():
-    """Dispara o agendamento manualmente (para testar sem esperar as 7h)."""
-    from services.scheduler import run_scheduled_reports
-    await run_scheduled_reports()
-    return {"ok": True, "message": "Relatórios agendados processados"}
 
 
 @router.delete("/history/{report_id}")

@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from datetime import date, timedelta
-import json, time
+import time
 
 from database import get_db
 from models.client import Client
-from models.report import Report, SyncLog
 from services.token_manager import get_meta_token
 from services.meta import get_account_balance
 
@@ -35,67 +34,14 @@ def get_dashboard(db: Session = Depends(get_db)):
     since = (yesterday - timedelta(days=6)).isoformat()
     until = yesterday.isoformat()
 
-    # Clientes com relatório agendado para hoje
-    all_clients = db.query(Client).filter(Client.active == True).all()
-    scheduled_today = []
-    for c in all_clients:
-        if not c.report_days:
-            continue
-        try:
-            days = json.loads(c.report_days)
-        except Exception:
-            continue
-        if today_name not in days:
-            continue
-        if not c.has_meta and not c.has_google:
-            continue
-
-        # Verifica se já gerou relatório hoje
-        already_generated = db.query(Report).filter(
-            Report.client_id == c.id,
-            Report.period_end == yesterday,
-        ).first()
-
-        # Última sync
-        last_sync = db.query(SyncLog).filter(
-            SyncLog.client_id == c.id,
-        ).order_by(SyncLog.synced_at.desc()).first()
-
-        scheduled_today.append({
-            "id": c.id,
-            "name": c.name,
-            "platform": "meta" if c.has_meta else "google",
-            "has_sheets": bool(c.sheets_id and c.sheets_tabs),
-            "already_generated": bool(already_generated),
-            "already_synced": bool(last_sync and str(last_sync.synced_at.date()) == str(today)) if last_sync else False,
-            "since": since,
-            "until": until,
-        })
-
-    # Relatórios aguardando revisão
-    pending = db.query(Report).filter(Report.status == "pending_review").order_by(Report.created_at.desc()).all()
-    pending_list = []
-    for r in pending:
-        client = db.query(Client).filter(Client.id == r.client_id).first()
-        pending_list.append({
-            "id": r.id,
-            "client_id": r.client_id,
-            "client_name": client.name if client else "?",
-            "platform": r.platform,
-            "period_start": str(r.period_start),
-            "period_end": str(r.period_end),
-            "content": r.content,
-            "created_at": r.created_at.isoformat() if r.created_at else None,
-        })
-
     return {
         "today":          today.isoformat(),
         "today_name": DAY_NAMES_PT.get(today_name, today_name.capitalize()),
         "today_formatted": f"{today.day} de {MONTHS_PT[today.month]} de {today.year}",
         "period": {"since": since, "until": until},
-        "scheduled_today": scheduled_today,
-        "pending_review": pending_list,
-        "pending_count": len(pending_list),
+        "scheduled_today": [],
+        "pending_review": [],
+        "pending_count": 0,
     }
 
 

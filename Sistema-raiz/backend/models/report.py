@@ -23,18 +23,6 @@ class Report(Base):
     client = relationship("Client", back_populates="reports")
 
 
-class ReportSchedule(Base):
-    __tablename__ = "report_schedules"
-
-    id = Column(Integer, primary_key=True, index=True)
-    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
-    day_of_week = Column(String, nullable=False)   # monday / tuesday / ... / sunday
-    report_type = Column(String, default="weekly") # weekly / monthly
-    platform = Column(String, default="meta")
-    active = Column(Boolean, default=True)
-
-    client = relationship("Client", back_populates="report_schedules")
-
 
 class SyncLog(Base):
     __tablename__ = "sync_logs"

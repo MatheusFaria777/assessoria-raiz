@@ -35,9 +35,6 @@ class Client(Base):
     sheets_id   = Column(String, nullable=True)
     sheets_tabs = Column(Text, nullable=True)  # JSON: {"mensagem": "MENSAGEM", "alcance": "ALCANCE"}
 
-    # Relatório automático
-    report_days = Column(String, nullable=True)  # JSON: ["monday", "friday"]
-
     # Feedback / NPS
     feedback_slug = Column(String, nullable=True, unique=True)  # ex: "rt-motors"
 
@@ -51,7 +48,6 @@ class Client(Base):
     reports = relationship("Report", back_populates="client", cascade="all, delete-orphan")
     sync_logs = relationship("SyncLog", back_populates="client", cascade="all, delete-orphan")
     upload_queue = relationship("UploadQueueItem", back_populates="client", cascade="all, delete-orphan")
-    report_schedules = relationship("ReportSchedule", back_populates="client", cascade="all, delete-orphan")
     feedbacks = relationship("ClientFeedback", back_populates="client", cascade="all, delete-orphan")
 
 

@@ -40,7 +40,6 @@ class ClientCreate(BaseModel):
     google_credentials: Optional[str] = None
     sheets_id: Optional[str] = None
     sheets_tabs: Optional[str] = None
-    report_days: Optional[str] = None
     cadencia_ativa: bool = True
     cadencia_contexto: Optional[str] = None
     campaign_group_ids: List[int] = []
@@ -70,7 +69,6 @@ class ClientOut(BaseModel):
     google_customer_id: Optional[str] = None
     sheets_id: Optional[str] = None
     sheets_tabs: Optional[str] = None
-    report_days: Optional[str] = None
     cadencia_ativa: bool = True
     cadencia_contexto: Optional[str] = None
     created_at: datetime
