@@ -122,7 +122,7 @@ export default function FeedbackDashboard() {
 
   function copyLink(slug) {
     const base = window.location.origin
-    navigator.clipboard.writeText(`${base}/feedback?c=${slug}`)
+    navigator.clipboard.writeText(`${base}/f/${slug}`)
     toast('Link copiado!', 'success')
   }
 

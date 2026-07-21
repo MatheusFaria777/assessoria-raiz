@@ -54,10 +54,13 @@ function AppShell() {
     setUser(null)
   }
 
-  // Forms — served from separate HTML entry points but also accessible from main SPA in dev
-  const urlParams     = new URLSearchParams(window.location.search)
-  const feedbackSlug  = urlParams.get('c')
-  const isGmb         = pathname === '/gmb'
+  // Public form routes — rendered before login check
+  const urlParams    = new URLSearchParams(window.location.search)
+  const isGmb        = pathname === '/gmb'
+  const isFormPath   = pathname.startsWith('/f/')
+  const feedbackSlug = isFormPath
+    ? pathname.slice(3)          // /f/slug → slug
+    : urlParams.get('c')         // ?c=slug → slug (legacy support)
 
   if (isGmb) {
     return (
