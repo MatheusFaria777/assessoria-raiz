@@ -141,6 +141,19 @@ fbq('track', 'PageView');
     padding: 4px 10px;
   }
   .logo-chip img { height: 40px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-name {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    line-height: 1.15;
+  }
+  @media (max-width: 480px) { .brand-name { font-size: 14px; } }
   nav ul {
     display: flex;
     gap: 32px;
@@ -329,7 +342,6 @@ fbq('track', 'PageView');
     grid-template-columns: 1.4fr 1fr 1fr;
     gap: 36px;
   }
-  .footer-grid .logo-chip { margin-bottom: 14px; }
   .footer-grid p { font-size: 13.5px; line-height: 1.6; }
   .footer-grid h3 { color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; font-weight: 700; }
   .footer-grid ul { list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 13.5px; }
@@ -451,7 +463,10 @@ fbq('track', 'PageView');
 <!-- HEADER -->
 <header>
   <div class="header-row">
-    <a href="#" class="logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec"></a>
+    <a href="#" class="brand">
+      <span class="logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec"></span>
+      <span class="brand-name">Mônego Eletromec</span>
+    </a>
     <nav>
       <ul>
         <li><a href="#servicos">Serviços</a></li>
@@ -664,7 +679,10 @@ fbq('track', 'PageView');
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec" style="height:36px;"></div>
+      <div class="brand" style="margin-bottom:14px;">
+        <span class="logo-chip"><img src="assets/logo.jpg" alt="Mônego Eletromec" style="height:36px;"></span>
+        <span class="brand-name">Mônego Eletromec</span>
+      </div>
       <p>Manutenção de máquinas industriais de corte a laser e plasma. Mais de 10 anos de experiência, atendimento direto em toda a região.</p>
     </div>
     <div>
