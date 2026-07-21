@@ -30,9 +30,11 @@ class SyncLog(Base):
     id = Column(Integer, primary_key=True, index=True)
     client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
     type = Column(String, nullable=False)          # weekly / monthly
-    status = Column(String, nullable=False)        # success / error
+    status = Column(String, nullable=False)        # success / error / not_applicable
     rows_synced = Column(Integer, default=0)
     error_message = Column(Text, nullable=True)
+    period_start = Column(String, nullable=True)   # ISO date — início do período sincronizado
+    period_end = Column(String, nullable=True)     # ISO date — fim do período sincronizado
     synced_at = Column(DateTime(timezone=True), server_default=func.now())
 
     client = relationship("Client", back_populates="sync_logs")

@@ -49,6 +49,13 @@ def _to_br_date(iso_date: str) -> str:
     return datetime.strptime(iso_date, "%Y-%m-%d").strftime("%d/%m/%Y")
 
 
+def _parse_br_date(s: str):
+    try:
+        return datetime.strptime(s.strip(), "%d/%m/%Y").date()
+    except Exception:
+        return None
+
+
 def _find_columns(ws) -> dict[str, int]:
     rows = ws.get_all_values()[:5]
     best_row = None
@@ -77,7 +84,8 @@ def _find_columns(ws) -> dict[str, int]:
 
 def write_weekly(sheet_id: str, tab_name: str, since: str,
                  impressoes: int, results: int, link_clicks: int,
-                 spend: float, revenue: float = 0.0) -> dict:
+                 spend: float, revenue: float = 0.0,
+                 auto_append: bool = False) -> dict:
     try:
         gc = _gc()
         sh = gc.open_by_key(sheet_id)
@@ -94,9 +102,24 @@ def write_weekly(sheet_id: str, tab_name: str, since: str,
 
     since_br = _to_br_date(since)
     col_a = ws.col_values(1)
-    row_num = next((i for i, v in enumerate(col_a, 1) if v.strip() == since_br), None)
+
+    # Filtra só linhas que têm datas válidas (ignora cabeçalho e linhas em branco)
+    date_rows = [(i, v) for i, v in enumerate(col_a, 1) if _parse_br_date(v)]
+
+    row_num = next((i for i, v in date_rows if v.strip() == since_br), None)
+
     if row_num is None:
-        return {"ok": False, "error": f"Semana {since_br} não encontrada na aba '{tab_name}'"}
+        if auto_append and date_rows:
+            last_row_num, last_val = date_rows[-1]
+            last_date  = _parse_br_date(last_val)
+            since_date = _parse_br_date(since_br)
+            if last_date and since_date and (since_date - last_date).days == 7:
+                ws.insert_rows([[since_br]], row=last_row_num + 1)
+                row_num = last_row_num + 1
+            else:
+                return {"ok": False, "error": f"Semana {since_br} não encontrada. Última semana registrada: {last_val}"}
+        else:
+            return {"ok": False, "error": f"Semana {since_br} não encontrada na aba '{tab_name}'"}
 
     writes = {}
     if "impressoes" in col_map: writes["impressoes"] = (col_map["impressoes"], impressoes)
@@ -109,7 +132,9 @@ def write_weekly(sheet_id: str, tab_name: str, since: str,
     for col, val in writes.values():
         ws.update_cell(row_num, col, val)
 
-    return {"ok": True, "row": row_num, "date": since_br, "cols": {k: v[0] for k, v in writes.items()}}
+    appended = row_num > (date_rows[-1][0] if date_rows else 0)
+    return {"ok": True, "row": row_num, "date": since_br, "appended": appended,
+            "cols": {k: v[0] for k, v in writes.items()}}
 
 
 def write_monthly(sheet_id: str, since: str, meta_invest: float, meta_leads: int) -> dict:

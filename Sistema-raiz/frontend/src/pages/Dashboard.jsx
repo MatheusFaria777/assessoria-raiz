@@ -15,12 +15,49 @@ function getUser() {
   try { return JSON.parse(localStorage.getItem('raiz_user')) } catch { return null }
 }
 
+function SyncErrorPopup({ client, onClose }) {
+  if (!client) return null
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 200,
+        background: 'rgba(0,0,0,.6)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: '#1a1a1a', border: '1px solid rgba(239,68,68,.3)',
+          borderRadius: 10, padding: '1.25rem 1.5rem', maxWidth: 420, width: '90vw',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '.75rem' }}>
+          <strong style={{ fontSize: '.9375rem' }}>{client.client_name}</strong>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(245,245,245,.4)', fontSize: '1.1rem', lineHeight: 1 }}>✕</button>
+        </div>
+        <p style={{ margin: 0, fontSize: '.8125rem', color: 'rgba(245,245,245,.55)', lineHeight: 1.5 }}>
+          {client.error ?? 'Erro desconhecido'}
+        </p>
+        {client.since && (
+          <p style={{ margin: '.5rem 0 0', fontSize: '.75rem', color: 'rgba(245,245,245,.3)' }}>
+            Período: {client.since}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function Dashboard() {
   const [data, setData]             = useState(null)
   const [loading, setLoading]       = useState(true)
   const [balances, setBalances]     = useState(null)
   const [cadencia, setCadencia]     = useState(null)
   const [cadLoading, setCadLoading] = useState(false)
+  const [syncData, setSyncData]     = useState(null)
+  const [syncOpen, setSyncOpen]     = useState(false)
+  const [syncError, setSyncError]   = useState(null)
   const today = new Date().toISOString().slice(0, 10)
   const user = getUser()
   const { isSegunda, isQuarta } = getDayInfo()
@@ -33,6 +70,9 @@ export default function Dashboard() {
     api.get('/api/dashboard/budget-alerts')
       .then(r => setBalances(r.balances))
       .catch(() => setBalances([]))
+    api.get('/api/dashboard/sync-today')
+      .then(setSyncData)
+      .catch(() => setSyncData({ synced: 0, errors: 0, clients: [] }))
   }, [])
 
   const loadCadencia = useCallback((forceRefresh = false) => {
@@ -115,6 +155,67 @@ export default function Dashboard() {
           </div>
         )}
       </section>
+
+      {/* Planilhamento automático */}
+      {syncData && (syncData.synced > 0 || syncData.errors > 0) && (
+        <section style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.75rem', marginBottom: '.625rem' }}>
+            <h2 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>Planilhamento</h2>
+            {syncData.clients.length > 0 && (
+              <button
+                onClick={() => setSyncOpen(o => !o)}
+                style={{
+                  background: 'transparent', border: 'none', cursor: 'pointer',
+                  color: 'rgba(245,245,245,.4)', fontSize: '.8rem', padding: 0,
+                }}
+              >
+                {syncOpen ? 'ocultar' : 'detalhes'}
+              </button>
+            )}
+          </div>
+          <div style={{
+            padding: '.625rem .875rem', borderRadius: 8,
+            background: syncData.errors > 0 ? 'rgba(239,68,68,.05)' : 'rgba(245,245,245,.04)',
+            border: `1px solid ${syncData.errors > 0 ? 'rgba(239,68,68,.2)' : 'rgba(245,245,245,.08)'}`,
+            display: 'flex', alignItems: 'center', gap: '1.25rem', fontSize: '.875rem',
+          }}>
+            <span>🟢 {syncData.synced} planilhado{syncData.synced !== 1 ? 's' : ''}</span>
+            {syncData.errors > 0 && (
+              <span style={{ color: '#f87171' }}>🔴 {syncData.errors} erro{syncData.errors !== 1 ? 's' : ''}</span>
+            )}
+            <span style={{ marginLeft: 'auto', fontSize: '.75rem', color: 'rgba(245,245,245,.3)' }}>hoje</span>
+          </div>
+          {syncOpen && syncData.clients.length > 0 && (
+            <div style={{ marginTop: '.5rem', display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
+              {syncData.clients.map((c, i) => (
+                <div
+                  key={i}
+                  onClick={() => c.status === 'error' && setSyncError(c)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '.5rem',
+                    padding: '.375rem .625rem', borderRadius: 6,
+                    fontSize: '.8125rem', cursor: c.status === 'error' ? 'pointer' : 'default',
+                    background: c.status === 'error' ? 'rgba(239,68,68,.06)' : 'transparent',
+                  }}
+                >
+                  <span>{c.status === 'success' ? '✓' : c.status === 'error' ? '✕' : '—'}</span>
+                  <span style={{ flex: 1, color: c.status === 'error' ? '#f87171' : 'rgba(245,245,245,.7)' }}>
+                    {c.client_name}
+                  </span>
+                  {c.rows_synced > 0 && (
+                    <span style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.3)' }}>{c.rows_synced} aba{c.rows_synced !== 1 ? 's' : ''}</span>
+                  )}
+                  {c.status === 'error' && (
+                    <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
+      <SyncErrorPopup client={syncError} onClose={() => setSyncError(null)} />
 
       {/* Cadência de hoje — segunda e quarta */}
       {(isSegunda || isQuarta) && (

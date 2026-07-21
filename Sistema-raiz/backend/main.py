@@ -39,6 +39,8 @@ def _run_migrations():
             sheet_tab VARCHAR,
             active BOOLEAN DEFAULT TRUE
         )""",
+        "ALTER TABLE sync_logs ADD COLUMN IF NOT EXISTS period_start VARCHAR",
+        "ALTER TABLE sync_logs ADD COLUMN IF NOT EXISTS period_end VARCHAR",
     ]
     with engine.connect() as conn:
         for sql in migrations:

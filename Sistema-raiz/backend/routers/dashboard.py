@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import func
 from datetime import date, timedelta
 import time
 
 from database import get_db
 from models.client import Client
+from models.report import SyncLog
 from services.token_manager import get_meta_token
 from services.meta import get_account_balance
 
@@ -81,3 +83,49 @@ def get_budget_alerts(db: Session = Depends(get_db)):
     _budget_cache["data"] = balances
     _budget_cache["ts"] = time.time()
     return {"balances": balances, "cached": False}
+
+
+@router.get("/sync-today")
+def get_sync_today(db: Session = Depends(get_db)):
+    """Resumo do planilhamento automático do dia de hoje."""
+    today = date.today()
+    logs = (
+        db.query(SyncLog)
+        .options(joinedload(SyncLog.client))
+        .filter(
+            SyncLog.type == "weekly",
+            func.date(SyncLog.synced_at) == today,
+        )
+        .order_by(SyncLog.synced_at.desc())
+        .all()
+    )
+    success_logs = [l for l in logs if l.status == "success"]
+    error_logs   = [l for l in logs if l.status == "error"]
+    return {
+        "date":    today.isoformat(),
+        "synced":  len(success_logs),
+        "errors":  len(error_logs),
+        "clients": [
+            {
+                "client_id":    l.client_id,
+                "client_name":  l.client.name if l.client else "?",
+                "status":       l.status,
+                "rows_synced":  l.rows_synced,
+                "error":        l.error_message,
+                "since":        l.period_start,
+                "synced_at":    l.synced_at.isoformat() if l.synced_at else None,
+            }
+            for l in logs
+        ],
+    }
+
+
+@router.post("/sync-run")
+def trigger_sync(db: Session = Depends(get_db)):
+    """Dispara o planilhamento manual imediatamente (mesmo fora de horário)."""
+    from services.sync_engine import run_daily_sync
+    try:
+        summary = run_daily_sync(db)
+        return {"ok": True, **summary}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
