@@ -117,6 +117,7 @@ const SECTIONS = [
   { id: 'sheets',  label: 'Google Sheets', icon: '📊' },
   { id: 'meta',    label: 'Meta Ads',      icon: '📘' },
   { id: 'google',  label: 'Google Ads',    icon: '🔍' },
+  { id: 'sistema', label: 'Sistema',       icon: '⚙️'  },
 ]
 
 const SERVICE_ACCOUNT_EMAIL = 'assessoria-raiz-sheets@relatorios-raiz.iam.gserviceaccount.com'
@@ -350,18 +351,27 @@ function MetaSettings() {
         </div>
       </div>
 
-      <hr className="divider" />
+    </div>
+  )
+}
 
+function SistemaSettings() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div>
+        <h3 style={{ margin: '0 0 .375rem', fontSize: '1rem', fontWeight: 600 }}>Sistema</h3>
+        <p style={{ margin: 0, fontSize: '.875rem', color: 'rgba(245,245,245,.45)' }}>
+          Chaves de APIs usadas internamente pelo sistema.
+        </p>
+      </div>
       <TokenField
-        label="Chave API Claude (para geração de copy dos anúncios)"
+        label="Chave API Claude"
         settingKey="anthropic_api_key"
-        hint="Usada no Uploader para gerar o copy dos anúncios de veículos. Encontre em console.anthropic.com → API Keys."
+        hint="Usada no Uploader para gerar copy dos anúncios. Encontre em console.anthropic.com → API Keys."
       />
-
       <hr className="divider" />
-
       <TokenField
-        label="Instagram Session ID (para download de posts no servidor)"
+        label="Instagram Session ID"
         settingKey="instagram_sessionid"
         hint="Necessário para o Uploader funcionar no servidor. Como obter: abra instagram.com no Chrome → F12 → Application → Cookies → sessionid → copie o valor."
       />
@@ -397,9 +407,10 @@ export default function Settings() {
       </div>
 
       <div className="card" style={{ flex: 1 }}>
-        {section === 'sheets' && <SheetsSettings />}
-        {section === 'meta'   && <MetaSettings />}
-        {section === 'google' && <GoogleAdsSettings />}
+        {section === 'sheets'  && <SheetsSettings />}
+        {section === 'meta'    && <MetaSettings />}
+        {section === 'google'  && <GoogleAdsSettings />}
+        {section === 'sistema' && <SistemaSettings />}
       </div>
     </div>
   )
