@@ -1,8 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { api } from '../../lib/api'
 import { toast } from '../../lib/toast'
 
-const PRIMARY_TYPES = new Set(['mensagem', 'lead', 'formulario'])
+const CAMPAIGN_TYPES = [
+  { value: 'mensagem',    label: 'Mensagem' },
+  { value: 'lead',        label: 'Lead' },
+  { value: 'formulario',  label: 'Formulário' },
+  { value: 'engajamento', label: 'Engajamento' },
+  { value: 'vendas',      label: 'Vendas' },
+  { value: 'alcance',     label: 'Alcance' },
+  { value: 'trafego',     label: 'Tráfego' },
+  { value: 'consignacao', label: 'Consignação' },
+  { value: 'vagas',       label: 'Vagas' },
+  { value: 'manutencao',  label: 'Manutenção' },
+  { value: 'live',        label: 'Live' },
+]
 
 const EMPTY_ADSET = {
   label: '', adset_id: '', page_id: '', whatsapp: '',
@@ -16,25 +28,6 @@ function parseGroupTabs(raw) {
   try { return JSON.parse(raw) } catch { return {} }
 }
 
-// Mesma lógica do backend _detect_tipo
-function detectGroup(name, groups) {
-  if (!name.trim()) return null
-  const lower = name.toLowerCase()
-  let best = null, bestScore = 0
-  for (const g of groups) {
-    let kws = []
-    try { kws = JSON.parse(g.keywords || '[]') } catch {}
-    const tier = PRIMARY_TYPES.has(g.type) ? 2 : 1
-    for (const kw of kws) {
-      if (lower.includes(kw)) {
-        const score = kw.length * tier
-        if (score > bestScore) { bestScore = score; best = g }
-      }
-    }
-  }
-  return best
-}
-
 export default function ClientModal({ client, onClose, onSaved }) {
   const [form, setForm] = useState({
     name: '', has_meta: false, meta_account_id: '',
@@ -43,13 +36,16 @@ export default function ClientModal({ client, onClose, onSaved }) {
     cadencia_ativa: true, cadencia_contexto: '',
   })
   const [adsets, setAdsets] = useState([])
-  const [groups, setGroups] = useState([])
   const [saving, setSaving] = useState(false)
   const [tab, setTab] = useState('basico')
-  const [testName, setTestName] = useState('')
+
+  // Mapeamento explícito de campanhas
+  const [campaignMappings, setCampaignMappings] = useState([])  // mapeamentos salvos
+  const [metaCampaigns, setMetaCampaigns]       = useState([])  // campanhas da API Meta
+  const [loadingCampaigns, setLoadingCampaigns] = useState(false)
+  const [mappingsDirty, setMappingsDirty]       = useState(false)
 
   useEffect(() => {
-    api.get('/api/campaign-groups/').then(setGroups).catch(() => {})
     if (client) {
       setForm({
         name: client.name || '',
@@ -64,37 +60,69 @@ export default function ClientModal({ client, onClose, onSaved }) {
         cadencia_contexto: client.cadencia_contexto || '',
       })
       setAdsets(client.adsets?.map(a => ({ ...a })) || [])
+      // Carrega mapeamentos de campanhas existentes
+      api.get(`/api/clients/${client.id}/campaign-mapping`)
+        .then(d => setCampaignMappings(d.campaigns || []))
+        .catch(() => {})
     }
   }, [client])
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
-  const toggleGroup = (g) => {
-    const active = form.campaign_group_ids.includes(g.id)
-    setForm(f => ({
-      ...f,
-      campaign_group_ids: active ? f.campaign_group_ids.filter(x => x !== g.id) : [...f.campaign_group_ids, g.id],
-      group_tabs: active
-        ? Object.fromEntries(Object.entries(f.group_tabs).filter(([k]) => k !== g.type))
-        : f.group_tabs,
-    }))
+  // Adsets
+  const addAdset    = () => setAdsets(a => [...a, { ...EMPTY_ADSET, _new: Date.now() }])
+  const removeAdset = (idx) => setAdsets(a => a.filter((_, i) => i !== idx))
+  const setAdset    = (idx, k, v) => setAdsets(a => a.map((x, i) => i === idx ? { ...x, [k]: v } : x))
+
+  // Campaign mappings
+  const fetchMetaCampaigns = useCallback(async () => {
+    if (!client?.id) return
+    setLoadingCampaigns(true)
+    try {
+      const d = await api.get(`/api/clients/${client.id}/meta-campaigns`)
+      const savedById = Object.fromEntries(campaignMappings.map(m => [m.meta_campaign_id, m]))
+      // Merge campanhas da API com mapeamentos já salvos
+      setMetaCampaigns(d.campaigns.map(c => ({
+        id: c.id,
+        name: c.name,
+        status: c.status,
+        campaign_type: savedById[c.id]?.campaign_type || '',
+        sheet_tab: savedById[c.id]?.sheet_tab || '',
+      })))
+    } catch (e) {
+      toast(e.message || 'Erro ao buscar campanhas', 'error')
+    } finally {
+      setLoadingCampaigns(false)
+    }
+  }, [client?.id, campaignMappings])
+
+  const updateMapping = (campaignId, field, value) => {
+    setMetaCampaigns(prev => prev.map(c => c.id === campaignId ? { ...c, [field]: value } : c))
+    setMappingsDirty(true)
   }
 
-  // Adsets
-  const addAdset = () => setAdsets(a => [...a, { ...EMPTY_ADSET, _new: Date.now() }])
-  const removeAdset = (idx) => setAdsets(a => a.filter((_, i) => i !== idx))
-  const setAdset = (idx, k, v) => setAdsets(a => a.map((x, i) => i === idx ? { ...x, [k]: v } : x))
+  const saveMappings = async (clientId) => {
+    const toSave = metaCampaigns.filter(c => c.campaign_type)
+    await api.put(`/api/clients/${clientId}/campaign-mapping`, {
+      campaigns: toSave.map(c => ({
+        meta_campaign_id: c.id,
+        name: c.name,
+        campaign_type: c.campaign_type,
+        sheet_tab: c.sheet_tab || null,
+        active: true,
+      })),
+    })
+    setMappingsDirty(false)
+  }
 
   const save = async () => {
     if (!form.name.trim()) { toast('Nome é obrigatório', 'error'); return }
     setSaving(true)
     try {
       const sheetsTabsObj = {}
-      for (const [type, tab] of Object.entries(form.group_tabs)) {
-        if (tab?.trim()) sheetsTabsObj[type] = tab.trim()
+      for (const [type, t] of Object.entries(form.group_tabs)) {
+        if (t?.trim()) sheetsTabsObj[type] = t.trim()
       }
-
-      // Mantém id para update in-place (preserva FK da upload_queue). Remove _new e client_id.
       const cleanAdsets = adsets.map(({ _new, client_id, ...rest }) => rest)
 
       const payload = {
@@ -111,13 +139,21 @@ export default function ClientModal({ client, onClose, onSaved }) {
         adsets: cleanAdsets,
       }
 
+      let savedId = client?.id
       if (client) {
         await api.put(`/api/clients/${client.id}`, payload)
         toast('Cliente atualizado')
       } else {
-        await api.post('/api/clients/', payload)
+        const created = await api.post('/api/clients/', payload)
+        savedId = created.id
         toast('Cliente criado')
       }
+
+      // Salva mapeamentos de campanhas se houver alterações
+      if (mappingsDirty && savedId && metaCampaigns.length > 0) {
+        await saveMappings(savedId)
+      }
+
       onSaved()
     } catch (e) {
       toast(e.message, 'error')
@@ -126,13 +162,10 @@ export default function ClientModal({ client, onClose, onSaved }) {
     }
   }
 
-  const selectedGroups = groups.filter(g => form.campaign_group_ids.includes(g.id))
-  const matchedGroup = detectGroup(testName, groups)
-
   const TABS = [
     { id: 'basico',    label: 'Dados' },
     { id: 'adsets',    label: `Conjuntos${adsets.length ? ` (${adsets.length})` : ''}` },
-    { id: 'campanhas', label: 'Campanhas' },
+    { id: 'campanhas', label: `Campanhas${campaignMappings.length ? ` (${campaignMappings.length})` : ''}` },
     { id: 'planilha',  label: 'Planilha' },
   ]
 
@@ -189,9 +222,7 @@ export default function ClientModal({ client, onClose, onSaved }) {
                 <div style={{ marginTop: '.75rem' }}>
                   <Field label="Notas do cliente" hint="Contexto usado para personalizar as mensagens de segunda e quarta">
                     <textarea
-                      className="input"
-                      rows={3}
-                      value={form.cadencia_contexto}
+                      className="input" rows={3} value={form.cadencia_contexto}
                       onChange={e => set('cadencia_contexto', e.target.value)}
                       placeholder="Ex: Cipriani — compra no Pix, avaliação 15 min, aceita financiado. Foco em mensagem."
                       style={{ resize: 'vertical', fontFamily: 'inherit', fontSize: '.8125rem' }}
@@ -229,100 +260,15 @@ export default function ClientModal({ client, onClose, onSaved }) {
 
         {/* ── Tab: Campanhas ── */}
         {tab === 'campanhas' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {/* Grupos */}
-            {groups.length > 0 && (
-              <div>
-                <label className="label" style={{ marginBottom: '.5rem' }}>Grupos de campanha associados</label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.375rem' }}>
-                  {groups.map(g => {
-                    const active = form.campaign_group_ids.includes(g.id)
-                    return (
-                      <button key={g.id} type="button" onClick={() => toggleGroup(g)} style={{
-                        padding: '.25rem .75rem', borderRadius: 999, border: `1px solid ${g.color}`,
-                        background: active ? `${g.color}25` : 'transparent',
-                        color: active ? g.color : 'rgba(245,245,245,.4)',
-                        cursor: 'pointer', fontSize: '.75rem', fontWeight: active ? 600 : 400,
-                      }}>
-                        {g.name}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Testador de nomenclatura */}
-            <div style={{ padding: '1rem', background: 'rgba(245,245,245,.04)', borderRadius: 8 }}>
-              <label className="label" style={{ marginBottom: '.5rem' }}>
-                Testador de nomenclatura
-              </label>
-              <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.4)', marginBottom: '.75rem', lineHeight: 1.5 }}>
-                Cole o nome exato de uma campanha para ver qual grupo o sistema identificaria.
-              </div>
-              <input className="input" value={testName} onChange={e => setTestName(e.target.value)}
-                placeholder="Ex: [MKT] | Mensagem | Leads | Motocar | Nov25" />
-              {testName.trim() && (
-                <div style={{ marginTop: '.75rem', display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-                  {matchedGroup ? (
-                    <>
-                      <span style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.4)' }}>Grupo identificado:</span>
-                      <span style={{
-                        padding: '.2rem .7rem', borderRadius: 999,
-                        background: `${matchedGroup.color}25`, color: matchedGroup.color,
-                        fontSize: '.8rem', fontWeight: 600, border: `1px solid ${matchedGroup.color}`,
-                      }}>
-                        {matchedGroup.name}
-                      </span>
-                      {!form.campaign_group_ids.includes(matchedGroup.id) && (
-                        <span style={{ fontSize: '.72rem', color: '#c9745a' }}>
-                          ⚠ esse grupo não está associado ao cliente
-                        </span>
-                      )}
-                    </>
-                  ) : (
-                    <span style={{ fontSize: '.8rem', color: '#c9745a' }}>
-                      Nenhum grupo identificado — a campanha seria ignorada nos relatórios.
-                    </span>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Keywords dos grupos selecionados */}
-            {selectedGroups.length > 0 && (
-              <div>
-                <label className="label" style={{ marginBottom: '.5rem' }}>Palavras-chave por grupo</label>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
-                  {selectedGroups.map(g => {
-                    let kws = []
-                    try { kws = JSON.parse(g.keywords || '[]') } catch {}
-                    return (
-                      <div key={g.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '.75rem' }}>
-                        <span style={{ minWidth: 140, fontSize: '.8rem', color: g.color, fontWeight: 600, paddingTop: 2 }}>
-                          {g.name}
-                        </span>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.25rem' }}>
-                          {kws.map(kw => (
-                            <span key={kw} style={{
-                              fontSize: '.7rem', padding: '.15rem .5rem', borderRadius: 4,
-                              background: 'rgba(245,245,245,.08)', color: 'rgba(245,245,245,.6)',
-                              fontFamily: 'monospace',
-                            }}>
-                              {kw}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-                <div style={{ fontSize: '.72rem', color: 'rgba(245,245,245,.3)', marginTop: '.5rem' }}>
-                  Para editar as palavras-chave, vá em Configurações → Grupos de Campanha.
-                </div>
-              </div>
-            )}
-          </div>
+          <CampaignsTab
+            client={client}
+            campaignMappings={campaignMappings}
+            metaCampaigns={metaCampaigns}
+            loading={loadingCampaigns}
+            hasMeta={form.has_meta}
+            onFetch={fetchMetaCampaigns}
+            onUpdate={updateMapping}
+          />
         )}
 
         {/* ── Tab: Planilha ── */}
@@ -334,31 +280,9 @@ export default function ClientModal({ client, onClose, onSaved }) {
                 placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms" />
             </Field>
 
-            {selectedGroups.length > 0 ? (
-              <div>
-                <label className="label" style={{ marginBottom: '.5rem' }}>Aba por grupo</label>
-                <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.4)', marginBottom: '.75rem', lineHeight: 1.5 }}>
-                  Nome exato da aba no Google Sheets que receberá os dados de cada grupo. Deixe vazio para ignorar o grupo na sincronização.
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
-                  {selectedGroups.map(g => (
-                    <div key={g.id} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: '.75rem', alignItems: 'center' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-                        <span style={{ width: 8, height: 8, borderRadius: '50%', background: g.color, flexShrink: 0 }} />
-                        <span style={{ fontSize: '.875rem', color: 'rgba(245,245,245,.8)' }}>{g.name}</span>
-                      </div>
-                      <input className="input" style={{ fontSize: '.8rem' }}
-                        value={form.group_tabs[g.type] || ''}
-                        onChange={e => setForm(f => ({ ...f, group_tabs: { ...f.group_tabs, [g.type]: e.target.value } }))}
-                        placeholder={`Nome da aba (ex: ${g.type.toUpperCase()})`}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.3)', fontStyle: 'italic' }}>
-                Selecione grupos de campanha na aba "Campanhas" para configurar as abas da planilha.
+            {Object.keys(form.group_tabs).length > 0 && (
+              <div style={{ fontSize: '.78rem', color: 'rgba(245,245,245,.4)', fontStyle: 'italic', lineHeight: 1.5 }}>
+                As abas da planilha são agora configuradas por campanha na aba "Campanhas".
               </div>
             )}
           </div>
@@ -376,13 +300,118 @@ export default function ClientModal({ client, onClose, onSaved }) {
   )
 }
 
+/* ── CampaignsTab ─────────────────────────────────────────────────────────── */
+function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMeta, onFetch, onUpdate }) {
+  if (!client?.id) {
+    return (
+      <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(245,245,245,.4)', fontSize: '.875rem' }}>
+        Salve o cliente primeiro para configurar as campanhas.
+      </div>
+    )
+  }
+
+  if (!hasMeta) {
+    return (
+      <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(245,245,245,.4)', fontSize: '.875rem' }}>
+        Configure o Meta Ads na aba "Dados" para mapear campanhas.
+      </div>
+    )
+  }
+
+  const showList = metaCampaigns.length > 0 ? metaCampaigns : campaignMappings.map(m => ({
+    id: m.meta_campaign_id,
+    name: m.name || m.meta_campaign_id,
+    campaign_type: m.campaign_type,
+    sheet_tab: m.sheet_tab || '',
+  }))
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+        <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.45)', lineHeight: 1.5 }}>
+          Mapeie cada campanha Meta ao seu tipo. Só campanhas mapeadas aparecem nos relatórios.
+        </div>
+        <button className="btn-secondary" onClick={onFetch} disabled={loading} style={{ flexShrink: 0 }}>
+          {loading ? <><span className="spinner" /> Buscando...</> : 'Buscar do Meta'}
+        </button>
+      </div>
+
+      {showList.length === 0 && !loading && (
+        <div style={{ textAlign: 'center', padding: '1.5rem', color: 'rgba(245,245,245,.3)', fontSize: '.875rem' }}>
+          Clique em "Buscar do Meta" para listar as campanhas da conta.
+        </div>
+      )}
+
+      {showList.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
+          {showList.map(c => (
+            <CampaignRow
+              key={c.id}
+              campaign={c}
+              onUpdate={onUpdate}
+            />
+          ))}
+        </div>
+      )}
+
+      {showList.length > 0 && (
+        <div style={{ fontSize: '.72rem', color: 'rgba(245,245,245,.3)', lineHeight: 1.5 }}>
+          Deixe o tipo vazio para ignorar a campanha nos relatórios. A aba da planilha é opcional.
+        </div>
+      )}
+    </div>
+  )
+}
+
+function CampaignRow({ campaign, onUpdate }) {
+  const isActive = campaign.status === 'ACTIVE'
+  return (
+    <div style={{
+      display: 'grid', gridTemplateColumns: '1fr 160px 140px',
+      gap: '.5rem', alignItems: 'center',
+      padding: '.625rem .75rem', borderRadius: 7,
+      background: 'rgba(245,245,245,.04)',
+      border: '1px solid rgba(245,245,245,.08)',
+    }}>
+      <div style={{ minWidth: 0 }}>
+        <div style={{
+          fontSize: '.825rem', color: '#F5F5F5', whiteSpace: 'nowrap',
+          overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 500,
+        }}>
+          {campaign.name}
+        </div>
+        <div style={{ fontSize: '.7rem', color: isActive ? '#4ade80' : 'rgba(245,245,245,.3)', marginTop: 2 }}>
+          {isActive ? 'Ativa' : (campaign.status || 'ID: ' + campaign.id)}
+        </div>
+      </div>
+      <select
+        className="input"
+        value={campaign.campaign_type || ''}
+        onChange={e => onUpdate(campaign.id, 'campaign_type', e.target.value)}
+        style={{ fontSize: '.8rem' }}
+      >
+        <option value="">— ignorar —</option>
+        {CAMPAIGN_TYPES.map(t => (
+          <option key={t.value} value={t.value}>{t.label}</option>
+        ))}
+      </select>
+      <input
+        className="input"
+        value={campaign.sheet_tab || ''}
+        onChange={e => onUpdate(campaign.id, 'sheet_tab', e.target.value)}
+        placeholder="Aba planilha"
+        style={{ fontSize: '.8rem' }}
+      />
+    </div>
+  )
+}
+
 /* ── AdsetRow ─────────────────────────────────────────────────────────────── */
 function AdsetRow({ adset, idx, onChange, onRemove }) {
   const [expanded, setExpanded] = useState(!adset.adset_id)
 
   return (
     <div style={{ border: '1px solid rgba(245,245,245,.12)', borderRadius: 8, overflow: 'hidden' }}>
-      {/* Cabeçalho */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', padding: '.75rem 1rem', background: 'rgba(245,245,245,.04)', cursor: 'pointer' }}
         onClick={() => setExpanded(e => !e)}>
         <div style={{ flex: 1 }}>
@@ -402,7 +431,6 @@ function AdsetRow({ adset, idx, onChange, onRemove }) {
         <span style={{ color: 'rgba(245,245,245,.35)', fontSize: '.75rem' }}>{expanded ? '▲' : '▼'}</span>
       </div>
 
-      {/* Campos */}
       {expanded && (
         <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
           <div className="field-row">
@@ -442,7 +470,6 @@ function AdsetRow({ adset, idx, onChange, onRemove }) {
             </Field>
           </div>
 
-          {/* Dados da loja (colapsáveis) */}
           <details style={{ fontSize: '.8rem' }}>
             <summary style={{ cursor: 'pointer', color: 'rgba(245,245,245,.4)', userSelect: 'none', padding: '.25rem 0' }}>
               Dados da loja (nome, endereço, telefone, site)

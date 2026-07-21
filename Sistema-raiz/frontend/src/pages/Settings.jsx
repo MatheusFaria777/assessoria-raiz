@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import CampaignGroups from '../components/settings/CampaignGroups'
 import { toast } from '../lib/toast'
 import { api } from '../lib/api'
 
@@ -115,10 +114,9 @@ function GoogleAdsSettings() {
 }
 
 const SECTIONS = [
-  { id: 'campaign-groups', label: 'Grupos de Campanha', icon: '🏷️' },
-  { id: 'sheets',          label: 'Google Sheets',      icon: '📊' },
-  { id: 'meta',            label: 'Meta Ads',           icon: '📘' },
-  { id: 'google',          label: 'Google Ads',         icon: '🔍' },
+  { id: 'sheets',  label: 'Google Sheets', icon: '📊' },
+  { id: 'meta',    label: 'Meta Ads',      icon: '📘' },
+  { id: 'google',  label: 'Google Ads',    icon: '🔍' },
 ]
 
 const SERVICE_ACCOUNT_EMAIL = 'assessoria-raiz-sheets@relatorios-raiz.iam.gserviceaccount.com'
@@ -373,7 +371,7 @@ function MetaSettings() {
 
 
 export default function Settings() {
-  const [section, setSection] = useState('campaign-groups')
+  const [section, setSection] = useState('sheets')
 
   return (
     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
@@ -399,7 +397,6 @@ export default function Settings() {
       </div>
 
       <div className="card" style={{ flex: 1 }}>
-        {section === 'campaign-groups' && <CampaignGroups />}
         {section === 'sheets' && <SheetsSettings />}
         {section === 'meta'   && <MetaSettings />}
         {section === 'google' && <GoogleAdsSettings />}
