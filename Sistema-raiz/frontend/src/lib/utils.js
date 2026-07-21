@@ -32,3 +32,7 @@ export function writeCadenciaCache(tab, data) {
     localStorage.setItem(cadenciaCacheKey(tab), JSON.stringify({ ts: Date.now(), data }))
   } catch {}
 }
+
+export function clearCadenciaCache(tab) {
+  try { localStorage.removeItem(cadenciaCacheKey(tab)) } catch {}
+}

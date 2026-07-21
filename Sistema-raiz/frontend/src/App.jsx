@@ -1,5 +1,10 @@
 import { useState, Component, lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 import { ClientsProvider } from './contexts/ClientsContext'
+import Sidebar from './components/layout/Sidebar'
+import Header from './components/layout/Header'
+import Toast from './components/Toast'
+import Login from './pages/Login'
 
 class ErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null } }
@@ -14,10 +19,6 @@ class ErrorBoundary extends Component {
     return this.props.children
   }
 }
-import Sidebar from './components/layout/Sidebar'
-import Header from './components/layout/Header'
-import Toast from './components/Toast'
-import Login from './pages/Login'
 
 const Dashboard       = lazy(() => import('./pages/Dashboard'))
 const Clients         = lazy(() => import('./pages/Clients'))
@@ -30,8 +31,6 @@ const GmbForm         = lazy(() => import('./pages/GmbForm'))
 const FeedbackDashboard = lazy(() => import('./pages/FeedbackDashboard'))
 const Cadencia          = lazy(() => import('./pages/Cadencia'))
 
-const PAGES = { dashboard: Dashboard, clients: Clients, reports: Reports, uploader: Uploader, sheets: Sheets, feedback: FeedbackDashboard, cadencia: Cadencia, settings: Settings }
-
 const PageLoader = () => (
   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'rgba(245,245,245,.3)', fontSize: 13 }}>
     Carregando…
@@ -42,23 +41,23 @@ function getStoredUser() {
   try { return JSON.parse(localStorage.getItem('raiz_user')) } catch { return null }
 }
 
-export default function App() {
-  const [user, setUser]         = useState(getStoredUser)
-  const [page, setPage]         = useState('dashboard')
+function AppShell() {
+  const [user, setUser]               = useState(getStoredUser)
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
 
-  const handleLogin = (u) => setUser(u)
-
+  const handleLogin  = (u) => { setUser(u); navigate('/dashboard') }
   const handleLogout = () => {
     localStorage.removeItem('raiz_token')
     localStorage.removeItem('raiz_user')
     setUser(null)
   }
 
-  // Formulário público — acessível sem login via ?c={slug}
-  const urlParams = new URLSearchParams(window.location.search)
-  const feedbackSlug = urlParams.get('c')
-  const isGmb = window.location.pathname === '/gmb'
+  // Forms — served from separate HTML entry points but also accessible from main SPA in dev
+  const urlParams     = new URLSearchParams(window.location.search)
+  const feedbackSlug  = urlParams.get('c')
+  const isGmb         = pathname === '/gmb'
 
   if (isGmb) {
     return (
@@ -91,22 +90,44 @@ export default function App() {
     )
   }
 
-  const PageComponent = PAGES[page]
+  // Derive current page id from URL (e.g. /clients → 'clients')
+  const page = pathname.slice(1).split('/')[0] || 'dashboard'
 
   return (
     <ClientsProvider>
       <div style={{ display: 'flex', width: '100%', height: '100vh', overflow: 'hidden', background: '#162d26' }}>
-        <Sidebar current={page} onNavigate={setPage} open={sidebarOpen} />
+        <Sidebar current={page} onNavigate={p => navigate(`/${p}`)} open={sidebarOpen} />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0 }}>
           <Header page={page} onToggleSidebar={() => setSidebarOpen(o => !o)} user={user} onLogout={handleLogout} />
           <main style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
             <Suspense fallback={<PageLoader />}>
-              <PageComponent />
+              <Routes>
+                <Route path="/"           element={<Navigate to="/dashboard" replace />} />
+                <Route path="/dashboard"  element={<Dashboard />} />
+                <Route path="/clients"    element={<Clients />} />
+                <Route path="/reports"    element={<Reports />} />
+                <Route path="/uploader"   element={<Uploader />} />
+                <Route path="/sheets"     element={<Sheets />} />
+                <Route path="/feedback"   element={<FeedbackDashboard />} />
+                <Route path="/cadencia"   element={<Cadencia />} />
+                <Route path="/settings"   element={<Settings />} />
+                <Route path="*"           element={<Navigate to="/dashboard" replace />} />
+              </Routes>
             </Suspense>
           </main>
         </div>
         <Toast />
       </div>
     </ClientsProvider>
+  )
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AppShell />
+      </BrowserRouter>
+    </ErrorBoundary>
   )
 }

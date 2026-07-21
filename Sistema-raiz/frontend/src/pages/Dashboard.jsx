@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
-import { getDayInfo, readCadenciaCache, writeCadenciaCache } from '../lib/utils'
+import { getDayInfo, readCadenciaCache, writeCadenciaCache, clearCadenciaCache } from '../lib/utils'
 import CadenciaClientCard from '../components/CadenciaClientCard'
 
 function getGreeting() {
@@ -55,7 +55,7 @@ export default function Dashboard() {
 
   const refreshCadencia = () => {
     const tab = isSegunda ? 'segunda' : 'quarta'
-    try { localStorage.removeItem(`cadencia_${tab}`) } catch {}
+    clearCadenciaCache(tab)
     loadCadencia(true)
   }
 
