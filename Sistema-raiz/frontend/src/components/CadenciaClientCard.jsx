@@ -1,12 +1,35 @@
 import { useState } from 'react'
 import { toast } from '../lib/toast'
 
-function CopyButton({ text }) {
+const TODAY = new Date().toISOString().slice(0, 10)
+
+function getSentKey(clientId) {
+  return `cadencia_sent_${TODAY}_${clientId}`
+}
+
+function isSent(clientId) {
+  try { return !!localStorage.getItem(getSentKey(clientId)) } catch { return false }
+}
+
+function markSent(clientId) {
+  try { localStorage.setItem(getSentKey(clientId), '1') } catch {}
+}
+
+function currentGreeting() {
+  const h = new Date().getHours()
+  if (h < 12) return 'Bom dia!'
+  if (h < 18) return 'Boa tarde!'
+  return 'Boa noite!'
+}
+
+function CopyButton({ text, onCopied }) {
   const [copied, setCopied] = useState(false)
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(text)
+      const greeting = currentGreeting()
+      await navigator.clipboard.writeText(`${greeting} ${text}`)
       setCopied(true)
+      onCopied?.()
       toast('Copiado!')
       setTimeout(() => setCopied(false), 2000)
     } catch {
@@ -50,8 +73,25 @@ function PeriodBadge({ periodType }) {
   )
 }
 
+function SentBadge() {
+  return (
+    <span style={{
+      fontSize: '.6875rem', fontWeight: 600, padding: '.15rem .45rem', borderRadius: 4,
+      background: 'rgba(74,222,128,.1)', color: '#4ade80', flexShrink: 0,
+    }}>
+      Enviado ✓
+    </span>
+  )
+}
+
 export default function CadenciaClientCard({ item }) {
   const [expanded, setExpanded] = useState(false)
+  const [sent, setSent] = useState(() => isSent(item.client_id))
+
+  const handleCopied = () => {
+    markSent(item.client_id)
+    setSent(true)
+  }
 
   if (!item.ok) {
     return (
@@ -81,25 +121,31 @@ export default function CadenciaClientCard({ item }) {
 
   return (
     <div style={{
-      background: 'rgba(245,245,245,.04)', border: '1px solid rgba(245,245,245,.08)',
+      background: sent ? 'rgba(74,222,128,.04)' : 'rgba(245,245,245,.04)',
+      border: `1px solid ${sent ? 'rgba(74,222,128,.15)' : 'rgba(245,245,245,.08)'}`,
       borderRadius: 10, overflow: 'hidden',
+      transition: 'background .3s, border-color .3s',
     }}>
       <div onClick={() => setExpanded(e => !e)} style={{
         display: 'flex', alignItems: 'center', gap: '.75rem',
         padding: '.875rem 1rem', cursor: 'pointer',
       }}>
         <div style={{
-          width: 36, height: 36, borderRadius: 7, background: 'rgba(203,161,53,.15)',
+          width: 36, height: 36, borderRadius: 7,
+          background: sent ? 'rgba(74,222,128,.15)' : 'rgba(203,161,53,.15)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 14, fontWeight: 700, color: '#CBA135', flexShrink: 0,
+          fontSize: 14, fontWeight: 700,
+          color: sent ? '#4ade80' : '#CBA135',
+          flexShrink: 0,
         }}>
           {item.name.charAt(0)}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontWeight: 600, fontSize: '.875rem', display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+          <div style={{ fontWeight: 600, fontSize: '.875rem', display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
             {item.name}
             {item.platform && <PlatformBadge platform={item.platform} />}
             <PeriodBadge periodType={item.period_type} />
+            {sent && <SentBadge />}
           </div>
           {item.since && (
             <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.4)', marginTop: 2 }}>
@@ -108,7 +154,7 @@ export default function CadenciaClientCard({ item }) {
           )}
         </div>
         <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center' }}>
-          <CopyButton text={item.message} />
+          <CopyButton text={item.message} onCopied={handleCopied} />
           <span style={{
             fontSize: '.8125rem', color: 'rgba(245,245,245,.3)',
             transform: expanded ? 'rotate(180deg)' : 'none',

@@ -140,7 +140,7 @@ def format_segunda(
     total_spend = data.get("total_spend", 0.0)
 
     is_monthly = period_type == "monthly"
-    abertura = f"Bom dia! Aqui o relatório de {_month_label(since)} 👇" if is_monthly else "Bom dia! Aqui o relatório da semana 👇"
+    abertura = f"Relatório de {_month_label(since)} 👇" if is_monthly else "Relatório da semana 👇"
 
     lines = [
         abertura,
@@ -169,8 +169,6 @@ def format_segunda(
 
     if is_monthly:
         lines.append(_mini_report(tipos, total_spend, since, until))
-    else:
-        lines.append("\nMe passa um feedback: quantas visitas vocês agendaram essa semana? Quantas vendas fecharam?")
 
     return "\n".join(lines)
 
@@ -191,7 +189,7 @@ def format_segunda_google(
     total_spend = data.get("total_spend", 0.0)
 
     is_monthly = period_type == "monthly"
-    abertura = f"Bom dia! Aqui o relatório de {_month_label(since)} 👇" if is_monthly else "Bom dia! Aqui o relatório da semana 👇"
+    abertura = f"Relatório de {_month_label(since)} 👇" if is_monthly else "Relatório da semana 👇"
 
     lines = [abertura, "", f"📅 *{d_since} a {d_until}*"]
 
@@ -214,8 +212,6 @@ def format_segunda_google(
 
     if is_monthly:
         lines.append(_mini_report_google(tipos, total_spend, since, until))
-    else:
-        lines.append("\nMe passa um feedback: quantas visitas vocês agendaram essa semana? Quantas vendas fecharam?")
 
     return "\n".join(lines)
 

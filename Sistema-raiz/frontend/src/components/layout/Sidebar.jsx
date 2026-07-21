@@ -1,6 +1,5 @@
 const NAV = [
   { id: 'dashboard', label: 'Dashboard',     icon: '📊' },
-  { id: 'cadencia',  label: 'Cadência',      icon: '📅' },
   { id: 'clients',   label: 'Clientes',      icon: '👥' },
   { id: 'reports',   label: 'Relatórios',    icon: '📄' },
   { id: 'uploader',  label: 'Uploader',      icon: '🚗' },

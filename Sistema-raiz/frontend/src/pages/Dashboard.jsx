@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { api } from '../lib/api'
 import { toast } from '../lib/toast'
 import { getDayInfo, readCadenciaCache, writeCadenciaCache } from '../lib/utils'
@@ -15,42 +15,6 @@ function getUser() {
   try { return JSON.parse(localStorage.getItem('raiz_user')) } catch { return null }
 }
 
-function PlanilhamentoCard({ item, onDismiss }) {
-  const { already_generated, already_synced } = item
-
-  let status, color, bg, border, icon
-  if (!already_generated) {
-    status = 'Aguardando'; color = 'rgba(245,245,245,.45)'; icon = '⏳'
-    bg = 'rgba(245,245,245,.03)'; border = 'rgba(245,245,245,.08)'
-  } else if (already_synced) {
-    status = 'Planilhado'; color = '#4ade80'; icon = '✓'
-    bg = 'rgba(74,222,128,.05)'; border = 'rgba(74,222,128,.18)'
-  } else {
-    status = 'Falhou'; color = '#f87171'; icon = '✗'
-    bg = 'rgba(239,68,68,.06)'; border = 'rgba(239,68,68,.2)'
-  }
-
-  return (
-    <div style={{
-      padding: '.625rem .875rem', borderRadius: 8,
-      display: 'flex', alignItems: 'center', gap: '.75rem',
-      background: bg, border: `1px solid ${border}`,
-    }}>
-      <span style={{ fontSize: 14, color, minWidth: 16, textAlign: 'center' }}>{icon}</span>
-      <span style={{ flex: 1, fontSize: '.875rem', fontWeight: 500 }}>{item.name}</span>
-      <span style={{ fontSize: '.75rem', color }}>{status}</span>
-      {already_synced && (
-        <button onClick={() => onDismiss(item.id)} title="Dispensar"
-          style={{ background: 'transparent', border: 'none', color: 'rgba(245,245,245,.3)',
-            cursor: 'pointer', fontSize: '1rem', padding: '.25rem', lineHeight: 1 }}>
-          ✕
-        </button>
-      )}
-    </div>
-  )
-}
-
-
 export default function Dashboard() {
   const [data, setData]             = useState(null)
   const [loading, setLoading]       = useState(true)
@@ -58,9 +22,6 @@ export default function Dashboard() {
   const [cadencia, setCadencia]     = useState(null)
   const [cadLoading, setCadLoading] = useState(false)
   const today = new Date().toISOString().slice(0, 10)
-  const [dismissed, setDismissed]   = useState(() => {
-    try { return JSON.parse(localStorage.getItem(`plan_ok_${today}`) || '[]') } catch { return [] }
-  })
   const user = getUser()
   const { isSegunda, isQuarta } = getDayInfo()
 
@@ -74,25 +35,28 @@ export default function Dashboard() {
       .catch(() => setBalances([]))
   }, [])
 
-  useEffect(() => {
+  const loadCadencia = useCallback((forceRefresh = false) => {
     if (!isSegunda && !isQuarta) return
     const tab = isSegunda ? 'segunda' : 'quarta'
-    const cached = readCadenciaCache(tab)
-    if (cached) { setCadencia(cached); return }
+    if (!forceRefresh) {
+      const cached = readCadenciaCache(tab)
+      if (cached) { setCadencia(cached); return }
+    }
     setCadLoading(true)
     api.get(`/api/cadencia/${tab}`)
-      .then(data => {
-        writeCadenciaCache(tab, data)
-        setCadencia(data)
-      })
+      .then(d => { writeCadenciaCache(tab, d); setCadencia(d) })
       .catch(() => toast('Erro ao carregar cadência', 'error'))
       .finally(() => setCadLoading(false))
-  }, [isSegunda, isQuarta, today])
+  }, [isSegunda, isQuarta])
 
-  const dismiss = (clientId) => {
-    const next = [...dismissed, clientId]
-    setDismissed(next)
-    try { localStorage.setItem(`plan_ok_${today}`, JSON.stringify(next)) } catch {}
+  useEffect(() => {
+    loadCadencia(false)
+  }, [loadCadencia, today])
+
+  const refreshCadencia = () => {
+    const tab = isSegunda ? 'segunda' : 'quarta'
+    try { localStorage.removeItem(`cadencia_${tab}`) } catch {}
+    loadCadencia(true)
   }
 
   if (loading) return (
@@ -103,16 +67,12 @@ export default function Dashboard() {
 
   if (!data) return null
 
-  const planItems = (data.scheduled_today || []).filter(c => c.has_sheets)
-  const visiblePlanItems = planItems.filter(c => !dismissed.includes(c.id))
-  const allDismissed = planItems.length > 0 && visiblePlanItems.length === 0
-
   return (
     <div style={{ maxWidth: 800, margin: '0 auto' }}>
       {/* Saudação */}
       <div style={{ marginBottom: '2rem' }}>
         <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700 }}>
-          {getGreeting()}, {user?.name ?? 'pessoal'} 👋
+          {getGreeting()}, {user?.name ?? 'pessoal'}
         </h1>
         <p style={{ margin: '.375rem 0 0', fontSize: '.9375rem', color: 'rgba(245,245,245,.5)' }}>
           {data.today_name}, {data.today_formatted}
@@ -126,7 +86,7 @@ export default function Dashboard() {
           {balances === null && <span className="spinner" style={{ width: 14, height: 14 }} />}
         </div>
         {balances !== null && balances.length === 0 && (
-          <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.3)' }}>Nenhum cliente Meta configurado.</div>
+          <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.3)' }}>Nenhum cliente Meta com saldo pré-pago configurado.</div>
         )}
         {balances !== null && balances.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '.5rem' }}>
@@ -156,35 +116,25 @@ export default function Dashboard() {
         )}
       </section>
 
-      {/* Planilhamento de hoje */}
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ margin: '0 0 .75rem', fontSize: '1rem', fontWeight: 600 }}>Planilhamento de hoje</h2>
-        {planItems.length === 0 ? (
-          <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.3)' }}>
-            Nenhum planilhamento agendado para hoje.
-          </div>
-        ) : allDismissed ? (
-          <div style={{ padding: '1rem', background: 'rgba(74,222,128,.06)', borderRadius: 10,
-            textAlign: 'center', color: '#4ade80', fontSize: '.875rem', border: '1px solid rgba(74,222,128,.2)' }}>
-            ✅ Tudo planilhado com sucesso.
-          </div>
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
-            {visiblePlanItems.map(item => (
-              <PlanilhamentoCard key={item.id} item={item} onDismiss={dismiss} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* Cadência de hoje — só aparece em segunda e quarta */}
+      {/* Cadência de hoje — segunda e quarta */}
       {(isSegunda || isQuarta) && (
         <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.75rem', marginBottom: '1rem' }}>
             <h2 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-              Cadência de hoje — {isSegunda ? 'Segunda' : 'Quarta'}
+              Cadência — {isSegunda ? 'Segunda-feira' : 'Quarta-feira'}
             </h2>
-            {cadLoading && <span className="spinner" style={{ width: 14, height: 14 }} />}
+            <button
+              onClick={refreshCadencia}
+              disabled={cadLoading}
+              style={{
+                background: 'transparent', border: '1px solid rgba(245,245,245,.15)',
+                borderRadius: 6, padding: '.3rem .75rem',
+                color: 'rgba(245,245,245,.55)', cursor: cadLoading ? 'default' : 'pointer',
+                fontSize: '.8rem', display: 'flex', alignItems: 'center', gap: '.375rem',
+              }}
+            >
+              {cadLoading ? <span className="spinner" style={{ width: 12, height: 12 }} /> : '↻'} Atualizar
+            </button>
           </div>
 
           {cadLoading && !cadencia && (
