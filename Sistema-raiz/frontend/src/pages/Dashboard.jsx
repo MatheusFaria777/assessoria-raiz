@@ -55,9 +55,11 @@ export default function Dashboard() {
   const [balances, setBalances]     = useState(null)
   const [cadencia, setCadencia]     = useState(null)
   const [cadLoading, setCadLoading] = useState(false)
-  const [syncData, setSyncData]     = useState(null)
-  const [syncOpen, setSyncOpen]     = useState(false)
-  const [syncError, setSyncError]   = useState(null)
+  const [syncData, setSyncData]         = useState(null)
+  const [syncOpen, setSyncOpen]         = useState(false)
+  const [syncError, setSyncError]       = useState(null)
+  const [syncMonthly, setSyncMonthly]   = useState(null)
+  const [syncMOpen, setSyncMOpen]       = useState(false)
   const today = new Date().toISOString().slice(0, 10)
   const user = getUser()
   const { isSegunda, isQuarta } = getDayInfo()
@@ -73,6 +75,9 @@ export default function Dashboard() {
     api.get('/api/dashboard/sync-today')
       .then(setSyncData)
       .catch(() => setSyncData({ synced: 0, errors: 0, clients: [] }))
+    api.get('/api/dashboard/sync-monthly')
+      .then(setSyncMonthly)
+      .catch(() => {})
   }, [])
 
   const loadCadencia = useCallback((forceRefresh = false) => {
@@ -142,6 +147,7 @@ export default function Dashboard() {
                 }}>
                   <span style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.5)', display: 'flex', alignItems: 'center', gap: '.3rem' }}>
                     {isError ? '🔴' : isWarning ? '🟡' : '🟢'} {b.client_name}
+                    {b.platform === 'google' && <span style={{ opacity: .5 }}>· G</span>}
                   </span>
                   <span style={{
                     fontWeight: 700, fontSize: '.9375rem',
@@ -205,6 +211,66 @@ export default function Dashboard() {
                   {c.rows_synced > 0 && (
                     <span style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.3)' }}>{c.rows_synced} aba{c.rows_synced !== 1 ? 's' : ''}</span>
                   )}
+                  {c.status === 'error' && (
+                    <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* Planilhamento mensal */}
+      {syncMonthly && (syncMonthly.synced > 0 || syncMonthly.errors > 0) && (
+        <section style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.75rem', marginBottom: '.625rem' }}>
+            <h2 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
+              Planilhamento mensal
+              {syncMonthly.period && (
+                <span style={{ marginLeft: '.5rem', fontWeight: 400, fontSize: '.8125rem', color: 'rgba(245,245,245,.4)' }}>
+                  {syncMonthly.period}
+                </span>
+              )}
+            </h2>
+            {syncMonthly.clients.length > 0 && (
+              <button
+                onClick={() => setSyncMOpen(o => !o)}
+                style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'rgba(245,245,245,.4)', fontSize: '.8rem', padding: 0 }}
+              >
+                {syncMOpen ? 'ocultar' : 'detalhes'}
+              </button>
+            )}
+          </div>
+          <div style={{
+            padding: '.625rem .875rem', borderRadius: 8,
+            background: syncMonthly.errors > 0 ? 'rgba(239,68,68,.05)' : 'rgba(245,245,245,.04)',
+            border: `1px solid ${syncMonthly.errors > 0 ? 'rgba(239,68,68,.2)' : 'rgba(245,245,245,.08)'}`,
+            display: 'flex', alignItems: 'center', gap: '1.25rem', fontSize: '.875rem',
+          }}>
+            <span>🟢 {syncMonthly.synced} planilhado{syncMonthly.synced !== 1 ? 's' : ''}</span>
+            {syncMonthly.errors > 0 && (
+              <span style={{ color: '#f87171' }}>🔴 {syncMonthly.errors} erro{syncMonthly.errors !== 1 ? 's' : ''}</span>
+            )}
+            <span style={{ marginLeft: 'auto', fontSize: '.75rem', color: 'rgba(245,245,245,.3)' }}>mês anterior</span>
+          </div>
+          {syncMOpen && syncMonthly.clients.length > 0 && (
+            <div style={{ marginTop: '.5rem', display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
+              {syncMonthly.clients.map((c, i) => (
+                <div
+                  key={i}
+                  onClick={() => c.status === 'error' && setSyncError(c)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '.5rem',
+                    padding: '.375rem .625rem', borderRadius: 6, fontSize: '.8125rem',
+                    cursor: c.status === 'error' ? 'pointer' : 'default',
+                    background: c.status === 'error' ? 'rgba(239,68,68,.06)' : 'transparent',
+                  }}
+                >
+                  <span>{c.status === 'success' ? '✓' : c.status === 'error' ? '✕' : '—'}</span>
+                  <span style={{ flex: 1, color: c.status === 'error' ? '#f87171' : 'rgba(245,245,245,.7)' }}>
+                    {c.client_name}
+                  </span>
                   {c.status === 'error' && (
                     <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
                   )}

@@ -137,7 +137,47 @@ def write_weekly(sheet_id: str, tab_name: str, since: str,
             "cols": {k: v[0] for k, v in writes.items()}}
 
 
-def write_monthly(sheet_id: str, since: str, meta_invest: float, meta_leads: int) -> dict:
+MONTHLY_TAB_NAMES = ["VISÃO GERAL", "VISAO GERAL", "Visão Geral", "visão geral",
+                     "Visao Geral", "RESUMO MENSAL", "Resumo Mensal", "resumo mensal"]
+
+# Aliases extras para métricas mensais (se a aba usar nomes diferentes das semanais)
+MONTHLY_HEADER_ALIASES: dict[str, list[str]] = {
+    **HEADER_ALIASES,
+    "invest": ["meta invest", "google invest", "investimento meta", "investimento google",
+               "invest meta", "invest google", "total investido", "investimento total"],
+    "leads":  ["leads meta", "leads google", "total leads", "contatos", "mensagens",
+               "conversões", "conversoes", "resultados"],
+}
+
+
+def _find_columns_monthly(ws) -> dict[str, int]:
+    """Fuzzy column finder para aba de visão geral/resumo mensal."""
+    all_aliases = {**HEADER_ALIASES, **MONTHLY_HEADER_ALIASES}
+    rows = ws.get_all_values()[:8]
+    best_row, best_score = None, 0
+    for row in rows:
+        score = sum(1 for cell in row
+                    if any(cell.strip().lower() == a
+                           for aliases in all_aliases.values() for a in aliases))
+        if score > best_score:
+            best_score, best_row = score, row
+    if not best_row or best_score == 0:
+        return {}
+    col_map: dict[str, int] = {}
+    for col_idx, cell in enumerate(best_row, start=1):
+        cell_lower = cell.strip().lower()
+        for metric, aliases in all_aliases.items():
+            if metric not in col_map and cell_lower in aliases:
+                col_map[metric] = col_idx
+                break
+    return col_map
+
+
+def write_monthly(sheet_id: str, since: str,
+                  invest: float, leads: int,
+                  impressoes: int = 0, link_clicks: int = 0,
+                  revenue: float = 0.0) -> dict:
+    """Escreve métricas mensais na aba VISÃO GERAL (ou equivalente) da planilha do cliente."""
     try:
         gc = _gc()
         sh = gc.open_by_key(sheet_id)
@@ -145,29 +185,55 @@ def write_monthly(sheet_id: str, since: str, meta_invest: float, meta_leads: int
         return {"ok": False, "error": f"Planilha não encontrada: {e}"}
 
     ws = None
-    for tab in ["VISÃO GERAL", "VISAO GERAL", "Visão Geral", "visão geral"]:
+    for tab in MONTHLY_TAB_NAMES:
         try:
             ws = sh.worksheet(tab)
             break
         except Exception:
             continue
     if ws is None:
-        return {"ok": False, "error": "Aba 'VISÃO GERAL' não encontrada"}
+        return {"ok": False, "error": "Aba VISÃO GERAL (ou equivalente) não encontrada"}
 
     dt = datetime.strptime(since, "%Y-%m-%d")
     year = dt.year
     month_lower = MONTHS_PT[dt.month]
 
-    col_b = ws.col_values(2)
-    col_c = ws.col_values(3)
-    row_num = next(
-        (i for i, (y, m) in enumerate(zip(col_b, col_c), 1)
-         if str(y).strip() == str(year) and m.strip().lower() == month_lower),
-        None
-    )
-    if row_num is None:
-        return {"ok": False, "error": f"Mês {month_lower.capitalize()}/{year} não encontrado na aba VISÃO GERAL"}
+    # Localiza a linha do mês correto
+    all_values = ws.get_all_values()
+    row_num = None
+    for i, row in enumerate(all_values, start=1):
+        year_match  = any(str(cell).strip() == str(year) for cell in row)
+        month_match = any(cell.strip().lower() == month_lower for cell in row)
+        if year_match and month_match:
+            row_num = i
+            break
 
-    ws.update_cell(row_num, 16, round(meta_invest, 2))
-    ws.update_cell(row_num, 19, meta_leads)
-    return {"ok": True, "row": row_num, "month": f"{month_lower.capitalize()}/{year}"}
+    if row_num is None:
+        return {"ok": False, "error": f"Mês {month_lower.capitalize()}/{year} não encontrado"}
+
+    # Tenta encontrar colunas via fuzzy matching
+    col_map = _find_columns_monthly(ws)
+    writes: dict[str, tuple[int, float | int]] = {}
+    if col_map:
+        if "spend" in col_map:   writes["spend"]       = (col_map["spend"],       round(invest, 2))
+        if "results" in col_map: writes["results"]     = (col_map["results"],     leads)
+        if "impressoes" in col_map: writes["impressoes"] = (col_map["impressoes"], impressoes)
+        if "link_clicks" in col_map: writes["link_clicks"] = (col_map["link_clicks"], link_clicks)
+        if "revenue" in col_map and revenue > 0:
+            writes["revenue"] = (col_map["revenue"], round(revenue, 2))
+
+    if writes:
+        for col, val in writes.values():
+            ws.update_cell(row_num, col, val)
+    else:
+        # Fallback: posições históricas (col 16 = invest, col 19 = leads)
+        ws.update_cell(row_num, 16, round(invest, 2))
+        ws.update_cell(row_num, 19, leads)
+        writes = {"spend": (16, invest), "results": (19, leads)}
+
+    return {
+        "ok": True,
+        "row": row_num,
+        "month": f"{month_lower.capitalize()}/{year}",
+        "cols": {k: v[0] for k, v in writes.items()},
+    }

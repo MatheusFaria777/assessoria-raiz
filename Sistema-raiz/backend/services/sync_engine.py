@@ -1,14 +1,12 @@
 """
-Motor de planilhamento automático diário.
+Motor de planilhamento automático (semanal e mensal).
 
-Roda de segunda a sexta e planilha os dados da semana completa que acabou:
+Semanal — Segunda a Sexta às 8h:
   since = hoje - 7 dias  |  until = ontem
+  Escreve em cada aba configurada em sheets_tabs / ClientCampaign.
 
-Para cada cliente com planilha configurada:
-  1. Lê sheets_tabs (aba por tipo de campanha)
-  2. Busca dados da Meta para o período
-  3. Chama write_weekly por aba — com auto_append=True
-  4. Loga resultado em SyncLog
+Mensal — Primeira segunda do mês às 8h:
+  Escreve o mês anterior na aba VISÃO GERAL de cada cliente.
 """
 import json
 import logging
@@ -18,10 +16,10 @@ from sqlalchemy import func
 
 from models.client import Client
 from models.report import SyncLog
-from services.cadencia_builder import get_week_range
+from services.cadencia_builder import get_week_range, get_month_range
 from services.meta import get_account_data, grupos_to_tipos
-from services.token_manager import get_meta_token
-from services.sheets import write_weekly, is_configured
+from services.token_manager import get_meta_token, get_google_credentials
+from services.sheets import write_weekly, write_monthly, is_configured
 
 logger = logging.getLogger(__name__)
 
@@ -208,4 +206,167 @@ def run_daily_sync(db: Session) -> dict:
         "clients": client_results,
     }
     logger.info("[sync] Concluído — %d planilhados, %d erros, %d sem semana", synced, errors, skipped)
+    return summary
+
+
+# ─── Planilhamento mensal ──────────────────────────────────────────────────
+
+def _already_synced_monthly(db: Session, client_id: int, since: str) -> bool:
+    """True se já existe sync mensal de sucesso para esse cliente e mês."""
+    return db.query(SyncLog).filter(
+        SyncLog.client_id == client_id,
+        SyncLog.type == "monthly",
+        SyncLog.status == "success",
+        SyncLog.period_start == since,
+    ).first() is not None
+
+
+def _fetch_monthly_data(client, db: Session, since: str, until: str) -> dict | None:
+    """
+    Busca dados agregados do mês anterior para um cliente.
+    Tenta Meta Ads primeiro; se não tiver, tenta Google Ads.
+    Retorna {invest, leads, impressoes, link_clicks, revenue} ou None em caso de erro.
+    """
+    # Meta Ads
+    if client.has_meta and client.meta_account_id:
+        try:
+            token = get_meta_token(client, db)
+            if not token:
+                return None
+            grupos_cfg = grupos_to_tipos(client.campaign_groups) if client.campaign_groups else []
+            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg)
+            tipos = data.get("tipos", {})
+            total_invest     = sum(t.get("spend", 0) for t in tipos.values())
+            total_leads      = sum(t.get("results", 0) for t in tipos.values())
+            total_impressoes = sum(t.get("impressions", 0) for t in tipos.values())
+            total_clicks     = sum(t.get("link_clicks", 0) for t in tipos.values())
+            total_revenue    = sum(t.get("purchase_value", 0) for t in tipos.values())
+            return {
+                "invest": total_invest, "leads": int(total_leads),
+                "impressoes": int(total_impressoes), "link_clicks": int(total_clicks),
+                "revenue": total_revenue,
+            }
+        except Exception as e:
+            logger.warning("[sync-monthly] %s — Erro Meta API: %s", client.name, e)
+            return None
+
+    # Google Ads
+    if client.has_google and client.google_customer_id:
+        try:
+            from services.google_ads import get_account_data as get_google_data
+            gcreds = get_google_credentials(db)
+            if not gcreds:
+                return None
+            data = get_google_data(client.google_customer_id, gcreds, since, until)
+            tipos = data.get("tipos", {})
+            total_invest     = sum(t.get("spend", 0) for t in tipos.values())
+            total_leads      = sum(t.get("results", 0) for t in tipos.values())
+            total_impressoes = sum(t.get("impressions", 0) for t in tipos.values())
+            total_clicks     = sum(t.get("link_clicks", 0) for t in tipos.values())
+            return {
+                "invest": total_invest, "leads": int(total_leads),
+                "impressoes": int(total_impressoes), "link_clicks": int(total_clicks),
+                "revenue": 0.0,
+            }
+        except Exception as e:
+            logger.warning("[sync-monthly] %s — Erro Google API: %s", client.name, e)
+            return None
+
+    return None
+
+
+def run_monthly_sync(db: Session) -> dict:
+    """
+    Roda o planilhamento mensal: escreve mês anterior na aba VISÃO GERAL de cada cliente.
+    Deve ser chamado na primeira segunda do mês às 8h.
+    """
+    since, until = get_month_range()
+    logger.info("[sync-monthly] Iniciando — período %s a %s", since, until)
+
+    clients = (
+        db.query(Client)
+        .filter(
+            Client.active == True,
+            Client.sheets_id != None,
+        )
+        .options(selectinload(Client.campaign_groups))
+        .order_by(Client.name)
+        .all()
+    )
+
+    synced = 0
+    errors = 0
+    skipped = 0
+    client_results = []
+
+    for client in clients:
+        if _already_synced_monthly(db, client.id, since):
+            logger.debug("[sync-monthly] %s — já planilhado, pulando", client.name)
+            continue
+
+        if not is_configured():
+            logger.error("[sync-monthly] Google Sheets não configurado")
+            break
+
+        metrics = _fetch_monthly_data(client, db, since, until)
+        if metrics is None:
+            skipped += 1
+            client_results.append({
+                "client_id": client.id, "client_name": client.name,
+                "status": "skipped", "error": "Sem dados ou plataforma não configurada",
+            })
+            continue
+
+        res = write_monthly(
+            sheet_id    = client.sheets_id,
+            since       = since,
+            invest      = metrics["invest"],
+            leads       = metrics["leads"],
+            impressoes  = metrics["impressoes"],
+            link_clicks = metrics["link_clicks"],
+            revenue     = metrics["revenue"],
+        )
+
+        if res.get("ok"):
+            synced += 1
+            log = SyncLog(
+                client_id    = client.id,
+                type         = "monthly",
+                status       = "success",
+                rows_synced  = 1,
+                period_start = since,
+                period_end   = until,
+            )
+            db.add(log)
+            logger.info("[sync-monthly] %s — OK (%s)", client.name, res.get("month"))
+            client_results.append({
+                "client_id": client.id, "client_name": client.name,
+                "status": "success", "month": res.get("month"),
+            })
+        else:
+            errors += 1
+            log = SyncLog(
+                client_id     = client.id,
+                type          = "monthly",
+                status        = "error",
+                rows_synced   = 0,
+                error_message = res.get("error"),
+                period_start  = since,
+                period_end    = until,
+            )
+            db.add(log)
+            logger.warning("[sync-monthly] %s — ERRO: %s", client.name, res.get("error"))
+            client_results.append({
+                "client_id": client.id, "client_name": client.name,
+                "status": "error", "error": res.get("error"),
+            })
+
+    db.commit()
+    summary = {
+        "since": since, "until": until,
+        "total": len(client_results),
+        "synced": synced, "errors": errors, "skipped": skipped,
+        "clients": client_results,
+    }
+    logger.info("[sync-monthly] Concluído — %d planilhados, %d erros", synced, errors)
     return summary

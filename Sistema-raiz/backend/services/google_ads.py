@@ -125,6 +125,34 @@ def get_account_data(customer_id: str, credentials: dict, since: str, until: str
     return {"tipos": tipos, "total_spend": total_spend, "primary_type": next(iter(tipos), None), "platform": "google"}
 
 
+def get_account_balance(customer_id: str, credentials: dict) -> dict:
+    """
+    Retorna saldo restante de uma conta prepaga Google Ads.
+    Usa account_budget — só funciona para contas com orçamento de conta (pré-pago).
+    Contas no crédito/cartão retornam balance=None.
+    """
+    query = """
+        SELECT account_budget.adjusted_spending_limit_micros,
+               account_budget.amount_served_micros,
+               account_budget.status
+        FROM account_budget
+        WHERE account_budget.status = 'APPROVED'
+    """
+    try:
+        rows = _search(credentials, customer_id, query)
+        if not rows:
+            return {"balance": None}
+        row = rows[0].get("accountBudget", {})
+        approved_str = row.get("adjustedSpendingLimitMicros")
+        served_str   = row.get("amountServedMicros", "0")
+        if not approved_str:
+            return {"balance": None}
+        balance = (int(approved_str) - int(served_str or 0)) / 1_000_000
+        return {"balance": round(balance, 2)}
+    except Exception:
+        return {"balance": None}
+
+
 def get_top_keywords(customer_id: str, credentials: dict, since: str, until: str, n: int = 3) -> list:
     query = f"""
         SELECT ad_group_criterion.keyword.text, metrics.conversions, metrics.clicks
