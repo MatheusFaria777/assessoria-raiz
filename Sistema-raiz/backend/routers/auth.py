@@ -32,14 +32,22 @@ class UserOut(BaseModel):
 
 @router.post("/login")
 def login(data: LoginIn, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == data.email, User.active == True).first()
-    if not user or not verify_password(data.password, user.password_hash):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Email ou senha incorretos")
-    from datetime import datetime
-    user.last_login = datetime.utcnow()
-    db.commit()
-    token = create_token(user.id, user.role)
-    return {"access_token": token, "token_type": "bearer", "user": {"id": user.id, "name": user.name, "email": user.email, "role": user.role}}
+    import traceback, logging
+    logger = logging.getLogger("auth.login")
+    try:
+        user = db.query(User).filter(User.email == data.email, User.active == True).first()
+        if not user or not verify_password(data.password, user.password_hash):
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Email ou senha incorretos")
+        from datetime import datetime
+        user.last_login = datetime.utcnow()
+        db.commit()
+        token = create_token(user.id, user.role)
+        return {"access_token": token, "token_type": "bearer", "user": {"id": user.id, "name": user.name, "email": user.email, "role": user.role}}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error("Erro no login: %s\n%s", e, traceback.format_exc())
+        raise HTTPException(status_code=500, detail=f"Erro interno: {type(e).__name__}: {e}")
 
 
 @router.get("/me", response_model=UserOut)
