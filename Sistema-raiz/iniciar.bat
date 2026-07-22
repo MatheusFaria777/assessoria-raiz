@@ -1,5 +1,5 @@
 @echo off
-set PYTHON=C:\Users\mathe\AppData\Local\Programs\Python\Python314\python.exe
+set PYTHON=%~dp0backend\venv\Scripts\python.exe
 set DIR=%~dp0
 
 echo Encerrando sessoes anteriores...
