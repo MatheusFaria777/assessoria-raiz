@@ -3217,3 +3217,14 @@ To have this happen automatically for branches without a tracking
 upstream, see 'push.autoSetupRemote' in 'git help config'.
 
 [22/07/2026 10:58:33,68] Mudancas sincronizadas 
+[22/07/2026 11:28:32,68] Iniciando auto-sync 
+There is no tracking information for the current branch.
+Please specify which branch you want to rebase against.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> dev
+
