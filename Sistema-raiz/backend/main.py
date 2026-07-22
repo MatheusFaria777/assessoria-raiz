@@ -25,30 +25,31 @@ async def lifespan(app: FastAPI):
 
 
 def _run_migrations():
-    """Adiciona colunas novas em tabelas existentes (idempotente)."""
+    """Adiciona colunas novas em tabelas existentes (idempotente). Compatível com SQLite."""
     from database import engine
-    from sqlalchemy import text
-    migrations = [
-        "ALTER TABLE adsets ADD COLUMN IF NOT EXISTS lead_gen_form_id VARCHAR",
-        """CREATE TABLE IF NOT EXISTS client_campaigns (
-            id SERIAL PRIMARY KEY,
-            client_id INTEGER NOT NULL REFERENCES clients(id),
-            meta_campaign_id VARCHAR NOT NULL,
-            name VARCHAR,
-            campaign_type VARCHAR NOT NULL,
-            sheet_tab VARCHAR,
-            active BOOLEAN DEFAULT TRUE
-        )""",
-        "ALTER TABLE sync_logs ADD COLUMN IF NOT EXISTS period_start VARCHAR",
-        "ALTER TABLE sync_logs ADD COLUMN IF NOT EXISTS period_end VARCHAR",
-    ]
+    from sqlalchemy import text, inspect as sa_inspect
+
+    inspector = sa_inspect(engine)
+    tables = inspector.get_table_names()
+
     with engine.connect() as conn:
-        for sql in migrations:
-            try:
-                conn.execute(text(sql))
+        if "adsets" in tables:
+            cols = {c["name"] for c in inspector.get_columns("adsets")}
+            if "lead_gen_form_id" not in cols:
+                conn.execute(text("ALTER TABLE adsets ADD COLUMN lead_gen_form_id VARCHAR"))
                 conn.commit()
-            except Exception as e:
-                print(f"[migration] aviso: {e}", flush=True)
+            if "template_ad_id" not in cols:
+                conn.execute(text("ALTER TABLE adsets ADD COLUMN template_ad_id VARCHAR"))
+                conn.commit()
+
+        if "sync_logs" in tables:
+            cols = {c["name"] for c in inspector.get_columns("sync_logs")}
+            if "period_start" not in cols:
+                conn.execute(text("ALTER TABLE sync_logs ADD COLUMN period_start VARCHAR"))
+                conn.commit()
+            if "period_end" not in cols:
+                conn.execute(text("ALTER TABLE sync_logs ADD COLUMN period_end VARCHAR"))
+                conn.commit()
 
 
 def _reset_stuck_processing():
