@@ -33,6 +33,10 @@ def _ig_session(sessionid: str) -> requests.Session:
         "Accept": "*/*",
         "Accept-Language": "pt-BR,pt;q=0.9",
     })
+    # Proxy residencial — necessário quando rodando em IPs de datacenter (Railway, etc.)
+    proxy_url = os.getenv("INSTAGRAM_PROXY")
+    if proxy_url:
+        s.proxies = {"http": proxy_url, "https": proxy_url}
     return s
 
 
