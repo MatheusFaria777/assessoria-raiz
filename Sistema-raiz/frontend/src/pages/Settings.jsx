@@ -207,8 +207,7 @@ function TokenField({ label, settingKey, hint }) {
   const [saving, setSaving]   = useState(false)
 
   useEffect(() => {
-    fetch(`/api/settings/${settingKey}`)
-      .then(r => r.json())
+    api.get(`/api/settings/${settingKey}`)
       .then(d => setPreview(d.preview))
       .catch(() => {})
   }, [settingKey])
@@ -217,12 +216,7 @@ function TokenField({ label, settingKey, hint }) {
     if (!value.trim()) { toast('Cole o token antes de salvar', 'error'); return }
     setSaving(true)
     try {
-      const r = await fetch(`/api/settings/${settingKey}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ value: value.trim(), is_encrypted: true }),
-      })
-      const d = await r.json()
+      const d = await api.put(`/api/settings/${settingKey}`, { value: value.trim(), is_encrypted: true })
       setPreview(d.preview)
       setValue('')
       toast('Token salvo com segurança!')
