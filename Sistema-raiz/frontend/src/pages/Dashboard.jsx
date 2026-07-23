@@ -55,6 +55,7 @@ export default function Dashboard() {
   const [balances, setBalances]     = useState(null)
   const [cadencia, setCadencia]     = useState(null)
   const [cadLoading, setCadLoading] = useState(false)
+  const [cadPreview, setCadPreview] = useState(null) // null | 'segunda' | 'quarta' — pré-visualização manual fora do dia real
   const [syncData, setSyncData]         = useState(null)
   const [syncOpen, setSyncOpen]         = useState(false)
   const [syncError, setSyncError]       = useState(null)
@@ -80,9 +81,11 @@ export default function Dashboard() {
       .catch(() => {})
   }, [])
 
+  const activeCadTab = isSegunda ? 'segunda' : isQuarta ? 'quarta' : cadPreview
+
   const loadCadencia = useCallback((forceRefresh = false) => {
-    if (!isSegunda && !isQuarta) return
-    const tab = isSegunda ? 'segunda' : 'quarta'
+    if (!activeCadTab) return
+    const tab = activeCadTab
     if (!forceRefresh) {
       const cached = readCadenciaCache(tab)
       if (cached) { setCadencia(cached); return }
@@ -92,15 +95,15 @@ export default function Dashboard() {
       .then(d => { writeCadenciaCache(tab, d); setCadencia(d) })
       .catch(() => toast('Erro ao carregar cadência', 'error'))
       .finally(() => setCadLoading(false))
-  }, [isSegunda, isQuarta])
+  }, [activeCadTab])
 
   useEffect(() => {
     loadCadencia(false)
   }, [loadCadencia, today])
 
   const refreshCadencia = () => {
-    const tab = isSegunda ? 'segunda' : 'quarta'
-    clearCadenciaCache(tab)
+    if (!activeCadTab) return
+    clearCadenciaCache(activeCadTab)
     loadCadencia(true)
   }
 
@@ -283,12 +286,39 @@ export default function Dashboard() {
 
       <SyncErrorPopup client={syncError} onClose={() => setSyncError(null)} />
 
-      {/* Cadência de hoje — segunda e quarta */}
-      {(isSegunda || isQuarta) && (
+      {/* Cadência de hoje — segunda e quarta (ou pré-visualização manual em outros dias) */}
+      {!isSegunda && !isQuarta && (
+        <section style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.5rem' }}>
+          <span style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.4)' }}>
+            Cadência só roda automaticamente seg/qua. Pré-visualizar:
+          </span>
+          <button
+            onClick={() => setCadPreview(p => p === 'segunda' ? null : 'segunda')}
+            className={cadPreview === 'segunda' ? 'btn-primary' : 'btn-secondary'}
+            style={{ padding: '.3rem .75rem', fontSize: '.8rem' }}
+          >
+            Segunda
+          </button>
+          <button
+            onClick={() => setCadPreview(p => p === 'quarta' ? null : 'quarta')}
+            className={cadPreview === 'quarta' ? 'btn-primary' : 'btn-secondary'}
+            style={{ padding: '.3rem .75rem', fontSize: '.8rem' }}
+          >
+            Quarta
+          </button>
+        </section>
+      )}
+
+      {activeCadTab && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.75rem', marginBottom: '1rem' }}>
             <h2 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>
-              Cadência — {isSegunda ? 'Segunda-feira' : 'Quarta-feira'}
+              Cadência — {activeCadTab === 'segunda' ? 'Segunda-feira' : 'Quarta-feira'}
+              {cadPreview && !isSegunda && !isQuarta && (
+                <span style={{ fontSize: '.75rem', fontWeight: 400, color: 'rgba(245,245,245,.35)', marginLeft: '.5rem' }}>
+                  (pré-visualização)
+                </span>
+              )}
             </h2>
             <button
               onClick={refreshCadencia}
