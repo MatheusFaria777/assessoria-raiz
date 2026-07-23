@@ -148,13 +148,20 @@ def format_segunda(
         f"📅 *{d_since} a {d_until}*",
     ]
 
-    for config in grupos_cfg:
-        tipo = config["tipo"]
+    # Sem grupos de campanha (cliente usando mapeamento explícito da aba Campanhas em vez
+    # do sistema antigo de palavra-chave) — itera direto nos dados, mesma lógica do branch Google acima.
+    itens = (
+        [(config["tipo"], config.get("label")) for config in grupos_cfg]
+        if grupos_cfg else
+        [(tipo, None) for tipo in tipos]
+    )
+
+    for tipo, fallback_label in itens:
         d = tipos.get(tipo)
         if not d or d["results"] == 0:
             continue
 
-        label = d.get("label", config.get("label", tipo.capitalize()))
+        label = d.get("label", fallback_label or tipo.capitalize())
         metrica = d.get("metrica", "Resultado")
         cpr = d.get("cost_per_result", 0.0)
         spend = d.get("spend", 0.0)
@@ -245,6 +252,7 @@ def format_quarta(
     contexto: str = "",
     period_type: str = "weekly",
     since: str = "",
+    metrica_hint: str = None,
 ) -> str:
     """Mensagem de quarta: top 3 criativos com métrica específica do tipo de campanha."""
     if not top_ads:
@@ -256,6 +264,8 @@ def format_quarta(
             if config["tipo"] == primary_type:
                 metrica_label = config.get("metrica", "resultados").lower()
                 break
+    elif metrica_hint:
+        metrica_label = metrica_hint.lower()
 
     is_monthly = period_type == "monthly"
     periodo_label = f"de {_month_label(since)}" if is_monthly and since else "dessa semana"

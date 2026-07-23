@@ -2,20 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { api } from '../../lib/api'
 import { toast } from '../../lib/toast'
 
-const CAMPAIGN_TYPES = [
-  { value: 'mensagem',    label: 'Mensagem' },
-  { value: 'lead',        label: 'Lead' },
-  { value: 'formulario',  label: 'Formulário' },
-  { value: 'engajamento', label: 'Engajamento' },
-  { value: 'vendas',      label: 'Vendas' },
-  { value: 'alcance',     label: 'Alcance' },
-  { value: 'trafego',     label: 'Tráfego' },
-  { value: 'consignacao', label: 'Consignação' },
-  { value: 'vagas',       label: 'Vagas' },
-  { value: 'manutencao',  label: 'Manutenção' },
-  { value: 'live',        label: 'Live' },
-]
-
 const EMPTY_ADSET = {
   label: '', adset_id: '', page_id: '', whatsapp: '',
   instagram_actor_id: '', store_name: '', store_description: '',
@@ -81,12 +67,13 @@ export default function ClientModal({ client, onClose, onSaved }) {
     try {
       const d = await api.get(`/api/clients/${client.id}/meta-campaigns`)
       const savedById = Object.fromEntries(campaignMappings.map(m => [m.meta_campaign_id, m]))
-      // Merge campanhas da API com mapeamentos já salvos
+      // Merge campanhas da API com mapeamentos já salvos — sem mapeamento salvo, usa o
+      // palpite de tipo que o Meta sugere pelo objetivo da campanha (pode trocar na hora)
       setMetaCampaigns(d.campaigns.map(c => ({
         id: c.id,
         name: c.name,
         status: c.status,
-        campaign_type: savedById[c.id]?.campaign_type || '',
+        campaign_type: savedById[c.id]?.campaign_type ?? c.suggested_type ?? '',
         sheet_tab: savedById[c.id]?.sheet_tab || '',
       })))
     } catch (e) {
@@ -302,6 +289,14 @@ export default function ClientModal({ client, onClose, onSaved }) {
 
 /* ── CampaignsTab ─────────────────────────────────────────────────────────── */
 function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMeta, onFetch, onUpdate }) {
+  const [campaignTypes, setCampaignTypes] = useState([])
+
+  useEffect(() => {
+    api.get('/api/clients/campaign-mapping/types')
+      .then(d => setCampaignTypes(d.types || []))
+      .catch(() => {})
+  }, [])
+
   if (!client?.id) {
     return (
       <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(245,245,245,.4)', fontSize: '.875rem' }}>
@@ -348,6 +343,7 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
             <CampaignRow
               key={c.id}
               campaign={c}
+              campaignTypes={campaignTypes}
               onUpdate={onUpdate}
             />
           ))}
@@ -363,7 +359,7 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
   )
 }
 
-function CampaignRow({ campaign, onUpdate }) {
+function CampaignRow({ campaign, campaignTypes, onUpdate }) {
   const isActive = campaign.status === 'ACTIVE'
   return (
     <div style={{
@@ -391,7 +387,7 @@ function CampaignRow({ campaign, onUpdate }) {
         style={{ fontSize: '.8rem' }}
       >
         <option value="">— ignorar —</option>
-        {CAMPAIGN_TYPES.map(t => (
+        {campaignTypes.map(t => (
           <option key={t.value} value={t.value}>{t.label}</option>
         ))}
       </select>

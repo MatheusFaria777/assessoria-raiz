@@ -8,7 +8,6 @@ Semanal — Segunda a Sexta às 8h:
 Mensal — Primeira segunda do mês às 8h:
   Escreve o mês anterior na aba VISÃO GERAL de cada cliente.
 """
-import json
 import logging
 from datetime import date
 from sqlalchemy.orm import Session, selectinload
@@ -20,6 +19,7 @@ from services.cadencia_builder import get_week_range, get_month_range
 from services.meta import get_account_data, grupos_to_tipos
 from services.token_manager import get_meta_token, get_google_credentials
 from services.sheets import write_weekly, write_monthly, is_configured
+from services.campaign_config import get_campaign_map, get_sheet_map
 
 logger = logging.getLogger(__name__)
 
@@ -33,23 +33,6 @@ def _already_synced(db: Session, client_id: int, since: str) -> bool:
         SyncLog.period_start == since,
         func.date(SyncLog.synced_at) == today,
     ).first() is not None
-
-
-def _sheets_map(client) -> dict:
-    """
-    Retorna {tipo: tab_name} para o cliente.
-    Prioriza ClientCampaign se configurado, senão sheets_tabs JSON.
-    """
-    if client.campaigns:
-        m = {c.campaign_type: c.sheet_tab for c in client.campaigns if c.active and c.sheet_tab}
-        if m:
-            return m
-    if client.sheets_tabs:
-        try:
-            return json.loads(client.sheets_tabs)
-        except Exception:
-            pass
-    return {}
 
 
 def sync_client(client, db: Session, since: str, until: str) -> dict:
@@ -71,7 +54,7 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
         result.update(status="skipped", error="Planilha não configurada")
         return result
 
-    s_map = _sheets_map(client)
+    s_map = get_sheet_map(client)
     if not s_map:
         result.update(status="skipped", error="Nenhuma aba de campanha configurada")
         return result
@@ -96,7 +79,7 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
              "metrica": "Resultado", "acao": None, "campo": None}
             for t in s_map
         ]
-        data  = get_account_data(client.meta_account_id, token, since, until, grupos_cfg)
+        data  = get_account_data(client.meta_account_id, token, since, until, grupos_cfg, campaign_map=get_campaign_map(client))
         tipos = data.get("tipos", {})
     except Exception as e:
         result.update(status="error", error=f"Erro Meta API: {e}")
@@ -234,7 +217,7 @@ def _fetch_monthly_data(client, db: Session, since: str, until: str) -> dict | N
             if not token:
                 return None
             grupos_cfg = grupos_to_tipos(client.campaign_groups) if client.campaign_groups else []
-            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg)
+            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg, campaign_map=get_campaign_map(client))
             tipos = data.get("tipos", {})
             total_invest     = sum(t.get("spend", 0) for t in tipos.values())
             total_leads      = sum(t.get("results", 0) for t in tipos.values())
@@ -289,7 +272,7 @@ def run_monthly_sync(db: Session) -> dict:
             Client.active == True,
             Client.sheets_id != None,
         )
-        .options(selectinload(Client.campaign_groups))
+        .options(selectinload(Client.campaign_groups), selectinload(Client.campaigns))
         .order_by(Client.name)
         .all()
     )

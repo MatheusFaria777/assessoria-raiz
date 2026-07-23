@@ -36,7 +36,7 @@ _TYPE_TO_CONTAGEM = {
 _PRIMARY_CONTAGEM = {"mensagem", "lead"}
 
 CAMPAIGN_FIELDS = ["campaign_id", "campaign_name", "spend", "actions", "action_values", "reach", "impressions", "inline_link_clicks"]
-AD_FIELDS = ["ad_id", "ad_name", "campaign_name", "actions", "spend"]
+AD_FIELDS = ["ad_id", "ad_name", "campaign_id", "campaign_name", "actions", "spend"]
 
 
 def _init(token: str):
@@ -158,12 +158,6 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     explicit: dict = _build_campaign_map_from_db(campaign_map) if campaign_map else {}
     use_explicit = bool(explicit)
 
-    primary_list = (
-        [cid for cid, cfg in explicit.items() if cfg["tipo_contagem"] in _PRIMARY_CONTAGEM]
-        if use_explicit
-        else [t["tipo"] for t in tipos_cfg if t.get("tipo_contagem") in _PRIMARY_CONTAGEM]
-    )
-
     rows = list(account.get_insights(
         fields=CAMPAIGN_FIELDS,
         params={
@@ -186,8 +180,9 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
                 # Campanha não mapeada → ignora (não vai para "outro")
                 continue
             tipo = config["type"]
-            # Agrupa por "tipo|campaign_id" para suportar dois campanhas do mesmo tipo
-            chave = f"{tipo}|{campaign_id}"
+            # Agrupa por tipo (não por campanha) — duas campanhas do mesmo tipo somam no mesmo bucket,
+            # igual ao modo por palavra-chave, pra bater com o formato que _sheets_map()/relatório esperam
+            chave = tipo
         else:
             # Fallback: keyword detection por nome
             nome = row.get("campaign_name", "")
@@ -208,7 +203,7 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
                 "results": 0.0, "spend": 0.0, "impressions": 0,
                 "link_clicks": 0, "purchase_value": 0.0,
                 "label": config["label"], "metrica": config["metrica"],
-                "tipo": tipo,
+                "tipo": tipo, "tipo_contagem": config.get("tipo_contagem"),
             }
 
         agregado[chave]["spend"] += spend
@@ -232,28 +227,16 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         dados["results"] = int(round(r))
         dados["cost_per_result"] = dados["spend"] / r if r > 0 else 0.0
 
-    # primary_type: tipo com mais resultados entre os tipos primários
+    # primary_type: tipo com mais resultados entre os tipos primários (mensagem/lead) — mesmo cálculo pros dois modos
     primary_type = None
     best_results = 0
-    if use_explicit:
-        # No modo explícito, primary_type é o tipo (não a chave composta)
-        tipo_results: dict[str, int] = {}
-        for chave, dados in agregado.items():
-            tipo = dados.get("tipo", chave)
-            tipo_contagem = explicit.get(chave.split("|")[1] if "|" in chave else "", {}).get("tipo_contagem", "")
-            if tipo_contagem in _PRIMARY_CONTAGEM:
-                tipo_results[tipo] = tipo_results.get(tipo, 0) + dados["results"]
-        for tipo, results in tipo_results.items():
-            if results > best_results:
-                best_results = results
-                primary_type = tipo
-    else:
-        for pt in primary_list:
-            if pt in agregado and agregado[pt]["results"] > best_results:
-                best_results = agregado[pt]["results"]
-                primary_type = pt
+    for chave, dados in agregado.items():
+        if chave == "outro":
+            continue
+        if dados.get("tipo_contagem") in _PRIMARY_CONTAGEM and dados["results"] > best_results:
+            best_results = dados["results"]
+            primary_type = chave
 
-    # Para o modo explícito, exportar com chave = label da campanha (para o relatório)
     tipos_out = {}
     for chave, dados in agregado.items():
         if chave == "outro":
@@ -268,12 +251,19 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     }
 
 
-def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: list, primary_type: str | None = None, n: int = 3) -> list:
+def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: list, primary_type: str | None = None, n: int = 3, campaign_map: list | None = None) -> list:
     """Retorna top N anúncios com melhor performance usando requests direto."""
     import requests as _req
 
     act = _ensure_act(account_id)
-    primary_config = _config_for(primary_type, tipos_cfg) if primary_type else None
+    explicit = _build_campaign_map_from_db(campaign_map) if campaign_map else {}
+    use_explicit = bool(explicit)
+
+    if use_explicit:
+        primary_config = next((cfg for cfg in explicit.values() if cfg["type"] == primary_type), None) if primary_type else None
+        primary_campaign_ids = {cid for cid, cfg in explicit.items() if cfg["type"] == primary_type} if primary_type else set(explicit.keys())
+    else:
+        primary_config = _config_for(primary_type, tipos_cfg) if primary_type else None
 
     # Busca insights por anúncio
     resp = _req.get(
@@ -293,20 +283,24 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
 
     rows = data.get("data", [])
 
-    def _matches(campaign_name: str) -> bool:
+    def _matches(row) -> bool:
+        if use_explicit:
+            return str(row.get("campaign_id", "")) in primary_campaign_ids
         if not primary_config:
             return True
-        return any(p in campaign_name.lower() for p in primary_config["palavras"])
+        return any(p in row.get("campaign_name", "").lower() for p in primary_config["palavras"])
 
     def _score(row) -> float:
         actions = row.get("actions", [])
         if primary_config and primary_config.get("acao"):
             return _sum_action(actions, primary_config["acao"])
+        if use_explicit:
+            return sum(_sum_action(actions, cfg["acao"]) for cfg in explicit.values() if cfg.get("acao"))
         return sum(_sum_action(actions, cfg["acao"]) for cfg in tipos_cfg if cfg.get("acao"))
 
     filtered = []
     for row in rows:
-        if not _matches(row.get("campaign_name", "")):
+        if not _matches(row):
             continue
         score = _score(row)
         if score > 0:

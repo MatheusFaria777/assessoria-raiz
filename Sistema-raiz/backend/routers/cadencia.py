@@ -5,6 +5,7 @@ from database import get_db
 from models.client import Client
 from services.meta import get_account_data, get_top_ads, grupos_to_tipos
 from services.token_manager import get_meta_token, get_google_credentials
+from services.campaign_config import get_campaign_map
 from services.cadencia_builder import (
     format_segunda, format_quarta, get_week_range, get_month_range, is_first_weekday,
     format_segunda_google, format_quarta_google,
@@ -17,7 +18,7 @@ def _meta_clients(db: Session) -> list:
     return (
         db.query(Client)
         .filter(Client.active == True, Client.has_meta == True, Client.cadencia_ativa == True)
-        .options(selectinload(Client.campaign_groups))
+        .options(selectinload(Client.campaign_groups), selectinload(Client.campaigns))
         .order_by(Client.name)
         .all()
     )
@@ -62,11 +63,12 @@ def cadencia_segunda(db: Session = Depends(get_db)):
                 continue
 
             grupos_cfg = grupos_to_tipos(client.campaign_groups)
-            if not grupos_cfg:
-                results.append({"client_id": client.id, "name": client.name, "ok": False, "error": "Grupos de campanha não configurados", "platform": "meta"})
+            campaign_map = get_campaign_map(client)
+            if not grupos_cfg and not campaign_map:
+                results.append({"client_id": client.id, "name": client.name, "ok": False, "error": "Grupos de campanha ou aba Campanhas não configurados", "platform": "meta"})
                 continue
 
-            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg)
+            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg, campaign_map=campaign_map)
             message = format_segunda(
                 client.name, since, until, data, grupos_cfg,
                 contexto=client.cadencia_contexto or "",
@@ -137,14 +139,15 @@ def cadencia_quarta(db: Session = Depends(get_db)):
                 continue
 
             grupos_cfg = grupos_to_tipos(client.campaign_groups)
-            if not grupos_cfg:
-                results.append({"client_id": client.id, "name": client.name, "ok": False, "error": "Grupos de campanha não configurados", "platform": "meta"})
+            campaign_map = get_campaign_map(client)
+            if not grupos_cfg and not campaign_map:
+                results.append({"client_id": client.id, "name": client.name, "ok": False, "error": "Grupos de campanha ou aba Campanhas não configurados", "platform": "meta"})
                 continue
 
-            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg)
+            data = get_account_data(client.meta_account_id, token, since, until, grupos_cfg, campaign_map=campaign_map)
             primary_type = data.get("primary_type")
             top_ads = get_top_ads(
-                client.meta_account_id, token, since, until, grupos_cfg, primary_type
+                client.meta_account_id, token, since, until, grupos_cfg, primary_type, campaign_map=campaign_map
             )
             message = format_quarta(
                 client.name, top_ads,
@@ -153,6 +156,7 @@ def cadencia_quarta(db: Session = Depends(get_db)):
                 contexto=client.cadencia_contexto or "",
                 period_type=period_type,
                 since=since,
+                metrica_hint=data.get("tipos", {}).get(primary_type, {}).get("metrica") if primary_type else None,
             )
             results.append({
                 "client_id": client.id,

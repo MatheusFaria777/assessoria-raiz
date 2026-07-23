@@ -17,6 +17,7 @@ from config import decrypt
 from services.token_manager import get_meta_token
 from services.meta import get_account_data as meta_data, get_top_ads, grupos_to_tipos
 from services.report_builder import format_report
+from services.campaign_config import get_campaign_map, get_sheet_map
 
 router = APIRouter()
 
@@ -66,25 +67,26 @@ def generate_report(req: GenerateRequest, db: Session = Depends(get_db)):
         if not token:
             raise HTTPException(status_code=400, detail="Token Meta não configurado. Configure o System User Token em Configurações → Meta Ads.")
 
-        # Grupos associados ao cliente
+        # Grupos associados ao cliente (sistema antigo) + mapeamento explícito (aba Campanhas, tem prioridade)
         grupos = client.campaign_groups
         tipos_cfg = grupos_to_tipos(grupos) if grupos else []
+        campaign_map = get_campaign_map(client)
 
         try:
-            current = meta_data(client.meta_account_id, token, req.since, req.until, tipos_cfg)
+            current = meta_data(client.meta_account_id, token, req.since, req.until, tipos_cfg, campaign_map=campaign_map)
         except Exception as e:
             raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
 
         previous = None
         if req.include_previous:
             try:
-                previous = meta_data(client.meta_account_id, token, prev_since, prev_until, tipos_cfg)
+                previous = meta_data(client.meta_account_id, token, prev_since, prev_until, tipos_cfg, campaign_map=campaign_map)
             except Exception:
                 pass
 
         top_ads = []
         try:
-            top_ads = get_top_ads(client.meta_account_id, token, req.since, req.until, tipos_cfg, current.get("primary_type"), n=3)
+            top_ads = get_top_ads(client.meta_account_id, token, req.since, req.until, tipos_cfg, current.get("primary_type"), n=3, campaign_map=campaign_map)
         except Exception:
             pass
 
@@ -278,7 +280,6 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
     from services.meta import get_account_data, grupos_to_tipos
     from services.sheets import write_weekly, is_configured
     from models.report import SyncLog
-    import json as _json
 
     r = db.query(Report).filter(Report.id == report_id).first()
     if not r:
@@ -289,7 +290,8 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
     # Sync automático da planilha ao marcar enviado
     sync_result = None
     client = db.query(Client).filter(Client.id == r.client_id).first()
-    if client and client.sheets_id and client.sheets_tabs and is_configured():
+    sheets_tabs = get_sheet_map(client) if client else {}
+    if client and client.sheets_id and sheets_tabs and is_configured():
         try:
             since = str(r.period_start)
             until = str(r.period_end)
@@ -303,10 +305,9 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
             else:
                 token = get_meta_token(client, db)
                 tipos_cfg = grupos_to_tipos(client.campaign_groups) if client.campaign_groups else []
-                data = get_account_data(client.meta_account_id, token, since, until, tipos_cfg)
+                data = get_account_data(client.meta_account_id, token, since, until, tipos_cfg, campaign_map=get_campaign_map(client))
 
             tipos = data.get("tipos", {}) if data else {}
-            sheets_tabs = _json.loads(client.sheets_tabs)
 
             tab_candidates = {}
             for tipo_name, tipo_data in tipos.items():

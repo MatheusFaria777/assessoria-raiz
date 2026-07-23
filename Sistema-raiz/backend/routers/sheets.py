@@ -11,6 +11,7 @@ from config import decrypt
 from services.token_manager import get_meta_token
 from services.meta import get_account_data as meta_data, grupos_to_tipos
 from services import sheets as sheets_svc
+from services.campaign_config import get_campaign_map, get_sheet_map
 
 router = APIRouter()
 
@@ -61,7 +62,7 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
             raise HTTPException(status_code=400, detail="Token Meta não configurado. Configure o System User Token em Configurações → Meta Ads.")
         tipos_cfg = grupos_to_tipos(client.campaign_groups) if client.campaign_groups else []
         try:
-            data = meta_data(client.meta_account_id, token, req.since, req.until, tipos_cfg)
+            data = meta_data(client.meta_account_id, token, req.since, req.until, tipos_cfg, campaign_map=get_campaign_map(client))
         except Exception as e:
             raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
 
@@ -72,8 +73,7 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
     errors = []
 
     if req.sync_type == "weekly":
-        from services.sync_engine import _sheets_map
-        sheets_tabs = _sheets_map(client)
+        sheets_tabs = get_sheet_map(client)
         if not sheets_tabs:
             raise HTTPException(status_code=400, detail="Nenhuma aba configurada para este cliente. Configure em Clientes → aba Campanhas (ou aba Planilha, no formato antigo).")
 

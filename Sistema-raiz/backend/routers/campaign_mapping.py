@@ -11,6 +11,7 @@ from database import get_db
 from models.client import Client
 from models.campaign import ClientCampaign
 from services.token_manager import get_meta_token
+from services.campaign_config import CAMPAIGN_TYPES, VALID_TYPES, suggest_type
 
 router = APIRouter()
 
@@ -27,10 +28,10 @@ class CampaignMappingBulk(BaseModel):
     campaigns: List[CampaignMappingItem]
 
 
-VALID_TYPES = {
-    "mensagem", "lead", "formulario", "engajamento",
-    "vendas", "alcance", "trafego", "consignacao", "vagas", "manutencao", "live",
-}
+@router.get("/campaign-mapping/types")
+def list_campaign_types():
+    """Lista única de tipos de campanha válidos — o frontend consulta em vez de ter cópia própria."""
+    return {"types": CAMPAIGN_TYPES}
 
 
 @router.get("/{client_id}/meta-campaigns")
@@ -49,6 +50,8 @@ def list_meta_campaigns(client_id: int, db: Session = Depends(get_db)):
     try:
         from services.meta import get_campaigns_for_account
         campaigns = get_campaigns_for_account(client.meta_account_id, token)
+        for c in campaigns:
+            c["suggested_type"] = suggest_type(c.get("objective"))
         return {"campaigns": campaigns}
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
