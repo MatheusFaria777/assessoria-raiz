@@ -72,9 +72,10 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
     errors = []
 
     if req.sync_type == "weekly":
-        sheets_tabs = json.loads(client.sheets_tabs or "{}") if client.sheets_tabs else {}
+        from services.sync_engine import _sheets_map
+        sheets_tabs = _sheets_map(client)
         if not sheets_tabs:
-            raise HTTPException(status_code=400, detail="Nenhuma aba configurada para este cliente. Configure em Clientes → aba Planilha.")
+            raise HTTPException(status_code=400, detail="Nenhuma aba configurada para este cliente. Configure em Clientes → aba Campanhas (ou aba Planilha, no formato antigo).")
 
         # Agrupa tipos por aba — primeiro com dados vence
         tab_candidates: dict[str, dict] = {}
