@@ -3757,3 +3757,15 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> dev
 
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[dev 3609f66] auto-sync: 23/07/2026 16:58:33,82
+ 1 file changed, 11 insertions(+)
+fatal: The current branch dev has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin dev
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+[23/07/2026 16:58:33,82] Mudancas sincronizadas 

@@ -33,7 +33,7 @@ VALID_TYPES = {
 }
 
 
-@router.get("/meta-campaigns")
+@router.get("/{client_id}/meta-campaigns")
 def list_meta_campaigns(client_id: int, db: Session = Depends(get_db)):
     """Busca campanhas ao vivo da conta Meta do cliente."""
     client = db.query(Client).filter(Client.id == client_id, Client.active == True).first()
@@ -54,7 +54,7 @@ def list_meta_campaigns(client_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
 
 
-@router.get("/campaign-mapping")
+@router.get("/{client_id}/campaign-mapping")
 def get_campaign_mapping(client_id: int, db: Session = Depends(get_db)):
     """Retorna o mapeamento salvo de campanhas do cliente."""
     client = db.query(Client).filter(Client.id == client_id).first()
@@ -77,7 +77,7 @@ def get_campaign_mapping(client_id: int, db: Session = Depends(get_db)):
     }
 
 
-@router.put("/campaign-mapping")
+@router.put("/{client_id}/campaign-mapping")
 def update_campaign_mapping(client_id: int, body: CampaignMappingBulk, db: Session = Depends(get_db)):
     """Substitui todo o mapeamento de campanhas do cliente (bulk update)."""
     client = db.query(Client).filter(Client.id == client_id).first()
