@@ -19,10 +19,16 @@ def _shortcode_to_pk(code: str) -> int:
     return n
 
 
-def _ig_session(sessionid: str) -> requests.Session:
+def _ig_session(sessionid: str, csrftoken: str = None, ds_user_id: str = None) -> requests.Session:
     s = requests.Session()
     decoded = unquote(sessionid)
     s.cookies.set("sessionid", decoded, domain=".instagram.com")
+    # Sem csrftoken/ds_user_id, cada chamada parece um aparelho novo e desconhecido
+    # usando o cookie de sessão — o Instagram marca isso como spam mesmo em chamada única.
+    if csrftoken:
+        s.cookies.set("csrftoken", csrftoken, domain=".instagram.com")
+    if ds_user_id:
+        s.cookies.set("ds_user_id", ds_user_id, domain=".instagram.com")
     s.headers.update({
         "User-Agent": (
             "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
@@ -33,6 +39,8 @@ def _ig_session(sessionid: str) -> requests.Session:
         "Accept": "*/*",
         "Accept-Language": "pt-BR,pt;q=0.9",
     })
+    if csrftoken:
+        s.headers["X-CSRFToken"] = csrftoken
     # Proxy residencial — necessário quando rodando em IPs de datacenter (Railway, etc.)
     proxy_url = os.getenv("INSTAGRAM_PROXY")
     if proxy_url:
@@ -49,10 +57,10 @@ def _save_url(url: str, path: str, session: requests.Session = None) -> str:
     return path
 
 
-def _fetch_post_info(code: str, sessionid: str) -> dict:
+def _fetch_post_info(code: str, sessionid: str, csrftoken: str = None, ds_user_id: str = None) -> dict:
     """Busca dados do post via API mobile do Instagram."""
     pk = _shortcode_to_pk(code)
-    session = _ig_session(sessionid)
+    session = _ig_session(sessionid, csrftoken, ds_user_id)
     resp = session.get(
         f"https://www.instagram.com/api/v1/media/{pk}/info/",
         timeout=20,
@@ -72,10 +80,11 @@ def _fetch_post_info(code: str, sessionid: str) -> dict:
     return items[0]
 
 
-def download_post(url: str, sessionid: str = None) -> dict:
+def download_post(url: str, sessionid: str = None, csrftoken: str = None, ds_user_id: str = None) -> dict:
     """
     Baixa imagens e/ou vídeo de um post do Instagram.
-    Requer sessionid para funcionar em servidores (IPs de datacenter).
+    Requer sessionid + csrftoken + ds_user_id para funcionar em servidores (IPs de datacenter) —
+    sessionid sozinho é tratado pelo Instagram como aparelho desconhecido e bloqueado como spam.
     """
     code = _shortcode(url)
     temp_dir = tempfile.mkdtemp(prefix=f"insta_{code}_")
@@ -87,11 +96,11 @@ def download_post(url: str, sessionid: str = None) -> dict:
         )
 
     try:
-        item = _fetch_post_info(code, sessionid)
+        item = _fetch_post_info(code, sessionid, csrftoken, ds_user_id)
     except Exception as e:
         raise ValueError(f"Erro ao buscar post: {e}")
 
-    session = _ig_session(sessionid)
+    session = _ig_session(sessionid, csrftoken, ds_user_id)
     caption = (item.get("caption") or {}).get("text", "")
     media_type = item.get("media_type")  # 1=foto, 2=vídeo, 8=carrossel
 

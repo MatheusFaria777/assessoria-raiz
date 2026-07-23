@@ -375,6 +375,16 @@ function SistemaSettings() {
         settingKey="instagram_sessionid"
         hint="Necessário para o Uploader funcionar no servidor. Como obter: abra instagram.com no Chrome → F12 → Application → Cookies → sessionid → copie o valor."
       />
+      <TokenField
+        label="Instagram CSRF Token"
+        settingKey="instagram_csrftoken"
+        hint="Necessário junto do Session ID — sem ele o Instagram trata a chamada como spam. Mesmo lugar: Application → Cookies → csrftoken."
+      />
+      <TokenField
+        label="Instagram User ID"
+        settingKey="instagram_ds_user_id"
+        hint="Necessário junto do Session ID — sem ele o Instagram trata a chamada como spam. Mesmo lugar: Application → Cookies → ds_user_id."
+      />
     </div>
   )
 }
