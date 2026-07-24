@@ -11,7 +11,7 @@ from database import get_db
 from models.client import Client
 from models.campaign import ClientCampaign
 from services.token_manager import get_meta_token
-from services.campaign_config import CAMPAIGN_TYPES, VALID_TYPES, suggest_type
+from services.campaign_config import CAMPAIGN_TYPES, VALID_TYPES, suggest_type, suggest_label
 
 router = APIRouter()
 
@@ -19,6 +19,7 @@ router = APIRouter()
 class CampaignMappingItem(BaseModel):
     meta_campaign_id: str
     name: Optional[str] = None
+    label: Optional[str] = None
     campaign_type: str
     sheet_tab: Optional[str] = None
     active: bool = True
@@ -52,6 +53,7 @@ def list_meta_campaigns(client_id: int, db: Session = Depends(get_db)):
         campaigns = get_campaigns_for_account(client.meta_account_id, token)
         for c in campaigns:
             c["suggested_type"] = suggest_type(c.get("objective"))
+            c["suggested_label"] = suggest_label(c.get("name", ""))
         return {"campaigns": campaigns}
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
@@ -71,6 +73,7 @@ def get_campaign_mapping(client_id: int, db: Session = Depends(get_db)):
                 "id": m.id,
                 "meta_campaign_id": m.meta_campaign_id,
                 "name": m.name,
+                "label": m.label,
                 "campaign_type": m.campaign_type,
                 "sheet_tab": m.sheet_tab,
                 "active": m.active,
@@ -101,6 +104,7 @@ def update_campaign_mapping(client_id: int, body: CampaignMappingBulk, db: Sessi
             client_id=client_id,
             meta_campaign_id=item.meta_campaign_id,
             name=item.name,
+            label=item.label,
             campaign_type=item.campaign_type,
             sheet_tab=item.sheet_tab,
             active=item.active,

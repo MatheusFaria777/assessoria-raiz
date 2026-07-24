@@ -10,8 +10,9 @@ class ClientCampaign(Base):
     client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
     meta_campaign_id = Column(String, nullable=False)
     name = Column(String, nullable=True)          # nome vindo da API Meta
+    label = Column(String, nullable=True)          # nome curto editável, exibido no relatório/cadência
     campaign_type = Column(String, nullable=False) # mensagem, lead, alcance, etc.
-    sheet_tab = Column(String, nullable=True)      # aba da planilha para este tipo
+    sheet_tab = Column(String, nullable=True)      # aba da planilha para essa campanha
     active = Column(Boolean, default=True)
 
     client = relationship("Client", back_populates="campaigns")

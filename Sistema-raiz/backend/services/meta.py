@@ -134,13 +134,15 @@ def _build_campaign_map_from_db(campaign_map: list) -> dict:
     Converte lista de ClientCampaign em dict de busca rápida:
     {meta_campaign_id: {"type": ..., "label": ..., "sheet_tab": ...}}
     """
+    from services.campaign_config import suggest_label
+
     result = {}
     for c in campaign_map:
         tipo_contagem = _TYPE_TO_CONTAGEM.get(c.campaign_type, "mensagem")
         mapping = _CONTAGEM_MAP.get(tipo_contagem, {"acao": None, "campo": None})
         result[str(c.meta_campaign_id)] = {
             "type": c.campaign_type,
-            "label": c.name or c.campaign_type.capitalize(),
+            "label": c.label or suggest_label(c.name) or c.campaign_type.capitalize(),
             "sheet_tab": c.sheet_tab,
             "tipo_contagem": tipo_contagem,
             "metrica": _metrica_label(tipo_contagem),
@@ -180,9 +182,10 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
                 # Campanha não mapeada → ignora (não vai para "outro")
                 continue
             tipo = config["type"]
-            # Agrupa por tipo (não por campanha) — duas campanhas do mesmo tipo somam no mesmo bucket,
-            # igual ao modo por palavra-chave, pra bater com o formato que _sheets_map()/relatório esperam
-            chave = tipo
+            # Agrupa por campanha (não por tipo) — duas campanhas do mesmo tipo continuam
+            # separadas, cada uma com seu nome e sua aba de planilha, exatamente como configurado
+            # na aba Campanhas. Quem quiser somar duas campanhas junto usa o mesmo nome/aba pras duas.
+            chave = campaign_id
         else:
             # Fallback: keyword detection por nome
             nome = row.get("campaign_name", "")
@@ -204,6 +207,7 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
                 "link_clicks": 0, "purchase_value": 0.0,
                 "label": config["label"], "metrica": config["metrica"],
                 "tipo": tipo, "tipo_contagem": config.get("tipo_contagem"),
+                "sheet_tab": config.get("sheet_tab"),
             }
 
         agregado[chave]["spend"] += spend
@@ -227,15 +231,21 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         dados["results"] = int(round(r))
         dados["cost_per_result"] = dados["spend"] / r if r > 0 else 0.0
 
-    # primary_type: tipo com mais resultados entre os tipos primários (mensagem/lead) — mesmo cálculo pros dois modos
+    # primary_type: tipo com mais resultados entre os tipos primários (mensagem/lead).
+    # Soma por tipo antes de comparar — no modo explícito pode ter várias campanhas do mesmo tipo.
     primary_type = None
     best_results = 0
+    tipo_totals: dict[str, float] = {}
     for chave, dados in agregado.items():
         if chave == "outro":
             continue
-        if dados.get("tipo_contagem") in _PRIMARY_CONTAGEM and dados["results"] > best_results:
-            best_results = dados["results"]
-            primary_type = chave
+        if dados.get("tipo_contagem") in _PRIMARY_CONTAGEM:
+            t = dados.get("tipo", chave)
+            tipo_totals[t] = tipo_totals.get(t, 0) + dados["results"]
+    for t, total in tipo_totals.items():
+        if total > best_results:
+            best_results = total
+            primary_type = t
 
     tipos_out = {}
     for chave, dados in agregado.items():

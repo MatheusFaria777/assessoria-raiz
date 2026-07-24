@@ -13,6 +13,7 @@ perguntas que todo mundo precisa responder:
     explícito, cai pro campo antigo (sheets_tabs) se não tiver nada configurado.
 """
 import json
+import re
 
 # Lista única de tipos de campanha — antes existia copiada em 3 lugares (routers/campaign_mapping.py,
 # services/meta.py, ClientModal.jsx no frontend). Qualquer lugar que precisar dessa lista importa daqui;
@@ -57,6 +58,20 @@ def suggest_type(objective: str) -> str | None:
     return OBJECTIVE_TO_TYPE.get((objective or "").upper())
 
 
+def suggest_label(name: str) -> str:
+    """
+    Sugere um nome limpo pro relatório a partir do nome real da campanha no Meta —
+    ex: '[ENGAJ] [MENSAGEM] [ABO] [F] - Venda carros — Cópia' → 'Venda carros — Cópia'.
+    Só um ponto de partida — o usuário confirma ou edita na tela.
+    """
+    if not name:
+        return ""
+    sem_tags = re.sub(r"\[[^\]]*\]", "", name)
+    limpo = re.sub(r"^[\s\-–—]+|[\s\-–—]+$", "", sem_tags)
+    limpo = re.sub(r"\s{2,}", " ", limpo).strip()
+    return limpo or name.strip()
+
+
 def get_campaign_map(client) -> list:
     """Campanhas mapeadas explicitamente (ativas) — [] se o cliente não configurou a aba Campanhas."""
     return [c for c in client.campaigns if c.active]
@@ -64,7 +79,8 @@ def get_campaign_map(client) -> list:
 
 def get_sheet_map(client) -> dict:
     """
-    Retorna {tipo: tab_name} para o cliente.
+    Retorna {tipo: tab_name} para o cliente — usado como checagem de "tem alguma coisa
+    configurada" e como fallback pro modo palavra-chave em build_tab_candidates().
     Prioriza ClientCampaign (aba Campanhas) se configurado, senão sheets_tabs (campo antigo).
     """
     mapped = get_campaign_map(client)
@@ -78,3 +94,41 @@ def get_sheet_map(client) -> dict:
         except Exception:
             pass
     return {}
+
+
+def build_tab_candidates(client, tipos: dict) -> dict:
+    """
+    A partir do resultado de get_account_data()["tipos"], decide em qual aba da
+    planilha cada bucket escreve, somando quem cai na mesma aba.
+
+    Modo explícito (aba Campanhas): cada campanha já carrega sua própria aba
+    (bucket["sheet_tab"]) — duas campanhas do mesmo tipo com abas diferentes
+    escrevem separado, do jeito certo.
+    Modo palavra-chave (cliente sem Campanhas configurado): usa get_sheet_map()
+    (tipo → aba), igual sempre funcionou.
+    """
+    sheet_map = get_sheet_map(client)
+    candidates: dict[str, dict] = {}
+
+    for key, dados in tipos.items():
+        if key == "outro":
+            continue
+        tab_name = dados.get("sheet_tab") or sheet_map.get(dados.get("tipo", key))
+        if not tab_name:
+            continue
+        if dados.get("results", 0) == 0 and dados.get("spend", 0) == 0:
+            continue
+
+        if tab_name not in candidates:
+            candidates[tab_name] = {
+                "impressions": 0, "results": 0, "link_clicks": 0,
+                "spend": 0.0, "purchase_value": 0.0,
+            }
+        c = candidates[tab_name]
+        c["impressions"]    += dados.get("impressions", 0)
+        c["results"]        += dados.get("results", 0)
+        c["link_clicks"]    += dados.get("link_clicks", 0)
+        c["spend"]          += dados.get("spend", 0.0)
+        c["purchase_value"] += dados.get("purchase_value", 0.0)
+
+    return candidates

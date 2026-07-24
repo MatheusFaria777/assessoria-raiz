@@ -51,6 +51,12 @@ def _run_migrations():
                 conn.execute(text("ALTER TABLE sync_logs ADD COLUMN period_end VARCHAR"))
                 conn.commit()
 
+        if "client_campaigns" in tables:
+            cols = {c["name"] for c in inspector.get_columns("client_campaigns")}
+            if "label" not in cols:
+                conn.execute(text("ALTER TABLE client_campaigns ADD COLUMN label VARCHAR"))
+                conn.commit()
+
 
 def _reset_stuck_processing():
     """Reseta itens presos em 'processing' de deploys/crashes anteriores."""

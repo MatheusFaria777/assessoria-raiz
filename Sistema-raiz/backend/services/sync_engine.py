@@ -20,7 +20,7 @@ from services.cadencia_builder import get_week_range, get_month_range
 from services.meta import get_account_data, grupos_to_tipos
 from services.token_manager import get_meta_token, get_google_credentials
 from services.sheets import write_weekly, write_monthly, is_configured
-from services.campaign_config import get_campaign_map, get_sheet_map
+from services.campaign_config import get_campaign_map, get_sheet_map, build_tab_candidates
 
 logger = logging.getLogger(__name__)
 
@@ -86,12 +86,12 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
         result.update(status="error", error=f"Erro Meta API: {e}")
         return result
 
-    # Escreve em cada aba configurada
+    # Escreve em cada aba configurada — cada campanha mapeada explicitamente já carrega
+    # sua própria aba, então duas campanhas do mesmo tipo com abas diferentes escrevem separado.
     any_written = False
     any_error   = False
 
-    for tipo, tab_name in s_map.items():
-        d = tipos.get(tipo, {})
+    for tab_name, d in build_tab_candidates(client, tipos).items():
         try:
             res = write_weekly(
                 sheet_id    = client.sheets_id,

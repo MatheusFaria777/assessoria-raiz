@@ -11,7 +11,7 @@ from config import decrypt
 from services.token_manager import get_meta_token
 from services.meta import get_account_data as meta_data, grupos_to_tipos
 from services import sheets as sheets_svc
-from services.campaign_config import get_campaign_map, get_sheet_map
+from services.campaign_config import get_campaign_map, get_sheet_map, build_tab_candidates
 
 router = APIRouter()
 
@@ -77,16 +77,9 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
         if not sheets_tabs:
             raise HTTPException(status_code=400, detail="Nenhuma aba configurada para este cliente. Configure em Clientes → aba Campanhas (ou aba Planilha, no formato antigo).")
 
-        # Agrupa tipos por aba — primeiro com dados vence
-        tab_candidates: dict[str, dict] = {}
-        for tipo_name, tipo_data in tipos.items():
-            tab_name = sheets_tabs.get(tipo_name)
-            if not tab_name:
-                continue
-            if tipo_data.get("spend", 0) == 0 and tipo_data.get("results", 0) == 0:
-                continue
-            if tab_name not in tab_candidates:
-                tab_candidates[tab_name] = tipo_data
+        # Cada campanha mapeada explicitamente já carrega sua própria aba — duas campanhas do
+        # mesmo tipo com abas diferentes escrevem separado em vez de se misturar.
+        tab_candidates = build_tab_candidates(client, tipos)
 
         if not tab_candidates:
             raise HTTPException(
@@ -109,8 +102,9 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
 
     elif req.sync_type == "monthly":
         total_leads = 0
-        if primary_type and primary_type in tipos:
-            total_leads = tipos[primary_type].get("results", 0)
+        if primary_type:
+            # Soma todas as campanhas desse tipo — no modo explícito pode ter mais de uma
+            total_leads = sum(d.get("results", 0) for d in tipos.values() if d.get("tipo") == primary_type)
         elif tipos:
             total_leads = next(iter(tipos.values())).get("results", 0)
 
