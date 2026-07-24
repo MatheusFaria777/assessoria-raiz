@@ -56,6 +56,9 @@ def _run_migrations():
             if "label" not in cols:
                 conn.execute(text("ALTER TABLE client_campaigns ADD COLUMN label VARCHAR"))
                 conn.commit()
+            if "meta_adset_id" not in cols:
+                conn.execute(text("ALTER TABLE client_campaigns ADD COLUMN meta_adset_id VARCHAR"))
+                conn.commit()
 
 
 def _reset_stuck_processing():

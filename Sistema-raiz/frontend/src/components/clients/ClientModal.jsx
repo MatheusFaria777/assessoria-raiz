@@ -26,10 +26,11 @@ export default function ClientModal({ client, onClose, onSaved }) {
   const [tab, setTab] = useState('basico')
 
   // Mapeamento explícito de campanhas
-  const [campaignMappings, setCampaignMappings] = useState([])  // mapeamentos salvos
+  const [campaignMappings, setCampaignMappings] = useState([])  // mapeamentos salvos (campanha e conjunto)
   const [metaCampaigns, setMetaCampaigns]       = useState([])  // campanhas da API Meta
   const [loadingCampaigns, setLoadingCampaigns] = useState(false)
   const [mappingsDirty, setMappingsDirty]       = useState(false)
+  const [adsetsByCampaign, setAdsetsByCampaign] = useState({})  // { [campaignId]: { open, loading, items } }
 
   useEffect(() => {
     if (client) {
@@ -66,14 +67,18 @@ export default function ClientModal({ client, onClose, onSaved }) {
     setLoadingCampaigns(true)
     try {
       const d = await api.get(`/api/clients/${client.id}/meta-campaigns`)
-      const savedById = Object.fromEntries(campaignMappings.map(m => [m.meta_campaign_id, m]))
+      // Mapeamentos de campanha inteira (sem meta_adset_id) — os de conjunto ficam em adsetsByCampaign
+      const savedById = Object.fromEntries(
+        campaignMappings.filter(m => !m.meta_adset_id).map(m => [m.meta_campaign_id, m])
+      )
       // Merge campanhas da API com mapeamentos já salvos — sem mapeamento salvo, usa o
-      // palpite de tipo que o Meta sugere pelo objetivo da campanha (pode trocar na hora)
+      // palpite de tipo/nome que o Meta sugere (pode trocar na hora)
       setMetaCampaigns(d.campaigns.map(c => ({
         id: c.id,
         name: c.name,
         status: c.status,
         campaign_type: savedById[c.id]?.campaign_type ?? c.suggested_type ?? '',
+        label: savedById[c.id]?.label ?? c.suggested_label ?? '',
         sheet_tab: savedById[c.id]?.sheet_tab || '',
       })))
     } catch (e) {
@@ -88,16 +93,76 @@ export default function ClientModal({ client, onClose, onSaved }) {
     setMappingsDirty(true)
   }
 
+  // Separar campanha por conjunto (vendedor/pessoa) — busca os conjuntos do Meta na primeira vez
+  const toggleAdsets = async (campaignId) => {
+    const current = adsetsByCampaign[campaignId]
+    if (current?.open) {
+      setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { ...prev[campaignId], open: false } }))
+      return
+    }
+    if (current?.items) {
+      setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { ...prev[campaignId], open: true } }))
+      return
+    }
+    setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { open: true, loading: true, items: [] } }))
+    try {
+      const d = await api.get(`/api/clients/${client.id}/campaigns/${campaignId}/adsets`)
+      const savedByAdset = Object.fromEntries(
+        campaignMappings.filter(m => m.meta_adset_id).map(m => [m.meta_adset_id, m])
+      )
+      const items = d.adsets.map(a => ({
+        id: a.id,
+        name: a.name,
+        status: a.status,
+        campaign_type: savedByAdset[a.id]?.campaign_type ?? '',
+        label: savedByAdset[a.id]?.label ?? a.suggested_label ?? '',
+        sheet_tab: savedByAdset[a.id]?.sheet_tab || '',
+      }))
+      setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { open: true, loading: false, items } }))
+    } catch (e) {
+      toast(e.message || 'Erro ao buscar conjuntos', 'error')
+      setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { open: true, loading: false, items: [] } }))
+    }
+  }
+
+  const updateAdsetMapping = (campaignId, adsetId, field, value) => {
+    setAdsetsByCampaign(prev => ({
+      ...prev,
+      [campaignId]: {
+        ...prev[campaignId],
+        items: prev[campaignId].items.map(a => a.id === adsetId ? { ...a, [field]: value } : a),
+      },
+    }))
+    setMappingsDirty(true)
+  }
+
   const saveMappings = async (clientId) => {
-    const toSave = metaCampaigns.filter(c => c.campaign_type)
-    await api.put(`/api/clients/${clientId}/campaign-mapping`, {
-      campaigns: toSave.map(c => ({
+    const campaignRows = metaCampaigns
+      .filter(c => c.campaign_type)
+      .map(c => ({
         meta_campaign_id: c.id,
+        meta_adset_id: null,
         name: c.name,
+        label: c.label || null,
         campaign_type: c.campaign_type,
         sheet_tab: c.sheet_tab || null,
         active: true,
-      })),
+      }))
+    const adsetRows = Object.entries(adsetsByCampaign).flatMap(([campaignId, state]) =>
+      (state.items || [])
+        .filter(a => a.campaign_type)
+        .map(a => ({
+          meta_campaign_id: campaignId,
+          meta_adset_id: a.id,
+          name: a.name,
+          label: a.label || null,
+          campaign_type: a.campaign_type,
+          sheet_tab: a.sheet_tab || null,
+          active: true,
+        }))
+    )
+    await api.put(`/api/clients/${clientId}/campaign-mapping`, {
+      campaigns: [...campaignRows, ...adsetRows],
     })
     setMappingsDirty(false)
   }
@@ -255,6 +320,9 @@ export default function ClientModal({ client, onClose, onSaved }) {
             hasMeta={form.has_meta}
             onFetch={fetchMetaCampaigns}
             onUpdate={updateMapping}
+            adsetsByCampaign={adsetsByCampaign}
+            onToggleAdsets={toggleAdsets}
+            onUpdateAdset={updateAdsetMapping}
           />
         )}
 
@@ -288,7 +356,7 @@ export default function ClientModal({ client, onClose, onSaved }) {
 }
 
 /* ── CampaignsTab ─────────────────────────────────────────────────────────── */
-function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMeta, onFetch, onUpdate }) {
+function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMeta, onFetch, onUpdate, adsetsByCampaign, onToggleAdsets, onUpdateAdset }) {
   const [campaignTypes, setCampaignTypes] = useState([])
 
   useEffect(() => {
@@ -313,12 +381,15 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
     )
   }
 
-  const showList = metaCampaigns.length > 0 ? metaCampaigns : campaignMappings.map(m => ({
-    id: m.meta_campaign_id,
-    name: m.name || m.meta_campaign_id,
-    campaign_type: m.campaign_type,
-    sheet_tab: m.sheet_tab || '',
-  }))
+  const showList = metaCampaigns.length > 0 ? metaCampaigns : campaignMappings
+    .filter(m => !m.meta_adset_id)
+    .map(m => ({
+      id: m.meta_campaign_id,
+      name: m.name || m.meta_campaign_id,
+      campaign_type: m.campaign_type,
+      label: m.label || '',
+      sheet_tab: m.sheet_tab || '',
+    }))
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -345,6 +416,9 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
               campaign={c}
               campaignTypes={campaignTypes}
               onUpdate={onUpdate}
+              adsetState={adsetsByCampaign[c.id]}
+              onToggleAdsets={() => onToggleAdsets(c.id)}
+              onUpdateAdset={(adsetId, field, value) => onUpdateAdset(c.id, adsetId, field, value)}
             />
           ))}
         </div>
@@ -359,45 +433,124 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
   )
 }
 
-function CampaignRow({ campaign, campaignTypes, onUpdate }) {
+function CampaignRow({ campaign, campaignTypes, onUpdate, adsetState, onToggleAdsets, onUpdateAdset }) {
   const isActive = campaign.status === 'ACTIVE'
+  const adsetCount = adsetState?.items?.filter(a => a.campaign_type).length || 0
   return (
     <div style={{
-      display: 'grid', gridTemplateColumns: '1fr 160px 140px',
-      gap: '.5rem', alignItems: 'center',
       padding: '.625rem .75rem', borderRadius: 7,
       background: 'rgba(245,245,245,.04)',
       border: '1px solid rgba(245,245,245,.08)',
+      display: 'flex', flexDirection: 'column', gap: '.5rem',
     }}>
-      <div style={{ minWidth: 0 }}>
-        <div style={{
-          fontSize: '.825rem', color: '#F5F5F5', whiteSpace: 'nowrap',
-          overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 500,
-        }}>
-          {campaign.name}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 140px', gap: '.5rem', alignItems: 'center' }}>
+        <div style={{ minWidth: 0 }}>
+          <div style={{
+            fontSize: '.825rem', color: '#F5F5F5', whiteSpace: 'nowrap',
+            overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 500,
+          }}>
+            {campaign.name}
+          </div>
+          <div style={{ fontSize: '.7rem', color: isActive ? '#4ade80' : 'rgba(245,245,245,.3)', marginTop: 2 }}>
+            {isActive ? 'Ativa' : (campaign.status || 'ID: ' + campaign.id)}
+          </div>
         </div>
-        <div style={{ fontSize: '.7rem', color: isActive ? '#4ade80' : 'rgba(245,245,245,.3)', marginTop: 2 }}>
-          {isActive ? 'Ativa' : (campaign.status || 'ID: ' + campaign.id)}
-        </div>
+        <select
+          className="input"
+          value={campaign.campaign_type || ''}
+          onChange={e => onUpdate(campaign.id, 'campaign_type', e.target.value)}
+          style={{ fontSize: '.8rem' }}
+        >
+          <option value="">— ignorar —</option>
+          {campaignTypes.map(t => (
+            <option key={t.value} value={t.value}>{t.label}</option>
+          ))}
+        </select>
+        <input
+          className="input"
+          value={campaign.sheet_tab || ''}
+          onChange={e => onUpdate(campaign.id, 'sheet_tab', e.target.value)}
+          placeholder="Aba planilha"
+          style={{ fontSize: '.8rem' }}
+        />
       </div>
-      <select
-        className="input"
-        value={campaign.campaign_type || ''}
-        onChange={e => onUpdate(campaign.id, 'campaign_type', e.target.value)}
-        style={{ fontSize: '.8rem' }}
-      >
-        <option value="">— ignorar —</option>
-        {campaignTypes.map(t => (
-          <option key={t.value} value={t.value}>{t.label}</option>
-        ))}
-      </select>
-      <input
-        className="input"
-        value={campaign.sheet_tab || ''}
-        onChange={e => onUpdate(campaign.id, 'sheet_tab', e.target.value)}
-        placeholder="Aba planilha"
-        style={{ fontSize: '.8rem' }}
-      />
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '.5rem', alignItems: 'center' }}>
+        <input
+          className="input"
+          value={campaign.label || ''}
+          onChange={e => onUpdate(campaign.id, 'label', e.target.value)}
+          placeholder="Nome no relatório (ex: Venda de carros)"
+          style={{ fontSize: '.8rem' }}
+        />
+        <button
+          onClick={onToggleAdsets}
+          style={{
+            background: 'transparent', border: 'none', cursor: 'pointer',
+            color: adsetCount > 0 ? '#CBA135' : 'rgba(245,245,245,.4)',
+            fontSize: '.75rem', whiteSpace: 'nowrap', padding: '.25rem .5rem',
+          }}
+        >
+          {adsetState?.open ? '▾' : '▸'} Separar por conjunto{adsetCount > 0 ? ` (${adsetCount})` : ''}
+        </button>
+      </div>
+
+      {adsetState?.open && (
+        <div style={{
+          display: 'flex', flexDirection: 'column', gap: '.4rem',
+          marginTop: '.25rem', paddingTop: '.5rem', borderTop: '1px solid rgba(245,245,245,.08)',
+        }}>
+          {adsetState.loading && (
+            <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.4)', padding: '.5rem 0' }}>
+              <span className="spinner" style={{ width: 12, height: 12, marginRight: '.4rem' }} />
+              Buscando conjuntos...
+            </div>
+          )}
+          {!adsetState.loading && adsetState.items.length === 0 && (
+            <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.3)', padding: '.25rem 0' }}>
+              Nenhum conjunto encontrado nessa campanha.
+            </div>
+          )}
+          {adsetState.items.map(a => (
+            <div key={a.id} style={{ display: 'grid', gridTemplateColumns: '1fr 140px 120px 1fr', gap: '.4rem', alignItems: 'center' }}>
+              <div style={{
+                fontSize: '.78rem', color: 'rgba(245,245,245,.75)', whiteSpace: 'nowrap',
+                overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>
+                {a.name}
+              </div>
+              <select
+                className="input"
+                value={a.campaign_type || ''}
+                onChange={e => onUpdateAdset(a.id, 'campaign_type', e.target.value)}
+                style={{ fontSize: '.75rem' }}
+              >
+                <option value="">— ignorar —</option>
+                {campaignTypes.map(t => (
+                  <option key={t.value} value={t.value}>{t.label}</option>
+                ))}
+              </select>
+              <input
+                className="input"
+                value={a.sheet_tab || ''}
+                onChange={e => onUpdateAdset(a.id, 'sheet_tab', e.target.value)}
+                placeholder="Aba"
+                style={{ fontSize: '.75rem' }}
+              />
+              <input
+                className="input"
+                value={a.label || ''}
+                onChange={e => onUpdateAdset(a.id, 'label', e.target.value)}
+                placeholder="Nome no relatório (ex: Vendedor João)"
+                style={{ fontSize: '.75rem' }}
+              />
+            </div>
+          ))}
+          <div style={{ fontSize: '.7rem', color: 'rgba(245,245,245,.3)', marginTop: '.15rem' }}>
+            Dois conjuntos com o mesmo nome somam junto no relatório (ex: campanha do dono + remarketing).
+          </div>
+        </div>
+      )}
     </div>
   )
 }

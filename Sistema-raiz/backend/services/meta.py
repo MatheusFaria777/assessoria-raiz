@@ -129,27 +129,57 @@ def get_campaigns_for_account(account_id: str, token: str) -> list[dict]:
     ]
 
 
-def _build_campaign_map_from_db(campaign_map: list) -> dict:
-    """
-    Converte lista de ClientCampaign em dict de busca rápida:
-    {meta_campaign_id: {"type": ..., "label": ..., "sheet_tab": ...}}
-    """
-    from services.campaign_config import suggest_label
+def get_adsets_for_campaign(account_id: str, token: str, campaign_id: str) -> list[dict]:
+    """Retorna os conjuntos (ad sets) de uma campanha — pra mapear individualmente por vendedor/pessoa."""
+    _init(token)
+    from facebook_business.adobjects.campaign import Campaign
+    camp = Campaign(campaign_id)
+    rows = list(camp.get_ad_sets(fields=["id", "name", "status"], params={"limit": 500}))
+    return [
+        {"id": r.get("id", ""), "name": r.get("name", ""), "status": r.get("status", "")}
+        for r in rows
+    ]
 
-    result = {}
+
+def _config_from_row(c) -> dict:
+    tipo_contagem = _TYPE_TO_CONTAGEM.get(c.campaign_type, "mensagem")
+    mapping = _CONTAGEM_MAP.get(tipo_contagem, {"acao": None, "campo": None})
+    from services.campaign_config import suggest_label
+    return {
+        "type": c.campaign_type,
+        "label": c.label or suggest_label(c.name) or c.campaign_type.capitalize(),
+        "sheet_tab": c.sheet_tab,
+        "tipo_contagem": tipo_contagem,
+        "metrica": _metrica_label(tipo_contagem),
+        "acao": mapping["acao"],
+        "campo": mapping["campo"],
+    }
+
+
+def _build_campaign_maps(campaign_map: list) -> tuple[dict, dict]:
+    """
+    Separa o mapeamento salvo em dois níveis:
+    - by_campaign: {meta_campaign_id: config} — mapeamento da campanha inteira
+    - by_adset: {meta_adset_id: config} — mapeamento de um conjunto específico
+      dentro de uma campanha (pra separar por vendedor/pessoa, por exemplo)
+    """
+    by_campaign, by_adset = {}, {}
     for c in campaign_map:
-        tipo_contagem = _TYPE_TO_CONTAGEM.get(c.campaign_type, "mensagem")
-        mapping = _CONTAGEM_MAP.get(tipo_contagem, {"acao": None, "campo": None})
-        result[str(c.meta_campaign_id)] = {
-            "type": c.campaign_type,
-            "label": c.label or suggest_label(c.name) or c.campaign_type.capitalize(),
-            "sheet_tab": c.sheet_tab,
-            "tipo_contagem": tipo_contagem,
-            "metrica": _metrica_label(tipo_contagem),
-            "acao": mapping["acao"],
-            "campo": mapping["campo"],
-        }
-    return result
+        cfg = _config_from_row(c)
+        if c.meta_adset_id:
+            by_adset[str(c.meta_adset_id)] = cfg
+        else:
+            by_campaign[str(c.meta_campaign_id)] = cfg
+    return by_campaign, by_adset
+
+
+def _match_explicit(row: dict, by_campaign: dict, by_adset: dict) -> dict | None:
+    """Acha a config certa pra uma linha de insight — conjunto específico tem prioridade sobre a campanha inteira."""
+    adset_id = str(row.get("adset_id", ""))
+    if adset_id and adset_id in by_adset:
+        return by_adset[adset_id]
+    campaign_id = str(row.get("campaign_id", ""))
+    return by_campaign.get(campaign_id)
 
 
 def get_account_data(account_id: str, token: str, since: str, until: str, tipos_cfg: list, campaign_map: list | None = None) -> dict:
@@ -157,13 +187,22 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     account = AdAccount(_ensure_act(account_id))
 
     # Mapeamento explícito por ID tem prioridade sobre keyword detection
-    explicit: dict = _build_campaign_map_from_db(campaign_map) if campaign_map else {}
-    use_explicit = bool(explicit)
+    by_campaign, by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
+    use_explicit = bool(by_campaign) or bool(by_adset)
+
+    # Precisa buscar por conjunto (não só por campanha) quando tiver mapeamento nesse nível —
+    # ex: campanha com um conjunto por vendedor, cada um contando separado.
+    if by_adset:
+        insight_fields = CAMPAIGN_FIELDS + ["adset_id", "adset_name"]
+        insight_level = "adset"
+    else:
+        insight_fields = CAMPAIGN_FIELDS
+        insight_level = "campaign"
 
     rows = list(account.get_insights(
-        fields=CAMPAIGN_FIELDS,
+        fields=insight_fields,
         params={
-            "level": "campaign",
+            "level": insight_level,
             "time_range": {"since": since, "until": until},
             "limit": 500,
         },
@@ -175,17 +214,16 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         spend = float(row.get("spend", 0))
 
         if use_explicit:
-            # Mapeamento explícito: usa campaign_id para identificar o tipo
-            campaign_id = str(row.get("campaign_id", ""))
-            config = explicit.get(campaign_id)
+            # Mapeamento explícito: conjunto específico tem prioridade, senão cai pra campanha inteira
+            config = _match_explicit(row, by_campaign, by_adset)
             if not config:
-                # Campanha não mapeada → ignora (não vai para "outro")
+                # Campanha/conjunto não mapeado → ignora (não vai para "outro")
                 continue
             tipo = config["type"]
-            # Agrupa por campanha (não por tipo) — duas campanhas do mesmo tipo continuam
-            # separadas, cada uma com seu nome e sua aba de planilha, exatamente como configurado
-            # na aba Campanhas. Quem quiser somar duas campanhas junto usa o mesmo nome/aba pras duas.
-            chave = campaign_id
+            # Agrupa pelo nome configurado (label), não pelo ID — duas campanhas/conjuntos com o
+            # MESMO nome somam junto (ex: campanha principal + remarketing do mesmo vendedor),
+            # com nomes DIFERENTES ficam separados, mesmo sendo do mesmo tipo.
+            chave = config["label"]
         else:
             # Fallback: keyword detection por nome
             nome = row.get("campaign_name", "")
@@ -266,7 +304,9 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
     import requests as _req
 
     act = _ensure_act(account_id)
-    explicit = _build_campaign_map_from_db(campaign_map) if campaign_map else {}
+    # Nota: "melhores criativos" hoje só reconhece mapeamento por campanha inteira, não por
+    # conjunto/vendedor específico — um anúncio de qualquer conjunto da campanha mapeada entra.
+    explicit, _by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
     use_explicit = bool(explicit)
 
     if use_explicit:

@@ -18,6 +18,7 @@ router = APIRouter()
 
 class CampaignMappingItem(BaseModel):
     meta_campaign_id: str
+    meta_adset_id: Optional[str] = None  # preenchido = mapeamento é desse conjunto, não da campanha inteira
     name: Optional[str] = None
     label: Optional[str] = None
     campaign_type: str
@@ -59,6 +60,26 @@ def list_meta_campaigns(client_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
 
 
+@router.get("/{client_id}/campaigns/{campaign_id}/adsets")
+def list_campaign_adsets(client_id: int, campaign_id: str, db: Session = Depends(get_db)):
+    """Busca os conjuntos (ad sets) de uma campanha específica — pra separar por vendedor/pessoa."""
+    client = db.query(Client).filter(Client.id == client_id, Client.active == True).first()
+    if not client:
+        raise HTTPException(status_code=404, detail="Cliente não encontrado")
+    token = get_meta_token(client, db)
+    if not token:
+        raise HTTPException(status_code=400, detail="Token Meta não configurado")
+
+    try:
+        from services.meta import get_adsets_for_campaign
+        adsets = get_adsets_for_campaign(client.meta_account_id, token, campaign_id)
+        for a in adsets:
+            a["suggested_label"] = suggest_label(a.get("name", ""))
+        return {"adsets": adsets}
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
+
+
 @router.get("/{client_id}/campaign-mapping")
 def get_campaign_mapping(client_id: int, db: Session = Depends(get_db)):
     """Retorna o mapeamento salvo de campanhas do cliente."""
@@ -72,6 +93,7 @@ def get_campaign_mapping(client_id: int, db: Session = Depends(get_db)):
             {
                 "id": m.id,
                 "meta_campaign_id": m.meta_campaign_id,
+                "meta_adset_id": m.meta_adset_id,
                 "name": m.name,
                 "label": m.label,
                 "campaign_type": m.campaign_type,
@@ -103,6 +125,7 @@ def update_campaign_mapping(client_id: int, body: CampaignMappingBulk, db: Sessi
         db.add(ClientCampaign(
             client_id=client_id,
             meta_campaign_id=item.meta_campaign_id,
+            meta_adset_id=item.meta_adset_id,
             name=item.name,
             label=item.label,
             campaign_type=item.campaign_type,

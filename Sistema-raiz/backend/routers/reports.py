@@ -17,7 +17,7 @@ from config import decrypt
 from services.token_manager import get_meta_token
 from services.meta import get_account_data as meta_data, get_top_ads, grupos_to_tipos
 from services.report_builder import format_report
-from services.campaign_config import get_campaign_map, get_sheet_map
+from services.campaign_config import get_campaign_map, get_sheet_map, build_tab_candidates
 
 router = APIRouter()
 
@@ -308,13 +308,7 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
                 data = get_account_data(client.meta_account_id, token, since, until, tipos_cfg, campaign_map=get_campaign_map(client))
 
             tipos = data.get("tipos", {}) if data else {}
-
-            tab_candidates = {}
-            for tipo_name, tipo_data in tipos.items():
-                tab_name = sheets_tabs.get(tipo_name)
-                if tab_name and (tipo_data.get("spend", 0) > 0 or tipo_data.get("results", 0) > 0):
-                    if tab_name not in tab_candidates:
-                        tab_candidates[tab_name] = tipo_data
+            tab_candidates = build_tab_candidates(client, tipos)
 
             errors = []
             for tab_name, tipo_data in tab_candidates.items():

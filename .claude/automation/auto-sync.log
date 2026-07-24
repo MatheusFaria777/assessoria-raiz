@@ -4033,3 +4033,22 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> dev
 
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/main.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/models/campaign.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/routers/campaign_mapping.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/routers/sheets.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/services/campaign_config.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/services/meta.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Sistema-raiz/backend/services/sync_engine.py', LF will be replaced by CRLF the next time Git touches it
+[dev fc352d9] auto-sync: 24/07/2026 11:28:33,81
+ 8 files changed, 108 insertions(+), 28 deletions(-)
+fatal: The current branch dev has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin dev
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+[24/07/2026 11:28:33,81] Mudancas sincronizadas 
