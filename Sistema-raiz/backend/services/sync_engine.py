@@ -9,6 +9,7 @@ Mensal — Primeira segunda do mês às 8h:
   Escreve o mês anterior na aba VISÃO GERAL de cada cliente.
 """
 import logging
+import time
 from datetime import date
 from sqlalchemy.orm import Session, selectinload
 from sqlalchemy import func
@@ -91,17 +92,22 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
 
     for tipo, tab_name in s_map.items():
         d = tipos.get(tipo, {})
-        res = write_weekly(
-            sheet_id    = client.sheets_id,
-            tab_name    = tab_name,
-            since       = since,
-            impressoes  = int(d.get("impressions", 0)),
-            results     = int(d.get("results", 0)),
-            link_clicks = int(d.get("link_clicks", 0)),
-            spend       = float(d.get("spend", 0.0)),
-            revenue     = float(d.get("purchase_value", 0.0)),
-            auto_append = True,
-        )
+        try:
+            res = write_weekly(
+                sheet_id    = client.sheets_id,
+                tab_name    = tab_name,
+                since       = since,
+                impressoes  = int(d.get("impressions", 0)),
+                results     = int(d.get("results", 0)),
+                link_clicks = int(d.get("link_clicks", 0)),
+                spend       = float(d.get("spend", 0.0)),
+                revenue     = float(d.get("purchase_value", 0.0)),
+                auto_append = True,
+            )
+        except Exception as e:
+            # Erro da API do Sheets (ex: cota excedida) não pode derrubar o cliente inteiro,
+            # muito menos o lote inteiro — vira um erro só dessa aba.
+            res = {"ok": False, "error": f"Erro Google Sheets: {e}"}
         if res.get("ok"):
             result["tabs_synced"].append(tab_name)
             if res.get("appended"):
@@ -143,12 +149,21 @@ def run_daily_sync(db: Session) -> dict:
     skipped = 0
     client_results = []
 
-    for client in clients:
+    for i, client in enumerate(clients):
         if _already_synced(db, client.id, since):
             logger.debug("[sync] %s — já planilhado hoje, pulando", client.name)
             continue
 
-        result = sync_client(client, db, since, until)
+        try:
+            result = sync_client(client, db, since, until)
+        except Exception as e:
+            # Um cliente quebrando (ex: cota da API do Google) não pode derrubar o lote inteiro —
+            # antes disso acontecia e ninguém depois dele na lista era sincronizado, nem salvo.
+            logger.warning("[sync] %s — ERRO inesperado: %s", client.name, e)
+            result = {
+                "client_id": client.id, "client_name": client.name,
+                "tabs_synced": [], "status": "error", "error": str(e),
+            }
         client_results.append(result)
 
         if result["status"] == "success":
@@ -181,7 +196,14 @@ def run_daily_sync(db: Session) -> dict:
         else:
             skipped += 1
 
-    db.commit()
+        # Salva o progresso a cada cliente — se algo travar mais na frente, o que já
+        # rodou certo não se perde (antes só commitava tudo no final, tudo ou nada).
+        db.commit()
+
+        # Pequeno intervalo entre clientes pra não estourar a cota de leitura/escrita
+        # do Google Sheets (foi exatamente isso que quebrou o sync de hoje).
+        if i < len(clients) - 1:
+            time.sleep(1.5)
     summary = {
         "since": since, "until": until,
         "total": len(client_results),
@@ -282,7 +304,7 @@ def run_monthly_sync(db: Session) -> dict:
     skipped = 0
     client_results = []
 
-    for client in clients:
+    for i, client in enumerate(clients):
         if _already_synced_monthly(db, client.id, since):
             logger.debug("[sync-monthly] %s — já planilhado, pulando", client.name)
             continue
@@ -300,15 +322,21 @@ def run_monthly_sync(db: Session) -> dict:
             })
             continue
 
-        res = write_monthly(
-            sheet_id    = client.sheets_id,
-            since       = since,
-            invest      = metrics["invest"],
-            leads       = metrics["leads"],
-            impressoes  = metrics["impressoes"],
-            link_clicks = metrics["link_clicks"],
-            revenue     = metrics["revenue"],
-        )
+        try:
+            res = write_monthly(
+                sheet_id    = client.sheets_id,
+                since       = since,
+                invest      = metrics["invest"],
+                leads       = metrics["leads"],
+                impressoes  = metrics["impressoes"],
+                link_clicks = metrics["link_clicks"],
+                revenue     = metrics["revenue"],
+            )
+        except Exception as e:
+            # Mesmo motivo do sync semanal: um cliente quebrando (cota da API, etc)
+            # não pode derrubar o lote inteiro nem perder o progresso já salvo.
+            logger.warning("[sync-monthly] %s — ERRO inesperado: %s", client.name, e)
+            res = {"ok": False, "error": str(e)}
 
         if res.get("ok"):
             synced += 1
@@ -344,7 +372,10 @@ def run_monthly_sync(db: Session) -> dict:
                 "status": "error", "error": res.get("error"),
             })
 
-    db.commit()
+        db.commit()
+        if i < len(clients) - 1:
+            time.sleep(1.5)
+
     summary = {
         "since": since, "until": until,
         "total": len(client_results),
