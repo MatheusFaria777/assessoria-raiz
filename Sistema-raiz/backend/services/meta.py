@@ -36,7 +36,7 @@ _TYPE_TO_CONTAGEM = {
 _PRIMARY_CONTAGEM = {"mensagem", "lead"}
 
 CAMPAIGN_FIELDS = ["campaign_id", "campaign_name", "spend", "actions", "action_values", "reach", "impressions", "inline_link_clicks"]
-AD_FIELDS = ["ad_id", "ad_name", "campaign_id", "campaign_name", "actions", "spend"]
+AD_FIELDS = ["ad_id", "ad_name", "campaign_id", "campaign_name", "adset_id", "actions", "spend"]
 
 
 def _init(token: str):
@@ -300,18 +300,20 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
 
 
 def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: list, primary_type: str | None = None, n: int = 3, campaign_map: list | None = None) -> list:
-    """Retorna top N anúncios com melhor performance usando requests direto."""
+    """
+    Retorna os melhores anúncios do período.
+    Sem mapeamento explícito (ou sem grupos configurados): top N da conta inteira, junto.
+    Com mapeamento explícito: o melhor anúncio de CADA grupo (campanha ou conjunto configurado
+    com o mesmo tipo do primary_type) — cada item vem com "grupo" preenchido com o nome configurado.
+    """
     import requests as _req
 
     act = _ensure_act(account_id)
-    # Nota: "melhores criativos" hoje só reconhece mapeamento por campanha inteira, não por
-    # conjunto/vendedor específico — um anúncio de qualquer conjunto da campanha mapeada entra.
-    explicit, _by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
-    use_explicit = bool(explicit)
+    by_campaign, by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
+    use_explicit = bool(by_campaign) or bool(by_adset)
 
     if use_explicit:
-        primary_config = next((cfg for cfg in explicit.values() if cfg["type"] == primary_type), None) if primary_type else None
-        primary_campaign_ids = {cid for cid, cfg in explicit.items() if cfg["type"] == primary_type} if primary_type else set(explicit.keys())
+        primary_config = next((cfg for cfg in list(by_campaign.values()) + list(by_adset.values()) if cfg["type"] == primary_type), None) if primary_type else None
     else:
         primary_config = _config_for(primary_type, tipos_cfg) if primary_type else None
 
@@ -333,9 +335,18 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
 
     rows = data.get("data", [])
 
+    def _group_config(row) -> dict | None:
+        """Acha a config (conjunto tem prioridade sobre campanha) pra essa linha."""
+        adset_id = str(row.get("adset_id", ""))
+        if adset_id and adset_id in by_adset:
+            return by_adset[adset_id]
+        campaign_id = str(row.get("campaign_id", ""))
+        return by_campaign.get(campaign_id)
+
     def _matches(row) -> bool:
         if use_explicit:
-            return str(row.get("campaign_id", "")) in primary_campaign_ids
+            cfg = _group_config(row)
+            return bool(cfg) and (not primary_type or cfg["type"] == primary_type)
         if not primary_config:
             return True
         return any(p in row.get("campaign_name", "").lower() for p in primary_config["palavras"])
@@ -345,7 +356,7 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
         if primary_config and primary_config.get("acao"):
             return _sum_action(actions, primary_config["acao"])
         if use_explicit:
-            return sum(_sum_action(actions, cfg["acao"]) for cfg in explicit.values() if cfg.get("acao"))
+            return sum(_sum_action(actions, cfg["acao"]) for cfg in list(by_campaign.values()) + list(by_adset.values()) if cfg.get("acao"))
         return sum(_sum_action(actions, cfg["acao"]) for cfg in tipos_cfg if cfg.get("acao"))
 
     filtered = []
@@ -354,22 +365,35 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
             continue
         score = _score(row)
         if score > 0:
+            grupo_cfg = _group_config(row) if use_explicit else None
             filtered.append({
                 "id": row.get("ad_id", ""),
                 "name": row.get("ad_name", ""),
                 "results": score,
                 "spend": float(row.get("spend", 0)),
+                "grupo": grupo_cfg["label"] if grupo_cfg else None,
             })
 
-    by_name: dict[str, dict] = {}
+    # Soma anúncios repetidos (mesmo nome, dentro do mesmo grupo)
+    by_key: dict[tuple, dict] = {}
     for ad in filtered:
-        if ad["name"] not in by_name:
-            by_name[ad["name"]] = {**ad}
+        key = (ad["grupo"], ad["name"])
+        if key not in by_key:
+            by_key[key] = {**ad}
         else:
-            by_name[ad["name"]]["results"] += ad["results"]
-            by_name[ad["name"]]["spend"] = by_name[ad["name"]].get("spend", 0) + ad.get("spend", 0)
+            by_key[key]["results"] += ad["results"]
+            by_key[key]["spend"] = by_key[key].get("spend", 0) + ad.get("spend", 0)
 
-    top = sorted(by_name.values(), key=lambda x: x["results"], reverse=True)[:n]
+    grupos_presentes = {ad["grupo"] for ad in by_key.values() if ad["grupo"]}
+    if grupos_presentes:
+        # Um por grupo (o melhor de cada) em vez de um ranking geral
+        top = []
+        for grupo in grupos_presentes:
+            do_grupo = [ad for ad in by_key.values() if ad["grupo"] == grupo]
+            top.append(max(do_grupo, key=lambda x: x["results"]))
+        top.sort(key=lambda x: x["results"], reverse=True)
+    else:
+        top = sorted(by_key.values(), key=lambda x: x["results"], reverse=True)[:n]
 
     # Busca link do Instagram para cada anúncio
     for ad_data in top:

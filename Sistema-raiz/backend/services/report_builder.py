@@ -102,8 +102,12 @@ def format_report(
     lines.append(f"\n📈 Resumo de Resultados:\n{summary_text.strip() or '[Adicione seu resumo aqui]'}")
 
     if top_ads:
-        lines.append(f"\n🔥 Melhores criativos {'do mês' if is_month else 'da semana'}:")
+        tem_grupo = any(ad.get("grupo") for ad in top_ads)
+        titulo = "Melhor criativo de cada campanha/conjunto" if tem_grupo else f"Melhores criativos {'do mês' if is_month else 'da semana'}"
+        lines.append(f"\n🔥 {titulo}:")
         for ad in top_ads:
+            if ad.get("grupo"):
+                lines.append(f"{ad['grupo']}:")
             lines.append(f"Nome: {ad['name']}")
             lines.append(f"Link: {ad.get('link') or '[link não disponível]'}")
         lines.append("\n📌 Acima estão os criativos que tiveram uma performance melhor, seria interessante usar eles de inspiração para produzir seus próximos criativos.")

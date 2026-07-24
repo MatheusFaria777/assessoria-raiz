@@ -269,11 +269,14 @@ def format_quarta(
 
     is_monthly = period_type == "monthly"
     periodo_label = f"de {_month_label(since)}" if is_monthly and since else "dessa semana"
-    lines = [f"Aqui os criativos que mais performaram {periodo_label} 👇", ""]
+    tem_grupo = any(ad.get("grupo") for ad in top_ads)
+    abertura = "Aqui o melhor criativo de cada campanha/conjunto" if tem_grupo else "Aqui os criativos que mais performaram"
+    lines = [f"{abertura} {periodo_label} 👇", ""]
 
     for i, ad in enumerate(top_ads):
         medal = MEDAL_EMOJIS[i] if i < len(MEDAL_EMOJIS) else "•"
         name = ad.get("name", "Sem nome")
+        grupo = ad.get("grupo")
         results = int(ad.get("results", 0))
         spend = ad.get("spend", 0.0)
         link = ad.get("link", "")
@@ -285,7 +288,11 @@ def format_quarta(
 
         linha_resultado = f"{_br_int(results)} {metrica_label}{cpr_str}"
 
-        lines.append(f"{medal} {name}")
+        if grupo:
+            lines.append(f"{medal} {grupo}")
+            lines.append(f"   {name}")
+        else:
+            lines.append(f"{medal} {name}")
         lines.append(f"   {linha_resultado}")
         if link:
             lines.append(f"   {link}")
