@@ -251,8 +251,7 @@ function MetaSettings() {
   const [exchanging, setExchanging] = useState(false)
 
   const loadTokenInfo = () => {
-    fetch('/api/settings/meta-token/info')
-      .then(r => r.json())
+    api.get('/api/settings/meta-token/info')
       .then(setTokenInfo)
       .catch(() => {})
   }
@@ -263,13 +262,7 @@ function MetaSettings() {
     if (!shortToken.trim()) { toast('Cole o token antes de converter', 'error'); return }
     setExchanging(true)
     try {
-      const r = await fetch('/api/settings/meta-token/exchange', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: shortToken.trim() }),
-      })
-      const d = await r.json()
-      if (!r.ok) throw new Error(d.detail || 'Erro desconhecido')
+      const d = await api.post('/api/settings/meta-token/exchange', { token: shortToken.trim() })
       toast(d.message)
       setShortToken('')
       loadTokenInfo()
