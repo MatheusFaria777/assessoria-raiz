@@ -159,7 +159,65 @@ cliente precisa ler e pensar "isso foi feito pra mim".
 
 ---
 
-## Passo 7 — Salvar
+## Passo 7 — Fotos e assets do cliente
+
+Antes de usar qualquer foto que o cliente mandou (pasta `Materiais/`), comprimir:
+redimensionar pro lado maior ficar em ~1400px e salvar com `quality=80` (JPEG).
+Foto de celular pode vir com vários MB (já aconteceu de uma foto sozinha ter 5,9MB
+e pesar mais que o resto do site inteiro somado) — isso derruba a nota de
+performance e o Core Web Vitals. Nunca usar a foto original sem passar por isso.
+
+Script de referência (Python + Pillow):
+
+```python
+from PIL import Image
+img = Image.open(caminho_original)
+w, h = img.size
+if w > 1400:
+    img = img.resize((1400, int(h * 1400 / w)), Image.LANCZOS)
+img.convert('RGB').save(caminho_destino, quality=80, optimize=True)
+```
+
+No HTML: a imagem do hero (fundo, LCP) leva `fetchpriority="high"`. Todas as
+outras imagens abaixo da dobra levam `loading="lazy"`.
+
+---
+
+## Passo 8 — Fundação técnica de SEO
+
+Toda LP nova sai com essa base, mesmo que o domínio final ainda não esteja pronto
+(os caminhos `/assets/...` e a URL absoluta já ficam certos, só o domínio muda depois):
+
+- **Favicon:** gerar a partir do ícone/símbolo da marca (não a logo completa com
+  texto — em tamanho de aba de navegador, texto vira ilegível). `favicon.png` (256x256)
+  + `favicon.ico`, referenciados com `<link rel="icon">` e `<link rel="apple-touch-icon">`
+- **Open Graph + Twitter Card:** `og:title`, `og:description`, `og:image` (1200x630),
+  `og:url`, `og:type`, `og:locale`, `og:site_name`, mais os equivalentes `twitter:*`
+  com `twitter:card=summary_large_image`
+  - **A imagem OG precisa ter todo texto/logo centralizado**, dentro de uma zona
+    seguro de ~1080x600 no centro. WhatsApp e a maioria dos apps cortam a miniatura
+    num quadrado a partir do centro — texto perto da borda esquerda/direita corta.
+  - Se precisar trocar a imagem depois de já ter sido compartilhada uma vez, **trocar
+    o nome do arquivo** (ex: `og-image-v2.jpg`). O WhatsApp cacheia por URL, então só
+    sobrescrever o conteúdo no mesmo nome não força atualizar.
+- **`<link rel="canonical">`** apontando pra URL final com `https://` e domínio certo
+- **Título:** até ~60 caracteres. **Meta description:** até ~160 caracteres
+- **`robots.txt`** simples (`Allow: /` + linha `Sitemap:`) e **`sitemap.xml`** com a
+  URL da página — subir junto na raiz do deploy, não só o HTML
+- **Schema JSON-LD:** `LocalBusiness` (nome, telefone, área de atendimento, endereço
+  ao menos com cidade/UF) sempre. Se a página tiver seção de FAQ, adicionar também
+  `FAQPage` com as mesmas perguntas/respostas que já estão no HTML — não duplicar
+  conteúdo escrito diferente, só estruturar o que já existe
+- **H1 vs. headline visual:** o H1 semântico (o que o Google/IA lê como título)
+  não precisa ser o texto visualmente maior da página. Pode usar a linha pequena
+  ("eyebrow") acima do headline principal como H1 de verdade — com palavra-chave
+  do negócio + localização — e deixar o headline emocional grande como elemento
+  visual comum (não H1). Isso dá SEO sem mudar nada visualmente pro visitante.
+  Só um H1 por página.
+
+---
+
+## Passo 9 — Salvar
 
 Salvar em `Clientes/[slug]/Entregaveis/lp-[slug].html`. Se a pasta `Entregaveis/`
 não existir, criar antes.
@@ -169,7 +227,7 @@ substituir ou versionar (`lp-[slug]-v2.html`).
 
 ---
 
-## Passo 8 — Deploy (opcional)
+## Passo 10 — Deploy
 
 Perguntar: "Quer um link de preview pra você ou o cliente revisar antes de ir pro
 domínio final?"
@@ -179,9 +237,39 @@ Se sim, publicar como preview no projeto `assessoriaraiz` do Cloudflare Pages
 `assessoriaraiz.pages.dev/preview/[slug]`.
 
 **Importante — isso é só preview.** O domínio final do cliente (ex: `monegoeletromec.com.br`)
-precisa ser registrado e apontado separadamente pro Cloudflare Pages do cliente. Isso
-fica fora do escopo automático desta skill — avisar o usuário que esse passo é manual
-(registro de domínio + DNS) quando a LP estiver aprovada.
+precisa ser registrado e apontado separadamente. Quando o cliente aprovar e o domínio
+existir:
+
+1. Criar um **projeto novo e separado** no Cloudflare Pages só pra esse cliente
+   (`wrangler pages project create [slug]`) — não usar o projeto `assessoriaraiz`
+   compartilhado pra site de produção de cliente
+2. **Sempre passar `--branch=main`** explicitamente em todo `wrangler pages deploy`
+   neste workspace. Sem isso, o wrangler usa a branch git local (aqui é `dev`) e o
+   deploy vira "Preview" em vez de "Produção" — sem erro nenhum, só o domínio
+   principal não atualiza. Ver `feedback_cloudflare_pages_branch.md` na memória
+3. Conectar o domínio: se o cliente tiver DNS externo (Registro.br etc) e não quiser
+   trocar nameserver, configurar CNAME pro `www` (`[projeto].pages.dev`) direto no
+   próprio DNS dele — mas o domínio raiz (sem www) só funciona de verdade com o
+   DNS migrado pro Cloudflare (nameserver), por causa de regra de CNAME em domínio
+   raiz. Perguntar a preferência do usuário antes de escolher o caminho
+4. Depois que os dois (raiz e www) estiverem no ar, criar uma regra de redirecionamento
+   301 de `www` pra raiz (ou vice-versa) — evita conteúdo duplicado pro Google.
+   Marcar "preservar string de consulta" pra não perder parâmetro de campanha (utm,
+   gclid) no redirect
+
+---
+
+## Passo 11 — Auditoria de SEO (depois do domínio final no ar)
+
+Depois que o site estiver publicado no domínio de verdade (não vale rodar isso só
+no preview), rodar as 3 skills de SEO instaladas, nessa ordem:
+
+1. `/seo-audit` — técnico + on-page (crawlability, indexação, títulos, headings)
+2. `/ai-seo` — visibilidade em resposta de IA (schema, robots.txt pra bots de IA)
+3. `/seo` (Addy Osmani, web-quality-skills) — performance e Core Web Vitals
+
+Aplicar os achados de prioridade alta/média direto (não só reportar), e voltar
+pro Passo 8 desta skill se algo básico (favicon, OG, schema) tiver ficado faltando.
 
 ---
 

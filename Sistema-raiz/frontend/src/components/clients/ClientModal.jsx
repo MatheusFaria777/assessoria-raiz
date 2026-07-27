@@ -72,12 +72,13 @@ export default function ClientModal({ client, onClose, onSaved }) {
         campaignMappings.filter(m => !m.meta_adset_id).map(m => [m.meta_campaign_id, m])
       )
       // Merge campanhas da API com mapeamentos já salvos — sem mapeamento salvo, usa o
-      // palpite de tipo/nome que o Meta sugere (pode trocar na hora)
+      // palpite de tipo/nome que o Meta sugere (pode trocar na hora). Campanha pausada não
+      // recebe sugestão de tipo — fica em "ignorar" por padrão, senão enche de lixo configurado.
       setMetaCampaigns(d.campaigns.map(c => ({
         id: c.id,
         name: c.name,
         status: c.status,
-        campaign_type: savedById[c.id]?.campaign_type ?? c.suggested_type ?? '',
+        campaign_type: savedById[c.id]?.campaign_type ?? (c.status === 'ACTIVE' ? c.suggested_type : '') ?? '',
         label: savedById[c.id]?.label ?? c.suggested_label ?? '',
         sheet_tab: savedById[c.id]?.sheet_tab || '',
       })))

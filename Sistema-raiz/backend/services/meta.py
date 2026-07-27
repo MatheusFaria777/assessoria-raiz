@@ -252,6 +252,10 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
             tipo = _detect_tipo(nome, tipos_cfg)
             chave = tipo
             config = _config_for(tipo, tipos_cfg)
+            # DIAGNÓSTICO TEMPORÁRIO (27/07) — tirar depois de achar por que algumas
+            # contas mostram investimento total mas nenhuma seção na cadência.
+            print(f"[meta-diag] campanha='{nome}' spend={spend:.2f} -> tipo detectado='{tipo}'"
+                  f"{' (SEM GRUPO CONFIGURADO)' if not config and tipo != 'outro' else ''}", flush=True)
 
             if tipo == "outro":
                 agregado.setdefault("outro", {"results": 0.0, "spend": 0.0})
