@@ -211,6 +211,7 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     # Mapeamento explícito por ID tem prioridade sobre keyword detection
     by_campaign, by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
     use_explicit = bool(by_campaign) or bool(by_adset)
+    print(f"[meta-diag] === conta={account_id} explicito={use_explicit} grupos_cfg={len(tipos_cfg)} ===", flush=True)
 
     # Precisa buscar por conjunto (não só por campanha) quando tiver mapeamento nesse nível —
     # ex: campanha com um conjunto por vendedor, cada um contando separado.
