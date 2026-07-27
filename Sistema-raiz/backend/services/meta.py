@@ -110,6 +110,28 @@ def _config_for(tipo: str, tipos: list) -> dict | None:
     return next((t for t in tipos if t["tipo"] == tipo), None)
 
 
+def get_instagram_id_from_page(page_id: str, token: str) -> dict:
+    """
+    Busca a conta profissional do Instagram vinculada a uma Página do Facebook.
+    Usado pra preencher o Instagram Actor ID automaticamente em vez de digitar/adivinhar
+    (foi um ID errado digitado na mão que causou o erro '(#100) ... must be a valid
+    Instagram account id' — buscar direto da Página elimina esse tipo de engano).
+    """
+    import requests as _req
+    resp = _req.get(
+        f"https://graph.facebook.com/v19.0/{page_id}",
+        params={"fields": "instagram_business_account{id,username}", "access_token": token},
+        timeout=20,
+    )
+    data = resp.json()
+    if "error" in data:
+        raise ValueError(data["error"].get("message", str(data["error"])))
+    ig = data.get("instagram_business_account")
+    if not ig:
+        raise ValueError("Essa Página do Facebook não tem uma conta do Instagram profissional vinculada.")
+    return {"id": ig.get("id", ""), "username": ig.get("username", "")}
+
+
 def get_campaigns_for_account(account_id: str, token: str) -> list[dict]:
     """Retorna todas as campanhas ativas da conta, para exibir na UI de mapeamento."""
     _init(token)

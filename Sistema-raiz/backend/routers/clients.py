@@ -155,6 +155,28 @@ def active_ads(client_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
 
 
+@router.get("/{client_id}/instagram-lookup")
+def instagram_lookup(client_id: int, page_id: str, db: Session = Depends(get_db)):
+    """Busca a conta profissional do Instagram vinculada a uma Página do Facebook — evita digitar/adivinhar o ID."""
+    from services.meta import get_instagram_id_from_page
+    from services.token_manager import get_meta_token
+
+    client = db.query(Client).filter(Client.id == client_id, Client.active == True).first()
+    if not client:
+        raise HTTPException(status_code=404, detail="Cliente não encontrado")
+    if not page_id or not page_id.strip():
+        raise HTTPException(status_code=400, detail="Preencha o Page ID do conjunto antes de buscar.")
+
+    token = get_meta_token(client, db)
+    if not token:
+        raise HTTPException(status_code=400, detail="Token Meta não configurado")
+
+    try:
+        return get_instagram_id_from_page(page_id.strip(), token)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=str(e))
+
+
 @router.get("/{client_id}/token-preview")
 def token_preview(client_id: int, db: Session = Depends(get_db)):
     client = db.query(Client).filter(Client.id == client_id).first()

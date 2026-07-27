@@ -300,7 +300,7 @@ export default function ClientModal({ client, onClose, onSaved }) {
             )}
 
             {adsets.map((a, idx) => (
-              <AdsetRow key={a.id || a._new || idx} adset={a} idx={idx}
+              <AdsetRow key={a.id || a._new || idx} adset={a} idx={idx} clientId={client?.id}
                 onChange={setAdset} onRemove={removeAdset} />
             ))}
 
@@ -556,8 +556,23 @@ function CampaignRow({ campaign, campaignTypes, onUpdate, adsetState, onToggleAd
 }
 
 /* ── AdsetRow ─────────────────────────────────────────────────────────────── */
-function AdsetRow({ adset, idx, onChange, onRemove }) {
+function AdsetRow({ adset, idx, onChange, onRemove, clientId }) {
   const [expanded, setExpanded] = useState(!adset.adset_id)
+  const [lookingUp, setLookingUp] = useState(false)
+
+  const lookupInstagram = async () => {
+    if (!adset.page_id?.trim()) { toast('Preenche o Page ID antes de buscar', 'error'); return }
+    setLookingUp(true)
+    try {
+      const d = await api.get(`/api/clients/${clientId}/instagram-lookup?page_id=${encodeURIComponent(adset.page_id.trim())}`)
+      onChange(idx, 'instagram_actor_id', d.id)
+      toast(`Encontrado: @${d.username}`)
+    } catch (e) {
+      toast(e.message || 'Erro ao buscar', 'error')
+    } finally {
+      setLookingUp(false)
+    }
+  }
 
   return (
     <div style={{ border: '1px solid rgba(245,245,245,.12)', borderRadius: 8, overflow: 'hidden' }}>
@@ -603,9 +618,15 @@ function AdsetRow({ adset, idx, onChange, onRemove }) {
             </Field>
           </div>
           <div className="field-row">
-            <Field label="Instagram Actor ID">
-              <input className="input" value={adset.instagram_actor_id || ''}
-                onChange={e => onChange(idx, 'instagram_actor_id', e.target.value)} placeholder="Ex: 17841400000000000" />
+            <Field label="Instagram Actor ID" hint="Ou clique em Buscar pra pegar direto da Página, sem digitar/errar">
+              <div style={{ display: 'flex', gap: '.4rem' }}>
+                <input className="input" value={adset.instagram_actor_id || ''}
+                  onChange={e => onChange(idx, 'instagram_actor_id', e.target.value)} placeholder="Ex: 17841400000000000" style={{ flex: 1 }} />
+                <button type="button" className="btn-secondary" onClick={lookupInstagram} disabled={lookingUp}
+                  style={{ fontSize: '.75rem', padding: '0 .75rem', whiteSpace: 'nowrap' }}>
+                  {lookingUp ? <span className="spinner" /> : 'Buscar do Meta'}
+                </button>
+              </div>
             </Field>
             <Field label="Template Ad ID" hint="ID de anúncio com WABA para duplicar">
               <input className="input" value={adset.template_ad_id || ''}
