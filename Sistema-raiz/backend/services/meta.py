@@ -211,7 +211,6 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     # Mapeamento explícito por ID tem prioridade sobre keyword detection
     by_campaign, by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
     use_explicit = bool(by_campaign) or bool(by_adset)
-    print(f"[meta-diag] === conta={account_id} explicito={use_explicit} grupos_cfg={len(tipos_cfg)} ===", flush=True)
 
     # Precisa buscar por conjunto (não só por campanha) quando tiver mapeamento nesse nível —
     # ex: campanha com um conjunto por vendedor, cada um contando separado.
@@ -239,11 +238,6 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         if use_explicit:
             # Mapeamento explícito: conjunto específico tem prioridade, senão cai pra campanha inteira
             config = _match_explicit(row, by_campaign, by_adset)
-            # DIAGNÓSTICO TEMPORÁRIO (27/07) — mostra as ações cruas que a Meta devolve,
-            # pra comparar com o que _CONTAGEM_MAP espera encontrar.
-            print(f"[meta-diag-explicit] campanha_id={row.get('campaign_id')} nome='{row.get('campaign_name')}' "
-                  f"spend={spend:.2f} mapeado={'sim' if config else 'NAO'} "
-                  f"acoes_meta={[(a.get('action_type'), a.get('value')) for a in row.get('actions', [])]}", flush=True)
             if not config:
                 # Campanha/conjunto não mapeado → ignora (não vai para "outro")
                 continue
@@ -258,10 +252,6 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
             tipo = _detect_tipo(nome, tipos_cfg)
             chave = tipo
             config = _config_for(tipo, tipos_cfg)
-            # DIAGNÓSTICO TEMPORÁRIO (27/07) — tirar depois de achar por que algumas
-            # contas mostram investimento total mas nenhuma seção na cadência.
-            print(f"[meta-diag] campanha='{nome}' spend={spend:.2f} -> tipo detectado='{tipo}'"
-                  f"{' (SEM GRUPO CONFIGURADO)' if not config and tipo != 'outro' else ''}", flush=True)
 
             if tipo == "outro":
                 agregado.setdefault("outro", {"results": 0.0, "spend": 0.0})
@@ -297,9 +287,6 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         total_spend += dados["spend"]
         if chave == "outro":
             continue
-        if not use_explicit:
-            print(f"[meta-diag] grupo='{chave}' spend={dados['spend']:.2f} results={dados['results']} "
-                  f"tipo_contagem={dados.get('tipo_contagem')}", flush=True)
         r = dados["results"]
         dados["results"] = int(round(r))
         dados["cost_per_result"] = dados["spend"] / r if r > 0 else 0.0
@@ -331,6 +318,11 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         "total_spend": total_spend,
         "primary_type": primary_type,
         "platform": "meta",
+        # Diz pra quem for renderizar (cadencia_builder/report_builder) se "tipos" tá
+        # organizado por tipo (grupos_cfg, modo palavra-chave) ou por nome configurado
+        # (aba Campanhas, modo explícito) — sem isso, cliente com os dois sistemas
+        # cadastrados ao mesmo tempo tenta ler pela chave errada e não acha nada.
+        "explicit": use_explicit,
     }
 
 

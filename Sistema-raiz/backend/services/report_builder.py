@@ -69,7 +69,7 @@ def format_report(
                 continue
             d_ant = prev_tipos.get(tipo)
             sections.append((d_at["label"], d_at["metrica"], d_at, d_ant))
-    elif grupos_cfg:
+    elif grupos_cfg and not current.get("explicit"):
         # Itera na ordem dos grupos configurados para o cliente
         for config in grupos_cfg:
             tipo = config["tipo"]
@@ -79,8 +79,8 @@ def format_report(
             d_ant = prev_tipos.get(tipo)
             sections.append((config["label"], config["metrica"], d_at, d_ant))
     else:
-        # Sem grupos de campanha (cliente usando mapeamento explícito da aba Campanhas) —
-        # itera direto nos dados, mesma lógica do branch Google acima.
+        # Cliente usando mapeamento explícito da aba Campanhas (mesmo com grupos antigos
+        # também cadastrados) — itera direto nos dados, mesma lógica do branch Google acima.
         for tipo, d_at in current_tipos.items():
             if d_at["results"] == 0 and d_at["spend"] == 0:
                 continue

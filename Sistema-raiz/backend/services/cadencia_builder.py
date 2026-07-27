@@ -148,11 +148,12 @@ def format_segunda(
         f"📅 *{d_since} a {d_until}*",
     ]
 
-    # Sem grupos de campanha (cliente usando mapeamento explícito da aba Campanhas em vez
-    # do sistema antigo de palavra-chave) — itera direto nos dados, mesma lógica do branch Google acima.
+    # Cliente usando mapeamento explícito da aba Campanhas (mesmo que também tenha grupos de
+    # campanha antigos cadastrados) — os dados vêm organizados por nome configurado, não por
+    # tipo, então itera direto neles em vez de tentar casar com grupos_cfg (que usaria a chave errada).
     itens = (
         [(config["tipo"], config.get("label")) for config in grupos_cfg]
-        if grupos_cfg else
+        if grupos_cfg and not data.get("explicit") else
         [(tipo, None) for tipo in tipos]
     )
 
