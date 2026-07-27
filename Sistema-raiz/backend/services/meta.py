@@ -239,6 +239,11 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         if use_explicit:
             # Mapeamento explícito: conjunto específico tem prioridade, senão cai pra campanha inteira
             config = _match_explicit(row, by_campaign, by_adset)
+            # DIAGNÓSTICO TEMPORÁRIO (27/07) — mostra as ações cruas que a Meta devolve,
+            # pra comparar com o que _CONTAGEM_MAP espera encontrar.
+            print(f"[meta-diag-explicit] campanha_id={row.get('campaign_id')} nome='{row.get('campaign_name')}' "
+                  f"spend={spend:.2f} mapeado={'sim' if config else 'NAO'} "
+                  f"acoes_meta={[(a.get('action_type'), a.get('value')) for a in row.get('actions', [])]}", flush=True)
             if not config:
                 # Campanha/conjunto não mapeado → ignora (não vai para "outro")
                 continue
