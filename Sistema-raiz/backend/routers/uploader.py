@@ -153,7 +153,7 @@ def _process_item(item_id: int):
     log = logging.getLogger("uploader")
 
     from database import SessionLocal
-    from services.instagram import download_post
+    from services.instagram_graph import download_post
     from services.ai_copy import generate_copy
     from services.meta_uploader import (
         get_next_ad_number, upload_images,
@@ -161,8 +161,6 @@ def _process_item(item_id: int):
     )
     from models.client import Client, Adset
     from models.uploader import UploadQueueItem
-    from config import decrypt
-    from models.settings import GlobalSetting
 
     db = SessionLocal()
     temp_dir = None
@@ -204,15 +202,10 @@ def _process_item(item_id: int):
             db.commit()
             return
 
-        # 1. Download do post Instagram
+        # 1. Download do post Instagram — via API oficial do Meta (mesmo token dos anúncios,
+        # não usa mais cookie de sessão pessoal — isso foi o que colocou a conta pessoal em risco)
         print(f"[uploader] item {item_id} — step 1: baixando post Instagram", flush=True)
-        _ig_setting = db.query(GlobalSetting).filter(GlobalSetting.key == "instagram_sessionid").first()
-        _ig_sessionid = decrypt(_ig_setting.value) if _ig_setting and _ig_setting.value else None
-        _ig_csrf_setting = db.query(GlobalSetting).filter(GlobalSetting.key == "instagram_csrftoken").first()
-        _ig_csrftoken = decrypt(_ig_csrf_setting.value) if _ig_csrf_setting and _ig_csrf_setting.value else None
-        _ig_uid_setting = db.query(GlobalSetting).filter(GlobalSetting.key == "instagram_ds_user_id").first()
-        _ig_ds_user_id = decrypt(_ig_uid_setting.value) if _ig_uid_setting and _ig_uid_setting.value else None
-        post = download_post(item.instagram_url, sessionid=_ig_sessionid, csrftoken=_ig_csrftoken, ds_user_id=_ig_ds_user_id)
+        post = download_post(item.instagram_url, instagram_actor_id=adset.instagram_actor_id, token=token)
         temp_dir = post["temp_dir"]
         print(f"[uploader] item {item_id} — post baixado: type={post['type']}, {len(post.get('images',[]))} imagens", flush=True)
 
