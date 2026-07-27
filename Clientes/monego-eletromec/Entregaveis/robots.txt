@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://monegoeletromec.com.br/sitemap.xml
