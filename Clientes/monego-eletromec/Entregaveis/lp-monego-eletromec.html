@@ -113,12 +113,13 @@ fbq('track', 'PageView');
     margin-bottom: 16px;
   }
   .eyebrow .line { height: 1px; width: 42px; background: var(--brand); }
-  .eyebrow span {
+  .eyebrow span, .eyebrow h1 {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
     color: var(--brand);
+    margin: 0;
   }
   .eyebrow.center { justify-content: center; }
 
@@ -223,14 +224,16 @@ fbq('track', 'PageView');
     margin: 0 auto;
     padding: 88px 20px 96px;
   }
-  .hero-inner h1 {
+  .hero-inner .headline-visual {
     font-size: clamp(30px, 5vw, 54px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
     line-height: 1.12;
     max-width: 680px;
     margin-bottom: 22px;
     color: #fff;
   }
-  .hero-inner h1 .red { color: var(--brand); }
+  .hero-inner .headline-visual .red { color: var(--brand); }
   .hero-inner p.lead {
     font-size: clamp(16px, 1.6vw, 19px);
     color: var(--slate-300);
@@ -522,8 +525,8 @@ fbq('track', 'PageView');
 <section class="hero">
   <div class="hero-bg"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma"></div>
   <div class="hero-inner">
-    <div class="eyebrow"><div class="line"></div><span>Manutenção Industrial · Caxias do Sul e Região</span></div>
-    <h1>Máquina parada é<br><span class="red">prejuízo na hora.</span></h1>
+    <div class="eyebrow"><div class="line"></div><h1>Manutenção Industrial em Laser e Plasma · Caxias do Sul, RS e SC</h1></div>
+    <p class="headline-visual">Máquina parada é<br><span class="red">prejuízo na hora.</span></p>
     <p class="lead">Mais de 10 anos resolvendo os problemas de máquinas industriais. Resposta garantida em até 8 horas, em qualquer turno, para laser e plasma.</p>
     <div class="btn-row">
       <a href="#" class="btn btn-wp" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
