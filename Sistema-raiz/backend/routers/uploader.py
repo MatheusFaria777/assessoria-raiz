@@ -240,23 +240,39 @@ def _process_item(item_id: int):
             from services.meta_uploader import upload_video, create_video_ad
             video_id = upload_video(account_id, token, post["video"])
             thumb_hash = upload_images(account_id, token, [post["thumbnail"]])[0] if post.get("thumbnail") else ""
-            result = create_video_ad(
-                account_id=account_id, token=token,
-                adset_id=adset.adset_id, page_id=adset.page_id or "",
-                video_id=video_id, ad_number=ad_number, copy=copy,
-                image_hash=thumb_hash,
-                instagram_actor_id=adset.instagram_actor_id or "",
-                lead_gen_form_id=lead_gen_form_id,
-            )
+
+            def _create_ad(ig_actor_id: str):
+                return create_video_ad(
+                    account_id=account_id, token=token,
+                    adset_id=adset.adset_id, page_id=adset.page_id or "",
+                    video_id=video_id, ad_number=ad_number, copy=copy,
+                    image_hash=thumb_hash,
+                    instagram_actor_id=ig_actor_id,
+                    lead_gen_form_id=lead_gen_form_id,
+                )
         else:
-            result = create_carousel_ad(
-                account_id=account_id, token=token,
-                adset_id=adset.adset_id, page_id=adset.page_id or "",
-                image_hashes=image_hashes,
-                ad_number=ad_number, copy=copy,
-                instagram_actor_id=adset.instagram_actor_id or "",
-                lead_gen_form_id=lead_gen_form_id,
-            )
+            def _create_ad(ig_actor_id: str):
+                return create_carousel_ad(
+                    account_id=account_id, token=token,
+                    adset_id=adset.adset_id, page_id=adset.page_id or "",
+                    image_hashes=image_hashes,
+                    ad_number=ad_number, copy=copy,
+                    instagram_actor_id=ig_actor_id,
+                    lead_gen_form_id=lead_gen_form_id,
+                )
+
+        ig_actor_id = adset.instagram_actor_id or ""
+        try:
+            result = _create_ad(ig_actor_id)
+        except Exception as e:
+            # A Meta às vezes rejeita um instagram_actor_id válido nesse tipo de anúncio —
+            # em vez de travar a fila, sobe sem atribuição automática de Instagram
+            # (precisa selecionar manualmente no Ads Manager depois), do jeito que sempre funcionou.
+            if ig_actor_id and "valid instagram account id" in str(e).lower():
+                print(f"[uploader] item {item_id} — instagram_actor_id rejeitado pelo Meta, tentando sem ele", flush=True)
+                result = _create_ad("")
+            else:
+                raise
         print(f"[uploader] item {item_id} — anúncio criado: {result.get('ad_id','?')}", flush=True)
 
         item.status = "done"

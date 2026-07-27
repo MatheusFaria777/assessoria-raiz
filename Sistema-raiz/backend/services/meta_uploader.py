@@ -166,12 +166,17 @@ def create_carousel_ad(
     # Substitui descricao pelo valor truncado
     story_spec["link_data"]["message"] = descricao
 
-    # Cria o AdCreative
-    creative_data = _post(f"{act}/adcreatives", token, json={
+    # Cria o AdCreative — manda instagram_actor_id no nível de cima também (além de
+    # aninhado no object_story_spec), a Meta é inconsistente sobre onde espera esse campo
+    # dependendo do tipo de anúncio.
+    creative_payload = {
         "name":                   f"Creative - {ad_name}"[:100],
         "object_story_spec":      story_spec,
         "degrees_of_freedom_spec": dof,
-    })
+    }
+    if instagram_actor_id:
+        creative_payload["instagram_actor_id"] = instagram_actor_id
+    creative_data = _post(f"{act}/adcreatives", token, json=creative_payload)
     creative_id = creative_data["id"]
 
     # Cria o Ad (pausado para lead gen — usuário ativa manualmente no Ads Manager)
@@ -227,11 +232,14 @@ def create_video_ad(
         }
     }
 
-    creative_data = _post(f"{act}/adcreatives", token, json={
+    creative_payload = {
         "name": f"Creative - {ad_name}",
         "object_story_spec": story_spec,
         "degrees_of_freedom_spec": dof,
-    })
+    }
+    if instagram_actor_id:
+        creative_payload["instagram_actor_id"] = instagram_actor_id
+    creative_data = _post(f"{act}/adcreatives", token, json=creative_payload)
     creative_id = creative_data["id"]
 
     ad_status = "PAUSED" if lead_gen_form_id else "ACTIVE"
