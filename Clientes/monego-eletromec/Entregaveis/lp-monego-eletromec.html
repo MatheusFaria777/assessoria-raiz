@@ -51,6 +51,55 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Atendem qualquer marca de máquina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Atendemos qualquer marca e modelo de máquina de corte a laser e plasma, independente de quem instalou."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual a área de atendimento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Caxias do Sul, Rio Grande do Sul e Santa Catarina."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como funciona o orçamento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Manda a descrição do problema pelo WhatsApp, com foto se tiver. Avaliamos e retornamos com prazo e valor em até 8 horas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Atendem fora do horário comercial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, atendimento também no 2º e 3º turno, porque máquina parada não espera horário comercial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O serviço tem garantia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O compromisso é finalizar o que foi combinado, mesmo com prejuízo."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -523,7 +572,7 @@ fbq('track', 'PageView');
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma"></div>
+  <div class="hero-bg"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma" fetchpriority="high"></div>
   <div class="hero-inner">
     <div class="eyebrow"><div class="line"></div><h1>Manutenção Industrial em Laser e Plasma · Caxias do Sul, RS e SC</h1></div>
     <p class="headline-visual">Máquina parada é<br><span class="red">prejuízo na hora.</span></p>
@@ -560,7 +609,7 @@ fbq('track', 'PageView');
 
     <div class="servicos-grid">
       <div class="servico-card">
-        <div class="foto"><img src="assets/servico-calibracao.jpg" alt="Máquina industrial em operação"></div>
+        <div class="foto"><img src="assets/servico-calibracao.jpg" alt="Máquina industrial em operação" loading="lazy"></div>
         <div class="servico-corpo">
           <h3>Manutenção Mecânica, Elétrica e Eletrônica</h3>
           <p>Máquinas de corte a laser e plasma. Diagnóstico, reparo e ajuste completo, qualquer marca.</p>
@@ -568,7 +617,7 @@ fbq('track', 'PageView');
         </div>
       </div>
       <div class="servico-card">
-        <div class="foto"><img src="assets/servico-eletrica.jpg" alt="Retrofit de painel elétrico industrial"></div>
+        <div class="foto"><img src="assets/servico-eletrica.jpg" alt="Retrofit de painel elétrico industrial" loading="lazy"></div>
         <div class="servico-corpo">
           <h3>Retrofit de Máquinas</h3>
           <p>Atualização de comando e automação em equipamentos de corte a laser e plasma, estendendo a vida útil da máquina.</p>
@@ -576,7 +625,7 @@ fbq('track', 'PageView');
         </div>
       </div>
       <div class="servico-card">
-        <div class="foto"><img src="assets/servico-lente.jpg" alt="Lente de cabeçote de corte a laser"></div>
+        <div class="foto"><img src="assets/servico-lente.jpg" alt="Lente de cabeçote de corte a laser" loading="lazy"></div>
         <div class="servico-corpo">
           <h3>Descontaminação de Cabeçotes de Corte e Troca de Lentes</h3>
           <p>Manutenção do cabeçote de corte a laser: limpeza, descontaminação e substituição de lentes ópticas.</p>
@@ -584,7 +633,7 @@ fbq('track', 'PageView');
         </div>
       </div>
       <div class="servico-card">
-        <div class="foto"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma"></div>
+        <div class="foto"><img src="assets/servico-plasma.jpg" alt="Máquina de corte a plasma" loading="lazy"></div>
         <div class="servico-corpo">
           <h3>Laudo de Inspeção</h3>
           <p>Avaliação técnica antes de comprar máquina usada de corte térmico. Saiba o estado real do equipamento.</p>
@@ -607,7 +656,7 @@ fbq('track', 'PageView');
   <div class="container">
     <div class="sobre-grid">
       <div class="sobre-foto">
-        <img src="assets/cristian.jpg" alt="Cristian Mônego">
+        <img src="assets/cristian.jpg" alt="Cristian Mônego" loading="lazy">
         <div class="badge-flutuante">
           <div class="num">10+</div>
           <div class="cap">Anos de experiência</div>
@@ -705,7 +754,7 @@ fbq('track', 'PageView');
 
 <!-- CTA FINAL -->
 <section class="cta-final" id="contato">
-  <div class="cta-bg"><img src="assets/servico-calibracao.jpg" alt=""></div>
+  <div class="cta-bg"><img src="assets/servico-calibracao.jpg" alt="" loading="lazy"></div>
   <div class="cta-inner">
     <h2>Máquina parada? Chama agora.</h2>
     <p>Sem enrolação. Retorno em até 8 horas para indústrias em todo o Rio Grande do Sul e Santa Catarina.</p>
