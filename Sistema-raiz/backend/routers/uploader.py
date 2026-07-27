@@ -297,6 +297,12 @@ def _process_item(item_id: int):
                 "api_error" in err.lower() and "internal server error" in err.lower()
             ) or "overloaded_error" in err.lower()
 
+            # Conta do Instagram não conectada à conta de anúncios (erro #100 do Meta) —
+            # o ID em si tá certo, falta vincular no Business Manager
+            instagram_not_linked = (
+                "valid instagram account id" in err.lower() or "instagram_actor_id" in err.lower()
+            )
+
             attempts = item.attempts  # já incrementado no início
 
             if rate_limit:
@@ -337,6 +343,15 @@ def _process_item(item_id: int):
                     item.status = "error"
                     item.error_message = "Erro persistente na Claude API. Clique em Retry."
                     db.commit()
+            elif instagram_not_linked:
+                item.status = "error"
+                item.error_message = (
+                    "A conta do Instagram desse conjunto não está conectada à conta de anúncios "
+                    "desse cliente no Meta. Vá em Business Settings → Contas do Instagram → "
+                    "encontre a conta → aba 'Ativos conectados' → conecte a Conta de anúncios "
+                    "desse cliente. Depois clique em Retry."
+                )
+                db.commit()
             else:
                 item.status = "error"
                 item.error_message = err[:500]
