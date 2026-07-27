@@ -291,6 +291,9 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
         total_spend += dados["spend"]
         if chave == "outro":
             continue
+        if not use_explicit:
+            print(f"[meta-diag] grupo='{chave}' spend={dados['spend']:.2f} results={dados['results']} "
+                  f"tipo_contagem={dados.get('tipo_contagem')}", flush=True)
         r = dados["results"]
         dados["results"] = int(round(r))
         dados["cost_per_result"] = dados["spend"] / r if r > 0 else 0.0
