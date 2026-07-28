@@ -25,6 +25,21 @@ def slugify(name: str) -> str:
     return slug
 
 
+def generate_unique_slug(db: Session, name: str, exclude_id: int | None = None) -> str:
+    """Gera um feedback_slug único a partir do nome, incrementando -1, -2... se já existir."""
+    from models.client import Client
+    slug = slugify(name)
+    base, n = slug, 1
+    while True:
+        q = db.query(Client).filter(Client.feedback_slug == slug)
+        if exclude_id is not None:
+            q = q.filter(Client.id != exclude_id)
+        if not q.first():
+            return slug
+        slug = f"{base}-{n}"
+        n += 1
+
+
 def generate_insights(feedback: ClientFeedback, db: Session) -> dict:
     """Chama Claude API e gera insights estruturados para uma resposta de feedback."""
     if not settings.anthropic_api_key:

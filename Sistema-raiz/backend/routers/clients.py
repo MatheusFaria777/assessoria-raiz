@@ -40,6 +40,8 @@ def get_client(client_id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=ClientOut)
 def create_client(data: ClientCreate, db: Session = Depends(get_db)):
+    from services.feedback_insights import generate_unique_slug
+
     client = Client(
         name=data.name,
         has_meta=data.has_meta,
@@ -52,6 +54,9 @@ def create_client(data: ClientCreate, db: Session = Depends(get_db)):
         sheets_tabs=data.sheets_tabs,
         cadencia_ativa=data.cadencia_ativa,
         cadencia_contexto=data.cadencia_contexto,
+        # Gera o link de feedback/GMN já na criação — antes ficava faltando pra todo
+        # cliente novo, sem jeito nenhum na tela de gerar depois.
+        feedback_slug=generate_unique_slug(db, data.name),
     )
 
     # Associar grupos de campanha

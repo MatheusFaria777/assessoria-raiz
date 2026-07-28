@@ -10,7 +10,7 @@ from database import get_db
 from models.client import Client
 from models.feedback import Survey, ClientFeedback
 from services.auth import get_current_user
-from services.feedback_insights import generate_insights, slugify
+from services.feedback_insights import generate_insights, slugify, generate_unique_slug
 
 router = APIRouter()
 
@@ -244,12 +244,7 @@ def set_client_slug(client_id: int, db: Session = Depends(get_db), _=Depends(get
         raise HTTPException(status_code=404, detail="Cliente não encontrado")
     if client.feedback_slug:
         return {"slug": client.feedback_slug, "message": "Slug já existia"}
-    slug = slugify(client.name)
-    # Garante unicidade
-    base, n = slug, 1
-    while db.query(Client).filter(Client.feedback_slug == slug, Client.id != client_id).first():
-        slug = f"{base}-{n}"
-        n += 1
+    slug = generate_unique_slug(db, client.name, exclude_id=client_id)
     client.feedback_slug = slug
     db.commit()
     return {"slug": slug, "message": "Slug gerado"}
@@ -261,11 +256,7 @@ def seed_all_slugs(db: Session = Depends(get_db), _=Depends(get_current_user)):
     clients = db.query(Client).filter(Client.feedback_slug == None).all()
     updated = []
     for c in clients:
-        slug = slugify(c.name)
-        base, n = slug, 1
-        while db.query(Client).filter(Client.feedback_slug == slug).first():
-            slug = f"{base}-{n}"
-            n += 1
+        slug = generate_unique_slug(db, c.name, exclude_id=c.id)
         c.feedback_slug = slug
         updated.append({"id": c.id, "name": c.name, "slug": slug})
     db.commit()
