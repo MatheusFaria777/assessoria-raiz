@@ -22,3 +22,7 @@ clientes:
   - nome: "MJ Sondagens"
     customer_id: "8375006405"
     notas: "Conta de Anuncios da MJ Sondagens"
+
+  - nome: "Monego Eletromec"
+    customer_id: "3325626247"
+    notas: "Cristian Monego — manutencao industrial (laser, dobradeira, plasma). RS e SC."
