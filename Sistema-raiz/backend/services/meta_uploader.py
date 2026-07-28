@@ -230,9 +230,8 @@ def create_video_ad(
     ad_data = _post(f"{act}/ads", token, json={
         "name":     ad_name,
         "adset_id": adset_id,
-        "status":   "ACTIVE",
         "creative": {"creative_id": creative_id},
-        "status":   ad_status,
+        "status":   "ACTIVE",
     })
 
     return {"ad_id": ad_data["id"], "ad_name": ad_name, "creative_id": creative_id}

@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from typing import Optional
 from sqlalchemy.orm import Session, selectinload
 
 from database import get_db
@@ -14,14 +15,15 @@ from services.cadencia_builder import (
 router = APIRouter()
 
 
-def _meta_clients(db: Session) -> list:
-    return (
+def _meta_clients(db: Session, client_id: Optional[int] = None) -> list:
+    q = (
         db.query(Client)
         .filter(Client.active == True, Client.has_meta == True, Client.cadencia_ativa == True)
         .options(selectinload(Client.campaign_groups), selectinload(Client.campaigns))
-        .order_by(Client.name)
-        .all()
     )
+    if client_id:
+        q = q.filter(Client.id == client_id)
+    return q.order_by(Client.name).all()
 
 
 def _date_range(weekday: int) -> tuple[str, str, str]:
@@ -33,29 +35,28 @@ def _date_range(weekday: int) -> tuple[str, str, str]:
     return since, until, "weekly"
 
 
-def _google_only_clients(db: Session) -> list:
+def _google_only_clients(db: Session, client_id: Optional[int] = None) -> list:
     """Clientes com Google Ads mas sem Meta (evita duplicatas)."""
-    return (
-        db.query(Client)
-        .filter(
-            Client.active == True,
-            Client.has_google == True,
-            Client.has_meta == False,
-            Client.cadencia_ativa == True,
-        )
-        .order_by(Client.name)
-        .all()
+    q = db.query(Client).filter(
+        Client.active == True,
+        Client.has_google == True,
+        Client.has_meta == False,
+        Client.cadencia_ativa == True,
     )
+    if client_id:
+        q = q.filter(Client.id == client_id)
+    return q.order_by(Client.name).all()
 
 
 @router.get("/segunda")
-def cadencia_segunda(db: Session = Depends(get_db)):
-    """Gera mensagem de segunda (semanal ou mensal na primeira segunda do mês)."""
+def cadencia_segunda(client_id: Optional[int] = None, db: Session = Depends(get_db)):
+    """Gera mensagem de segunda (semanal ou mensal na primeira segunda do mês).
+    Passe client_id pra recalcular só um cliente, sem mexer nos outros."""
     since, until, period_type = _date_range(0)
     results = []
 
     # --- Meta Ads ---
-    for client in _meta_clients(db):
+    for client in _meta_clients(db, client_id):
         try:
             token = get_meta_token(client, db)
             if not token:
@@ -90,7 +91,7 @@ def cadencia_segunda(db: Session = Depends(get_db)):
 
     # --- Google Ads ---
     google_creds = get_google_credentials(db)
-    for client in _google_only_clients(db):
+    for client in _google_only_clients(db, client_id):
         try:
             if not google_creds:
                 results.append({"client_id": client.id, "name": client.name, "ok": False, "error": "Credenciais Google não configuradas", "platform": "google"})
@@ -125,13 +126,14 @@ def cadencia_segunda(db: Session = Depends(get_db)):
 
 
 @router.get("/quarta")
-def cadencia_quarta(db: Session = Depends(get_db)):
-    """Gera mensagem de quarta (melhores criativos/keywords — mensal na primeira quarta do mês)."""
+def cadencia_quarta(client_id: Optional[int] = None, db: Session = Depends(get_db)):
+    """Gera mensagem de quarta (melhores criativos/keywords — mensal na primeira quarta do mês).
+    Passe client_id pra recalcular só um cliente, sem mexer nos outros."""
     since, until, period_type = _date_range(2)
     results = []
 
     # --- Meta Ads ---
-    for client in _meta_clients(db):
+    for client in _meta_clients(db, client_id):
         try:
             token = get_meta_token(client, db)
             if not token:
@@ -172,7 +174,7 @@ def cadencia_quarta(db: Session = Depends(get_db)):
 
     # --- Google Ads ---
     google_creds = get_google_credentials(db)
-    for client in _google_only_clients(db):
+    for client in _google_only_clients(db, client_id):
         try:
             if not google_creds:
                 results.append({"client_id": client.id, "name": client.name, "ok": False, "error": "Credenciais Google não configuradas", "platform": "google"})

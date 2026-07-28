@@ -84,7 +84,31 @@ function SentBadge() {
   )
 }
 
-export default function CadenciaClientCard({ item }) {
+function RefreshButton({ onRefresh, clientId }) {
+  const [loading, setLoading] = useState(false)
+  const run = async (e) => {
+    e.stopPropagation()
+    setLoading(true)
+    try {
+      await onRefresh(clientId)
+    } catch (err) {
+      toast(err.message || 'Erro ao recalcular', 'error')
+    } finally {
+      setLoading(false)
+    }
+  }
+  return (
+    <button onClick={run} disabled={loading} title="Recalcular só esse cliente" style={{
+      background: 'transparent', border: '1px solid rgba(245,245,245,.15)', borderRadius: 6,
+      width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
+      cursor: loading ? 'default' : 'pointer', color: 'rgba(245,245,245,.5)', flexShrink: 0,
+    }}>
+      {loading ? <span className="spinner" style={{ width: 12, height: 12 }} /> : '↻'}
+    </button>
+  )
+}
+
+export default function CadenciaClientCard({ item, onRefresh }) {
   const [expanded, setExpanded] = useState(false)
   const [sent, setSent] = useState(() => isSent(item.client_id))
 
@@ -115,6 +139,7 @@ export default function CadenciaClientCard({ item }) {
           </div>
           <div style={{ fontSize: '.75rem', color: '#f87171', marginTop: 2 }}>{item.error}</div>
         </div>
+        {onRefresh && <RefreshButton onRefresh={onRefresh} clientId={item.client_id} />}
       </div>
     )
   }
@@ -154,6 +179,7 @@ export default function CadenciaClientCard({ item }) {
           )}
         </div>
         <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center' }}>
+          {onRefresh && <RefreshButton onRefresh={onRefresh} clientId={item.client_id} />}
           <CopyButton text={item.message} onCopied={handleCopied} />
           <span style={{
             fontSize: '.8125rem', color: 'rgba(245,245,245,.3)',

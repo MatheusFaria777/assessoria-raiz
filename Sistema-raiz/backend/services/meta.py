@@ -151,6 +151,30 @@ def get_campaigns_for_account(account_id: str, token: str) -> list[dict]:
     ]
 
 
+def get_adsets_for_account(account_id: str, token: str) -> list[dict]:
+    """
+    Retorna todos os conjuntos (ad sets) da conta — pra preencher a aba Conjuntos do
+    Uploader automaticamente em vez de criar linha por linha na mão.
+    """
+    _init(token)
+    account = AdAccount(_ensure_act(account_id))
+    rows = list(account.get_ad_sets(
+        fields=["id", "name", "status", "campaign_id", "promoted_object"],
+        params={"limit": 500},
+    ))
+    result = []
+    for r in rows:
+        promoted = r.get("promoted_object") or {}
+        result.append({
+            "id": r.get("id", ""),
+            "name": r.get("name", ""),
+            "status": r.get("status", ""),
+            "campaign_id": r.get("campaign_id", ""),
+            "page_id": promoted.get("page_id", ""),
+        })
+    return result
+
+
 def get_adsets_for_campaign(account_id: str, token: str, campaign_id: str) -> list[dict]:
     """Retorna os conjuntos (ad sets) de uma campanha — pra mapear individualmente por vendedor/pessoa."""
     _init(token)

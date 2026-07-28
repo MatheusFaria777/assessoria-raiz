@@ -6,7 +6,7 @@ const EMPTY_ADSET = {
   label: '', adset_id: '', page_id: '', whatsapp: '',
   instagram_actor_id: '', store_name: '', store_description: '',
   store_address: '', store_phone: '', store_whatsapp_display: '',
-  store_website: '', template_ad_id: '', lead_gen_form_id: '', active: true,
+  store_website: '', active: true,
 }
 
 function parseGroupTabs(raw) {
@@ -60,6 +60,49 @@ export default function ClientModal({ client, onClose, onSaved }) {
   const addAdset    = () => setAdsets(a => [...a, { ...EMPTY_ADSET, _new: Date.now() }])
   const removeAdset = (idx) => setAdsets(a => a.filter((_, i) => i !== idx))
   const setAdset    = (idx, k, v) => setAdsets(a => a.map((x, i) => i === idx ? { ...x, [k]: v } : x))
+
+  // Buscar conjuntos direto do Meta, pra não ter que criar linha por linha na mão
+  const [metaAdsets, setMetaAdsets]         = useState([])   // conjuntos buscados, ainda não importados
+  const [loadingAdsets, setLoadingAdsets]   = useState(false)
+  const [showPausedAdsets, setShowPausedAdsets] = useState(false)
+  const [selectedAdsets, setSelectedAdsets] = useState({})   // { [metaAdsetId]: true }
+
+  const fetchMetaAdsets = useCallback(async () => {
+    if (!client?.id) return
+    setLoadingAdsets(true)
+    try {
+      const d = await api.get(`/api/clients/${client.id}/meta-adsets`)
+      setMetaAdsets(d.adsets || [])
+      setSelectedAdsets({})
+    } catch (e) {
+      toast(e.message || 'Erro ao buscar conjuntos', 'error')
+    } finally {
+      setLoadingAdsets(false)
+    }
+  }, [client?.id])
+
+  const toggleSelectAdset = (id) => setSelectedAdsets(prev => ({ ...prev, [id]: !prev[id] }))
+
+  const importSelectedAdsets = () => {
+    // Herda Page ID / Instagram Actor ID de um conjunto já configurado nesse cliente,
+    // já que normalmente é o mesmo pra todos — evita ter que repetir/digitar de novo.
+    const existingWithPage = adsets.find(a => a.page_id)
+    const existingWithIg   = adsets.find(a => a.instagram_actor_id)
+    const toImport = metaAdsets.filter(a => selectedAdsets[a.id])
+    if (toImport.length === 0) { toast('Marque pelo menos um conjunto', 'error'); return }
+    const newRows = toImport.map(a => ({
+      ...EMPTY_ADSET,
+      _new: Date.now() + Math.random(),
+      label: a.name,
+      adset_id: a.id,
+      page_id: a.page_id || existingWithPage?.page_id || '',
+      instagram_actor_id: existingWithIg?.instagram_actor_id || '',
+    }))
+    setAdsets(prev => [...prev, ...newRows])
+    setMetaAdsets([])
+    setSelectedAdsets({})
+    toast(`${newRows.length} conjunto${newRows.length > 1 ? 's' : ''} importado${newRows.length > 1 ? 's' : ''} — confira os dados da loja em cada um`)
+  }
 
   // Campaign mappings
   const fetchMetaCampaigns = useCallback(async () => {
@@ -290,13 +333,32 @@ export default function ClientModal({ client, onClose, onSaved }) {
         {/* ── Tab: Conjuntos de anúncio ── */}
         {tab === 'adsets' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-            <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.45)', lineHeight: 1.5, marginBottom: '.5rem' }}>
-              Cada conjunto representa um ad set do Meta Ads. O uploader usa o <strong style={{ color: 'rgba(245,245,245,.7)' }}>ID do Conjunto</strong> pra saber onde postar os anúncios.
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+              <div style={{ fontSize: '.8rem', color: 'rgba(245,245,245,.45)', lineHeight: 1.5 }}>
+                Cada conjunto representa um ad set do Meta Ads. O uploader usa o <strong style={{ color: 'rgba(245,245,245,.7)' }}>ID do Conjunto</strong> pra saber onde postar os anúncios.
+              </div>
+              {client?.id && form.has_meta && (
+                <button className="btn-secondary" onClick={fetchMetaAdsets} disabled={loadingAdsets} style={{ flexShrink: 0 }}>
+                  {loadingAdsets ? <><span className="spinner" /> Buscando...</> : 'Buscar do Meta'}
+                </button>
+              )}
             </div>
+
+            {metaAdsets.length > 0 && (
+              <MetaAdsetsPicker
+                metaAdsets={metaAdsets}
+                selected={selectedAdsets}
+                onToggle={toggleSelectAdset}
+                showPaused={showPausedAdsets}
+                onToggleShowPaused={() => setShowPausedAdsets(s => !s)}
+                onImport={importSelectedAdsets}
+                onCancel={() => { setMetaAdsets([]); setSelectedAdsets({}) }}
+              />
+            )}
 
             {adsets.length === 0 && (
               <div style={{ textAlign: 'center', padding: '1.5rem', color: 'rgba(245,245,245,.3)', fontSize: '.875rem' }}>
-                Nenhum conjunto configurado. Clique em "+ Adicionar" para começar.
+                Nenhum conjunto configurado. Clique em "Buscar do Meta" ou "+ Adicionar" para começar.
               </div>
             )}
 
@@ -359,6 +421,7 @@ export default function ClientModal({ client, onClose, onSaved }) {
 /* ── CampaignsTab ─────────────────────────────────────────────────────────── */
 function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMeta, onFetch, onUpdate, adsetsByCampaign, onToggleAdsets, onUpdateAdset }) {
   const [campaignTypes, setCampaignTypes] = useState([])
+  const [showPaused, setShowPaused] = useState(false)
 
   useEffect(() => {
     api.get('/api/clients/campaign-mapping/types')
@@ -382,7 +445,7 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
     )
   }
 
-  const showList = metaCampaigns.length > 0 ? metaCampaigns : campaignMappings
+  const allItems = metaCampaigns.length > 0 ? metaCampaigns : campaignMappings
     .filter(m => !m.meta_adset_id)
     .map(m => ({
       id: m.meta_campaign_id,
@@ -391,6 +454,9 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
       label: m.label || '',
       sheet_tab: m.sheet_tab || '',
     }))
+  // status só existe quando veio do "Buscar do Meta" — sem isso (mapeamento salvo) mostra tudo
+  const pausedCount = allItems.filter(c => c.status && c.status !== 'ACTIVE').length
+  const showList = showPaused ? allItems : allItems.filter(c => !c.status || c.status === 'ACTIVE')
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -402,6 +468,18 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
           {loading ? <><span className="spinner" /> Buscando...</> : 'Buscar do Meta'}
         </button>
       </div>
+
+      {pausedCount > 0 && (
+        <button
+          onClick={() => setShowPaused(s => !s)}
+          style={{
+            alignSelf: 'flex-start', background: 'transparent', border: 'none', cursor: 'pointer',
+            color: 'rgba(245,245,245,.4)', fontSize: '.75rem', padding: 0,
+          }}
+        >
+          {showPaused ? '▾ ocultar pausadas' : `▸ mostrar ${pausedCount} pausada${pausedCount > 1 ? 's' : ''}`}
+        </button>
+      )}
 
       {showList.length === 0 && !loading && (
         <div style={{ textAlign: 'center', padding: '1.5rem', color: 'rgba(245,245,245,.3)', fontSize: '.875rem' }}>
@@ -420,6 +498,7 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
               adsetState={adsetsByCampaign[c.id]}
               onToggleAdsets={() => onToggleAdsets(c.id)}
               onUpdateAdset={(adsetId, field, value) => onUpdateAdset(c.id, adsetId, field, value)}
+              showPaused={showPaused}
             />
           ))}
         </div>
@@ -434,9 +513,11 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
   )
 }
 
-function CampaignRow({ campaign, campaignTypes, onUpdate, adsetState, onToggleAdsets, onUpdateAdset }) {
+function CampaignRow({ campaign, campaignTypes, onUpdate, adsetState, onToggleAdsets, onUpdateAdset, showPaused }) {
   const isActive = campaign.status === 'ACTIVE'
   const adsetCount = adsetState?.items?.filter(a => a.campaign_type).length || 0
+  const visibleAdsets = adsetState?.items?.filter(a => showPaused || !a.status || a.status === 'ACTIVE') || []
+  const hiddenAdsetCount = (adsetState?.items?.length || 0) - visibleAdsets.length
   return (
     <div style={{
       padding: '.625rem .75rem', borderRadius: 7,
@@ -512,7 +593,12 @@ function CampaignRow({ campaign, campaignTypes, onUpdate, adsetState, onToggleAd
               Nenhum conjunto encontrado nessa campanha.
             </div>
           )}
-          {adsetState.items.map(a => (
+          {!adsetState.loading && adsetState.items.length > 0 && visibleAdsets.length === 0 && (
+            <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.3)', padding: '.25rem 0' }}>
+              {hiddenAdsetCount} conjunto{hiddenAdsetCount > 1 ? 's' : ''} pausado{hiddenAdsetCount > 1 ? 's' : ''} oculto{hiddenAdsetCount > 1 ? 's' : ''}.
+            </div>
+          )}
+          {visibleAdsets.map(a => (
             <div key={a.id} style={{ display: 'grid', gridTemplateColumns: '1fr 140px 120px 1fr', gap: '.4rem', alignItems: 'center' }}>
               <div style={{
                 fontSize: '.78rem', color: 'rgba(245,245,245,.75)', whiteSpace: 'nowrap',
@@ -552,6 +638,58 @@ function CampaignRow({ campaign, campaignTypes, onUpdate, adsetState, onToggleAd
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+/* ── MetaAdsetsPicker ─────────────────────────────────────────────────────── */
+function MetaAdsetsPicker({ metaAdsets, selected, onToggle, showPaused, onToggleShowPaused, onImport, onCancel }) {
+  const pausedCount = metaAdsets.filter(a => a.status && a.status !== 'ACTIVE').length
+  const visible = showPaused ? metaAdsets : metaAdsets.filter(a => !a.status || a.status === 'ACTIVE')
+  const selectedCount = Object.values(selected).filter(Boolean).length
+
+  return (
+    <div style={{
+      border: '1px solid rgba(203,161,53,.25)', borderRadius: 8, padding: '.875rem',
+      background: 'rgba(203,161,53,.04)', display: 'flex', flexDirection: 'column', gap: '.5rem',
+    }}>
+      <div style={{ fontSize: '.78rem', color: 'rgba(245,245,245,.5)' }}>
+        Marque os conjuntos que quer importar. Nome e ID vêm prontos — Page ID e Instagram herdam do que já tiver configurado, e os dados da loja ficam pra você preencher.
+      </div>
+
+      {pausedCount > 0 && (
+        <button onClick={onToggleShowPaused} style={{
+          alignSelf: 'flex-start', background: 'transparent', border: 'none', cursor: 'pointer',
+          color: 'rgba(245,245,245,.4)', fontSize: '.75rem', padding: 0,
+        }}>
+          {showPaused ? '▾ ocultar pausados' : `▸ mostrar ${pausedCount} pausado${pausedCount > 1 ? 's' : ''}`}
+        </button>
+      )}
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '.3rem', maxHeight: 260, overflowY: 'auto' }}>
+        {visible.map(a => (
+          <label key={a.id} style={{
+            display: 'flex', alignItems: 'center', gap: '.5rem', padding: '.4rem .5rem',
+            borderRadius: 6, cursor: 'pointer',
+            background: selected[a.id] ? 'rgba(203,161,53,.1)' : 'transparent',
+          }}>
+            <input type="checkbox" checked={!!selected[a.id]} onChange={() => onToggle(a.id)} />
+            <span style={{ fontSize: '.8rem', color: '#F5F5F5', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {a.name}
+            </span>
+            <span style={{ fontSize: '.7rem', color: a.status === 'ACTIVE' ? '#4ade80' : 'rgba(245,245,245,.3)' }}>
+              {a.status === 'ACTIVE' ? 'Ativo' : a.status}
+            </span>
+          </label>
+        ))}
+      </div>
+
+      <div style={{ display: 'flex', gap: '.5rem', justifyContent: 'flex-end', marginTop: '.25rem' }}>
+        <button className="btn-secondary" onClick={onCancel} style={{ fontSize: '.8rem' }}>Cancelar</button>
+        <button className="btn-primary" onClick={onImport} disabled={selectedCount === 0} style={{ fontSize: '.8rem' }}>
+          Importar {selectedCount > 0 ? `(${selectedCount})` : ''}
+        </button>
+      </div>
     </div>
   )
 }
@@ -618,28 +756,16 @@ function AdsetRow({ adset, idx, onChange, onRemove, clientId }) {
                 onChange={e => onChange(idx, 'whatsapp', e.target.value)} placeholder="Ex: 5554999999999" />
             </Field>
           </div>
-          <div className="field-row">
-            <Field label="Instagram Actor ID" hint="Ou clique em Buscar pra pegar direto da Página, sem digitar/errar">
-              <div style={{ display: 'flex', gap: '.4rem' }}>
-                <input className="input" value={adset.instagram_actor_id || ''}
-                  onChange={e => onChange(idx, 'instagram_actor_id', e.target.value)} placeholder="Ex: 17841400000000000" style={{ flex: 1 }} />
-                <button type="button" className="btn-secondary" onClick={lookupInstagram} disabled={lookingUp}
-                  style={{ fontSize: '.75rem', padding: '0 .75rem', whiteSpace: 'nowrap' }}>
-                  {lookingUp ? <span className="spinner" /> : 'Buscar do Meta'}
-                </button>
-              </div>
-            </Field>
-            <Field label="Template Ad ID" hint="ID de anúncio com WABA para duplicar">
-              <input className="input" value={adset.template_ad_id || ''}
-                onChange={e => onChange(idx, 'template_ad_id', e.target.value)} placeholder="Opcional" />
-            </Field>
-          </div>
-          <div className="field-row">
-            <Field label="Formulário Instantâneo ID" hint="Preencha para campanhas de lead gen (formulário)">
-              <input className="input" value={adset.lead_gen_form_id || ''}
-                onChange={e => onChange(idx, 'lead_gen_form_id', e.target.value)} placeholder="Ex: 1234567890" />
-            </Field>
-          </div>
+          <Field label="Instagram Actor ID" hint="Ou clique em Buscar pra pegar direto da Página, sem digitar/errar">
+            <div style={{ display: 'flex', gap: '.4rem' }}>
+              <input className="input" value={adset.instagram_actor_id || ''}
+                onChange={e => onChange(idx, 'instagram_actor_id', e.target.value)} placeholder="Ex: 17841400000000000" style={{ flex: 1 }} />
+              <button type="button" className="btn-secondary" onClick={lookupInstagram} disabled={lookingUp}
+                style={{ fontSize: '.75rem', padding: '0 .75rem', whiteSpace: 'nowrap' }}>
+                {lookingUp ? <span className="spinner" /> : 'Buscar do Meta'}
+              </button>
+            </div>
+          </Field>
 
           <details style={{ fontSize: '.8rem' }}>
             <summary style={{ cursor: 'pointer', color: 'rgba(245,245,245,.4)', userSelect: 'none', padding: '.25rem 0' }}>

@@ -68,6 +68,19 @@ export default function Cadencia() {
     }
   }
 
+  // Recalcula só um cliente (ex: depois de corrigir a configuração dele) sem
+  // esperar/gastar chamada de API nos outros todos de novo.
+  const refreshOne = async (clientId) => {
+    const fresh = await api.get(`/api/cadencia/${activeTab}?client_id=${clientId}`)
+    const updated = fresh[0]
+    if (!updated) return
+    setItems(prev => {
+      const next = prev.map(i => i.client_id === clientId ? updated : i)
+      writeCadenciaCache(activeTab, next)
+      return next
+    })
+  }
+
   useEffect(() => {
     load(activeTab)
   }, [activeTab])
@@ -142,7 +155,7 @@ export default function Cadencia() {
 
       {!loading && items.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-          {ok.map(item => <CadenciaClientCard key={item.client_id} item={item} />)}
+          {ok.map(item => <CadenciaClientCard key={item.client_id} item={item} onRefresh={refreshOne} />)}
           {errors.length > 0 && (
             <>
               <div style={{
@@ -152,7 +165,7 @@ export default function Cadencia() {
               }}>
                 {errors.length} cliente{errors.length > 1 ? 's' : ''} com erro
               </div>
-              {errors.map(item => <CadenciaClientCard key={item.client_id} item={item} />)}
+              {errors.map(item => <CadenciaClientCard key={item.client_id} item={item} onRefresh={refreshOne} />)}
             </>
           )}
         </div>

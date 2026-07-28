@@ -155,6 +155,29 @@ def active_ads(client_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
 
 
+@router.get("/{client_id}/meta-adsets")
+def meta_adsets(client_id: int, db: Session = Depends(get_db)):
+    """Busca todos os conjuntos da conta — pra preencher a aba Conjuntos automaticamente."""
+    from services.meta import get_adsets_for_account
+    from services.token_manager import get_meta_token
+
+    client = db.query(Client).filter(Client.id == client_id, Client.active == True).first()
+    if not client:
+        raise HTTPException(status_code=404, detail="Cliente não encontrado")
+    if not client.has_meta or not client.meta_account_id:
+        raise HTTPException(status_code=400, detail="Cliente sem Meta Ads configurado")
+
+    token = get_meta_token(client, db)
+    if not token:
+        raise HTTPException(status_code=400, detail="Token Meta não configurado")
+
+    try:
+        adsets = get_adsets_for_account(client.meta_account_id, token)
+        return {"adsets": adsets}
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Erro Meta API: {str(e)}")
+
+
 @router.get("/{client_id}/instagram-lookup")
 def instagram_lookup(client_id: int, page_id: str, db: Session = Depends(get_db)):
     """Busca a conta profissional do Instagram vinculada a uma Página do Facebook — evita digitar/adivinhar o ID."""
