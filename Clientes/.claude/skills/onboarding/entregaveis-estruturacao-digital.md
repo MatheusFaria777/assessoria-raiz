@@ -40,6 +40,24 @@ Mais simples que o onboarding de tráfego recorrente: sem a parte de "erros que 
 1. O que o cliente vai ter (os 4 pilares acima)
 2. Perguntas sobre o negócio dele, pra já seguir com a implementação
 
+## Estrutura de pasta no Drive (diferente do padrão de tráfego)
+
+Subpastas da Estruturação Digital, sem duplicar planilha:
+1. Contrato
+2. Comprovantes
+3. Gravação de Reuniões
+4. Notas Fiscais
+5. Onboarding
+6. Plano de Ação
+7. Banco de Referências
+8. Treinamento Comercial
+
+Sem "Depósito de Criativos" e sem "Lista de Clientes" (não se aplicam a esse produto). Sem cópia da planilha de planilhamento de dados.
+
+## Slides de onboarding
+
+Script: `dados/gerar_slides_onboarding_estruturacao_digital.js`. Print da pasta do Drive usado no slide "Onde tudo mora": `.claude/skills/onboarding/referencias/print-drive-estruturacao-digital.png` (diferente do print genérico usado no onboarding de tráfego, porque a estrutura de subpastas é outra).
+
 ## Pendente de definir (próximos passos com o Matheus)
 
 - Como a aula de consultoria (item 3) vai ser gravada e reaproveitada pros próximos clientes desse produto
