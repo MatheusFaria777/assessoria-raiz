@@ -155,7 +155,13 @@ def find_gaps(sh, tab_name: str) -> list[str]:
     col_map = _find_columns(ws)
     if not col_map:
         return []
-    check_col = col_map.get("spend") or col_map.get("results") or next(iter(col_map.values()))
+    # "Investimento" vem com 0 pré-preenchido no template (pra fórmula da planilha não
+    # quebrar) — não serve pra detectar buraco. Resultado/Impressões/Cliques ficam
+    # realmente em branco até o sync escrever, então são o sinal confiável.
+    check_col = (
+        col_map.get("results") or col_map.get("impressoes")
+        or col_map.get("link_clicks") or col_map.get("spend")
+    )
 
     col_a = ws.col_values(1)
     check_values = ws.col_values(check_col)
