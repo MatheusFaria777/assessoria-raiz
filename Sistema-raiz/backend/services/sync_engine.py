@@ -19,7 +19,7 @@ from models.report import SyncLog
 from services.cadencia_builder import get_week_range, get_month_range
 from services.meta import get_account_data, grupos_to_tipos
 from services.token_manager import get_meta_token, get_google_credentials
-from services.sheets import write_weekly, write_monthly, is_configured
+from services.sheets import write_weekly, write_monthly, is_configured, open_spreadsheet
 from services.campaign_config import get_campaign_map, get_sheet_map, build_tab_candidates
 
 logger = logging.getLogger(__name__)
@@ -91,8 +91,19 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
     any_written = False
     any_error   = False
 
-    for tab_name, d in build_tab_candidates(client, tipos).items():
+    # Abre a planilha uma vez só e reaproveita em todas as abas desse cliente — reabrir pra
+    # cada aba é o que estourava a cota de leitura do Google em cliente com várias abas.
+    try:
+        sh = open_spreadsheet(client.sheets_id)
+    except Exception as e:
+        sh = None
+        sh_error = str(e)
+
+    tab_items = list(build_tab_candidates(client, tipos).items())
+    for i, (tab_name, d) in enumerate(tab_items):
         try:
+            if sh is None:
+                raise Exception(sh_error)
             res = write_weekly(
                 sheet_id    = client.sheets_id,
                 tab_name    = tab_name,
@@ -103,6 +114,7 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
                 spend       = float(d.get("spend", 0.0)),
                 revenue     = float(d.get("purchase_value", 0.0)),
                 auto_append = True,
+                sh          = sh,
             )
         except Exception as e:
             # Erro da API do Sheets (ex: cota excedida) não pode derrubar o cliente inteiro,
@@ -117,6 +129,10 @@ def sync_client(client, db: Session, since: str, until: str) -> dict:
             result["tabs_skipped"].append({"tab": tab_name, "reason": res["error"]})
         else:
             result["tabs_error"].append({"tab": tab_name, "error": res["error"]})
+        # Intervalo entre abas do mesmo cliente — mesma razão do intervalo entre clientes:
+        # não estourar a cota de leitura/escrita do Google numa rajada de chamadas.
+        if i < len(tab_items) - 1:
+            time.sleep(0.8)
             any_error = True
 
     if any_error:

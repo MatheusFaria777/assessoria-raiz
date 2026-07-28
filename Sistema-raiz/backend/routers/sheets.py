@@ -87,6 +87,11 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
                 detail=f"Sem dados para o período. Tipos encontrados: {list(tipos.keys())}. Configurados na planilha: {list(sheets_tabs.keys())}."
             )
 
+        try:
+            sh = sheets_svc.open_spreadsheet(client.sheets_id)
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Planilha não encontrada: {e}")
+
         for tab_name, tipo_data in tab_candidates.items():
             r = sheets_svc.write_weekly(
                 sheet_id=client.sheets_id, tab_name=tab_name, since=req.since,
@@ -95,6 +100,7 @@ def sync_sheets(req: SyncRequest, db: Session = Depends(get_db)):
                 link_clicks=tipo_data.get("link_clicks", 0),
                 spend=tipo_data.get("spend", 0.0),
                 revenue=tipo_data.get("purchase_value", 0.0),
+                sh=sh,
             )
             results[tab_name] = r
             if not r.get("ok"):

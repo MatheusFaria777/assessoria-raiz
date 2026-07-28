@@ -82,13 +82,21 @@ def _find_columns(ws) -> dict[str, int]:
     return col_map
 
 
+def open_spreadsheet(sheet_id: str):
+    """
+    Abre a planilha uma vez só, pra reaproveitar em várias abas do mesmo cliente
+    (write_weekly re-abrir pra cada aba é o que estourava a cota de leitura do Google
+    em clientes com várias abas configuradas).
+    """
+    return _gc().open_by_key(sheet_id)
+
+
 def write_weekly(sheet_id: str, tab_name: str, since: str,
                  impressoes: int, results: int, link_clicks: int,
                  spend: float, revenue: float = 0.0,
-                 auto_append: bool = False) -> dict:
+                 auto_append: bool = False, sh=None) -> dict:
     try:
-        gc = _gc()
-        sh = gc.open_by_key(sheet_id)
+        sh = sh or open_spreadsheet(sheet_id)
     except Exception as e:
         return {"ok": False, "error": f"Planilha não encontrada: {e}"}
     try:

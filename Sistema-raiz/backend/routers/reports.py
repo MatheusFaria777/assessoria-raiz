@@ -310,6 +310,12 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
             tipos = data.get("tipos", {}) if data else {}
             tab_candidates = build_tab_candidates(client, tipos)
 
+            from services.sheets import open_spreadsheet
+            try:
+                sh = open_spreadsheet(client.sheets_id)
+            except Exception:
+                sh = None
+
             errors = []
             for tab_name, tipo_data in tab_candidates.items():
                 res = write_weekly(
@@ -319,6 +325,7 @@ def mark_sent(report_id: int, db: Session = Depends(get_db)):
                     link_clicks=tipo_data.get("link_clicks", 0),
                     spend=tipo_data.get("spend", 0.0),
                     revenue=tipo_data.get("purchase_value", 0.0),
+                    sh=sh,
                 )
                 if not res.get("ok"):
                     errors.append(f"{tab_name}: {res.get('error')}")
