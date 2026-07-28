@@ -167,7 +167,7 @@ def format_segunda(
         cpr = d.get("cost_per_result", 0.0)
         spend = d.get("spend", 0.0)
 
-        lines.append(f"\n\t⁠{label}")
+        lines.append(f"\n\t⁠Campanha {label}")
         lines.append(f"{metrica}: {_br_int(d['results'])}")
         if cpr > 0:
             lines.append(f"Custo por {metrica.lower()}: {_br_currency(cpr)}")
@@ -290,7 +290,7 @@ def format_quarta(
         linha_resultado = f"{_br_int(results)} {metrica_label}{cpr_str}"
 
         if grupo:
-            lines.append(f"{medal} {grupo}")
+            lines.append(f"{medal} Campanha {grupo}")
             lines.append(f"   {name}")
         else:
             lines.append(f"{medal} {name}")

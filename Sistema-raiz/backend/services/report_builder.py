@@ -88,7 +88,7 @@ def format_report(
             sections.append((d_at["label"], d_at["metrica"], d_at, d_ant))
 
     for label, metrica, d_at, d_ant in sections:
-        lines.append(f"\n\t⁠{label}")
+        lines.append(f"\n\t⁠Campanha {label}")
         lines.append(f"{metrica}: {_opt(_br_int(d_at['results']), _br_int(d_ant['results']) if d_ant else None)}")
         if d_at["cost_per_result"] > 0:
             lines.append(f"Custo por {metrica}: {_opt(_br_currency(d_at['cost_per_result']), _br_currency(d_ant['cost_per_result']) if d_ant else None)}")
@@ -107,7 +107,7 @@ def format_report(
         lines.append(f"\n🔥 {titulo}:")
         for ad in top_ads:
             if ad.get("grupo"):
-                lines.append(f"{ad['grupo']}:")
+                lines.append(f"Campanha {ad['grupo']}:")
             lines.append(f"Nome: {ad['name']}")
             lines.append(f"Link: {ad.get('link') or '[link não disponível]'}")
         lines.append("\n📌 Acima estão os criativos que tiveram uma performance melhor, seria interessante usar eles de inspiração para produzir seus próximos criativos.")

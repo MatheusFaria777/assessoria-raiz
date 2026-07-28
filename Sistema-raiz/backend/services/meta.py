@@ -243,7 +243,7 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
     account = AdAccount(_ensure_act(account_id))
 
     # Mapeamento explícito por ID tem prioridade sobre keyword detection
-    by_campaign, by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
+    by_campaign, by_adset, separated_campaigns = _build_campaign_maps(campaign_map) if campaign_map else ({}, {}, set())
     use_explicit = bool(by_campaign) or bool(by_adset)
 
     # Precisa buscar por conjunto (não só por campanha) quando tiver mapeamento nesse nível —
@@ -271,7 +271,7 @@ def get_account_data(account_id: str, token: str, since: str, until: str, tipos_
 
         if use_explicit:
             # Mapeamento explícito: conjunto específico tem prioridade, senão cai pra campanha inteira
-            config = _match_explicit(row, by_campaign, by_adset)
+            config = _match_explicit(row, by_campaign, by_adset, separated_campaigns)
             if not config:
                 # Campanha/conjunto não mapeado → ignora (não vai para "outro")
                 continue
@@ -370,7 +370,7 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
     import requests as _req
 
     act = _ensure_act(account_id)
-    by_campaign, by_adset = _build_campaign_maps(campaign_map) if campaign_map else ({}, {})
+    by_campaign, by_adset, separated_campaigns = _build_campaign_maps(campaign_map) if campaign_map else ({}, {}, set())
     use_explicit = bool(by_campaign) or bool(by_adset)
 
     if use_explicit:
@@ -402,6 +402,8 @@ def get_top_ads(account_id: str, token: str, since: str, until: str, tipos_cfg: 
         if adset_id and adset_id in by_adset:
             return by_adset[adset_id]
         campaign_id = str(row.get("campaign_id", ""))
+        if campaign_id in separated_campaigns:
+            return None
         return by_campaign.get(campaign_id)
 
     def _matches(row) -> bool:
