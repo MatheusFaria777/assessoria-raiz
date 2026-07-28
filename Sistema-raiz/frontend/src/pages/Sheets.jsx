@@ -50,6 +50,11 @@ export default function Sheets() {
   const [batchLoading, setBatchLoading] = useState(false)
   const [results, setResults] = useState({})
 
+  const [gaps, setGaps] = useState({})            // { [clientId]: { tab: [datas] } | null }
+  const [gapsLoading, setGapsLoading] = useState({})
+  const [backfillLoading, setBackfillLoading] = useState({})
+  const [backfillResults, setBackfillResults] = useState({})
+
 
   useEffect(() => {
     const r = syncType === 'weekly' ? lastWeekRange() : lastMonthRange()
@@ -69,6 +74,36 @@ export default function Sheets() {
       setResults(prev => ({ ...prev, [clientId]: { ok: false, errors: [e.message] } }))
     } finally {
       setLoading(l => ({ ...l, [clientId]: false }))
+    }
+  }
+
+  const checkGaps = async (clientId) => {
+    setGapsLoading(l => ({ ...l, [clientId]: true }))
+    setBackfillResults(r => ({ ...r, [clientId]: null }))
+    try {
+      const r = await api.get(`/api/sheets/gaps/${clientId}`)
+      setGaps(g => ({ ...g, [clientId]: r.gaps || {} }))
+      const total = Object.values(r.gaps || {}).reduce((n, dates) => n + dates.length, 0)
+      toast(total > 0 ? `${total} semana${total > 1 ? 's' : ''} em branco encontrada${total > 1 ? 's' : ''}` : 'Nenhum buraco encontrado')
+    } catch (e) {
+      toast(e.message, 'error')
+    } finally {
+      setGapsLoading(l => ({ ...l, [clientId]: false }))
+    }
+  }
+
+  const backfill = async (clientId) => {
+    setBackfillLoading(l => ({ ...l, [clientId]: true }))
+    try {
+      const r = await api.post('/api/sheets/backfill', { client_id: clientId })
+      setBackfillResults(res => ({ ...res, [clientId]: r }))
+      toast(`${r.filled.length} semana${r.filled.length !== 1 ? 's' : ''} preenchida${r.filled.length !== 1 ? 's' : ''}${r.errors.length ? `, ${r.errors.length} com erro` : ''}`, r.errors.length ? 'error' : 'success')
+      // Reconfere os buracos depois de preencher
+      checkGaps(clientId)
+    } catch (e) {
+      toast(e.message, 'error')
+    } finally {
+      setBackfillLoading(l => ({ ...l, [clientId]: false }))
     }
   }
 
@@ -139,6 +174,9 @@ export default function Sheets() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
           {clients.map(c => {
             const res = results[c.id]
+            const clientGaps = gaps[c.id]
+            const gapTotal = clientGaps ? Object.values(clientGaps).reduce((n, dates) => n + dates.length, 0) : 0
+            const bfRes = backfillResults[c.id]
             return (
               <div key={c.id} className="card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -155,6 +193,10 @@ export default function Sheets() {
                     </div>
                   </div>
 
+                  <button className="btn-secondary" onClick={() => checkGaps(c.id)} disabled={gapsLoading[c.id]}>
+                    {gapsLoading[c.id] ? <span className="spinner" /> : '🕳️'}
+                    Ver buracos
+                  </button>
                   <button className="btn-primary" onClick={() => sync(c.id)} disabled={loading[c.id]}>
                     {loading[c.id] ? <span className="spinner" /> : '🔄'}
                     Sincronizar
@@ -175,6 +217,54 @@ export default function Sheets() {
                     ) : (
                       <div style={{ fontSize: '.8125rem', color: '#f87171' }}>
                         {res.errors?.join(' | ')}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Buracos encontrados */}
+                {clientGaps && (
+                  <div style={{ marginTop: '.875rem', paddingTop: '.875rem', borderTop: '1px solid rgba(245,245,245,.08)' }}>
+                    {gapTotal === 0 ? (
+                      <div style={{ fontSize: '.8125rem', color: 'rgba(245,245,245,.4)' }}>Nenhum buraco encontrado.</div>
+                    ) : (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}>
+                            {Object.entries(clientGaps).map(([tab, dates]) => (
+                              <span key={tab} className="badge badge-error" title={dates.join(', ')}>
+                                {tab}: {dates.length} semana{dates.length > 1 ? 's' : ''}
+                              </span>
+                            ))}
+                          </div>
+                          <button className="btn-secondary" onClick={() => backfill(c.id)} disabled={backfillLoading[c.id]}>
+                            {backfillLoading[c.id] ? <span className="spinner" /> : '🧩'}
+                            Preencher {gapTotal} buraco{gapTotal > 1 ? 's' : ''}
+                          </button>
+                        </div>
+                        {backfillLoading[c.id] && (
+                          <div style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.4)', marginTop: '.5rem' }}>
+                            Isso busca cada semana no Meta uma por uma — pode demorar um pouco pra clientes com muitos buracos.
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {/* Resultado do preenchimento */}
+                {bfRes && (bfRes.filled.length > 0 || bfRes.errors.length > 0) && (
+                  <div style={{ marginTop: '.75rem', paddingTop: '.75rem', borderTop: '1px solid rgba(245,245,245,.08)' }}>
+                    {bfRes.filled.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginBottom: bfRes.errors.length ? '.5rem' : 0 }}>
+                        {bfRes.filled.map((f, i) => (
+                          <span key={i} className="badge badge-success">✓ {f.date} — {f.tabs.join(', ')}</span>
+                        ))}
+                      </div>
+                    )}
+                    {bfRes.errors.length > 0 && (
+                      <div style={{ fontSize: '.8125rem', color: '#f87171' }}>
+                        {bfRes.errors.join(' | ')}
                       </div>
                     )}
                   </div>

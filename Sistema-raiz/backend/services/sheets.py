@@ -145,6 +145,33 @@ def write_weekly(sheet_id: str, tab_name: str, since: str,
             "cols": {k: v[0] for k, v in writes.items()}}
 
 
+def find_gaps(sh, tab_name: str) -> list[str]:
+    """
+    Acha semanas com linha já existente na aba (data preenchida na coluna A) mas
+    sem nenhum dado sincronizado — a linha do template existe (fórmula pronta pro
+    ano inteiro), só nunca foi escrita. Ignora a semana atual/incompleta.
+    """
+    ws = sh.worksheet(tab_name)
+    col_map = _find_columns(ws)
+    if not col_map:
+        return []
+    check_col = col_map.get("spend") or col_map.get("results") or next(iter(col_map.values()))
+
+    col_a = ws.col_values(1)
+    check_values = ws.col_values(check_col)
+    today = datetime.now().date()
+
+    gaps = []
+    for i, v in enumerate(col_a, 1):
+        d = _parse_br_date(v)
+        if not d or (today - d).days < 7:
+            continue
+        cell_val = check_values[i - 1].strip() if i - 1 < len(check_values) else ""
+        if cell_val == "":
+            gaps.append(v.strip())
+    return gaps
+
+
 MONTHLY_TAB_NAMES = ["VISÃO GERAL", "VISAO GERAL", "Visão Geral", "visão geral",
                      "Visao Geral", "RESUMO MENSAL", "Resumo Mensal", "resumo mensal"]
 

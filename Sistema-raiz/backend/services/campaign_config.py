@@ -96,6 +96,21 @@ def get_sheet_map(client) -> dict:
     return {}
 
 
+def list_client_tabs(client) -> set:
+    """
+    Todas as abas que esse cliente já usa, independente de período — usado pra
+    varrer a planilha inteira procurando buracos, sem precisar rodar get_account_data
+    primeiro (que só sabe as abas de um período específico, não de todo o histórico).
+    """
+    tabs = {c.sheet_tab for c in get_campaign_map(client) if c.sheet_tab}
+    if not tabs and client.sheets_tabs:
+        try:
+            tabs = set(json.loads(client.sheets_tabs).values())
+        except Exception:
+            pass
+    return tabs
+
+
 def build_tab_candidates(client, tipos: dict) -> dict:
     """
     A partir do resultado de get_account_data()["tipos"], decide em qual aba da
