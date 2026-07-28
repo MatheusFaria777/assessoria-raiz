@@ -126,6 +126,17 @@ export default function FeedbackDashboard() {
     toast('Link copiado!', 'success')
   }
 
+  async function generateSlug(clientId) {
+    try {
+      const res = await api.post(`/api/feedback/clients/${clientId}/set-slug`)
+      setOverview(prev => prev.map(c => c.client_id === clientId ? { ...c, feedback_slug: res.slug } : c))
+      setGmbOverview(prev => prev.map(c => c.client_id === clientId ? { ...c, feedback_slug: res.slug } : c))
+      toast('Link gerado!', 'success')
+    } catch (e) {
+      toast(e.message, 'error')
+    }
+  }
+
   return (
     <div>
       {/* Header */}
@@ -222,9 +233,13 @@ export default function FeedbackDashboard() {
                       <Stat label="Respostas" value={c.response_count} />
                       <Stat label="Último" value={c.last_period ? c.last_period.replace('-', '/') : '—'} />
                     </div>
-                    {c.feedback_slug && (
+                    {c.feedback_slug ? (
                       <button onClick={e => { e.stopPropagation(); copyLink(c.feedback_slug) }} style={btnSmall}>
                         Copiar link
+                      </button>
+                    ) : (
+                      <button onClick={e => { e.stopPropagation(); generateSlug(c.client_id) }} style={btnSmall}>
+                        Gerar link
                       </button>
                     )}
                   </div>
@@ -256,9 +271,13 @@ export default function FeedbackDashboard() {
                     ))}
                   </div>
                 )}
-                {c.feedback_slug && (
+                {c.feedback_slug ? (
                   <button onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/gmb?c=${c.feedback_slug}`); toast('Link copiado!', 'success') }} style={btnSmall}>
                     Copiar link GMN
+                  </button>
+                ) : (
+                  <button onClick={() => generateSlug(c.client_id)} style={btnSmall}>
+                    Gerar link
                   </button>
                 )}
               </div>
