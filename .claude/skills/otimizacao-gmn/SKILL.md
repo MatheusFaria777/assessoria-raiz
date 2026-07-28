@@ -4,8 +4,10 @@ description: >
   Gera o pacote completo de otimização da ficha do Google Meu Negócio (Google Business
   Profile) de um cliente: nome otimizado, categorias, descrição, lista de serviços,
   perguntas e respostas, templates de resposta a avaliação, sugestões de postagem do
-  mês e checklist de ações manuais. Junta o que já existe na pasta do cliente e no
-  formulário GMN do Sistema Raiz, e só pergunta o que estiver faltando.
+  mês e checklist de ações manuais. Na primeira vez com um cliente, gera a mensagem
+  de WhatsApp pra pedir acesso de Gerente na ficha e mandar o link do formulário
+  `/gmb?c=slug` do Sistema Raiz. Depois, junta o que já existe na pasta do cliente
+  e no formulário preenchido, e só pergunta o que estiver faltando.
   Salva em Clientes/[slug]/Entregaveis/otimizacao-gmn.md.
   Use quando pedir "otimização do Google Meu Negócio do [cliente]", "otimiza a ficha
   do [cliente]", "faz o GBP do [cliente]", "pacote de GMN do [cliente]", ou
@@ -33,12 +35,36 @@ aplica na ficha ainda é o Matheus, manualmente, dentro do painel do Google.
   pacote gerado anteriormente (MJ Sondagem), pra calibrar formato, nível de detalhe
   e tom de cada seção
 
-## Passo 1 — Identificar o cliente e reunir o que já existe
+## Passo 0 — Primeiro contato (só se for a primeira vez com esse cliente)
 
 Receber o cliente via argumento: `/otimizacao-gmn [slug-ou-nome-do-cliente]`. Se não vier
-argumento, perguntar qual cliente.
+argumento, perguntar qual cliente. Resolver o slug (nome da pasta em `Clientes/`).
 
-Resolver o slug (nome da pasta em `Clientes/`) e ler **tudo** que existir na pasta:
+Rodar, a partir da raiz do projeto, pra checar se o cliente já tem formulário GMN
+preenchido no Sistema Raiz:
+
+```bash
+"Sistema-raiz/backend/venv/Scripts/python.exe" ".claude/skills/otimizacao-gmn/scripts/consultar_submissao.py" [slug]
+```
+
+Guardar esse resultado — vai ser reusado no Passo 1, não precisa rodar de novo.
+
+Se vier `formulario_preenchido: false` ou o cliente não for encontrado, esse é o
+primeiro contato sobre GMN — ainda não tem dados de entrada pra gerar nada. Nesse caso:
+
+1. Montar a mensagem de abertura usando `references/mensagem-acesso-e-formulario.md`
+   como modelo, com o nome do responsável (se souber, pela pasta do cliente) e o nome
+   da empresa. O link do formulário é sempre `https://sistema.assessoriaraiz.com.br/gmb?c=[slug]`.
+2. Entregar a mensagem pronta pro Matheus copiar e mandar por WhatsApp.
+3. **Parar por aqui** — não seguir pros próximos passos, porque ainda não tem dados
+   pra montar o pacote. Avisar que quando o cliente preencher o formulário é só rodar
+   `/otimizacao-gmn [slug]` de novo pra esse mesmo cliente.
+
+Se já existir submissão, pular a mensagem de abertura e seguir direto pro Passo 1.
+
+## Passo 1 — Reunir o que já existe
+
+Ler **tudo** que existir na pasta `Clientes/[slug]/`:
 
 - `briefing.md`, `contexto.md`, `feedback.md`, `onboarding.md`
 - `Transcricoes/*.md` (ou `Transcrições/*.md`)
@@ -48,23 +74,12 @@ Extrair dessas fontes o que for relevante pra ficha do GMN: nome da empresa, nic
 cidade/região de atuação, diferenciais, público, serviços, contato, redes sociais,
 histórico relevante (ex: já teve suspensão, já tem ficha verificada, etc).
 
-Em seguida, consultar o formulário GMN que o cliente já preencheu no Sistema Raiz
-(se preencheu). Rodar, a partir da raiz do projeto:
-
-```bash
-"Sistema-raiz/backend/venv/Scripts/python.exe" ".claude/skills/otimizacao-gmn/scripts/consultar_submissao.py" [slug]
-```
-
-Isso retorna em JSON: nome da empresa, responsável, telefone, endereço, áreas de
-cobertura, se é empreendedor individual, data de abertura, Instagram, site, Facebook,
-dias e horário de funcionamento, horário de feriados, acessibilidade, estacionamento,
-formas de pagamento, descrição, serviços, FAQ e o link da pasta no Drive com as fotos
+Juntar isso com os dados do formulário GMN já consultados no Passo 0: nome da
+empresa, responsável, telefone, endereço, áreas de cobertura, se é empreendedor
+individual, data de abertura, Instagram, site, Facebook, dias e horário de
+funcionamento, horário de feriados, acessibilidade, estacionamento, formas de
+pagamento, descrição, serviços, FAQ e o link da pasta no Drive com as fotos
 enviadas pelo cliente.
-
-Se o script disser que o cliente não tem formulário preenchido (`formulario_preenchido: false`)
-ou não encontrar o cliente, seguir só com o que foi extraído da pasta `Clientes/[slug]/`
-e avisar no fim do processo que vale mandar o formulário `/gmb?c=[slug]` pro cliente
-preencher, porque falta informação de origem.
 
 ## Passo 2 — Perguntar só o que estiver faltando
 
