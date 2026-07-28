@@ -30,7 +30,8 @@ function imgBase64(filename) {
   return `data:image/png;base64,${fs.readFileSync(path.join(IMGS_DIR, filename)).toString("base64")}`;
 }
 const IMG_GRUPO_WHATSAPP = imgBase64("grupo-whatsapp.png");
-const IMG_PASTA_DRIVE = imgBase64("print-drive.png");
+// Print específico da pasta do Drive de Estruturação Digital (subpastas diferentes do padrão de tráfego).
+const IMG_PASTA_DRIVE = imgBase64("print-drive-estruturacao-digital.png");
 const IMG_PACK_RAIZ = imgBase64("packraiz.png");
 
 const slides = [
