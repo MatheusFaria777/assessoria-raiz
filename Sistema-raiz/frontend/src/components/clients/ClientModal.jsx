@@ -408,7 +408,6 @@ export default function ClientModal({ client, onClose, onSaved }) {
         {tab === 'campanhas' && (
           <CampaignsTab
             client={client}
-            campaignMappings={campaignMappings}
             metaCampaigns={metaCampaigns}
             loading={loadingCampaigns}
             hasMeta={form.has_meta}
@@ -450,7 +449,7 @@ export default function ClientModal({ client, onClose, onSaved }) {
 }
 
 /* ── CampaignsTab ─────────────────────────────────────────────────────────── */
-function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMeta, onFetch, onUpdate, adsetsByCampaign, onToggleAdsets, onUpdateAdset }) {
+function CampaignsTab({ client, metaCampaigns, loading, hasMeta, onFetch, onUpdate, adsetsByCampaign, onToggleAdsets, onUpdateAdset }) {
   const [campaignTypes, setCampaignTypes] = useState([])
   const [showPaused, setShowPaused] = useState(false)
 
@@ -476,15 +475,9 @@ function CampaignsTab({ client, campaignMappings, metaCampaigns, loading, hasMet
     )
   }
 
-  const allItems = metaCampaigns.length > 0 ? metaCampaigns : campaignMappings
-    .filter(m => !m.meta_adset_id)
-    .map(m => ({
-      id: m.meta_campaign_id,
-      name: m.name || m.meta_campaign_id,
-      campaign_type: m.campaign_type,
-      label: m.label || '',
-      sheet_tab: m.sheet_tab || '',
-    }))
+  // metaCampaigns já vem semeado do mapeamento salvo ao abrir o modal — "Buscar do Meta" só
+  // enriquece com status/campanhas novas por cima disso, não é mais a única fonte.
+  const allItems = metaCampaigns
   // status só existe quando veio do "Buscar do Meta" — sem isso (mapeamento salvo) mostra tudo
   const pausedCount = allItems.filter(c => c.status && c.status !== 'ACTIVE').length
   const showList = showPaused ? allItems : allItems.filter(c => !c.status || c.status === 'ACTIVE')
