@@ -107,6 +107,20 @@ export default function Dashboard() {
     loadCadencia(true)
   }
 
+  // Recalcula só um cliente (ex: depois de corrigir a configuração dele) sem
+  // esperar/gastar chamada de API nos outros todos de novo.
+  const refreshCadenciaOne = async (clientId) => {
+    if (!activeCadTab) return
+    const fresh = await api.get(`/api/cadencia/${activeCadTab}?client_id=${clientId}`)
+    const updated = fresh[0]
+    if (!updated) return
+    setCadencia(prev => {
+      const next = (prev || []).map(i => i.client_id === clientId ? updated : i)
+      writeCadenciaCache(activeCadTab, next)
+      return next
+    })
+  }
+
   if (loading) return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
       <span className="spinner" style={{ width: 36, height: 36 }} />
@@ -348,7 +362,7 @@ export default function Dashboard() {
           {cadencia && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
               {cadencia.map(item => (
-                <CadenciaClientCard key={item.client_id} item={item} />
+                <CadenciaClientCard key={item.client_id} item={item} onRefresh={refreshCadenciaOne} />
               ))}
             </div>
           )}
