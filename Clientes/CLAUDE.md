@@ -41,6 +41,7 @@ Usar como base pra qualquer resposta. Não confirmar a leitura — só usar o co
 - `/google-ads-ratos` — gestão de campanhas Google Ads via SDK
 - `/falar-bem` — prepara fala antes de reunião ou áudio pro cliente
 - `/analisar-reuniao` — analisa transcrição de reunião (vícios, prolixidade, clareza)
+- `/otimizacao-gmn [cliente]` — gera o pacote de otimização da ficha do Google Meu Negócio, juntando dados da pasta do cliente com o formulário `/gmb?c=slug` do Sistema Raiz
 
 ## Comandos disponíveis
 

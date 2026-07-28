@@ -88,6 +88,7 @@ Duas origens diferentes, cada uma na sua pasta (não precisa organizar manualmen
 - `/diagnostico-instagram` — gera diagnóstico visual do Instagram do cliente em HTML (bio, métricas, destaques, conteúdo), com checklist por nicho (automotivo, estética) e identidade visual adaptada ao cliente
 - `/lp-cliente` — cria landing page de conversão para cliente novo ou existente (HTML puro, pixel Meta Ads + tag Google Ads, identidade visual do cliente). Referência de Astro guardada em `.claude/skills/lp-cliente/referencia-astro.md` pra sites maiores com várias páginas/blog
 - `/google-ads-ratos` — gestão completa de Google Ads via SDK oficial (campanhas, keywords, quality score, GAQL)
+- `/otimizacao-gmn` — gera o pacote de otimização da ficha do Google Meu Negócio de um cliente (nome, categorias, descrição, serviços, Q&A, templates de review, posts do mês, checklist manual), juntando dados da pasta do cliente com o formulário `/gmb?c=slug` do Sistema Raiz
 - `/falar-bem` — prepara uma fala, áudio ou roteiro antes de comunicar, aplicando os princípios de `comunicacao/`
 - `/planejar-semana` — planejamento semanal de tarefas e prioridades
 - `/preparar-gravacao` — prepara roteiro e checklist antes de uma gravação
