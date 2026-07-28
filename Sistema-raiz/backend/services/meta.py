@@ -202,29 +202,39 @@ def _config_from_row(c) -> dict:
     }
 
 
-def _build_campaign_maps(campaign_map: list) -> tuple[dict, dict]:
+def _build_campaign_maps(campaign_map: list) -> tuple[dict, dict, set]:
     """
     Separa o mapeamento salvo em dois níveis:
     - by_campaign: {meta_campaign_id: config} — mapeamento da campanha inteira
     - by_adset: {meta_adset_id: config} — mapeamento de um conjunto específico
       dentro de uma campanha (pra separar por vendedor/pessoa, por exemplo)
+    - separated_campaigns: ids de campanha que têm pelo menos um conjunto mapeado —
+      usado pra saber quando um conjunto SEM mapeamento deve ser ignorado em vez de
+      cair escondido dentro do total da campanha inteira.
     """
-    by_campaign, by_adset = {}, {}
+    by_campaign, by_adset, separated_campaigns = {}, {}, set()
     for c in campaign_map:
         cfg = _config_from_row(c)
         if c.meta_adset_id:
             by_adset[str(c.meta_adset_id)] = cfg
+            separated_campaigns.add(str(c.meta_campaign_id))
         else:
             by_campaign[str(c.meta_campaign_id)] = cfg
-    return by_campaign, by_adset
+    return by_campaign, by_adset, separated_campaigns
 
 
-def _match_explicit(row: dict, by_campaign: dict, by_adset: dict) -> dict | None:
-    """Acha a config certa pra uma linha de insight — conjunto específico tem prioridade sobre a campanha inteira."""
+def _match_explicit(row: dict, by_campaign: dict, by_adset: dict, separated_campaigns: set) -> dict | None:
+    """
+    Acha a config certa pra uma linha de insight — conjunto específico tem prioridade sobre
+    a campanha inteira. Campanha "separada por conjunto" não cai mais pro total da campanha
+    quando o conjunto não tá mapeado — fica de fora do relatório, igual campanha ignorada.
+    """
     adset_id = str(row.get("adset_id", ""))
     if adset_id and adset_id in by_adset:
         return by_adset[adset_id]
     campaign_id = str(row.get("campaign_id", ""))
+    if campaign_id in separated_campaigns:
+        return None
     return by_campaign.get(campaign_id)
 
 
