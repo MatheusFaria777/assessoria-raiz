@@ -1,9 +1,9 @@
 # Contexto — Audi Fonseca
 
-**Segmento:** [pendente]
+**Segmento:** automotivo, intermediário/consultor de venda de carros (sem loja própria), Caxias do Sul/RS
 **Produto:** Estruturação digital (novo produto da Raiz, primeiro cliente conhecido desse tipo)
 **Meses de projeto:** [N]
-**Tom do cliente:** [como ele prefere receber as informações]
+**Tom do cliente:** informal, receptivo, aprova rápido cada ponto apresentado ("show de bola", "bacana", "maravilha"). Fechou sem objeção real, só perguntou valor.
 
 ## Fases do projeto
 
