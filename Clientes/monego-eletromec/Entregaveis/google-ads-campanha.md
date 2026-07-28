@@ -30,6 +30,7 @@
 
 ### Correspondência de frase ("palavra-chave")
 
+**Manutenção geral (guarda-chuva)**
 ```
 "manutenção de máquinas industriais"
 "manutenção de equipamentos industriais"
@@ -38,65 +39,189 @@
 "manutenção preventiva industrial"
 "manutenção de máquinas cnc"
 "técnico de máquinas industriais"
-"manutenção chiller industrial"
-"manutenção laser"
-"manutenção dobradeira"
-"manutenção plasma"
 "reparo de máquinas industriais"
 "manutenção mecânica industrial"
+"manutenção elétrica industrial"
+"manutenção eletrônica industrial"
 ```
+
+**Laser**
+```
+"manutenção laser"
+"manutenção máquina de corte laser"
+"manutenção corte laser"
+"manutenção cabeçote laser"
+"troca de lente laser"
+"troca lente cabeçote laser"
+"descontaminação lente laser"
+"limpeza cabeçote laser"
+"consumíveis laser"
+"assistência técnica laser"
+```
+
+**Plasma**
+```
+"manutenção plasma"
+"manutenção corte plasma"
+"manutenção cortadora plasma"
+"assistência técnica plasma"
+```
+
+**Dobradeira**
+```
+"manutenção dobradeira"
+"manutenção dobradeira hidráulica"
+"reparo dobradeira hidráulica"
+"assistência técnica dobradeira"
+```
+
+**Corte térmico (termo do setor)**
+```
+"manutenção corte térmico"
+"corte térmico manutenção"
+"assistência técnica corte térmico"
+```
+
+**Periféricos**
+```
+"manutenção chiller industrial"
+"manutenção exaustor industrial"
+"reparo chiller industrial"
+```
+
+**Retrofit**
+```
+"retrofit máquina de corte"
+"retrofit laser"
+"retrofit dobradeira"
+"retrofit cortadora plasma"
+"modernização máquina industrial"
+```
+
+**Instalação**
+```
+"instalação máquina de corte laser"
+"instalação máquina industrial"
+"instalação dobradeira"
+```
+
+**Treinamento**
+```
+"treinamento operação laser"
+"treinamento operador laser"
+"treinamento corte laser"
+"treinamento corte plasma"
+```
+
+**Laudo e avaliação de usados**
+```
+"laudo máquina usada"
+"laudo compra máquina usada"
+"laudo inspeção máquina usada"
+"inspeção máquina usada"
+"avaliação máquina usada"
+"laudo dobradeira usada"
+"laudo máquina de corte usada"
+```
+
+**Venda e intermediação**
+```
+"venda máquina industrial usada"
+"máquina de corte laser usada"
+"dobradeira hidráulica usada"
+"intermediação compra máquina usada"
+```
+
+**SLA e contratos**
+```
+"contrato manutenção industrial"
+"plano de manutenção industrial"
+"manutenção com sla"
+```
+
+---
 
 ### Correspondência exata ([palavra-chave])
 
 ```
 [manutenção laser industrial]
 [manutenção dobradeira industrial]
+[manutenção dobradeira hidráulica]
 [manutenção plasma cnc]
-[laudo máquina usada]
+[manutenção corte térmico]
 [manutenção chiller industrial]
+[manutenção exaustor industrial]
 [assistência técnica laser industrial]
 [assistência técnica dobradeira]
+[troca lente cabeçote laser]
+[descontaminação lente laser]
+[retrofit máquina laser]
+[retrofit cortadora laser]
+[laudo máquina usada]
+[laudo compra máquina usada]
+[instalação máquina de corte laser]
+[treinamento operação laser]
 [manutenção de máquinas industriais caxias do sul]
 ```
 
+---
+
 ### Palavras-chave negativas (adicionar na campanha inteira)
 
+> Notas de ajuste: "treinamento" foi removido dos negativos — Mônego oferece treinamento como serviço. "Preço/quanto custa" foram removidos — em B2B industrial quem pesquisa preço é lead qualificado, não price shopper.
+
+**Contexto errado (outros tipos de laser/máquina):**
 ```
 epilação
 estética
 depilação
+dental
+cirurgia
 papel
 origami
 impressora
-dental
-cirurgia
+cozinha
+forno
+liquidificador
+fritadeira
+doméstico
+residencial
+```
+
+**Emprego e candidatos (não serviço):**
+```
 emprego
 vaga
 salário
 salario
 currículo
 curriculo
-curso
-treinamento
-apostila
 concurso
+admissão
+contratação
+```
+
+**Conteúdo informacional (não intenção comercial):**
+```
+apostila
+o que é
+o que e
+como funciona
+pdf
 grátis
 gratuito
-o que é
-como funciona
-como fazer
-pdf
-cozinha
-forno
-liquidificador
-fritadeira
-doméstico
-domestico
-residencial
-preço
-tabela de preços
-quanto custa
-barato
+```
+
+**Cursos e certificações (≠ treinamento operacional que Mônego oferece):**
+```
+curso ead
+curso online
+curso gratuito
+curso técnico
+certificado
+habilitação
+senai
+sebrae
 ```
 
 ---
