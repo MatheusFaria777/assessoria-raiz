@@ -14,6 +14,8 @@ sys.path.insert(0, BACKEND_DIR)
 os.chdir(BACKEND_DIR)
 
 from database import SessionLocal  # noqa: E402
+# Importa todos os models pra registro do SQLAlchemy resolver os relationships do Client
+from models import client as _client, campaign_group, report, uploader, user, settings as _settings, feedback, gmb_submission  # noqa: E402,F401
 from models.client import Client  # noqa: E402
 from models.gmb_submission import GmbSubmission  # noqa: E402
 
