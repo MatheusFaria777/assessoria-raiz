@@ -242,36 +242,74 @@ sebrae
 ## Anúncio Responsivo de Pesquisa (RSA)
 
 > Inserir todos os títulos e descrições abaixo no Google Ads. O sistema testa automaticamente as melhores combinações.
+>
+> **Lógica aplicada:** os títulos dinâmicos espelham a busca do usuário. As descrições reforçam os mesmos termos de serviço, criando relevância total do anúncio para a pesquisa feita.
 
 ### Títulos (até 30 caracteres cada)
 
+**Dinâmicos (espelham busca e localização):**
 ```
 {KeyWord:Manutenção Industrial}
-Manutenção em {LOCATION(City):Caxias do Sul}
-20+ Anos de Especialista
-Garantia de Conclusão
-Atendemos 2º e 3º Turno
-Resposta Garantida em até 8h
-Laser, Dobradeira e Plasma CNC
-Laudo de Máquina Usada
-Chame no WhatsApp Agora
-Atendemos RS e SC Inteiro
-Especialista, Não Generalista
-Manutenção de Máquinas CNC
-Orçamento Rápido via WhatsApp
+Técnico em {LOCATION(City):Caxias do Sul}
+Reparo em {LOCATION(City):Caxias do Sul}
 ```
 
-**Notas sobre os dois títulos dinâmicos:**
-- `{KeyWord:Manutenção Industrial}` — puxa exatamente o que o usuário pesquisou. Se a keyword for longa demais, cai para "Manutenção Industrial".
-- `Manutenção em {LOCATION(City):Caxias do Sul}` — mostra a cidade do usuário. Se não identificar, mostra "Caxias do Sul".
+**Serviços específicos (mirrors de keyword):**
+```
+Laser, Dobradeira e Plasma CNC
+Retrofit de Máquina de Corte
+Troca de Lente de Cabeçote
+Laudo de Máquina Usada
+Instalação de Máquina Laser
+Assistência Técnica Industrial
+Manutenção de Máquinas CNC
+```
+
+**Diferenciais:**
+```
+20+ Anos de Especialista
+Garantia de Conclusão
+Resposta Garantida em até 8h
+Especialista, Não Generalista
+```
+
+**CTA:**
+```
+Chame no WhatsApp Agora
+Orçamento Rápido via WhatsApp
+Atendemos RS e SC Inteiro
+```
+
+**Notas:**
+- `{KeyWord:Manutenção Industrial}` — puxa exatamente o que foi pesquisado. Fallback: "Manutenção Industrial".
+- `Técnico em {LOCATION(City):Caxias do Sul}` — personaliza com a cidade do usuário. Fallback: "Caxias do Sul".
+- `Reparo em {LOCATION(City):Caxias do Sul}` — variação com "Reparo" pra não repetir o mesmo formato de localização.
+- Títulos de serviço específico (Retrofit, Troca de Lente, Laudo) reforçam keywords quando o DKI não preenche.
+
+---
 
 ### Descrições (até 90 caracteres cada)
 
+> Cada descrição cobre um cluster de keywords diferente. O Google combina com os títulos dinâmicos, criando o efeito de espelhamento completo da busca.
+
+**Desc 1 — Manutenção, reparo e retrofit (guarda-chuva + localização):**
 ```
-Paramos a máquina pelo menor tempo. Garantia de conclusão mesmo com prejuízo. Chame agora.
-Especialista em laser, dobradeira e plasma CNC. Atendemos 2º e 3º turno em todo RS e SC.
-SLA com resposta garantida. 20+ anos de experiência em manutenção industrial. WhatsApp.
-Máquina parada é prejuízo imediato. Técnico especialista, não generalista. Orçamento rápido.
+Manutenção, reparo e retrofit de máquinas industriais em {LOCATION(City):sua cidade}. Chame.
+```
+
+**Desc 2 — Equipamentos específicos:**
+```
+Laser, dobradeira e plasma: manutenção, instalação e laudo de usados. RS e SC.
+```
+
+**Desc 3 — Localização + garantia:**
+```
+Atendemos em {LOCATION(City):sua cidade} e região. Resposta em até 8h. Garantia de conclusão.
+```
+
+**Desc 4 — Serviços de nicho (retrofit, lentes, treinamento, laudo):**
+```
+Retrofit, troca de lentes, treinamento de operadores e laudo de usados. WhatsApp agora.
 ```
 
 ---
