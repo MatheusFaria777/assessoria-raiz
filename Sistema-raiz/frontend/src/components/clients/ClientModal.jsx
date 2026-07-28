@@ -47,9 +47,38 @@ export default function ClientModal({ client, onClose, onSaved }) {
         cadencia_contexto: client.cadencia_contexto || '',
       })
       setAdsets(client.adsets?.map(a => ({ ...a })) || [])
-      // Carrega mapeamentos de campanhas existentes
+      // Carrega mapeamentos de campanhas existentes e semeia o estado editável com eles —
+      // sem isso, reabrir o modal e editar direto (sem clicar "Buscar do Meta" de novo) fazia
+      // o Salvar rodar em cima de listas vazias e apagar em silêncio o que já tava salvo.
       api.get(`/api/clients/${client.id}/campaign-mapping`)
-        .then(d => setCampaignMappings(d.campaigns || []))
+        .then(d => {
+          const mappings = d.campaigns || []
+          setCampaignMappings(mappings)
+
+          const campaignLevel = mappings.filter(m => !m.meta_adset_id)
+          setMetaCampaigns(campaignLevel.map(m => ({
+            id: m.meta_campaign_id,
+            name: m.name || m.meta_campaign_id,
+            campaign_type: m.campaign_type,
+            label: m.label || '',
+            sheet_tab: m.sheet_tab || '',
+          })))
+
+          const byCampaign = {}
+          for (const m of mappings.filter(m => m.meta_adset_id)) {
+            if (!byCampaign[m.meta_campaign_id]) {
+              byCampaign[m.meta_campaign_id] = { open: false, loading: false, items: [], seeded: true }
+            }
+            byCampaign[m.meta_campaign_id].items.push({
+              id: m.meta_adset_id,
+              name: m.name || m.meta_adset_id,
+              campaign_type: m.campaign_type,
+              label: m.label || '',
+              sheet_tab: m.sheet_tab || '',
+            })
+          }
+          setAdsetsByCampaign(byCampaign)
+        })
         .catch(() => {})
     }
   }, [client])
@@ -144,7 +173,9 @@ export default function ClientModal({ client, onClose, onSaved }) {
       setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { ...prev[campaignId], open: false } }))
       return
     }
-    if (current?.items) {
+    // Estado "seeded" veio só do mapeamento salvo (sem status/nome atualizado do Meta) —
+    // busca ao vivo na primeira expansão pra pegar status real e conjuntos novos.
+    if (current?.items && !current?.seeded) {
       setAdsetsByCampaign(prev => ({ ...prev, [campaignId]: { ...prev[campaignId], open: true } }))
       return
     }
@@ -246,7 +277,7 @@ export default function ClientModal({ client, onClose, onSaved }) {
       }
 
       // Salva mapeamentos de campanhas se houver alterações
-      if (mappingsDirty && savedId && metaCampaigns.length > 0) {
+      if (mappingsDirty && savedId) {
         await saveMappings(savedId)
       }
 
