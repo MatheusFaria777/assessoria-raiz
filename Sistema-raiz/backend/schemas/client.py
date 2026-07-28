@@ -15,8 +15,6 @@ class AdsetBase(BaseModel):
     store_phone: Optional[str] = None
     store_whatsapp_display: Optional[str] = None
     store_website: Optional[str] = None
-    template_ad_id: Optional[str] = None
-    lead_gen_form_id: Optional[str] = None
     active: bool = True
 
 

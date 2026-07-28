@@ -68,8 +68,6 @@ class Adset(Base):
     store_phone = Column(String, nullable=True)
     store_whatsapp_display = Column(String, nullable=True)
     store_website = Column(String, nullable=True)
-    template_ad_id = Column(String, nullable=True)  # ID de anúncio com WABA configurado para duplicar
-    lead_gen_form_id = Column(String, nullable=True)  # ID do formulário instantâneo (lead gen)
     active = Column(Boolean, default=True)
 
     client = relationship("Client", back_populates="adsets")

@@ -235,7 +235,6 @@ def _process_item(item_id: int):
 
         # 6. Cria anúncio do zero (sem template) — carrossel ou vídeo
         print(f"[uploader] item {item_id} — step 6: criando anúncio no Meta (type={post['type']})", flush=True)
-        lead_gen_form_id = adset.lead_gen_form_id or ""
         if post["type"] == "video":
             from services.meta_uploader import upload_video, create_video_ad
             video_id = upload_video(account_id, token, post["video"])
@@ -248,7 +247,6 @@ def _process_item(item_id: int):
                     video_id=video_id, ad_number=ad_number, copy=copy,
                     image_hash=thumb_hash,
                     instagram_actor_id=ig_actor_id,
-                    lead_gen_form_id=lead_gen_form_id,
                 )
         else:
             def _create_ad(ig_actor_id: str):
@@ -258,7 +256,6 @@ def _process_item(item_id: int):
                     image_hashes=image_hashes,
                     ad_number=ad_number, copy=copy,
                     instagram_actor_id=ig_actor_id,
-                    lead_gen_form_id=lead_gen_form_id,
                 )
 
         ig_actor_id = adset.instagram_actor_id or ""

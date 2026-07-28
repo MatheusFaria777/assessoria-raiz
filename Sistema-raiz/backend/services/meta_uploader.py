@@ -91,9 +91,8 @@ def create_carousel_ad(
     account_id: str, token: str, adset_id: str, page_id: str,
     image_hashes: list, ad_number: int, copy: dict,
     instagram_actor_id: str = "",
-    lead_gen_form_id: str = "",
 ) -> dict:
-    """Cria anúncio carrossel click-to-WhatsApp (ou lead gen) via requests direto."""
+    """Cria anúncio carrossel click-to-WhatsApp via requests direto."""
     act = _act(account_id)
     # Limpa e trunca campos com limites da API Meta
     import re as _re
@@ -108,25 +107,17 @@ def create_carousel_ad(
     descricao = copy["descricao_principal"][:2000]  # limite Meta para message
 
     card_description = "⭐⭐⭐⭐⭐ 5.0 avaliação"
-    if lead_gen_form_id:
-        cta = {"type": "SIGN_UP", "value": {"lead_gen_form_id": lead_gen_form_id}}
-    else:
-        cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
-
-    lead_gen_link = "https://www.facebook.com/"
-    child_extra = {"link": lead_gen_link} if lead_gen_form_id else {}
+    cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
 
     link_data: dict = {
         "message":           copy["descricao_principal"],
         "child_attachments": [
             {"image_hash": h, "name": titulo_upper, "description": card_description,
-             "call_to_action": cta, **child_extra}
+             "call_to_action": cta}
             for h in image_hashes
         ],
         "call_to_action": cta,
     }
-    if lead_gen_form_id:
-        link_data["link"] = lead_gen_link
 
     story_spec = {
         "page_id": page_id,
@@ -179,13 +170,11 @@ def create_carousel_ad(
     creative_data = _post(f"{act}/adcreatives", token, json=creative_payload)
     creative_id = creative_data["id"]
 
-    # Cria o Ad (pausado para lead gen — usuário ativa manualmente no Ads Manager)
-    ad_status = "PAUSED" if lead_gen_form_id else "ACTIVE"
     ad_data = _post(f"{act}/ads", token, json={
         "name":     ad_name,
         "adset_id": adset_id,
         "creative": {"creative_id": creative_id},
-        "status":   ad_status,
+        "status":   "ACTIVE",
     })
 
     return {"ad_id": ad_data["id"], "ad_name": ad_name, "creative_id": creative_id}
@@ -195,18 +184,14 @@ def create_video_ad(
     account_id: str, token: str, adset_id: str, page_id: str,
     video_id: str, ad_number: int, copy: dict,
     image_hash: str = "", instagram_actor_id: str = "",
-    lead_gen_form_id: str = "",
 ) -> dict:
-    """Cria anúncio de vídeo click-to-WhatsApp (ou lead gen) via requests direto."""
+    """Cria anúncio de vídeo click-to-WhatsApp via requests direto."""
     act = _act(account_id)
     nome_upper   = copy["nome_anuncio"].upper()
     titulo_upper = copy["titulo"].upper()
     ad_name = f"AD{ad_number:03d} - (VIDEO) {nome_upper}"
 
-    if lead_gen_form_id:
-        video_cta = {"type": "SIGN_UP", "value": {"lead_gen_form_id": lead_gen_form_id}}
-    else:
-        video_cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
+    video_cta = {"type": "WHATSAPP_MESSAGE", "value": {"app_destination": "WHATSAPP"}}
 
     video_data_spec = {
         "video_id": video_id,
@@ -242,10 +227,10 @@ def create_video_ad(
     creative_data = _post(f"{act}/adcreatives", token, json=creative_payload)
     creative_id = creative_data["id"]
 
-    ad_status = "PAUSED" if lead_gen_form_id else "ACTIVE"
     ad_data = _post(f"{act}/ads", token, json={
         "name":     ad_name,
         "adset_id": adset_id,
+        "status":   "ACTIVE",
         "creative": {"creative_id": creative_id},
         "status":   ad_status,
     })
