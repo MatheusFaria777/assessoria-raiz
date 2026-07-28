@@ -475,53 +475,6 @@ fbq('track', 'PageView');
   .wp-fixo:hover { filter: brightness(1.08); transform: translateY(-2px); }
   .wp-fixo svg { width: 20px; height: 20px; fill: #fff; }
 
-  /* ── MODAL WHATSAPP ── */
-  #wa-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
-  #wa-modal.open { display: flex; }
-  #wa-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
-  .wa-box { position: relative; background: #fff; max-width: 420px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 10px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.35); }
-  .wa-box-head {
-    background: var(--verde-wp);
-    color: #fff;
-    padding: 18px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .wa-box-head h2 { color: #fff; font-size: 17px; }
-  .wa-box-head svg { width: 24px; height: 24px; fill: #fff; }
-  .wa-close { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
-  .wa-form { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
-  .wa-form p { font-size: 13.5px; color: var(--ink-600); }
-  .wa-form label { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-900); margin-bottom: 6px; display: block; }
-  .wa-form input {
-    width: 100%;
-    border: 1px solid #D6D9DE;
-    border-radius: 6px;
-    padding: 12px 14px;
-    font-size: 16px;
-    font-family: inherit;
-    outline: none;
-  }
-  .wa-form input:focus { border-color: var(--brand); }
-  .wa-submit {
-    background: var(--verde-wp);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 13.5px;
-    padding: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .wa-submit svg { width: 18px; height: 18px; fill: #fff; }
-
   /* ── FAQ ── */
   .faq { padding: 90px 0; background: #fff; }
   .faq-head { max-width: 620px; margin: 0 auto 48px; text-align: center; }
@@ -589,7 +542,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="headline-visual">Máquina parada é<br><span class="red">prejuízo na hora.</span></p>
     <p class="lead">Mais de 10 anos resolvendo os problemas de máquinas industriais. Resposta garantida em até 8 horas, em qualquer turno, para laser e plasma.</p>
     <div class="btn-row">
-      <a href="#" class="btn btn-wp" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
+      <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn btn-wp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Falar no WhatsApp
       </a>
@@ -624,7 +577,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="servico-corpo">
           <h3>Manutenção Mecânica, Elétrica e Eletrônica</h3>
           <p>Máquinas de corte a laser e plasma. Diagnóstico, reparo e ajuste completo, qualquer marca.</p>
-          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Preciso de manutenção mecânica/elétrica/eletrônica na minha máquina.">Falar sobre isso <span class="arrow">→</span></a>
+          <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20manuten%C3%A7%C3%A3o%20mec%C3%A2nica/el%C3%A9trica/eletr%C3%B4nica%20na%20minha%20m%C3%A1quina." class="servico-link" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">Falar sobre isso <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="servico-card">
@@ -632,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="servico-corpo">
           <h3>Retrofit de Máquinas</h3>
           <p>Atualização de comando e automação em equipamentos de corte a laser e plasma, estendendo a vida útil da máquina.</p>
-          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Quero saber mais sobre retrofit de máquinas.">Falar sobre isso <span class="arrow">→</span></a>
+          <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20retrofit%20de%20m%C3%A1quinas." class="servico-link" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">Falar sobre isso <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="servico-card">
@@ -640,7 +593,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="servico-corpo">
           <h3>Descontaminação de Cabeçotes de Corte e Troca de Lentes</h3>
           <p>Manutenção do cabeçote de corte a laser: limpeza, descontaminação e substituição de lentes ópticas.</p>
-          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Preciso de descontaminação/troca de lentes no cabeçote de laser.">Falar sobre isso <span class="arrow">→</span></a>
+          <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20descontamina%C3%A7%C3%A3o/troca%20de%20lentes%20no%20cabe%C3%A7ote%20de%20laser." class="servico-link" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">Falar sobre isso <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="servico-card">
@@ -648,13 +601,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="servico-corpo">
           <h3>Laudo de Inspeção</h3>
           <p>Avaliação técnica antes de comprar máquina usada de corte térmico. Saiba o estado real do equipamento.</p>
-          <a href="#" class="servico-link" data-wa-trigger data-wa-context="Olá! Preciso de um laudo de inspeção para compra de máquina usada.">Falar sobre isso <span class="arrow">→</span></a>
+          <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20um%20laudo%20de%20inspe%C3%A7%C3%A3o%20para%20compra%20de%20m%C3%A1quina%20usada." class="servico-link" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">Falar sobre isso <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
 
     <div style="text-align:center; margin-top:44px;">
-      <a href="#" class="btn btn-wp" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
+      <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn btn-wp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Falar no WhatsApp
       </a>
@@ -770,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Máquina parada? Chama agora.</h2>
     <p>Sem enrolação. Retorno em até 8 horas para indústrias em todo o Rio Grande do Sul e Santa Catarina.</p>
     <div class="btn-row">
-      <a href="#" class="btn btn-wp" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
+      <a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="btn btn-wp" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Falar no WhatsApp
       </a>
@@ -811,87 +764,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <!-- BOTÃO FLUTUANTE -->
-<a href="#" class="wp-fixo" data-wa-trigger data-wa-context="Olá! Preciso de manutenção para minha máquina.">
+<a href="https://wa.me/5554981618616?text=Ol%C3%A1%21%20Preciso%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20m%C3%A1quina." class="wp-fixo" onclick="if(typeof fbq==='function'){fbq('track','Lead');} if(typeof gtag==='function'){gtag('event','conversion',{'send_to':'AW-SEU_CONVERSION_ID/LABEL'});}">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
   WhatsApp
 </a>
 
-<!-- MODAL WHATSAPP -->
-<div id="wa-modal">
-  <div id="wa-backdrop"></div>
-  <div class="wa-box">
-    <div class="wa-box-head">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-        <h2>Falar no WhatsApp</h2>
-      </div>
-      <button type="button" class="wa-close" id="wa-close" aria-label="Fechar">✕</button>
-    </div>
-    <form class="wa-form" id="wa-form">
-      <p>Informa teu nome e celular. Na sequência, o WhatsApp abre com a mensagem já preenchida direto pro Cristian.</p>
-      <label>Nome completo
-        <input type="text" name="nome" required placeholder="Como podemos te chamar">
-      </label>
-      <label>Celular com DDD
-        <input type="tel" name="telefone" required placeholder="(54) 99999-9999">
-      </label>
-      <button type="submit" class="wa-submit">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.512 5.866L0 24l6.281-1.494A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.031-1.383l-.36-.214-3.728.887.918-3.618-.236-.374A9.783 9.783 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-        Falar no WhatsApp
-      </button>
-    </form>
-  </div>
-</div>
-
 <script>
 (function () {
-  var NUMERO = '5554981618616';
-  var DEFAULT_CTX = 'Olá! Preciso de manutenção para minha máquina.';
-  var modal = document.getElementById('wa-modal');
-  var backdrop = document.getElementById('wa-backdrop');
-  var closeBtn = document.getElementById('wa-close');
-  var form = document.getElementById('wa-form');
-  var currentCtx = DEFAULT_CTX;
-
-  function openModal(ctx) {
-    currentCtx = ctx || DEFAULT_CTX;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    var input = form.querySelector('input[name="nome"]');
-    if (input) setTimeout(function () { input.focus(); }, 50);
-    if (typeof fbq === 'function') fbq('track', 'Lead');
-    if (typeof gtag === 'function') gtag('event', 'conversion', {'send_to': 'AW-SEU_CONVERSION_ID/LABEL'});
-  }
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-wa-trigger]');
-    if (t) {
-      e.preventDefault();
-      openModal(t.getAttribute('data-wa-context'));
-    }
-  });
-  backdrop.addEventListener('click', closeModal);
-  closeBtn.addEventListener('click', closeModal);
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var fd = new FormData(form);
-    var nome = String(fd.get('nome') || '').trim();
-    var tel = String(fd.get('telefone') || '').trim();
-    if (!nome || !tel) return;
-    var msg = currentCtx + '\n\nMeu nome: ' + nome + '\nMeu celular: ' + tel;
-    window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-    form.reset();
-    closeModal();
-  });
-
   document.querySelectorAll('.faq-q').forEach(function (btn) {
     btn.addEventListener('click', function () {
       btn.closest('.faq-item').classList.toggle('open');
