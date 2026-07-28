@@ -4,7 +4,7 @@
 **Produto:** Estruturação digital
 
 ## O que o cliente vai ter no projeto
-[pendente, aguardando explicação do Matheus sobre as entregas do produto]
+Ver lista completa em `briefing.md` (Entregáveis do produto). Resumo: reposicionamento digital, treinamento comercial (WhatsApp → visita), estruturação de campanhas Meta Ads, criação de Google Meu Negócio, banco de referências vitalício, Pack Raiz, suporte de 30 dias + consultoria técnica final pra ele manter rodando sozinho. Não é gestão recorrente, é estruturação pontual com handoff.
 
 ## O que ele pode esperar da gente
 [prazos, frequência de relatórios, canal de comunicação]
