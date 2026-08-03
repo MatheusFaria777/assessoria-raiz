@@ -5832,3 +5832,11 @@ upstream, see 'push.autoSetupRemote' in 'git help config'.
 [29/07/2026 16:28:33,85] Mudancas sincronizadas 
 [02/08/2026 13:28:33,01] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[dev 972231b] auto-sync: 02/08/2026 13:28:34,05
+ 1 file changed, 2 insertions(+)
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   d49435c..972231b  dev -> dev
+[02/08/2026 13:28:34,05] Mudancas sincronizadas 
+[03/08/2026 10:28:32,97] Iniciando auto-sync 
+Already up to date.
