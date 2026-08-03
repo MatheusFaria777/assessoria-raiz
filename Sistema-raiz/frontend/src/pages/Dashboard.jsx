@@ -61,6 +61,7 @@ export default function Dashboard() {
   const [syncError, setSyncError]       = useState(null)
   const [syncMonthly, setSyncMonthly]   = useState(null)
   const [syncMOpen, setSyncMOpen]       = useState(false)
+  const [retrying, setRetrying]         = useState({})   // { [`weekly-${clientId}` | `monthly-${clientId}`]: true }
   const today = new Date().toISOString().slice(0, 10)
   const user = getUser()
   const { isSegunda, isQuarta } = getDayInfo()
@@ -80,6 +81,52 @@ export default function Dashboard() {
       .then(setSyncMonthly)
       .catch(() => {})
   }, [])
+
+  const retrySync = async (clientId) => {
+    const key = `weekly-${clientId}`
+    setRetrying(r => ({ ...r, [key]: true }))
+    try {
+      const updated = await api.post(`/api/dashboard/sync-run/${clientId}`)
+      setSyncData(prev => {
+        if (!prev) return prev
+        const idx = prev.clients.findIndex(c => c.client_id === clientId)
+        const clients = idx >= 0
+          ? prev.clients.map((c, i) => i === idx ? { ...c, ...updated } : c)
+          : [updated, ...prev.clients]
+        const synced = clients.filter(c => c.status === 'success').length
+        const errors = clients.filter(c => c.status === 'error').length
+        return { ...prev, clients, synced, errors }
+      })
+      toast(updated.status === 'success' ? 'Planilhado com sucesso!' : updated.status === 'error' ? 'Ainda com erro' : 'Sem dados pra planilhar', updated.status === 'error' ? 'error' : 'success')
+    } catch (e) {
+      toast(e.message, 'error')
+    } finally {
+      setRetrying(r => ({ ...r, [key]: false }))
+    }
+  }
+
+  const retrySyncMonthly = async (clientId) => {
+    const key = `monthly-${clientId}`
+    setRetrying(r => ({ ...r, [key]: true }))
+    try {
+      const updated = await api.post(`/api/dashboard/sync-monthly-run/${clientId}`)
+      setSyncMonthly(prev => {
+        if (!prev) return prev
+        const idx = prev.clients.findIndex(c => c.client_id === clientId)
+        const clients = idx >= 0
+          ? prev.clients.map((c, i) => i === idx ? { ...c, ...updated } : c)
+          : [updated, ...prev.clients]
+        const synced = clients.filter(c => c.status === 'success').length
+        const errors = clients.filter(c => c.status === 'error').length
+        return { ...prev, clients, synced, errors }
+      })
+      toast(updated.status === 'success' ? 'Planilhado com sucesso!' : updated.status === 'error' ? 'Ainda com erro' : 'Sem dados pra planilhar', updated.status === 'error' ? 'error' : 'success')
+    } catch (e) {
+      toast(e.message, 'error')
+    } finally {
+      setRetrying(r => ({ ...r, [key]: false }))
+    }
+  }
 
   const activeCadTab = isSegunda ? 'segunda' : isQuarta ? 'quarta' : cadPreview
 
@@ -229,7 +276,20 @@ export default function Dashboard() {
                     <span style={{ fontSize: '.75rem', color: 'rgba(245,245,245,.3)' }}>{c.rows_synced} aba{c.rows_synced !== 1 ? 's' : ''}</span>
                   )}
                   {c.status === 'error' && (
-                    <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
+                    <>
+                      <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
+                      <button
+                        onClick={e => { e.stopPropagation(); retrySync(c.client_id) }}
+                        disabled={retrying[`weekly-${c.client_id}`]}
+                        title="Tentar de novo"
+                        style={{
+                          background: 'transparent', border: 'none', cursor: 'pointer',
+                          color: 'rgba(245,245,245,.5)', fontSize: '.85rem', padding: '.15rem .3rem', lineHeight: 1,
+                        }}
+                      >
+                        {retrying[`weekly-${c.client_id}`] ? <span className="spinner" style={{ width: 12, height: 12 }} /> : '↻'}
+                      </button>
+                    </>
                   )}
                 </div>
               ))}
@@ -289,7 +349,20 @@ export default function Dashboard() {
                     {c.client_name}
                   </span>
                   {c.status === 'error' && (
-                    <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
+                    <>
+                      <span style={{ fontSize: '.7rem', color: 'rgba(239,68,68,.6)' }}>ver erro</span>
+                      <button
+                        onClick={e => { e.stopPropagation(); retrySyncMonthly(c.client_id) }}
+                        disabled={retrying[`monthly-${c.client_id}`]}
+                        title="Tentar de novo"
+                        style={{
+                          background: 'transparent', border: 'none', cursor: 'pointer',
+                          color: 'rgba(245,245,245,.5)', fontSize: '.85rem', padding: '.15rem .3rem', lineHeight: 1,
+                        }}
+                      >
+                        {retrying[`monthly-${c.client_id}`] ? <span className="spinner" style={{ width: 12, height: 12 }} /> : '↻'}
+                      </button>
+                    </>
                   )}
                 </div>
               ))}

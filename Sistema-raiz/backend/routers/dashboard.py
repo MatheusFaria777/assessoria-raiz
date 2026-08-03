@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session, joinedload
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session, joinedload, selectinload
 from sqlalchemy import func
 from datetime import date, timedelta
 import time
@@ -168,6 +168,43 @@ def trigger_sync(db: Session = Depends(get_db)):
         return {"ok": False, "error": str(e)}
 
 
+@router.post("/sync-run/{client_id}")
+def retry_sync_client(client_id: int, db: Session = Depends(get_db)):
+    """Tenta de novo o planilhamento semanal de um único cliente — pra testar um fix sem re-rodar o lote inteiro."""
+    from services.sync_engine import sync_client
+    from services.cadencia_builder import get_week_range
+
+    client = (
+        db.query(Client)
+        .options(selectinload(Client.campaign_groups), selectinload(Client.campaigns))
+        .filter(Client.id == client_id, Client.active == True)
+        .first()
+    )
+    if not client:
+        raise HTTPException(status_code=404, detail="Cliente não encontrado")
+
+    since, until = get_week_range()
+    result = sync_client(client, db, since, until)
+
+    log = None
+    if result["status"] in ("success", "error"):
+        log = SyncLog(
+            client_id=client.id, type="weekly", status=result["status"],
+            rows_synced=len(result["tabs_synced"]),
+            error_message=result.get("error") if result["status"] == "error" else None,
+            period_start=since, period_end=until,
+        )
+        db.add(log)
+        db.commit()
+
+    return {
+        "client_id": client.id, "client_name": client.name,
+        "status": result["status"], "rows_synced": len(result["tabs_synced"]),
+        "error": result.get("error"), "since": since,
+        "synced_at": log.synced_at.isoformat() if log and log.synced_at else None,
+    }
+
+
 @router.get("/sync-monthly")
 def get_sync_monthly(db: Session = Depends(get_db)):
     """Último planilhamento mensal registrado (qualquer data)."""
@@ -211,3 +248,55 @@ def trigger_monthly_sync(db: Session = Depends(get_db)):
         return {"ok": True, **summary}
     except Exception as e:
         return {"ok": False, "error": str(e)}
+
+
+@router.post("/sync-monthly-run/{client_id}")
+def retry_sync_monthly_client(client_id: int, db: Session = Depends(get_db)):
+    """Tenta de novo o planilhamento mensal de um único cliente."""
+    from services.sync_engine import _fetch_monthly_data
+    from services.sheets import write_monthly
+    from services.cadencia_builder import get_month_range
+
+    client = (
+        db.query(Client)
+        .options(selectinload(Client.campaign_groups), selectinload(Client.campaigns))
+        .filter(Client.id == client_id, Client.active == True)
+        .first()
+    )
+    if not client:
+        raise HTTPException(status_code=404, detail="Cliente não encontrado")
+    if not client.sheets_id:
+        return {"client_id": client.id, "client_name": client.name, "status": "skipped",
+                "error": "Cliente sem planilha configurada", "synced_at": None}
+
+    since, until = get_month_range()
+    metrics = _fetch_monthly_data(client, db, since, until)
+    if metrics is None:
+        return {"client_id": client.id, "client_name": client.name, "status": "skipped",
+                "error": "Sem dados ou plataforma de anúncios não configurada", "synced_at": None}
+
+    try:
+        res = write_monthly(
+            sheet_id=client.sheets_id, since=since,
+            invest=metrics["invest"], leads=metrics["leads"],
+            impressoes=metrics["impressoes"], link_clicks=metrics["link_clicks"],
+            revenue=metrics["revenue"],
+        )
+    except Exception as e:
+        res = {"ok": False, "error": str(e)}
+
+    status = "success" if res.get("ok") else "error"
+    log = SyncLog(
+        client_id=client.id, type="monthly", status=status,
+        rows_synced=1 if status == "success" else 0,
+        error_message=None if status == "success" else res.get("error"),
+        period_start=since, period_end=until,
+    )
+    db.add(log)
+    db.commit()
+
+    return {
+        "client_id": client.id, "client_name": client.name, "status": status,
+        "error": res.get("error"), "month": res.get("month"),
+        "synced_at": log.synced_at.isoformat() if log.synced_at else None,
+    }
