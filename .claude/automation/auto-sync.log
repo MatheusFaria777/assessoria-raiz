@@ -6103,3 +6103,11 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [05/08/2026 18:58:33,42] Mudancas sincronizadas 
 [05/08/2026 19:28:32,58] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[dev a32cc3b] auto-sync: 05/08/2026 19:28:33,39
+ 1 file changed, 8 insertions(+)
+^C[05/08/2026 19:58:32,56] Iniciando auto-sync 
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+error: unable to unlink old '.claude/automation/auto-sync.log': Invalid argument
+fatal: could not reset --hard
+Created autostash: c4d26e2
