@@ -7101,3 +7101,16 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [14/08/2026 15:58:33,81] Mudancas sincronizadas 
 [15/08/2026 12:28:33,15] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[dev 899ccfb] auto-sync: 15/08/2026 12:28:34,64
+ 1 file changed, 8 insertions(+)
+^C[15/08/2026 12:58:33,08] Iniciando auto-sync 
+fatal: It seems that there is already a rebase-merge directory, and
+I wonder if you are in the middle of another rebase.  If that is the
+case, please try
+	git rebase (--continue | --abort | --skip)
+If that is not the case, please
+	rm -fr ".git/rebase-merge"
+and run me again.  I am stopping in case you still have something
+valuable there.
+
