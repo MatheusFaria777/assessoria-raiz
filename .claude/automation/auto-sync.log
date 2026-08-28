@@ -8094,3 +8094,11 @@ warning: in the working copy of '.claude/automation/auto-sync.log', LF will be r
 From https://github.com/MatheusFaria777/assessoria-raiz
    b1d5e3d..49b4c53  dev        -> origin/dev
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[dev ec81236] auto-sync: 28/08/2026 10:28:34,92
+ 1 file changed, 7 insertions(+)
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   49b4c53..ec81236  dev -> dev
+[28/08/2026 10:28:34,92] Mudancas sincronizadas 
+[28/08/2026 10:58:33,13] Iniciando auto-sync 
+Already up to date.
