@@ -8635,3 +8635,11 @@ To https://github.com/MatheusFaria777/assessoria-raiz.git
 [04/09/2026 11:28:33,97] Mudancas sincronizadas 
 [04/09/2026 11:58:32,96] Iniciando auto-sync 
 Already up to date.
+warning: in the working copy of '.claude/automation/auto-sync.log', LF will be replaced by CRLF the next time Git touches it
+[dev 25b25ab] auto-sync: 04/09/2026 11:58:33,99
+ 1 file changed, 8 insertions(+)
+To https://github.com/MatheusFaria777/assessoria-raiz.git
+   aaf8e67..25b25ab  dev -> dev
+[04/09/2026 11:58:33,99] Mudancas sincronizadas 
+[04/09/2026 12:28:33,00] Iniciando auto-sync 
+Already up to date.
